@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-char putchar(char c)
+int putchar(int c)
 {
     if(UART_Transmit((uint8_t *)&c, 1, 2000) == HAL_OK)
     {
@@ -17,30 +17,30 @@ char putchar(char c)
     }
 }
 
-void LOGI(const char *file, unsigned int line, char *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-    printf(GREEN_COLOR"[I] %s:%u: ", file, line);
-    vprintf(fmt, args);
-    printf(RESET_COLOR);
-    va_end(args);
-}
-void LOGW(const char *file, unsigned int line, char *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-    printf(YELLOW_COLOR"[W] %s:%u: ", file, line);
-    vprintf(fmt, args);
-    printf(RESET_COLOR);
-    va_end(args);
-}
-void LOGE(const char *file, unsigned int line, char *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-    printf(RED_COLOR"[W] %s:%u: ", file, line);
-    vprintf(fmt, args);
-    printf(RESET_COLOR);
-    va_end(args);
-}
+// void LOGI(const char *file, unsigned int line, char *fmt, ...)
+// {
+//     va_list args;
+//     va_start(args, fmt);
+//     printf(GREEN_COLOR"[I] %s:%u: ", file, line);
+//     vprintf(fmt, args);
+//     printf(RESET_COLOR);
+//     va_end(args);
+// }
+// void LOGW(const char *file, unsigned int line, char *fmt, ...)
+// {
+//     va_list args;
+//     va_start(args, fmt);
+//     printf(YELLOW_COLOR"[W] %s:%u: ", file, line);
+//     vprintf(fmt, args);
+//     printf(RESET_COLOR);
+//     va_end(args);
+// }
+// void LOGE(const char *file, unsigned int line, char *fmt, ...)
+// {
+//     va_list args;
+//     va_start(args, fmt);
+//     printf(RED_COLOR"[W] %s:%u: ", file, line);
+//     vprintf(fmt, args);
+//     printf(RESET_COLOR);
+//     va_end(args);
+// }

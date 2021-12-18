@@ -30,7 +30,7 @@
 
 void SysTick_Init(void);
 uint16_t GetTick(void);
-void SysTick_ISR(void);
+// void SysTick_ISR(void);
 void Delayms(uint16_t Timeout);
 HAL_Status CheckTimeout(uint16_t Start, uint16_t Timeout);
 

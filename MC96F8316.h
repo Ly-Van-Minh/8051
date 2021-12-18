@@ -6,11 +6,13 @@
 //		author   : Ma, Nakwon
 //======================================================
 
-#include	<intrins.h>
+// #include	<intrins.h>
 
 #ifndef		_MC96F8316_
 #define		_MC96F8316_
 
+#define sfr		__sfr
+#define sbit	__sbit
 sfr			P0			= 0x80;			// P0 Data Register
 	sbit	P00			= 0x80;
 	sbit	P01			= 0x81;
@@ -198,4 +200,6 @@ sfr			EO			= 0xA2;			// EXTENDED OPERATION REGISTER
 
 #define		cli()		do{IE &= ~0x80;}while(0)
 #define		sei()		do{IE |=  0x80;}while(0)
-#define		NOP			_nop_()
+#define 	nop()		__asm \
+nop	\
+__endasm

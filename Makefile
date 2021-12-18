@@ -4,7 +4,7 @@
 #####################################################################
 
 CC 				= sdcc
-CFLAGS 			= -Werror -I
+CFLAGS 			= -I.
 RM 				= rm -rf
 SRCS 			= $(wildcard *.c)
 RELS			= $(patsubst %.c,%.rel,$(SRCS))
@@ -20,7 +20,7 @@ $(PROJECT_NAME).bin: %.hex
 $(PROJECT_NAME).hex: $(PROJECT_NAME).ihx
 	packihx $< > $@
 
-$(PROJECT_NAME).ihx: %.rel
+$(PROJECT_NAME).ihx: $(RELS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 %.rel: %.c %.h
@@ -28,5 +28,5 @@ $(PROJECT_NAME).ihx: %.rel
 
 .PHONY: clean
 clean:
-	$(RM) *.asm *.hex *.ihx *.lst *.map *.mem *.rel *.rst *.sym *.bin
+	$(RM) *.asm *.hex *.ihx *.lst *.map *.mem *.rel *.rst *.sym *.bin *.lk
 #####################################################################
