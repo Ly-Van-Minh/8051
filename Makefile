@@ -15,12 +15,15 @@ TARGET 			= all
 PROJECT_NAME	= CHARGECASE_HDX_2968
 #####################################################################
 
-$(TARGET): $(OBJ_DIR)/(PROJECT_NAME).hex 
+$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).hex $(OBJ_DIR)/$(PROJECT_NAME).bin
 
-$(OBJ_DIR)/(PROJECT_NAME).hex: $(OBJ_DIR)/(PROJECT_NAME).ihx
+$(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/%.hex
+	objcopy -I ihex -O binary $< $@
+
+$(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
-$(OBJ_DIR)/(PROJECT_NAME).ihx: $(OBJ_DIR)/%.rel
+$(OBJ_DIR)/$(PROJECT_NAME).ihx: $(OBJ_DIR)/%.rel
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
