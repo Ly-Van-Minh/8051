@@ -15,7 +15,7 @@ TARGET 			= all
 PROJECT_NAME	= CHARGECASE_HDX_2968
 #####################################################################
 
-$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).hex $(OBJ_DIR)/$(PROJECT_NAME).bin
+$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).bin
 
 $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/%.hex
 	objcopy -I ihex -O binary $< $@
@@ -27,7 +27,7 @@ $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
-	$(CC) $(CFLAGS) $< -c $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
