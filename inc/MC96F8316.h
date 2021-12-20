@@ -6,7 +6,7 @@
 //		author   : Ma, Nakwon
 //======================================================
 
-#include	<intrins.h>
+// #include	<intrins.h>
 
 #ifndef		_MC96F8316_
 #define		_MC96F8316_
