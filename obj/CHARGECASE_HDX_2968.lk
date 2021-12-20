@@ -1,0 +1,26 @@
+-muwx
+-i obj/CHARGECASE_HDX_2968.ihx
+-M
+-Y
+-b HOME = 0x0000
+-b XSEG = 0x0001
+-b PSEG = 0x0001
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-k /usr/bin/../share/sdcc/lib/small-stack-auto
+-k /usr/share/sdcc/lib/small-stack-auto
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+obj/mc96f8x16_i2c.rel
+obj/mc96f8x16_wdt.rel
+obj/log.rel
+obj/main.rel
+obj/mc96f8x16_cg.rel
+obj/mc96f8x16_tim.rel
+obj/mc96f8x16_uart.rel
+obj/mc96f8x16_gpio.rel
+
+-e

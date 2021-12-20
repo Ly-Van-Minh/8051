@@ -1,0 +1,1281 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.0 #10562 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module mc96f8x16_i2c
+                                      6 	.optsdcc -mmcs51 --model-small
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _CheckTimeout
+                                     12 	.globl _GetTick
+                                     13 	.globl _P37
+                                     14 	.globl _P36
+                                     15 	.globl _P35
+                                     16 	.globl _P34
+                                     17 	.globl _P33
+                                     18 	.globl _P32
+                                     19 	.globl _P31
+                                     20 	.globl _P30
+                                     21 	.globl _P27
+                                     22 	.globl _P26
+                                     23 	.globl _P25
+                                     24 	.globl _P24
+                                     25 	.globl _P23
+                                     26 	.globl _P22
+                                     27 	.globl _P21
+                                     28 	.globl _P20
+                                     29 	.globl _P17
+                                     30 	.globl _P16
+                                     31 	.globl _P15
+                                     32 	.globl _P14
+                                     33 	.globl _P13
+                                     34 	.globl _P12
+                                     35 	.globl _P11
+                                     36 	.globl _P10
+                                     37 	.globl _P07
+                                     38 	.globl _P06
+                                     39 	.globl _P05
+                                     40 	.globl _P04
+                                     41 	.globl _P03
+                                     42 	.globl _P02
+                                     43 	.globl _P01
+                                     44 	.globl _P00
+                                     45 	.globl _EO
+                                     46 	.globl _DPH1
+                                     47 	.globl _DPL1
+                                     48 	.globl _DPH
+                                     49 	.globl _DPL
+                                     50 	.globl _SP
+                                     51 	.globl _PSW
+                                     52 	.globl _B
+                                     53 	.globl _ACC
+                                     54 	.globl _FMCR
+                                     55 	.globl _FIDR
+                                     56 	.globl _FSADRL
+                                     57 	.globl _FSADRM
+                                     58 	.globl _FSADRH
+                                     59 	.globl _I2CSCHR
+                                     60 	.globl _I2CSCLR
+                                     61 	.globl _I2CSDHR
+                                     62 	.globl _I2CDR
+                                     63 	.globl _I2CSAR1
+                                     64 	.globl _I2CSAR0
+                                     65 	.globl _I2CSR
+                                     66 	.globl _I2CCR
+                                     67 	.globl _UARTDR
+                                     68 	.globl _UARTBD
+                                     69 	.globl _UARTST
+                                     70 	.globl _UARTCR3
+                                     71 	.globl _UARTCR2
+                                     72 	.globl _UARTCR1
+                                     73 	.globl _SPISR
+                                     74 	.globl _SPIDR
+                                     75 	.globl _SPICR
+                                     76 	.globl _ADWIFRH
+                                     77 	.globl _ADWIFRL
+                                     78 	.globl _ADWCRH
+                                     79 	.globl _ADWCRL
+                                     80 	.globl _ADWRCR3
+                                     81 	.globl _ADWRCR2
+                                     82 	.globl _ADWRCR1
+                                     83 	.globl _ADWRCR0
+                                     84 	.globl _ADCDRH
+                                     85 	.globl _ADCDRL
+                                     86 	.globl _ADCCRH
+                                     87 	.globl _ADCCRL
+                                     88 	.globl _BUZCR
+                                     89 	.globl _BUZDR
+                                     90 	.globl _T2BDRH
+                                     91 	.globl _T2BDRL
+                                     92 	.globl _T2ADRH
+                                     93 	.globl _T2ADRL
+                                     94 	.globl _T2CRH
+                                     95 	.globl _T2CRL
+                                     96 	.globl _T1BDRH
+                                     97 	.globl _T1BDRL
+                                     98 	.globl _T1ADRH
+                                     99 	.globl _T1ADRL
+                                    100 	.globl _T1CRH
+                                    101 	.globl _T1CRL
+                                    102 	.globl _T0CDR
+                                    103 	.globl _T0DR
+                                    104 	.globl _T0CNT
+                                    105 	.globl _T0CR
+                                    106 	.globl _WTCR
+                                    107 	.globl _WTCNT
+                                    108 	.globl _WTDR
+                                    109 	.globl _WDTCR
+                                    110 	.globl _WDTCNT
+                                    111 	.globl _WDTDR
+                                    112 	.globl _LVICR
+                                    113 	.globl _LVRCR
+                                    114 	.globl _PCON
+                                    115 	.globl _RSTFR
+                                    116 	.globl _BITCR
+                                    117 	.globl _BITCNT
+                                    118 	.globl _OSCCR
+                                    119 	.globl _SCCR
+                                    120 	.globl _EIPOL2
+                                    121 	.globl _EIPOL1
+                                    122 	.globl _EIPOL0H
+                                    123 	.globl _EIPOL0L
+                                    124 	.globl _EIFLAG1
+                                    125 	.globl _EIFLAG0
+                                    126 	.globl _IIFLAG
+                                    127 	.globl _IP1
+                                    128 	.globl _IP
+                                    129 	.globl _IE3
+                                    130 	.globl _IE2
+                                    131 	.globl _IE1
+                                    132 	.globl _IE
+                                    133 	.globl _P3FSR
+                                    134 	.globl _P2FSR
+                                    135 	.globl _P1FSRH
+                                    136 	.globl _P1FSRL
+                                    137 	.globl _P0FSR
+                                    138 	.globl _P3PU
+                                    139 	.globl _P3OD
+                                    140 	.globl _P3IO
+                                    141 	.globl _P3
+                                    142 	.globl _P2PU
+                                    143 	.globl _P2OD
+                                    144 	.globl _P2IO
+                                    145 	.globl _P2
+                                    146 	.globl _P12DB
+                                    147 	.globl _P1PU
+                                    148 	.globl _P1OD
+                                    149 	.globl _P1IO
+                                    150 	.globl _P1
+                                    151 	.globl _P03DB
+                                    152 	.globl _P0PU
+                                    153 	.globl _P0OD
+                                    154 	.globl _P0IO
+                                    155 	.globl _P0
+                                    156 	.globl _I2C_Config
+                                    157 	.globl _I2C_Master_Transmit
+                                    158 	.globl _I2C_Master_Receive
+                                    159 ;--------------------------------------------------------
+                                    160 ; special function registers
+                                    161 ;--------------------------------------------------------
+                                    162 	.area RSEG    (ABS,DATA)
+      000000                        163 	.org 0x0000
+      000000                        164 _P0::
+      000000                        165 	.ds 1
+      000001                        166 _P0IO::
+      000001                        167 	.ds 1
+      000002                        168 _P0OD::
+      000002                        169 	.ds 1
+      000003                        170 _P0PU::
+      000003                        171 	.ds 1
+      000004                        172 _P03DB::
+      000004                        173 	.ds 1
+      000005                        174 _P1::
+      000005                        175 	.ds 1
+      000006                        176 _P1IO::
+      000006                        177 	.ds 1
+      000007                        178 _P1OD::
+      000007                        179 	.ds 1
+      000008                        180 _P1PU::
+      000008                        181 	.ds 1
+      000009                        182 _P12DB::
+      000009                        183 	.ds 1
+      00000A                        184 _P2::
+      00000A                        185 	.ds 1
+      00000B                        186 _P2IO::
+      00000B                        187 	.ds 1
+      00000C                        188 _P2OD::
+      00000C                        189 	.ds 1
+      00000D                        190 _P2PU::
+      00000D                        191 	.ds 1
+      00000E                        192 _P3::
+      00000E                        193 	.ds 1
+      00000F                        194 _P3IO::
+      00000F                        195 	.ds 1
+      000010                        196 _P3OD::
+      000010                        197 	.ds 1
+      000011                        198 _P3PU::
+      000011                        199 	.ds 1
+      000012                        200 _P0FSR::
+      000012                        201 	.ds 1
+      000013                        202 _P1FSRL::
+      000013                        203 	.ds 1
+      000014                        204 _P1FSRH::
+      000014                        205 	.ds 1
+      000015                        206 _P2FSR::
+      000015                        207 	.ds 1
+      000016                        208 _P3FSR::
+      000016                        209 	.ds 1
+      000017                        210 _IE::
+      000017                        211 	.ds 1
+      000018                        212 _IE1::
+      000018                        213 	.ds 1
+      000019                        214 _IE2::
+      000019                        215 	.ds 1
+      00001A                        216 _IE3::
+      00001A                        217 	.ds 1
+      00001B                        218 _IP::
+      00001B                        219 	.ds 1
+      00001C                        220 _IP1::
+      00001C                        221 	.ds 1
+      00001D                        222 _IIFLAG::
+      00001D                        223 	.ds 1
+      00001E                        224 _EIFLAG0::
+      00001E                        225 	.ds 1
+      00001F                        226 _EIFLAG1::
+      00001F                        227 	.ds 1
+      000020                        228 _EIPOL0L::
+      000020                        229 	.ds 1
+      000021                        230 _EIPOL0H::
+      000021                        231 	.ds 1
+      000022                        232 _EIPOL1::
+      000022                        233 	.ds 1
+      000023                        234 _EIPOL2::
+      000023                        235 	.ds 1
+      000024                        236 _SCCR::
+      000024                        237 	.ds 1
+      000025                        238 _OSCCR::
+      000025                        239 	.ds 1
+      000026                        240 _BITCNT::
+      000026                        241 	.ds 1
+      000027                        242 _BITCR::
+      000027                        243 	.ds 1
+      000028                        244 _RSTFR::
+      000028                        245 	.ds 1
+      000029                        246 _PCON::
+      000029                        247 	.ds 1
+      00002A                        248 _LVRCR::
+      00002A                        249 	.ds 1
+      00002B                        250 _LVICR::
+      00002B                        251 	.ds 1
+      00002C                        252 _WDTDR::
+      00002C                        253 	.ds 1
+      00002D                        254 _WDTCNT::
+      00002D                        255 	.ds 1
+      00002E                        256 _WDTCR::
+      00002E                        257 	.ds 1
+      00002F                        258 _WTDR::
+      00002F                        259 	.ds 1
+      000030                        260 _WTCNT::
+      000030                        261 	.ds 1
+      000031                        262 _WTCR::
+      000031                        263 	.ds 1
+      000032                        264 _T0CR::
+      000032                        265 	.ds 1
+      000033                        266 _T0CNT::
+      000033                        267 	.ds 1
+      000034                        268 _T0DR::
+      000034                        269 	.ds 1
+      000035                        270 _T0CDR::
+      000035                        271 	.ds 1
+      000036                        272 _T1CRL::
+      000036                        273 	.ds 1
+      000037                        274 _T1CRH::
+      000037                        275 	.ds 1
+      000038                        276 _T1ADRL::
+      000038                        277 	.ds 1
+      000039                        278 _T1ADRH::
+      000039                        279 	.ds 1
+      00003A                        280 _T1BDRL::
+      00003A                        281 	.ds 1
+      00003B                        282 _T1BDRH::
+      00003B                        283 	.ds 1
+      00003C                        284 _T2CRL::
+      00003C                        285 	.ds 1
+      00003D                        286 _T2CRH::
+      00003D                        287 	.ds 1
+      00003E                        288 _T2ADRL::
+      00003E                        289 	.ds 1
+      00003F                        290 _T2ADRH::
+      00003F                        291 	.ds 1
+      000040                        292 _T2BDRL::
+      000040                        293 	.ds 1
+      000041                        294 _T2BDRH::
+      000041                        295 	.ds 1
+      000042                        296 _BUZDR::
+      000042                        297 	.ds 1
+      000043                        298 _BUZCR::
+      000043                        299 	.ds 1
+      000044                        300 _ADCCRL::
+      000044                        301 	.ds 1
+      000045                        302 _ADCCRH::
+      000045                        303 	.ds 1
+      000046                        304 _ADCDRL::
+      000046                        305 	.ds 1
+      000047                        306 _ADCDRH::
+      000047                        307 	.ds 1
+      000048                        308 _ADWRCR0::
+      000048                        309 	.ds 1
+      000049                        310 _ADWRCR1::
+      000049                        311 	.ds 1
+      00004A                        312 _ADWRCR2::
+      00004A                        313 	.ds 1
+      00004B                        314 _ADWRCR3::
+      00004B                        315 	.ds 1
+      00004C                        316 _ADWCRL::
+      00004C                        317 	.ds 1
+      00004D                        318 _ADWCRH::
+      00004D                        319 	.ds 1
+      00004E                        320 _ADWIFRL::
+      00004E                        321 	.ds 1
+      00004F                        322 _ADWIFRH::
+      00004F                        323 	.ds 1
+      000050                        324 _SPICR::
+      000050                        325 	.ds 1
+      000051                        326 _SPIDR::
+      000051                        327 	.ds 1
+      000052                        328 _SPISR::
+      000052                        329 	.ds 1
+      000053                        330 _UARTCR1::
+      000053                        331 	.ds 1
+      000054                        332 _UARTCR2::
+      000054                        333 	.ds 1
+      000055                        334 _UARTCR3::
+      000055                        335 	.ds 1
+      000056                        336 _UARTST::
+      000056                        337 	.ds 1
+      000057                        338 _UARTBD::
+      000057                        339 	.ds 1
+      000058                        340 _UARTDR::
+      000058                        341 	.ds 1
+      000059                        342 _I2CCR::
+      000059                        343 	.ds 1
+      00005A                        344 _I2CSR::
+      00005A                        345 	.ds 1
+      00005B                        346 _I2CSAR0::
+      00005B                        347 	.ds 1
+      00005C                        348 _I2CSAR1::
+      00005C                        349 	.ds 1
+      00005D                        350 _I2CDR::
+      00005D                        351 	.ds 1
+      00005E                        352 _I2CSDHR::
+      00005E                        353 	.ds 1
+      00005F                        354 _I2CSCLR::
+      00005F                        355 	.ds 1
+      000060                        356 _I2CSCHR::
+      000060                        357 	.ds 1
+      000061                        358 _FSADRH::
+      000061                        359 	.ds 1
+      000062                        360 _FSADRM::
+      000062                        361 	.ds 1
+      000063                        362 _FSADRL::
+      000063                        363 	.ds 1
+      000064                        364 _FIDR::
+      000064                        365 	.ds 1
+      000065                        366 _FMCR::
+      000065                        367 	.ds 1
+      000066                        368 _ACC::
+      000066                        369 	.ds 1
+      000067                        370 _B::
+      000067                        371 	.ds 1
+      000068                        372 _PSW::
+      000068                        373 	.ds 1
+      000069                        374 _SP::
+      000069                        375 	.ds 1
+      00006A                        376 _DPL::
+      00006A                        377 	.ds 1
+      00006B                        378 _DPH::
+      00006B                        379 	.ds 1
+      00006C                        380 _DPL1::
+      00006C                        381 	.ds 1
+      00006D                        382 _DPH1::
+      00006D                        383 	.ds 1
+      00006E                        384 _EO::
+      00006E                        385 	.ds 1
+                                    386 ;--------------------------------------------------------
+                                    387 ; special function bits
+                                    388 ;--------------------------------------------------------
+                                    389 	.area RSEG    (ABS,DATA)
+      000000                        390 	.org 0x0000
+      000000                        391 _P00::
+      000000                        392 	.ds 1
+      000001                        393 _P01::
+      000001                        394 	.ds 1
+      000002                        395 _P02::
+      000002                        396 	.ds 1
+      000003                        397 _P03::
+      000003                        398 	.ds 1
+      000004                        399 _P04::
+      000004                        400 	.ds 1
+      000005                        401 _P05::
+      000005                        402 	.ds 1
+      000006                        403 _P06::
+      000006                        404 	.ds 1
+      000007                        405 _P07::
+      000007                        406 	.ds 1
+      000008                        407 _P10::
+      000008                        408 	.ds 1
+      000009                        409 _P11::
+      000009                        410 	.ds 1
+      00000A                        411 _P12::
+      00000A                        412 	.ds 1
+      00000B                        413 _P13::
+      00000B                        414 	.ds 1
+      00000C                        415 _P14::
+      00000C                        416 	.ds 1
+      00000D                        417 _P15::
+      00000D                        418 	.ds 1
+      00000E                        419 _P16::
+      00000E                        420 	.ds 1
+      00000F                        421 _P17::
+      00000F                        422 	.ds 1
+      000010                        423 _P20::
+      000010                        424 	.ds 1
+      000011                        425 _P21::
+      000011                        426 	.ds 1
+      000012                        427 _P22::
+      000012                        428 	.ds 1
+      000013                        429 _P23::
+      000013                        430 	.ds 1
+      000014                        431 _P24::
+      000014                        432 	.ds 1
+      000015                        433 _P25::
+      000015                        434 	.ds 1
+      000016                        435 _P26::
+      000016                        436 	.ds 1
+      000017                        437 _P27::
+      000017                        438 	.ds 1
+      000018                        439 _P30::
+      000018                        440 	.ds 1
+      000019                        441 _P31::
+      000019                        442 	.ds 1
+      00001A                        443 _P32::
+      00001A                        444 	.ds 1
+      00001B                        445 _P33::
+      00001B                        446 	.ds 1
+      00001C                        447 _P34::
+      00001C                        448 	.ds 1
+      00001D                        449 _P35::
+      00001D                        450 	.ds 1
+      00001E                        451 _P36::
+      00001E                        452 	.ds 1
+      00001F                        453 _P37::
+      00001F                        454 	.ds 1
+                                    455 ;--------------------------------------------------------
+                                    456 ; overlayable register banks
+                                    457 ;--------------------------------------------------------
+                                    458 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        459 	.ds 8
+                                    460 ;--------------------------------------------------------
+                                    461 ; internal ram data
+                                    462 ;--------------------------------------------------------
+                                    463 	.area DSEG    (DATA)
+                                    464 ;--------------------------------------------------------
+                                    465 ; overlayable items in internal ram 
+                                    466 ;--------------------------------------------------------
+                                    467 ;--------------------------------------------------------
+                                    468 ; indirectly addressable internal ram data
+                                    469 ;--------------------------------------------------------
+                                    470 	.area ISEG    (DATA)
+                                    471 ;--------------------------------------------------------
+                                    472 ; absolute internal ram data
+                                    473 ;--------------------------------------------------------
+                                    474 	.area IABS    (ABS,DATA)
+                                    475 	.area IABS    (ABS,DATA)
+                                    476 ;--------------------------------------------------------
+                                    477 ; bit data
+                                    478 ;--------------------------------------------------------
+                                    479 	.area BSEG    (BIT)
+                                    480 ;--------------------------------------------------------
+                                    481 ; paged external ram data
+                                    482 ;--------------------------------------------------------
+                                    483 	.area PSEG    (PAG,XDATA)
+                                    484 ;--------------------------------------------------------
+                                    485 ; external ram data
+                                    486 ;--------------------------------------------------------
+                                    487 	.area XSEG    (XDATA)
+                                    488 ;--------------------------------------------------------
+                                    489 ; absolute external ram data
+                                    490 ;--------------------------------------------------------
+                                    491 	.area XABS    (ABS,XDATA)
+                                    492 ;--------------------------------------------------------
+                                    493 ; external initialized ram data
+                                    494 ;--------------------------------------------------------
+                                    495 	.area XISEG   (XDATA)
+                                    496 	.area HOME    (CODE)
+                                    497 	.area GSINIT0 (CODE)
+                                    498 	.area GSINIT1 (CODE)
+                                    499 	.area GSINIT2 (CODE)
+                                    500 	.area GSINIT3 (CODE)
+                                    501 	.area GSINIT4 (CODE)
+                                    502 	.area GSINIT5 (CODE)
+                                    503 	.area GSINIT  (CODE)
+                                    504 	.area GSFINAL (CODE)
+                                    505 	.area CSEG    (CODE)
+                                    506 ;--------------------------------------------------------
+                                    507 ; global & static initialisations
+                                    508 ;--------------------------------------------------------
+                                    509 	.area HOME    (CODE)
+                                    510 	.area GSINIT  (CODE)
+                                    511 	.area GSFINAL (CODE)
+                                    512 	.area GSINIT  (CODE)
+                                    513 ;	./inc/MC96F8316.h:17: sfr			P0			= 0x80;			// P0 Data Register
+      00005F 75 00 80         [24]  514 	mov	_P0,#0x80
+                                    515 ;	./inc/MC96F8316.h:27: sfr			P0IO		= 0xA1;			// P0 Direction Register
+      000062 75 01 A1         [24]  516 	mov	_P0IO,#0xa1
+                                    517 ;	./inc/MC96F8316.h:28: sfr			P0OD		= 0x91;			// P0 Open-drain Selection Register
+      000065 75 02 91         [24]  518 	mov	_P0OD,#0x91
+                                    519 ;	./inc/MC96F8316.h:29: sfr			P0PU		= 0xAC;			// P0 Pull-up Resistor Selection Register
+      000068 75 03 AC         [24]  520 	mov	_P0PU,#0xac
+                                    521 ;	./inc/MC96F8316.h:30: sfr			P03DB		= 0xDE;			// P0/P3 Debounce Enable Register
+      00006B 75 04 DE         [24]  522 	mov	_P03DB,#0xde
+                                    523 ;	./inc/MC96F8316.h:32: sfr			P1			= 0x88;			// P1 Data Register
+      00006E 75 05 88         [24]  524 	mov	_P1,#0x88
+                                    525 ;	./inc/MC96F8316.h:42: sfr			P1IO		= 0xB1;			// P1 Direction Register
+      000071 75 06 B1         [24]  526 	mov	_P1IO,#0xb1
+                                    527 ;	./inc/MC96F8316.h:43: sfr			P1OD		= 0x92;			// P1 Open-drain Selection Register
+      000074 75 07 92         [24]  528 	mov	_P1OD,#0x92
+                                    529 ;	./inc/MC96F8316.h:44: sfr			P1PU		= 0xAD;			// P1 Pull-up Resistor Selection Register
+      000077 75 08 AD         [24]  530 	mov	_P1PU,#0xad
+                                    531 ;	./inc/MC96F8316.h:45: sfr			P12DB		= 0xDF;			// P1/P2 Debounce Enable Register
+      00007A 75 09 DF         [24]  532 	mov	_P12DB,#0xdf
+                                    533 ;	./inc/MC96F8316.h:47: sfr			P2			= 0x90;			// P2 Data Register
+      00007D 75 0A 90         [24]  534 	mov	_P2,#0x90
+                                    535 ;	./inc/MC96F8316.h:57: sfr			P2IO		= 0xB9;			// P2 Direction Register
+      000080 75 0B B9         [24]  536 	mov	_P2IO,#0xb9
+                                    537 ;	./inc/MC96F8316.h:58: sfr			P2OD		= 0x93;			// P2 Open-drain Selection Register
+      000083 75 0C 93         [24]  538 	mov	_P2OD,#0x93
+                                    539 ;	./inc/MC96F8316.h:59: sfr			P2PU		= 0xAE;			// P2 Pull-up Resistor Selection Register
+      000086 75 0D AE         [24]  540 	mov	_P2PU,#0xae
+                                    541 ;	./inc/MC96F8316.h:61: sfr			P3			= 0x98;			// P3 Data Register
+      000089 75 0E 98         [24]  542 	mov	_P3,#0x98
+                                    543 ;	./inc/MC96F8316.h:71: sfr			P3IO		= 0xC1;			// P3 Direction Register
+      00008C 75 0F C1         [24]  544 	mov	_P3IO,#0xc1
+                                    545 ;	./inc/MC96F8316.h:72: sfr			P3OD		= 0x94;			// P3 Open-drain Selection Register
+      00008F 75 10 94         [24]  546 	mov	_P3OD,#0x94
+                                    547 ;	./inc/MC96F8316.h:73: sfr			P3PU		= 0xAF;			// P3 Pull-up Resistor Selection Register
+      000092 75 11 AF         [24]  548 	mov	_P3PU,#0xaf
+                                    549 ;	./inc/MC96F8316.h:75: sfr			P0FSR		= 0xD3;			//P0 Function Selection Register
+      000095 75 12 D3         [24]  550 	mov	_P0FSR,#0xd3
+                                    551 ;	./inc/MC96F8316.h:76: sfr			P1FSRL		= 0xD4;			//P1 Function Selection Low Register
+      000098 75 13 D4         [24]  552 	mov	_P1FSRL,#0xd4
+                                    553 ;	./inc/MC96F8316.h:77: sfr			P1FSRH		= 0xD5;			//P1 Function Selection High Register
+      00009B 75 14 D5         [24]  554 	mov	_P1FSRH,#0xd5
+                                    555 ;	./inc/MC96F8316.h:78: sfr			P2FSR		= 0xD6;			//P2 Function Selection Register
+      00009E 75 15 D6         [24]  556 	mov	_P2FSR,#0xd6
+                                    557 ;	./inc/MC96F8316.h:79: sfr			P3FSR		= 0xD7;			//P3 Function Selection Register
+      0000A1 75 16 D7         [24]  558 	mov	_P3FSR,#0xd7
+                                    559 ;	./inc/MC96F8316.h:82: sfr			IE			= 0xA8;			// Interrupt Enable Register 0
+      0000A4 75 17 A8         [24]  560 	mov	_IE,#0xa8
+                                    561 ;	./inc/MC96F8316.h:83: sfr			IE1			= 0xA9;			// Interrupt Enable Register 1
+      0000A7 75 18 A9         [24]  562 	mov	_IE1,#0xa9
+                                    563 ;	./inc/MC96F8316.h:84: sfr			IE2			= 0xAA;			// Interrupt Enable Register 2
+      0000AA 75 19 AA         [24]  564 	mov	_IE2,#0xaa
+                                    565 ;	./inc/MC96F8316.h:85: sfr			IE3			= 0xAB;			// Interrupt Enable Register 3
+      0000AD 75 1A AB         [24]  566 	mov	_IE3,#0xab
+                                    567 ;	./inc/MC96F8316.h:86: sfr			IP			= 0xB8;			// Interrupt Priority Register 0
+      0000B0 75 1B B8         [24]  568 	mov	_IP,#0xb8
+                                    569 ;	./inc/MC96F8316.h:87: sfr			IP1			= 0xF8;			// Interrupt Priority Register 1
+      0000B3 75 1C F8         [24]  570 	mov	_IP1,#0xf8
+                                    571 ;	./inc/MC96F8316.h:88: sfr			IIFLAG		= 0xA0;			// Internal Interrupt Flag Register
+      0000B6 75 1D A0         [24]  572 	mov	_IIFLAG,#0xa0
+                                    573 ;	./inc/MC96F8316.h:89: sfr			EIFLAG0		= 0xC0;			// External Interrupt Flag 0 Register
+      0000B9 75 1E C0         [24]  574 	mov	_EIFLAG0,#0xc0
+                                    575 ;	./inc/MC96F8316.h:90: sfr			EIFLAG1		= 0xB0;			// External Interrupt Flag 1 Register
+      0000BC 75 1F B0         [24]  576 	mov	_EIFLAG1,#0xb0
+                                    577 ;	./inc/MC96F8316.h:91: sfr			EIPOL0L		= 0xA4;			// External Interrupt Polarity 0 Low Register
+      0000BF 75 20 A4         [24]  578 	mov	_EIPOL0L,#0xa4
+                                    579 ;	./inc/MC96F8316.h:92: sfr			EIPOL0H		= 0xA5;			// External Interrupt Polarity 0 High Register
+      0000C2 75 21 A5         [24]  580 	mov	_EIPOL0H,#0xa5
+                                    581 ;	./inc/MC96F8316.h:93: sfr			EIPOL1		= 0xA6;			// External Interrupt Polarity 1 Register
+      0000C5 75 22 A6         [24]  582 	mov	_EIPOL1,#0xa6
+                                    583 ;	./inc/MC96F8316.h:94: sfr			EIPOL2		= 0xA7;			// External Interrupt Polarity 2 Register
+      0000C8 75 23 A7         [24]  584 	mov	_EIPOL2,#0xa7
+                                    585 ;	./inc/MC96F8316.h:97: sfr			SCCR		= 0x8A;			// System Clock Control Register
+      0000CB 75 24 8A         [24]  586 	mov	_SCCR,#0x8a
+                                    587 ;	./inc/MC96F8316.h:98: sfr			OSCCR		= 0xC8;			// Oscillator Control Register
+      0000CE 75 25 C8         [24]  588 	mov	_OSCCR,#0xc8
+                                    589 ;	./inc/MC96F8316.h:99: sfr			BITCNT		= 0x8C;			// Basic Interval Timer Counter Register
+      0000D1 75 26 8C         [24]  590 	mov	_BITCNT,#0x8c
+                                    591 ;	./inc/MC96F8316.h:100: sfr			BITCR		= 0x8B;			// Basic Interval Timer Control Register
+      0000D4 75 27 8B         [24]  592 	mov	_BITCR,#0x8b
+                                    593 ;	./inc/MC96F8316.h:101: sfr			RSTFR		= 0xE8;			// Reset Flag Register
+      0000D7 75 28 E8         [24]  594 	mov	_RSTFR,#0xe8
+                                    595 ;	./inc/MC96F8316.h:102: sfr			PCON		= 0x87;			// Power Control Register
+      0000DA 75 29 87         [24]  596 	mov	_PCON,#0x87
+                                    597 ;	./inc/MC96F8316.h:103: sfr			LVRCR		= 0xD8;			// Low Voltage Reset Control Register
+      0000DD 75 2A D8         [24]  598 	mov	_LVRCR,#0xd8
+                                    599 ;	./inc/MC96F8316.h:104: sfr			LVICR		= 0x86;			// Low Voltage Indicator Control Register
+      0000E0 75 2B 86         [24]  600 	mov	_LVICR,#0x86
+                                    601 ;	./inc/MC96F8316.h:107: sfr			WDTDR		= 0x8E;			// Watch Dog Timer Data Register
+      0000E3 75 2C 8E         [24]  602 	mov	_WDTDR,#0x8e
+                                    603 ;	./inc/MC96F8316.h:108: sfr			WDTCNT		= 0x8E;			// Watch Dog Timer Counter Register
+      0000E6 75 2D 8E         [24]  604 	mov	_WDTCNT,#0x8e
+                                    605 ;	./inc/MC96F8316.h:109: sfr			WDTCR		= 0x8D;			// Watch Dog Timer Control Register
+      0000E9 75 2E 8D         [24]  606 	mov	_WDTCR,#0x8d
+                                    607 ;	./inc/MC96F8316.h:112: sfr			WTDR		= 0x89;			// Watch Timer Data Register
+      0000EC 75 2F 89         [24]  608 	mov	_WTDR,#0x89
+                                    609 ;	./inc/MC96F8316.h:113: sfr			WTCNT		= 0x89;			// Watch Timer Counter Register
+      0000EF 75 30 89         [24]  610 	mov	_WTCNT,#0x89
+                                    611 ;	./inc/MC96F8316.h:114: sfr			WTCR		= 0x96;			// Watch Timer Control Register
+      0000F2 75 31 96         [24]  612 	mov	_WTCR,#0x96
+                                    613 ;	./inc/MC96F8316.h:117: sfr			T0CR		= 0xB2;			// Timer 0 Control Register
+      0000F5 75 32 B2         [24]  614 	mov	_T0CR,#0xb2
+                                    615 ;	./inc/MC96F8316.h:118: sfr			T0CNT		= 0xB3;			// Timer 0 Counter Register
+      0000F8 75 33 B3         [24]  616 	mov	_T0CNT,#0xb3
+                                    617 ;	./inc/MC96F8316.h:119: sfr			T0DR		= 0xB4;			// Timer 0 Data Register
+      0000FB 75 34 B4         [24]  618 	mov	_T0DR,#0xb4
+                                    619 ;	./inc/MC96F8316.h:120: sfr			T0CDR		= 0xB4;			// Timer 0 Capture Data Register
+      0000FE 75 35 B4         [24]  620 	mov	_T0CDR,#0xb4
+                                    621 ;	./inc/MC96F8316.h:126: sfr			T1CRL		= 0xBA;			// Timer 1 Control Low Register
+      000101 75 36 BA         [24]  622 	mov	_T1CRL,#0xba
+                                    623 ;	./inc/MC96F8316.h:127: sfr			T1CRH		= 0xBB;			// Timer 1 Control High Register
+      000104 75 37 BB         [24]  624 	mov	_T1CRH,#0xbb
+                                    625 ;	./inc/MC96F8316.h:128: sfr			T1ADRL		= 0xBC;			// Timer 1 A Data Low Register
+      000107 75 38 BC         [24]  626 	mov	_T1ADRL,#0xbc
+                                    627 ;	./inc/MC96F8316.h:129: sfr			T1ADRH		= 0xBD;			// Timer 1 A Data High Register
+      00010A 75 39 BD         [24]  628 	mov	_T1ADRH,#0xbd
+                                    629 ;	./inc/MC96F8316.h:130: sfr			T1BDRL		= 0xBE;			// Timer 1 B Data Low Register
+      00010D 75 3A BE         [24]  630 	mov	_T1BDRL,#0xbe
+                                    631 ;	./inc/MC96F8316.h:131: sfr			T1BDRH		= 0xBF;			// Timer 1 B Data High Register
+      000110 75 3B BF         [24]  632 	mov	_T1BDRH,#0xbf
+                                    633 ;	./inc/MC96F8316.h:134: sfr			T2CRL		= 0xC2;			// Timer 2 Control Low Register
+      000113 75 3C C2         [24]  634 	mov	_T2CRL,#0xc2
+                                    635 ;	./inc/MC96F8316.h:135: sfr			T2CRH		= 0xC3;			// Timer 2 Control High Register
+      000116 75 3D C3         [24]  636 	mov	_T2CRH,#0xc3
+                                    637 ;	./inc/MC96F8316.h:136: sfr			T2ADRL		= 0xC4;			// Timer 2 A Data Low Register
+      000119 75 3E C4         [24]  638 	mov	_T2ADRL,#0xc4
+                                    639 ;	./inc/MC96F8316.h:137: sfr			T2ADRH		= 0xC5;			// Timer 2 A Data High Register
+      00011C 75 3F C5         [24]  640 	mov	_T2ADRH,#0xc5
+                                    641 ;	./inc/MC96F8316.h:138: sfr			T2BDRL		= 0xC6;			// Timer 2 B Data Low Register
+      00011F 75 40 C6         [24]  642 	mov	_T2BDRL,#0xc6
+                                    643 ;	./inc/MC96F8316.h:139: sfr			T2BDRH		= 0xC7;			// Timer 2 B Data High Register
+      000122 75 41 C7         [24]  644 	mov	_T2BDRH,#0xc7
+                                    645 ;	./inc/MC96F8316.h:142: sfr			BUZDR		= 0x8F;			// BUZZER Data Register
+      000125 75 42 8F         [24]  646 	mov	_BUZDR,#0x8f
+                                    647 ;	./inc/MC96F8316.h:143: sfr			BUZCR		= 0x97;			// BUZZER Control Register
+      000128 75 43 97         [24]  648 	mov	_BUZCR,#0x97
+                                    649 ;	./inc/MC96F8316.h:146: sfr			ADCCRL		= 0x9C;			// A/D Converter Control Low Register
+      00012B 75 44 9C         [24]  650 	mov	_ADCCRL,#0x9c
+                                    651 ;	./inc/MC96F8316.h:147: sfr			ADCCRH		= 0x9D;			// A/D Converter Control High Register
+      00012E 75 45 9D         [24]  652 	mov	_ADCCRH,#0x9d
+                                    653 ;	./inc/MC96F8316.h:148: sfr			ADCDRL		= 0x9E;			// A/D Converter Data Low Register
+      000131 75 46 9E         [24]  654 	mov	_ADCDRL,#0x9e
+                                    655 ;	./inc/MC96F8316.h:149: sfr			ADCDRH		= 0x9F;			// A/D Converter Data High Register
+      000134 75 47 9F         [24]  656 	mov	_ADCDRH,#0x9f
+                                    657 ;	./inc/MC96F8316.h:151: sfr			ADWRCR0		= 0xF2;			// ADC Wake-up Resistor Control Register 0
+      000137 75 48 F2         [24]  658 	mov	_ADWRCR0,#0xf2
+                                    659 ;	./inc/MC96F8316.h:152: sfr			ADWRCR1		= 0xF3;			// ADC Wake-up Resistor Control Register 1
+      00013A 75 49 F3         [24]  660 	mov	_ADWRCR1,#0xf3
+                                    661 ;	./inc/MC96F8316.h:153: sfr			ADWRCR2		= 0xF4;			// ADC Wake-up Resistor Control Register 2
+      00013D 75 4A F4         [24]  662 	mov	_ADWRCR2,#0xf4
+                                    663 ;	./inc/MC96F8316.h:154: sfr			ADWRCR3		= 0xF5;			// ADC Wake-up Resistor Control Register 3
+      000140 75 4B F5         [24]  664 	mov	_ADWRCR3,#0xf5
+                                    665 ;	./inc/MC96F8316.h:155: sfr			ADWCRL		= 0xF6;			// ADC Wake-up Control Low Register
+      000143 75 4C F6         [24]  666 	mov	_ADWCRL,#0xf6
+                                    667 ;	./inc/MC96F8316.h:156: sfr			ADWCRH		= 0xF7;			// ADC Wake-up Control High Register
+      000146 75 4D F7         [24]  668 	mov	_ADWCRH,#0xf7
+                                    669 ;	./inc/MC96F8316.h:157: sfr			ADWIFRL		= 0xDC;			// ADC Wake-up Interrupt Flag Low Register
+      000149 75 4E DC         [24]  670 	mov	_ADWIFRL,#0xdc
+                                    671 ;	./inc/MC96F8316.h:158: sfr			ADWIFRH		= 0xDD;			// ADC Wake-up Interrupt Flag High Register
+      00014C 75 4F DD         [24]  672 	mov	_ADWIFRH,#0xdd
+                                    673 ;	./inc/MC96F8316.h:161: sfr			SPICR		= 0xB5;			// SPI Control Register
+      00014F 75 50 B5         [24]  674 	mov	_SPICR,#0xb5
+                                    675 ;	./inc/MC96F8316.h:162: sfr			SPIDR		= 0xB6;			// SPI Data Register
+      000152 75 51 B6         [24]  676 	mov	_SPIDR,#0xb6
+                                    677 ;	./inc/MC96F8316.h:163: sfr			SPISR		= 0xB7;			// SPI Status Register
+      000155 75 52 B7         [24]  678 	mov	_SPISR,#0xb7
+                                    679 ;	./inc/MC96F8316.h:166: sfr			UARTCR1		= 0xE2;			// UART Control Register 1
+      000158 75 53 E2         [24]  680 	mov	_UARTCR1,#0xe2
+                                    681 ;	./inc/MC96F8316.h:167: sfr			UARTCR2		= 0xE3;			// UART Control Register 2
+      00015B 75 54 E3         [24]  682 	mov	_UARTCR2,#0xe3
+                                    683 ;	./inc/MC96F8316.h:168: sfr			UARTCR3		= 0xE4;			// UART Control Register 3
+      00015E 75 55 E4         [24]  684 	mov	_UARTCR3,#0xe4
+                                    685 ;	./inc/MC96F8316.h:169: sfr			UARTST		= 0xE5;			// UART Status Register
+      000161 75 56 E5         [24]  686 	mov	_UARTST,#0xe5
+                                    687 ;	./inc/MC96F8316.h:170: sfr			UARTBD		= 0xE6;			// UART BaudRate Register
+      000164 75 57 E6         [24]  688 	mov	_UARTBD,#0xe6
+                                    689 ;	./inc/MC96F8316.h:171: sfr			UARTDR		= 0xE7;			// UART Data Register
+      000167 75 58 E7         [24]  690 	mov	_UARTDR,#0xe7
+                                    691 ;	./inc/MC96F8316.h:174: sfr			I2CCR		= 0xE9;			// I2C Control Register
+      00016A 75 59 E9         [24]  692 	mov	_I2CCR,#0xe9
+                                    693 ;	./inc/MC96F8316.h:175: sfr			I2CSR		= 0xEA;			// I2C Status Register
+      00016D 75 5A EA         [24]  694 	mov	_I2CSR,#0xea
+                                    695 ;	./inc/MC96F8316.h:176: sfr			I2CSAR0		= 0xEB;			// I2C Slave Address 0 Register
+      000170 75 5B EB         [24]  696 	mov	_I2CSAR0,#0xeb
+                                    697 ;	./inc/MC96F8316.h:177: sfr			I2CSAR1		= 0xF1;			// I2C Slave Address 1 Register
+      000173 75 5C F1         [24]  698 	mov	_I2CSAR1,#0xf1
+                                    699 ;	./inc/MC96F8316.h:178: sfr			I2CDR		= 0xEC;			// I2C Data Register
+      000176 75 5D EC         [24]  700 	mov	_I2CDR,#0xec
+                                    701 ;	./inc/MC96F8316.h:179: sfr			I2CSDHR		= 0xED;			// I2C SDA Hold Time Register
+      000179 75 5E ED         [24]  702 	mov	_I2CSDHR,#0xed
+                                    703 ;	./inc/MC96F8316.h:180: sfr			I2CSCLR		= 0xEE;			// I2C SCL Low Period Register
+      00017C 75 5F EE         [24]  704 	mov	_I2CSCLR,#0xee
+                                    705 ;	./inc/MC96F8316.h:181: sfr			I2CSCHR		= 0xEF;			// I2C SCL High Period Register
+      00017F 75 60 EF         [24]  706 	mov	_I2CSCHR,#0xef
+                                    707 ;	./inc/MC96F8316.h:184: sfr			FSADRH		= 0xFA;			// Flash Sector Address High Register
+      000182 75 61 FA         [24]  708 	mov	_FSADRH,#0xfa
+                                    709 ;	./inc/MC96F8316.h:185: sfr			FSADRM		= 0xFB;			// Flash Sector Address Middle Register
+      000185 75 62 FB         [24]  710 	mov	_FSADRM,#0xfb
+                                    711 ;	./inc/MC96F8316.h:186: sfr			FSADRL		= 0xFC;			// Flash Sector Address Low Register
+      000188 75 63 FC         [24]  712 	mov	_FSADRL,#0xfc
+                                    713 ;	./inc/MC96F8316.h:187: sfr			FIDR		= 0xFD;			// Flash Identification Register
+      00018B 75 64 FD         [24]  714 	mov	_FIDR,#0xfd
+                                    715 ;	./inc/MC96F8316.h:188: sfr			FMCR		= 0xFE;			// Flash Mode Control Register
+      00018E 75 65 FE         [24]  716 	mov	_FMCR,#0xfe
+                                    717 ;	./inc/MC96F8316.h:190: sfr			ACC			= 0xE0;
+      000191 75 66 E0         [24]  718 	mov	_ACC,#0xe0
+                                    719 ;	./inc/MC96F8316.h:191: sfr			B			= 0xF0;
+      000194 75 67 F0         [24]  720 	mov	_B,#0xf0
+                                    721 ;	./inc/MC96F8316.h:192: sfr			PSW			= 0xD0;
+      000197 75 68 D0         [24]  722 	mov	_PSW,#0xd0
+                                    723 ;	./inc/MC96F8316.h:193: sfr			SP			= 0x81;
+      00019A 75 69 81         [24]  724 	mov	_SP,#0x81
+                                    725 ;	./inc/MC96F8316.h:194: sfr			DPL			= 0x82;
+      00019D 75 6A 82         [24]  726 	mov	_DPL,#0x82
+                                    727 ;	./inc/MC96F8316.h:195: sfr			DPH			= 0x83;
+      0001A0 75 6B 83         [24]  728 	mov	_DPH,#0x83
+                                    729 ;	./inc/MC96F8316.h:196: sfr			DPL1		= 0x84;
+      0001A3 75 6C 84         [24]  730 	mov	_DPL1,#0x84
+                                    731 ;	./inc/MC96F8316.h:197: sfr			DPH1		= 0x85;
+      0001A6 75 6D 85         [24]  732 	mov	_DPH1,#0x85
+                                    733 ;	./inc/MC96F8316.h:198: sfr			EO			= 0xA2;			// EXTENDED OPERATION REGISTER
+      0001A9 75 6E A2         [24]  734 	mov	_EO,#0xa2
+                                    735 ;	./inc/MC96F8316.h:18: sbit	P00			= 0x80;
+                                    736 ;	assignBit
+      0001AC D2 00            [12]  737 	setb	_P00
+                                    738 ;	./inc/MC96F8316.h:19: sbit	P01			= 0x81;
+                                    739 ;	assignBit
+      0001AE D2 01            [12]  740 	setb	_P01
+                                    741 ;	./inc/MC96F8316.h:20: sbit	P02			= 0x82;
+                                    742 ;	assignBit
+      0001B0 D2 02            [12]  743 	setb	_P02
+                                    744 ;	./inc/MC96F8316.h:21: sbit	P03			= 0x83;
+                                    745 ;	assignBit
+      0001B2 D2 03            [12]  746 	setb	_P03
+                                    747 ;	./inc/MC96F8316.h:22: sbit	P04			= 0x84;
+                                    748 ;	assignBit
+      0001B4 D2 04            [12]  749 	setb	_P04
+                                    750 ;	./inc/MC96F8316.h:23: sbit	P05			= 0x85;
+                                    751 ;	assignBit
+      0001B6 D2 05            [12]  752 	setb	_P05
+                                    753 ;	./inc/MC96F8316.h:24: sbit	P06			= 0x86;
+                                    754 ;	assignBit
+      0001B8 D2 06            [12]  755 	setb	_P06
+                                    756 ;	./inc/MC96F8316.h:25: sbit	P07			= 0x87;
+                                    757 ;	assignBit
+      0001BA D2 07            [12]  758 	setb	_P07
+                                    759 ;	./inc/MC96F8316.h:33: sbit	P10			= 0x88;
+                                    760 ;	assignBit
+      0001BC D2 08            [12]  761 	setb	_P10
+                                    762 ;	./inc/MC96F8316.h:34: sbit	P11			= 0x89;
+                                    763 ;	assignBit
+      0001BE D2 09            [12]  764 	setb	_P11
+                                    765 ;	./inc/MC96F8316.h:35: sbit	P12			= 0x8A;
+                                    766 ;	assignBit
+      0001C0 D2 0A            [12]  767 	setb	_P12
+                                    768 ;	./inc/MC96F8316.h:36: sbit	P13			= 0x8B;
+                                    769 ;	assignBit
+      0001C2 D2 0B            [12]  770 	setb	_P13
+                                    771 ;	./inc/MC96F8316.h:37: sbit	P14			= 0x8C;
+                                    772 ;	assignBit
+      0001C4 D2 0C            [12]  773 	setb	_P14
+                                    774 ;	./inc/MC96F8316.h:38: sbit	P15			= 0x8D;
+                                    775 ;	assignBit
+      0001C6 D2 0D            [12]  776 	setb	_P15
+                                    777 ;	./inc/MC96F8316.h:39: sbit	P16			= 0x8E;
+                                    778 ;	assignBit
+      0001C8 D2 0E            [12]  779 	setb	_P16
+                                    780 ;	./inc/MC96F8316.h:40: sbit	P17			= 0x8F;
+                                    781 ;	assignBit
+      0001CA D2 0F            [12]  782 	setb	_P17
+                                    783 ;	./inc/MC96F8316.h:48: sbit	P20			= 0x90;
+                                    784 ;	assignBit
+      0001CC D2 10            [12]  785 	setb	_P20
+                                    786 ;	./inc/MC96F8316.h:49: sbit	P21			= 0x91;
+                                    787 ;	assignBit
+      0001CE D2 11            [12]  788 	setb	_P21
+                                    789 ;	./inc/MC96F8316.h:50: sbit	P22			= 0x92;
+                                    790 ;	assignBit
+      0001D0 D2 12            [12]  791 	setb	_P22
+                                    792 ;	./inc/MC96F8316.h:51: sbit	P23			= 0x93;
+                                    793 ;	assignBit
+      0001D2 D2 13            [12]  794 	setb	_P23
+                                    795 ;	./inc/MC96F8316.h:52: sbit	P24			= 0x94;
+                                    796 ;	assignBit
+      0001D4 D2 14            [12]  797 	setb	_P24
+                                    798 ;	./inc/MC96F8316.h:53: sbit	P25			= 0x95;
+                                    799 ;	assignBit
+      0001D6 D2 15            [12]  800 	setb	_P25
+                                    801 ;	./inc/MC96F8316.h:54: sbit	P26			= 0x96;
+                                    802 ;	assignBit
+      0001D8 D2 16            [12]  803 	setb	_P26
+                                    804 ;	./inc/MC96F8316.h:55: sbit	P27			= 0x97;
+                                    805 ;	assignBit
+      0001DA D2 17            [12]  806 	setb	_P27
+                                    807 ;	./inc/MC96F8316.h:62: sbit	P30			= 0x98;
+                                    808 ;	assignBit
+      0001DC D2 18            [12]  809 	setb	_P30
+                                    810 ;	./inc/MC96F8316.h:63: sbit	P31			= 0x99;
+                                    811 ;	assignBit
+      0001DE D2 19            [12]  812 	setb	_P31
+                                    813 ;	./inc/MC96F8316.h:64: sbit	P32			= 0x9A;
+                                    814 ;	assignBit
+      0001E0 D2 1A            [12]  815 	setb	_P32
+                                    816 ;	./inc/MC96F8316.h:65: sbit	P33			= 0x9B;
+                                    817 ;	assignBit
+      0001E2 D2 1B            [12]  818 	setb	_P33
+                                    819 ;	./inc/MC96F8316.h:66: sbit	P34			= 0x9C;
+                                    820 ;	assignBit
+      0001E4 D2 1C            [12]  821 	setb	_P34
+                                    822 ;	./inc/MC96F8316.h:67: sbit	P35			= 0x9D;
+                                    823 ;	assignBit
+      0001E6 D2 1D            [12]  824 	setb	_P35
+                                    825 ;	./inc/MC96F8316.h:68: sbit	P36			= 0x9E;
+                                    826 ;	assignBit
+      0001E8 D2 1E            [12]  827 	setb	_P36
+                                    828 ;	./inc/MC96F8316.h:69: sbit	P37			= 0x9F;
+                                    829 ;	assignBit
+      0001EA D2 1F            [12]  830 	setb	_P37
+                                    831 ;--------------------------------------------------------
+                                    832 ; Home
+                                    833 ;--------------------------------------------------------
+                                    834 	.area HOME    (CODE)
+                                    835 	.area HOME    (CODE)
+                                    836 ;--------------------------------------------------------
+                                    837 ; code
+                                    838 ;--------------------------------------------------------
+                                    839 	.area CSEG    (CODE)
+                                    840 ;------------------------------------------------------------
+                                    841 ;Allocation info for local variables in function 'I2C_Config'
+                                    842 ;------------------------------------------------------------
+                                    843 ;I2C_Conf                  Allocated to registers r5 r6 r7 
+                                    844 ;------------------------------------------------------------
+                                    845 ;	src/mc96f8x16_i2c.c:8: void I2C_Config(I2C_Config_Typedef *I2C_Conf)
+                                    846 ;	-----------------------------------------
+                                    847 ;	 function I2C_Config
+                                    848 ;	-----------------------------------------
+      000CD7                        849 _I2C_Config:
+                           000007   850 	ar7 = 0x07
+                           000006   851 	ar6 = 0x06
+                           000005   852 	ar5 = 0x05
+                           000004   853 	ar4 = 0x04
+                           000003   854 	ar3 = 0x03
+                           000002   855 	ar2 = 0x02
+                           000001   856 	ar1 = 0x01
+                           000000   857 	ar0 = 0x00
+      000CD7 AD 82            [24]  858 	mov	r5,dpl
+      000CD9 AE 83            [24]  859 	mov	r6,dph
+      000CDB AF F0            [24]  860 	mov	r7,b
+                                    861 ;	src/mc96f8x16_i2c.c:10: I2CCR = (I2CCR & ~I2CCR_IMASTER) | ((I2C_Conf->Mode) << 2u);
+      000CDD 74 FB            [12]  862 	mov	a,#0xfb
+      000CDF 55 59            [12]  863 	anl	a,_I2CCR
+      000CE1 FC               [12]  864 	mov	r4,a
+      000CE2 8D 82            [24]  865 	mov	dpl,r5
+      000CE4 8E 83            [24]  866 	mov	dph,r6
+      000CE6 8F F0            [24]  867 	mov	b,r7
+      000CE8 12 15 16         [24]  868 	lcall	__gptrget
+      000CEB 25 E0            [12]  869 	add	a,acc
+      000CED 25 E0            [12]  870 	add	a,acc
+      000CEF 4C               [12]  871 	orl	a,r4
+      000CF0 F5 59            [12]  872 	mov	_I2CCR,a
+                                    873 ;	src/mc96f8x16_i2c.c:11: I2CSDHR = I2C_Conf->HoldTime;
+      000CF2 74 01            [12]  874 	mov	a,#0x01
+      000CF4 2D               [12]  875 	add	a,r5
+      000CF5 FA               [12]  876 	mov	r2,a
+      000CF6 E4               [12]  877 	clr	a
+      000CF7 3E               [12]  878 	addc	a,r6
+      000CF8 FB               [12]  879 	mov	r3,a
+      000CF9 8F 04            [24]  880 	mov	ar4,r7
+      000CFB 8A 82            [24]  881 	mov	dpl,r2
+      000CFD 8B 83            [24]  882 	mov	dph,r3
+      000CFF 8C F0            [24]  883 	mov	b,r4
+      000D01 12 15 16         [24]  884 	lcall	__gptrget
+      000D04 F5 5E            [12]  885 	mov	_I2CSDHR,a
+                                    886 ;	src/mc96f8x16_i2c.c:12: I2CSCLR = (uint8_t)(I2C_Conf->Period);
+      000D06 74 02            [12]  887 	mov	a,#0x02
+      000D08 2D               [12]  888 	add	a,r5
+      000D09 FD               [12]  889 	mov	r5,a
+      000D0A E4               [12]  890 	clr	a
+      000D0B 3E               [12]  891 	addc	a,r6
+      000D0C FE               [12]  892 	mov	r6,a
+      000D0D 8D 82            [24]  893 	mov	dpl,r5
+      000D0F 8E 83            [24]  894 	mov	dph,r6
+      000D11 8F F0            [24]  895 	mov	b,r7
+      000D13 12 15 16         [24]  896 	lcall	__gptrget
+      000D16 F5 5F            [12]  897 	mov	_I2CSCLR,a
+                                    898 ;	src/mc96f8x16_i2c.c:13: I2CSCHR = (uint8_t)((I2C_Conf->Period) >> 8u);
+      000D18 8D 82            [24]  899 	mov	dpl,r5
+      000D1A 8E 83            [24]  900 	mov	dph,r6
+      000D1C 8F F0            [24]  901 	mov	b,r7
+      000D1E 12 15 16         [24]  902 	lcall	__gptrget
+      000D21 A3               [24]  903 	inc	dptr
+      000D22 12 15 16         [24]  904 	lcall	__gptrget
+      000D25 FE               [12]  905 	mov	r6,a
+      000D26 8E 60            [24]  906 	mov	_I2CSCHR,r6
+                                    907 ;	src/mc96f8x16_i2c.c:14: I2CCR |= (I2CCR_ACKEN | I2CCR_IICEN);
+      000D28 43 59 48         [24]  908 	orl	_I2CCR,#0x48
+                                    909 ;	src/mc96f8x16_i2c.c:15: }
+      000D2B 22               [24]  910 	ret
+                                    911 ;------------------------------------------------------------
+                                    912 ;Allocation info for local variables in function 'I2C_Master_Transmit'
+                                    913 ;------------------------------------------------------------
+                                    914 ;RegAddr                   Allocated to stack - _bp -3
+                                    915 ;Data                      Allocated to stack - _bp -4
+                                    916 ;Timeout                   Allocated to stack - _bp -6
+                                    917 ;DevAddr                   Allocated to registers r7 
+                                    918 ;StartTick                 Allocated to registers r5 r6 
+                                    919 ;------------------------------------------------------------
+                                    920 ;	src/mc96f8x16_i2c.c:17: HAL_Status I2C_Master_Transmit(uint8_t DevAddr, uint8_t RegAddr, uint8_t Data,  uint16_t Timeout)
+                                    921 ;	-----------------------------------------
+                                    922 ;	 function I2C_Master_Transmit
+                                    923 ;	-----------------------------------------
+      000D2C                        924 _I2C_Master_Transmit:
+      000D2C C0 75            [24]  925 	push	_bp
+      000D2E 85 81 75         [24]  926 	mov	_bp,sp
+      000D31 AF 82            [24]  927 	mov	r7,dpl
+                                    928 ;	src/mc96f8x16_i2c.c:19: uint16_t StartTick = GetTick();
+      000D33 C0 07            [24]  929 	push	ar7
+      000D35 12 10 5B         [24]  930 	lcall	_GetTick
+      000D38 AD 82            [24]  931 	mov	r5,dpl
+      000D3A AE 83            [24]  932 	mov	r6,dph
+      000D3C D0 07            [24]  933 	pop	ar7
+                                    934 ;	src/mc96f8x16_i2c.c:20: I2CDR = (DevAddr << 1u);
+      000D3E EF               [12]  935 	mov	a,r7
+      000D3F 2F               [12]  936 	add	a,r7
+      000D40 F5 5D            [12]  937 	mov	_I2CDR,a
+                                    938 ;	src/mc96f8x16_i2c.c:21: while ((I2CSR & I2CSR_BUSY))
+      000D42                        939 00103$:
+      000D42 E5 5A            [12]  940 	mov	a,_I2CSR
+      000D44 30 E2 2C         [24]  941 	jnb	acc.2,00105$
+                                    942 ;	src/mc96f8x16_i2c.c:23: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000D47 C0 06            [24]  943 	push	ar6
+      000D49 C0 05            [24]  944 	push	ar5
+      000D4B E5 75            [12]  945 	mov	a,_bp
+      000D4D 24 FA            [12]  946 	add	a,#0xfa
+      000D4F F8               [12]  947 	mov	r0,a
+      000D50 E6               [12]  948 	mov	a,@r0
+      000D51 C0 E0            [24]  949 	push	acc
+      000D53 08               [12]  950 	inc	r0
+      000D54 E6               [12]  951 	mov	a,@r0
+      000D55 C0 E0            [24]  952 	push	acc
+      000D57 8D 82            [24]  953 	mov	dpl,r5
+      000D59 8E 83            [24]  954 	mov	dph,r6
+      000D5B 12 11 12         [24]  955 	lcall	_CheckTimeout
+      000D5E AF 82            [24]  956 	mov	r7,dpl
+      000D60 15 81            [12]  957 	dec	sp
+      000D62 15 81            [12]  958 	dec	sp
+      000D64 D0 05            [24]  959 	pop	ar5
+      000D66 D0 06            [24]  960 	pop	ar6
+      000D68 BF 01 02         [24]  961 	cjne	r7,#0x01,00179$
+      000D6B 80 D5            [24]  962 	sjmp	00103$
+      000D6D                        963 00179$:
+                                    964 ;	src/mc96f8x16_i2c.c:25: return HAL_TIMEOUT;
+      000D6D 75 82 02         [24]  965 	mov	dpl,#0x02
+      000D70 02 0E 28         [24]  966 	ljmp	00124$
+      000D73                        967 00105$:
+                                    968 ;	src/mc96f8x16_i2c.c:28: I2CCR |= I2CCR_STARTC;  /* Start transmit */
+      000D73 43 59 01         [24]  969 	orl	_I2CCR,#0x01
+                                    970 ;	src/mc96f8x16_i2c.c:29: while(!(I2CSR & I2CSR_RXACK))
+      000D76                        971 00108$:
+      000D76 E5 5A            [12]  972 	mov	a,_I2CSR
+      000D78 20 E0 2C         [24]  973 	jb	acc.0,00110$
+                                    974 ;	src/mc96f8x16_i2c.c:31: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000D7B C0 06            [24]  975 	push	ar6
+      000D7D C0 05            [24]  976 	push	ar5
+      000D7F E5 75            [12]  977 	mov	a,_bp
+      000D81 24 FA            [12]  978 	add	a,#0xfa
+      000D83 F8               [12]  979 	mov	r0,a
+      000D84 E6               [12]  980 	mov	a,@r0
+      000D85 C0 E0            [24]  981 	push	acc
+      000D87 08               [12]  982 	inc	r0
+      000D88 E6               [12]  983 	mov	a,@r0
+      000D89 C0 E0            [24]  984 	push	acc
+      000D8B 8D 82            [24]  985 	mov	dpl,r5
+      000D8D 8E 83            [24]  986 	mov	dph,r6
+      000D8F 12 11 12         [24]  987 	lcall	_CheckTimeout
+      000D92 AF 82            [24]  988 	mov	r7,dpl
+      000D94 15 81            [12]  989 	dec	sp
+      000D96 15 81            [12]  990 	dec	sp
+      000D98 D0 05            [24]  991 	pop	ar5
+      000D9A D0 06            [24]  992 	pop	ar6
+      000D9C BF 01 02         [24]  993 	cjne	r7,#0x01,00181$
+      000D9F 80 D5            [24]  994 	sjmp	00108$
+      000DA1                        995 00181$:
+                                    996 ;	src/mc96f8x16_i2c.c:33: return HAL_TIMEOUT;
+      000DA1 75 82 02         [24]  997 	mov	dpl,#0x02
+      000DA4 02 0E 28         [24]  998 	ljmp	00124$
+      000DA7                        999 00110$:
+                                   1000 ;	src/mc96f8x16_i2c.c:36: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
+      000DA7 E5 5A            [12] 1001 	mov	a,_I2CSR
+      000DA9 20 E3 6E         [24] 1002 	jb	acc.3,00122$
+                                   1003 ;	src/mc96f8x16_i2c.c:38: I2CDR = RegAddr;
+      000DAC E5 75            [12] 1004 	mov	a,_bp
+      000DAE 24 FD            [12] 1005 	add	a,#0xfd
+      000DB0 F8               [12] 1006 	mov	r0,a
+      000DB1 86 5D            [24] 1007 	mov	_I2CDR,@r0
+                                   1008 ;	src/mc96f8x16_i2c.c:39: while(!(I2CSR & I2CSR_RXACK))
+      000DB3                       1009 00113$:
+      000DB3 E5 5A            [12] 1010 	mov	a,_I2CSR
+      000DB5 20 E0 2B         [24] 1011 	jb	acc.0,00115$
+                                   1012 ;	src/mc96f8x16_i2c.c:41: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000DB8 C0 06            [24] 1013 	push	ar6
+      000DBA C0 05            [24] 1014 	push	ar5
+      000DBC E5 75            [12] 1015 	mov	a,_bp
+      000DBE 24 FA            [12] 1016 	add	a,#0xfa
+      000DC0 F8               [12] 1017 	mov	r0,a
+      000DC1 E6               [12] 1018 	mov	a,@r0
+      000DC2 C0 E0            [24] 1019 	push	acc
+      000DC4 08               [12] 1020 	inc	r0
+      000DC5 E6               [12] 1021 	mov	a,@r0
+      000DC6 C0 E0            [24] 1022 	push	acc
+      000DC8 8D 82            [24] 1023 	mov	dpl,r5
+      000DCA 8E 83            [24] 1024 	mov	dph,r6
+      000DCC 12 11 12         [24] 1025 	lcall	_CheckTimeout
+      000DCF AF 82            [24] 1026 	mov	r7,dpl
+      000DD1 15 81            [12] 1027 	dec	sp
+      000DD3 15 81            [12] 1028 	dec	sp
+      000DD5 D0 05            [24] 1029 	pop	ar5
+      000DD7 D0 06            [24] 1030 	pop	ar6
+      000DD9 BF 01 02         [24] 1031 	cjne	r7,#0x01,00184$
+      000DDC 80 D5            [24] 1032 	sjmp	00113$
+      000DDE                       1033 00184$:
+                                   1034 ;	src/mc96f8x16_i2c.c:43: return HAL_TIMEOUT;
+      000DDE 75 82 02         [24] 1035 	mov	dpl,#0x02
+      000DE1 80 45            [24] 1036 	sjmp	00124$
+      000DE3                       1037 00115$:
+                                   1038 ;	src/mc96f8x16_i2c.c:46: I2CDR = Data;
+      000DE3 E5 75            [12] 1039 	mov	a,_bp
+      000DE5 24 FC            [12] 1040 	add	a,#0xfc
+      000DE7 F8               [12] 1041 	mov	r0,a
+      000DE8 86 5D            [24] 1042 	mov	_I2CDR,@r0
+                                   1043 ;	src/mc96f8x16_i2c.c:47: while(!(I2CSR & I2CSR_RXACK))
+      000DEA                       1044 00118$:
+      000DEA E5 5A            [12] 1045 	mov	a,_I2CSR
+      000DEC 20 E0 30         [24] 1046 	jb	acc.0,00123$
+                                   1047 ;	src/mc96f8x16_i2c.c:49: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000DEF C0 06            [24] 1048 	push	ar6
+      000DF1 C0 05            [24] 1049 	push	ar5
+      000DF3 E5 75            [12] 1050 	mov	a,_bp
+      000DF5 24 FA            [12] 1051 	add	a,#0xfa
+      000DF7 F8               [12] 1052 	mov	r0,a
+      000DF8 E6               [12] 1053 	mov	a,@r0
+      000DF9 C0 E0            [24] 1054 	push	acc
+      000DFB 08               [12] 1055 	inc	r0
+      000DFC E6               [12] 1056 	mov	a,@r0
+      000DFD C0 E0            [24] 1057 	push	acc
+      000DFF 8D 82            [24] 1058 	mov	dpl,r5
+      000E01 8E 83            [24] 1059 	mov	dph,r6
+      000E03 12 11 12         [24] 1060 	lcall	_CheckTimeout
+      000E06 AF 82            [24] 1061 	mov	r7,dpl
+      000E08 15 81            [12] 1062 	dec	sp
+      000E0A 15 81            [12] 1063 	dec	sp
+      000E0C D0 05            [24] 1064 	pop	ar5
+      000E0E D0 06            [24] 1065 	pop	ar6
+      000E10 BF 01 02         [24] 1066 	cjne	r7,#0x01,00186$
+      000E13 80 D5            [24] 1067 	sjmp	00118$
+      000E15                       1068 00186$:
+                                   1069 ;	src/mc96f8x16_i2c.c:51: return HAL_TIMEOUT;
+      000E15 75 82 02         [24] 1070 	mov	dpl,#0x02
+      000E18 80 0E            [24] 1071 	sjmp	00124$
+      000E1A                       1072 00122$:
+                                   1073 ;	src/mc96f8x16_i2c.c:57: return HAL_BUSY;
+      000E1A 75 82 04         [24] 1074 	mov	dpl,#0x04
+      000E1D 80 09            [24] 1075 	sjmp	00124$
+      000E1F                       1076 00123$:
+                                   1077 ;	src/mc96f8x16_i2c.c:59: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
+      000E1F 43 59 02         [24] 1078 	orl	_I2CCR,#0x02
+                                   1079 ;	src/mc96f8x16_i2c.c:60: I2CSR &= ~(I2CSR_GCALL | I2CSR_TEND | I2CSR_STOPD | I2CSR_SSEL | I2CSR_MLOST);  /* Clear interrupt bits */  
+      000E22 53 5A 07         [24] 1080 	anl	_I2CSR,#0x07
+                                   1081 ;	src/mc96f8x16_i2c.c:61: return HAL_OK;
+      000E25 75 82 01         [24] 1082 	mov	dpl,#0x01
+      000E28                       1083 00124$:
+                                   1084 ;	src/mc96f8x16_i2c.c:62: }
+      000E28 D0 75            [24] 1085 	pop	_bp
+      000E2A 22               [24] 1086 	ret
+                                   1087 ;------------------------------------------------------------
+                                   1088 ;Allocation info for local variables in function 'I2C_Master_Receive'
+                                   1089 ;------------------------------------------------------------
+                                   1090 ;RegAddr                   Allocated to stack - _bp -3
+                                   1091 ;pData                     Allocated to stack - _bp -6
+                                   1092 ;Timeout                   Allocated to stack - _bp -8
+                                   1093 ;DevAddr                   Allocated to registers r7 
+                                   1094 ;StartTick                 Allocated to registers r5 r6 
+                                   1095 ;------------------------------------------------------------
+                                   1096 ;	src/mc96f8x16_i2c.c:64: HAL_Status I2C_Master_Receive(uint8_t DevAddr, uint8_t RegAddr, uint8_t *pData, uint16_t Timeout)
+                                   1097 ;	-----------------------------------------
+                                   1098 ;	 function I2C_Master_Receive
+                                   1099 ;	-----------------------------------------
+      000E2B                       1100 _I2C_Master_Receive:
+      000E2B C0 75            [24] 1101 	push	_bp
+      000E2D 85 81 75         [24] 1102 	mov	_bp,sp
+      000E30 AF 82            [24] 1103 	mov	r7,dpl
+                                   1104 ;	src/mc96f8x16_i2c.c:66: uint16_t StartTick = GetTick();
+      000E32 C0 07            [24] 1105 	push	ar7
+      000E34 12 10 5B         [24] 1106 	lcall	_GetTick
+      000E37 AD 82            [24] 1107 	mov	r5,dpl
+      000E39 AE 83            [24] 1108 	mov	r6,dph
+      000E3B D0 07            [24] 1109 	pop	ar7
+                                   1110 ;	src/mc96f8x16_i2c.c:67: I2CDR = (DevAddr << 1u) | 0x01;
+      000E3D EF               [12] 1111 	mov	a,r7
+      000E3E 2F               [12] 1112 	add	a,r7
+      000E3F FF               [12] 1113 	mov	r7,a
+      000E40 7C 00            [12] 1114 	mov	r4,#0x00
+      000E42 43 07 01         [24] 1115 	orl	ar7,#0x01
+      000E45 8F 5D            [24] 1116 	mov	_I2CDR,r7
+                                   1117 ;	src/mc96f8x16_i2c.c:68: while ((I2CSR & I2CSR_BUSY))
+      000E47                       1118 00103$:
+      000E47 E5 5A            [12] 1119 	mov	a,_I2CSR
+      000E49 30 E2 2C         [24] 1120 	jnb	acc.2,00105$
+                                   1121 ;	src/mc96f8x16_i2c.c:70: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000E4C C0 06            [24] 1122 	push	ar6
+      000E4E C0 05            [24] 1123 	push	ar5
+      000E50 E5 75            [12] 1124 	mov	a,_bp
+      000E52 24 F8            [12] 1125 	add	a,#0xf8
+      000E54 F8               [12] 1126 	mov	r0,a
+      000E55 E6               [12] 1127 	mov	a,@r0
+      000E56 C0 E0            [24] 1128 	push	acc
+      000E58 08               [12] 1129 	inc	r0
+      000E59 E6               [12] 1130 	mov	a,@r0
+      000E5A C0 E0            [24] 1131 	push	acc
+      000E5C 8D 82            [24] 1132 	mov	dpl,r5
+      000E5E 8E 83            [24] 1133 	mov	dph,r6
+      000E60 12 11 12         [24] 1134 	lcall	_CheckTimeout
+      000E63 AF 82            [24] 1135 	mov	r7,dpl
+      000E65 15 81            [12] 1136 	dec	sp
+      000E67 15 81            [12] 1137 	dec	sp
+      000E69 D0 05            [24] 1138 	pop	ar5
+      000E6B D0 06            [24] 1139 	pop	ar6
+      000E6D BF 01 02         [24] 1140 	cjne	r7,#0x01,00179$
+      000E70 80 D5            [24] 1141 	sjmp	00103$
+      000E72                       1142 00179$:
+                                   1143 ;	src/mc96f8x16_i2c.c:72: return HAL_TIMEOUT;
+      000E72 75 82 02         [24] 1144 	mov	dpl,#0x02
+      000E75 02 0F 43         [24] 1145 	ljmp	00124$
+      000E78                       1146 00105$:
+                                   1147 ;	src/mc96f8x16_i2c.c:75: I2CCR |= I2CCR_STARTC;  /* Start transmit */
+      000E78 43 59 01         [24] 1148 	orl	_I2CCR,#0x01
+                                   1149 ;	src/mc96f8x16_i2c.c:76: while(!(I2CSR & I2CSR_RXACK))
+      000E7B                       1150 00108$:
+      000E7B E5 5A            [12] 1151 	mov	a,_I2CSR
+      000E7D 20 E0 2C         [24] 1152 	jb	acc.0,00110$
+                                   1153 ;	src/mc96f8x16_i2c.c:78: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000E80 C0 06            [24] 1154 	push	ar6
+      000E82 C0 05            [24] 1155 	push	ar5
+      000E84 E5 75            [12] 1156 	mov	a,_bp
+      000E86 24 F8            [12] 1157 	add	a,#0xf8
+      000E88 F8               [12] 1158 	mov	r0,a
+      000E89 E6               [12] 1159 	mov	a,@r0
+      000E8A C0 E0            [24] 1160 	push	acc
+      000E8C 08               [12] 1161 	inc	r0
+      000E8D E6               [12] 1162 	mov	a,@r0
+      000E8E C0 E0            [24] 1163 	push	acc
+      000E90 8D 82            [24] 1164 	mov	dpl,r5
+      000E92 8E 83            [24] 1165 	mov	dph,r6
+      000E94 12 11 12         [24] 1166 	lcall	_CheckTimeout
+      000E97 AF 82            [24] 1167 	mov	r7,dpl
+      000E99 15 81            [12] 1168 	dec	sp
+      000E9B 15 81            [12] 1169 	dec	sp
+      000E9D D0 05            [24] 1170 	pop	ar5
+      000E9F D0 06            [24] 1171 	pop	ar6
+      000EA1 BF 01 02         [24] 1172 	cjne	r7,#0x01,00181$
+      000EA4 80 D5            [24] 1173 	sjmp	00108$
+      000EA6                       1174 00181$:
+                                   1175 ;	src/mc96f8x16_i2c.c:80: return HAL_TIMEOUT;
+      000EA6 75 82 02         [24] 1176 	mov	dpl,#0x02
+      000EA9 02 0F 43         [24] 1177 	ljmp	00124$
+      000EAC                       1178 00110$:
+                                   1179 ;	src/mc96f8x16_i2c.c:83: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
+      000EAC E5 5A            [12] 1180 	mov	a,_I2CSR
+      000EAE 30 E3 03         [24] 1181 	jnb	acc.3,00182$
+      000EB1 02 0F 35         [24] 1182 	ljmp	00122$
+      000EB4                       1183 00182$:
+                                   1184 ;	src/mc96f8x16_i2c.c:85: I2CDR = RegAddr;
+      000EB4 E5 75            [12] 1185 	mov	a,_bp
+      000EB6 24 FD            [12] 1186 	add	a,#0xfd
+      000EB8 F8               [12] 1187 	mov	r0,a
+      000EB9 86 5D            [24] 1188 	mov	_I2CDR,@r0
+                                   1189 ;	src/mc96f8x16_i2c.c:86: while(!(I2CSR & I2CSR_RXACK))
+      000EBB                       1190 00113$:
+      000EBB E5 5A            [12] 1191 	mov	a,_I2CSR
+      000EBD 20 E0 2B         [24] 1192 	jb	acc.0,00118$
+                                   1193 ;	src/mc96f8x16_i2c.c:88: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000EC0 C0 06            [24] 1194 	push	ar6
+      000EC2 C0 05            [24] 1195 	push	ar5
+      000EC4 E5 75            [12] 1196 	mov	a,_bp
+      000EC6 24 F8            [12] 1197 	add	a,#0xf8
+      000EC8 F8               [12] 1198 	mov	r0,a
+      000EC9 E6               [12] 1199 	mov	a,@r0
+      000ECA C0 E0            [24] 1200 	push	acc
+      000ECC 08               [12] 1201 	inc	r0
+      000ECD E6               [12] 1202 	mov	a,@r0
+      000ECE C0 E0            [24] 1203 	push	acc
+      000ED0 8D 82            [24] 1204 	mov	dpl,r5
+      000ED2 8E 83            [24] 1205 	mov	dph,r6
+      000ED4 12 11 12         [24] 1206 	lcall	_CheckTimeout
+      000ED7 AF 82            [24] 1207 	mov	r7,dpl
+      000ED9 15 81            [12] 1208 	dec	sp
+      000EDB 15 81            [12] 1209 	dec	sp
+      000EDD D0 05            [24] 1210 	pop	ar5
+      000EDF D0 06            [24] 1211 	pop	ar6
+      000EE1 BF 01 02         [24] 1212 	cjne	r7,#0x01,00184$
+      000EE4 80 D5            [24] 1213 	sjmp	00113$
+      000EE6                       1214 00184$:
+                                   1215 ;	src/mc96f8x16_i2c.c:90: return HAL_TIMEOUT;
+      000EE6 75 82 02         [24] 1216 	mov	dpl,#0x02
+                                   1217 ;	src/mc96f8x16_i2c.c:93: while(!(I2CSR & I2CSR_TEND))
+      000EE9 80 58            [24] 1218 	sjmp	00124$
+      000EEB                       1219 00118$:
+      000EEB E5 5A            [12] 1220 	mov	a,_I2CSR
+      000EED 20 E6 2B         [24] 1221 	jb	acc.6,00120$
+                                   1222 ;	src/mc96f8x16_i2c.c:95: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+      000EF0 C0 06            [24] 1223 	push	ar6
+      000EF2 C0 05            [24] 1224 	push	ar5
+      000EF4 E5 75            [12] 1225 	mov	a,_bp
+      000EF6 24 F8            [12] 1226 	add	a,#0xf8
+      000EF8 F8               [12] 1227 	mov	r0,a
+      000EF9 E6               [12] 1228 	mov	a,@r0
+      000EFA C0 E0            [24] 1229 	push	acc
+      000EFC 08               [12] 1230 	inc	r0
+      000EFD E6               [12] 1231 	mov	a,@r0
+      000EFE C0 E0            [24] 1232 	push	acc
+      000F00 8D 82            [24] 1233 	mov	dpl,r5
+      000F02 8E 83            [24] 1234 	mov	dph,r6
+      000F04 12 11 12         [24] 1235 	lcall	_CheckTimeout
+      000F07 AF 82            [24] 1236 	mov	r7,dpl
+      000F09 15 81            [12] 1237 	dec	sp
+      000F0B 15 81            [12] 1238 	dec	sp
+      000F0D D0 05            [24] 1239 	pop	ar5
+      000F0F D0 06            [24] 1240 	pop	ar6
+      000F11 BF 01 02         [24] 1241 	cjne	r7,#0x01,00186$
+      000F14 80 D5            [24] 1242 	sjmp	00118$
+      000F16                       1243 00186$:
+                                   1244 ;	src/mc96f8x16_i2c.c:97: return HAL_TIMEOUT;
+      000F16 75 82 02         [24] 1245 	mov	dpl,#0x02
+      000F19 80 28            [24] 1246 	sjmp	00124$
+      000F1B                       1247 00120$:
+                                   1248 ;	src/mc96f8x16_i2c.c:100: *pData = I2CDR;
+      000F1B E5 75            [12] 1249 	mov	a,_bp
+      000F1D 24 FA            [12] 1250 	add	a,#0xfa
+      000F1F F8               [12] 1251 	mov	r0,a
+      000F20 86 05            [24] 1252 	mov	ar5,@r0
+      000F22 08               [12] 1253 	inc	r0
+      000F23 86 06            [24] 1254 	mov	ar6,@r0
+      000F25 08               [12] 1255 	inc	r0
+      000F26 86 07            [24] 1256 	mov	ar7,@r0
+      000F28 8D 82            [24] 1257 	mov	dpl,r5
+      000F2A 8E 83            [24] 1258 	mov	dph,r6
+      000F2C 8F F0            [24] 1259 	mov	b,r7
+      000F2E E5 5D            [12] 1260 	mov	a,_I2CDR
+      000F30 12 14 FB         [24] 1261 	lcall	__gptrput
+      000F33 80 05            [24] 1262 	sjmp	00123$
+      000F35                       1263 00122$:
+                                   1264 ;	src/mc96f8x16_i2c.c:104: return HAL_BUSY;
+      000F35 75 82 04         [24] 1265 	mov	dpl,#0x04
+      000F38 80 09            [24] 1266 	sjmp	00124$
+      000F3A                       1267 00123$:
+                                   1268 ;	src/mc96f8x16_i2c.c:106: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
+      000F3A 43 59 02         [24] 1269 	orl	_I2CCR,#0x02
+                                   1270 ;	src/mc96f8x16_i2c.c:107: I2CSR &= ~(I2CSR_GCALL | I2CSR_TEND | I2CSR_STOPD | I2CSR_SSEL | I2CSR_MLOST);  /* Clear interrupt bits */  
+      000F3D 53 5A 07         [24] 1271 	anl	_I2CSR,#0x07
+                                   1272 ;	src/mc96f8x16_i2c.c:108: return HAL_OK;
+      000F40 75 82 01         [24] 1273 	mov	dpl,#0x01
+      000F43                       1274 00124$:
+                                   1275 ;	src/mc96f8x16_i2c.c:109: }
+      000F43 D0 75            [24] 1276 	pop	_bp
+      000F45 22               [24] 1277 	ret
+                                   1278 	.area CSEG    (CODE)
+                                   1279 	.area CONST   (CODE)
+                                   1280 	.area XINIT   (CODE)
+                                   1281 	.area CABS    (ABS,CODE)
