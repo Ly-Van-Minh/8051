@@ -68,7 +68,7 @@ HAL_Status UART_Receive(uint8_t *Buffer, uint16_t Size, uint16_t Timeout)
     return HAL_OK;
 }
 
-void UART_Receive_ISR(void) interrupt 10
+void UART_Receive_ISR(void) __interrupt 10
 {
     RxData = UARTDR;
 }

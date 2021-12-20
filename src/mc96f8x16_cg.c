@@ -9,6 +9,6 @@ void SysClock_Config(void)
 {
     OSCCR = (FIRC_8MHZ << 3U); /* Select INT-RC/2 (8MHz) */
     SCCR = SYS_CLK_SEL_FIRC;    /* Select f(IRC) for system clock */
-    _nop_();
+    nop();
 }
 

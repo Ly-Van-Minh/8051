@@ -128,22 +128,22 @@ void GPIOPin_Toggle(OUTPUTPin_t GPIO_Pin)
     switch (GPIO_Pin)
     {
         case GPIO_LED1:
-            P33 = ~P33;
+            P33 = !P33;
             break;
         case GPIO_LED2:
-            P34 = ~P34;
+            P34 = !P34;
             break;
         case GPIO_LED3:
-            P35 = ~P35;
+            P35 = !P35;
             break;
         case GPIO_5V_CNTL:
-            P36 = ~P36;
+            P36 = !P36;
             break;
         case GPIO_DCDC_EN:
-            P37 = ~P37;
+            P37 = !P37;
             break;
         case GPIO_COM_MODE:
-            P14 = ~P14;
+            P14 = !P14;
             break;
         default:
             break;

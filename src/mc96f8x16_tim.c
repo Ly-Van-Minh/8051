@@ -16,7 +16,7 @@ uint16_t GetTick(void)
     return Tick;
 }
 
-void SysTick_ISR(void) interrupt 23
+void SysTick_ISR(void) __interrupt 23
 {
     Tick++;
     // GPIOPin_Write(GPIO_LED2, GPIO_SET);

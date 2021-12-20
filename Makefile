@@ -23,11 +23,11 @@ $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/%.hex
 $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
-$(OBJ_DIR)/$(PROJECT_NAME).ihx: $(OBJ_DIR)/%.rel
-	$(CC) $(CFLAGS) -o $@ $^
+$(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
+	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
-	$(CC) $(CFLAGS) -c $@ $<
+	$(CC) $(CFLAGS) $< -c $@
 
 .PHONY: clean
 clean:
