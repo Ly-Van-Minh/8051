@@ -7,7 +7,8 @@ CC 				= sdcc
 SRC_DIR 		= ./src
 INC_DIR			= ./inc
 OBJ_DIR 		= ./obj
-CFLAGS 			= -I$(INC_DIR) --xram-loc 0x00 --code-loc 0x00 --stack-loc 0x80 --xstack-loc 0x0100 --data-loc 0x00 -Wl -bBSEG=0x20 --iram-size 0x180 --xram-size 0x200 --code-size 0x4000 --stack-size 0xFF 
+CFLAGS 			= -I$(INC_DIR)
+LDFLAGS			= --xram-loc 0x00 --code-loc 0x00 --stack-loc 0x80 --xstack-loc 0x0100 --data-loc 0x00 -Wl -bBSEG=0x20 --iram-size 0x180 --xram-size 0x200 --code-size 0x4000 --stack-size 0xFF 
 RM 				= rm -rf
 SRCS 			= $(wildcard $(SRC_DIR)/*.c)
 RELS			= $(patsubst %.c, $(OBJ_DIR)/%.rel, $(notdir $(SRCS)))
@@ -24,7 +25,7 @@ $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
 	$(CC) $(CFLAGS) -c $< -o $@
