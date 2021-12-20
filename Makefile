@@ -17,7 +17,7 @@ PROJECT_NAME	= CHARGECASE_HDX_2968
 
 $(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).bin
 
-$(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/%.hex
+$(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
 	objcopy -I ihex -O binary $< $@
 
 $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
