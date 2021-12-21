@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
-#include <MC96F8316.h>
+#include "MC96F8316.h"
 #include "mc96f8x16.h"
 #include "mc96f8x16_cg.h"
 #include "mc96f8x16_tim.h"

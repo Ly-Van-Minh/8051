@@ -1,10 +1,10 @@
 make.exe --dry-run --keep-going --print-directory
 make.exe: Entering directory `c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051'
-sdcc -I./inc --stack-auto  --model-large --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xFF --xstack-loc 0x0100 --data-loc 0x20 --idata-loc 0x80 -Wl-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x80 -c src/mc96f8x16_gpio.c -o obj/mc96f8x16_gpio.rel
+sdcc --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 --xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 -Wl,-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x40 -c src/mc96f8x16_gpio.c -o obj/mc96f8x16_gpio.rel
  
-sdcc -I./inc --stack-auto  --model-large --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xFF --xstack-loc 0x0100 --data-loc 0x20 --idata-loc 0x80 -Wl-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x80 --stack-auto  --model-large --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xFF --xstack-loc 0x0100 --data-loc 0x20 --idata-loc 0x80 -Wl-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x80 obj/log.rel obj/main.rel obj/mc96f8x16_cg.rel obj/mc96f8x16_gpio.rel obj/mc96f8x16_i2c.rel obj/mc96f8x16_tim.rel obj/mc96f8x16_uart.rel obj/mc96f8x16_wdt.rel -o obj/CHARGECASE_HDX_2968.ihx
+sdcc --stack-auto --model-large --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 --xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 -Wl,-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x40 obj/log.rel obj/main.rel obj/mc96f8x16_cg.rel obj/mc96f8x16_gpio.rel obj/mc96f8x16_i2c.rel obj/mc96f8x16_tim.rel obj/mc96f8x16_uart.rel obj/mc96f8x16_wdt.rel -o obj/CHARGECASE_HDX_2968.ihx
 packihx obj/CHARGECASE_HDX_2968.ihx > obj/CHARGECASE_HDX_2968.hex
-objcopy -I ihex -O binary obj/CHARGECASE_HDX_2968.hex obj/CHARGECASE_HDX_2968.bin
  
+objcopy -I ihex -O binary obj/CHARGECASE_HDX_2968.hex obj/CHARGECASE_HDX_2968.bin
 make.exe: Leaving directory `c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051'
  

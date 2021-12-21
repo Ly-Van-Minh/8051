@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Tue Dec 21 13:58:47 2021
+# Make data base, printed on Tue Dec 21 16:02:09 2021
 
 # Variables
 
@@ -20,7 +20,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 MAKEFLAGS = Rrqp
 # environment
 VSCODE_LOG_NATIVE = false
-# makefile (from `makefile', line 21)
+# makefile (from `makefile', line 18)
 TARGET = all
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
@@ -37,7 +37,7 @@ CURDIR := c:/Users/PC DESIGN/Documents/SDCC_ABOV
 /HDX_2968/8051
 # default
 SHELL := sh.exe
-# makefile (from `makefile', line 18)
+# makefile (from `makefile', line 15)
 RM = rm -rf
 # environment
 WINDIR = C:\Windows
@@ -46,7 +46,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # makefile (from `makefile', line 10)
-CFLAGS = -I$(INC_DIR) --stack-auto  --model-large --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xFF --xstack-loc 0x0100 --data-loc 0x20 --idata-loc 0x80 -Wl-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x80
+CFLAGS = -I$(INC_DIR) --stack-auto --model-large
 # environment
 ONEDRIVE = C:\Users\PC DESIGN\OneDrive
 # environment
@@ -69,11 +69,11 @@ PROGRAMDATA = C:\ProgramData
 VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-82b02a93-1f08-4aad-bc79-dbd4d4718746-sock
 # environment
 VSCODE_CWD = C:\Users\PC DESIGN\AppData\Local\Programs\Microsoft VS Code
-# makefile (from `makefile', line 20)
-RELS = $(patsubst %.c, $(OBJ_DIR)/%.rel, $(notdir $(SRCS)))
+# makefile (from `makefile', line 17)
+RELS = $(patsubst %.c,$(OBJ_DIR)/%.rel,$(notdir $(SRCS)))
 # environment
-PATH = C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin\;C:\Program Files\IVI Foundation\VISA\Win64\Bin\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\PuTTY\;C:\Windows\Softcamp\SDS;C:\Windows\Softcamp\SDS\x64;C:\Windows\Softcamp\SDK;C:\Windows\Softcamp\SDK\x64;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.07\bin;C:\Users\PC DESIGN\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\PC DESIGN\ 
-AppData\Local\Programs\Python\Python39\;C:\Users\PC DESIGN\AppData\Local\Microsoft\WindowsApps;C:\Users\PC DESIGN\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\PC DESIGN\.dotnet\tools;C:\Program Files\SDCC\bin
+PATH = C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\Program Files\dotnet\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin\;C:\Program Files\IVI Foundation\VISA\Win64\Bin\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\PuTTY\;C:\Windows\Softcamp\SDS;C:\Windows\Softcamp\SDS\x64;C:\Windows\Softcamp\SDK;C:\Windows\Softcamp\SDK\x64;C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.07\bin;C:\Users\PC DESIGN\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\PC DESIGN\AppData\Local\Programs\Python\Python39\;C:\Users\PC DESIGN\AppData\Local\Microsoft\WindowsApps;C:\Users\PC DESIGN\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\PC DESIGN\.dotnet\tools;C:\ 
+Program Files\SDCC\bin
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # environment
@@ -91,12 +91,12 @@ VSCODE_LOG_STACK = false
 # environment
 NUMBER_OF_PROCESSORS = 6
 # environment
-ELECTRON_RUN_AS_NODE = 1
-# makefile (from `makefile', line 15)
-LDFLAGS = --stack-auto  --model-large --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xFF --xstack-loc 0x0100 --data-loc 0x20 --idata-loc 0x80 -Wl-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x80
+ELECTRON_RUN_AS 
+_NODE = 1
+# makefile (from `makefile', line 11)
+LDFLAGS = --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 --xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 -Wl,-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 --code-size 0x4000 --stack-size 0x40
 # default
-.FEATURES := target-specific  
-order-only second-expansion else-if archives
+.FEATURES := target-specific order-only second-expansion else-if archives
 # automatic
 %F = $(notdir $%)
 # environment
@@ -123,7 +123,8 @@ PUBLIC = C:\Users\Public
 XTENSA_RG_2019_12_ROOT = C:\Airoha_toolchain
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
-# environment
+# environmen 
+t
 VSCODE_CODE_CACHE_PATH = C:\Users\PC DESIGN\AppData\Roaming\Code\CachedData\899d46d82c4c95423fb7e10e68eba52050e30ba3
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
@@ -139,8 +140,9 @@ USERDOMAIN = PCDESIGN
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `makefile', line 19)
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+# makefile (from `makefile', line 16)
+SRCS = $(wildcard $(SRC_DIR)/* 
+.c)
 # makefile (from `makefile', line 6)
 CC = sdcc
 # default
@@ -182,7 +184,8 @@ MFLAGS = -Rrqp
 # environment
 SYSTEMROOT = C:\Windows
 # automatic
-+D = $(patsubst %/,%,$(dir $+))
++D = $(pa 
+tsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
@@ -192,20 +195,20 @@ VXIPNPPATH = C:\Program Files (x86)\IVI Foundation\VISA\
 # environment
 TEMP = C:\Users\PCDESI~1\AppData\Local\Temp
 # environment
-COMSPEC = C:\Windows\system32\cmd.e 
-xe
+COMSPEC = C:\Windows\system32\cmd.exe
 # default
 MAKEFILES := 
 # makefile (from `makefile', line 7)
 SRC_DIR = ./src
 # automatic
 <F = $(notdir $<)
-# makefile (from `makefile', line 22)
+# makefile (from `makefile', line 19)
 PROJECT_NAME = CHARGECASE_HDX_2968
 # environment
 LC_ALL = C
 # automatic
-^F = $(notdir $^)
+^F 
+ = $(notdir $^)
 # default
 SUFFIXES := 
 # environment
@@ -227,57 +230,58 @@ VSCODE_PID = 10732
 # environment
 USERDOMAIN_ROAMINGPROFILE = PCDESIGN
 # variable set hash-table stats:
-# Load=105/1024=10%, Rehash=0, Collisions=10/150=7%
+# Load=105/1024=10%, Rehash=0, Collisions=10/151=7%
 
 # Pattern-specific Variable Values
 
-# No pattern-specific variable values.
+# No patt 
+ern-specific variable values.
 
 # Directories
 
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1630876493): 32 files, no impossibilities.
-# C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1637230376): 172 files, no impossib 
-ilities.
+# C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1637230376): 172 files, no impossibilities.
 # . (key c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051, mtime 1640047846): 9 files, no impossibilities.
-# ./src (key c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051/src, mtime 1639963644): 10 files, no impossibilities.
+# ./src (key c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051/src, mtime 1639963644): 10 files, no 
+ impossibilities.
 # C:\Program Files\IVI Foundation\VISA\Win64\Bin\ (key C:/Program Files/IVI Foundation/VISA/Win64/Bin/, mtime 1632800777): 9 files, no impossibilities.
 # C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1632796673): 10 files, no impossibilities.
-# C:\Program  
-Files\SDCC\bin (key C:/Program Files/SDCC/bin, mtime 1634632987): 40 files, no impossibilities.
+# C:\Program Files\SDCC\bin (key C:/Program Files/SDCC/bin, mtime 1634632987): 40 files, no impossibilities.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1632731933): 144 files, no impossibilities.
-# C:\Windows\Softcamp\SDK (key C:/Windows/Softcamp/SDK, mtime 1640047825): 27 files, no impossibilities.
+# C:\Windows\Softcamp\SDK (key C:/Windows/ 
+Softcamp/SDK, mtime 1640047825): 27 files, no impossibilities.
 # C:\Users\PC DESIGN\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/PC DESIGN/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1639702875): 4 files, no impossibilities.
-# C:\Windows\System32\OpenSSH\: could not b 
-e stat'd.
+# C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\Program Files\PuTTY\ (key C:/Program Files/PuTTY/, mtime 1636361442): 12 files, no impossibilities.
-# src (key c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051/src, mtime 1639963644): 10 files, no impossibilities.
+# src (key c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051/src, mtime 1639963644): 10 files, no imposs 
+ibilities.
 # C:\Users\PC DESIGN\.dotnet\tools: could not be stat'd.
 # C:\Windows (key C:/Windows, mtime 1608617881): 153 files, no impossibilities.
 # C:\Windows\Softcamp\SDS (key C:/Windows/Softcamp/SDS, mtime 1640047824): 322 files, no impossibilities.
-# C:\Windows\Softcamp\SDK\x64 (key C 
-:/Windows/Softcamp/SDK/x64, mtime 1607983637): 3 files, no impossibilities.
+# C:\Windows\Softcamp\SDK\x64 (key C:/Windows/Softcamp/SDK/x64, mtime 1607983637): 3 files, no impossibilities.
 # C:\Windows\Softcamp\SDS\x64 (key C:/Windows/Softcamp/SDS/x64, mtime 1607983638): 76 files, no impossibilities.
-# C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin\ (key C:/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/, mtime 1632800777): 10 files, no impossibilities.
-# C:\Users\PC DESIGN\AppData\Local\Programs\Python\Python39\ (key C:/Users/PC DESIGN/AppData/Local/Programs/Python/Python39/, mtime 1632728661): 18 files, no  
-impossibilities.
+# C:\Program Files (x86)\IVI Foun 
+dation\VISA\WinNT\Bin\ (key C:/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/, mtime 1632800777): 10 files, no impossibilities.
+# C:\Users\PC DESIGN\AppData\Local\Programs\Python\Python39\ (key C:/Users/PC DESIGN/AppData/Local/Programs/Python/Python39/, mtime 1632728661): 18 files, no impossibilities.
 # C:\Users\PC DESIGN\AppData\Local\Microsoft\WindowsApps (key C:/Users/PC DESIGN/AppData/Local/Microsoft/WindowsApps, mtime 1639629547): 13 files, no impossibilities.
-# C:\Users\PC DESIGN\AppData\Local\Programs\Python\Python39\Scripts\ (key C:/Users/PC DESIGN/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1632734150): 7 files, no impossibilities.
-# C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin (key C:/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin, mtime 1632800777): 10 fi 
-les, no impossibilities.
+# C:\Users\PC DESIGN\AppData\Local\Pro 
+grams\Python\Python39\Scripts\ (key C:/Users/PC DESIGN/AppData/Local/Programs/Python/Python39/Scripts/, mtime 1632734150): 7 files, no impossibilities.
+# C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin (key C:/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin, mtime 1632800777): 10 files, no impossibilities.
 # inc (key c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051/inc, mtime 1639963644): 9 files, no impossibilities so far.
-# C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1618041703): 8 files, no impossibilities.
+# C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 161804170 
+3): 8 files, no impossibilities.
 # C:\Windows\system32 (key C:/Windows/system32, mtime 1640048184): 3047 files, no impossibilities.
-# C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.07\bin (key C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.07/bin, mtime 1634531061): 3 
-5 files, no impossibilities.
+# C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.07\bin (key C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.07/bin, mtime 1634531061): 35 files, no impossibilities.
 # C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/bin, mtime 1633080730): 5 files, no impossibilities.
 
 # 4195 files, no impossibilities in 28 directories.
 
-# Implicit Rules
+# Implicit  
+Rules
 
 obj/%.rel: ./src/%.c ./inc/%.h
-#  commands to execute (from `makefile', line 37):
-	$(CC) $(CFLAGS) -c $< -o $@
+#  commands to execute (from `makefile', line 34):
+	$(CC) $(LDFLAGS) -c $< -o $@
 	
 
 # 1 implicit rules, 0 (0.0%) terminal.
@@ -286,39 +290,35 @@ obj/%.rel: ./src/%.c ./inc/%.h
 
 obj/CHARGECASE_HDX_2968.bin: obj/CHARGECASE_HDX_2968.hex
 #  Implicit rule search has not been done.
-#  Last modified 202 
-1-12-20 10:42:53
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  commands to execute (from `makefile', line 28):
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `makefile', line 25):
 	objcopy -I ihex -O binary $< $@
 	
 
-all: obj/CHARGECASE_HDX_2968.bin
+all: obj/CHARGECASE_HDX_2968.hex obj/CHARGECASE_HDX_2968.bin
 #  Command-line target.
-#  Implicit rule search has been done.
+#   
+Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
 
-obj/CHARG 
-ECASE_HDX_2968.ihx: obj/log.rel obj/main.rel obj/mc96f8x16_cg.rel obj/mc96f8x16_gpio.rel obj/mc96f8x16_i2c.rel obj/mc96f8x16_tim.rel obj/mc96f8x16_uart.rel obj/mc96f8x16_wdt.rel
+obj/CHARGECASE_HDX_2968.ihx: obj/log.rel obj/main.rel obj/mc96f8x16_cg.rel obj/mc96f8x16_gpio.rel obj/mc96f8x16_i2c.rel obj/mc96f8x16_tim.rel obj/mc96f8x16_uart.rel obj/mc96f8x16_wdt.rel
 #  Implicit rule search has not been done.
 #  Last modified 2021-12-20 10:42:53
 #  File has been updated.
-#  Needs to be updated (-q is set).
+#  Needs to be upda 
+ted (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  commands to execute (from `makefile', line 34):
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+#  commands to execute (from `makefile', line 31):
+	$(CC) --stack-auto --model-large $(LDFLAGS) $^ -o $@
 	
 
-obj/log.rel: src/log.c i 
-nc/log.h
+obj/log.rel: src/log.c inc/log.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `log'
 #  Last modified 2021-12-20 10:42:53
@@ -326,8 +326,9 @@ nc/log.h
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 37):
-	$(CC) $(CFLAGS) -c $< -o $@
+#  commands to execute (from `make 
+file', line 34):
+	$(CC) $(LDFLAGS) -c $< -o $@
 	
 
 .PHONY: clean
@@ -337,8 +338,7 @@ nc/log.h
 
 # Not a target:
 inc/main.h:
-#  Implicit rule search h 
-as been done.
+#  Implicit rule search has been done.
 #  Last modified 2021-12-20 08:27:24
 #  File has been updated.
 #  Successfully updated.
@@ -349,6 +349,7 @@ as been done.
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
@@ -358,29 +359,28 @@ inc/log.h:
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
-# Load=0/ 
-32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-21 13:58:46
+#  Last modified 2021-12-21 16:01:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-obj/mc96f8x16_cg.rel: src/mc96f8x16_cg.c inc/mc96f8x16_cg.h
+obj/mc96f8x16_cg.r 
+el: src/mc96f8x16_cg.c inc/mc96f8x16_cg.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mc96f8x16_cg'
 #  Last modified 2021-12-20 10:42:53
 #  File has been updated.
 #  Successfully updated.
-# variable 
- set hash-table stats:
+# variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 37):
-	$(CC) $(CFLAGS) -c $< -o $@
+#  commands to execute (from `makefile', line 34):
+	$(CC) $(LDFLAGS) -c $< -o $@
 	
 
 # Not a target:
@@ -388,7 +388,8 @@ src/main.c:
 #  Implicit rule search has been done.
 #  Last modified 2021-12-20 08:27:24
 #  File has been updated.
-#  Successfully updated.
+#  S 
+uccessfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -396,8 +397,7 @@ src/main.c:
 inc/mc96f8x16_gpio.h:
 #  Implicit rule search has been done.
 #  Last modified 2021-12-20 08:27:24
-#  File has bee 
-n updated.
+#  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -409,7 +409,8 @@ n updated.
 #  File has not been updated.
 
 # Not a target:
-obj/mc96f8x16_wdt.rel:
+obj/mc96f8x16_wdt 
+.rel:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -417,8 +418,7 @@ obj/mc96f8x16_wdt.rel:
 # Not a target:
 obj/mc96f8x16_i2c.rel:
 #  Implicit rule search has not been done.
-#  Modification time never che 
-cked.
+#  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
@@ -431,17 +431,17 @@ src/log.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 clean:
-#  Phony target (prerequisite of .PHONY).
+#  Phony 
+ target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 41):
+#  commands to execute (from `makefile', line 38):
 	$(RM) $(OBJ_DIR)/*
 	
 
 # Not a target:
-obj/mc9 
-6f8x16_uart.rel:
+obj/mc96f8x16_uart.rel:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -449,7 +449,8 @@ obj/mc9
 obj/mc96f8x16_gpio.rel: src/mc96f8x16_gpio.c inc/mc96f8x16_gpio.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mc96f8x16_gpio'
-#  Last modified 2021-12-20 10:42:53
+#  
+ Last modified 2021-12-20 10:42:53
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -459,8 +460,7 @@ obj/mc96f8x16_gpio.rel: src/mc96f8x16_gpio.c inc/mc96f8x16_gpio.h
 # automatic
 # * := mc96f8x16_gpio
 # automatic
-# + := src/mc96f8x16_gp 
-io.c inc/mc96f8x16_gpio.h
+# + := src/mc96f8x16_gpio.c inc/mc96f8x16_gpio.h
 # automatic
 # | := 
 # automatic
@@ -470,9 +470,10 @@ io.c inc/mc96f8x16_gpio.h
 # automatic
 # ? := src/mc96f8x16_gpio.c
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
-#  commands to execute (from `makefile', line 37):
-	$(CC) $(CFLAGS) -c $< -o $@
+# Load=8/32=25%, Rehash=0, Collisions=1/14=7%
+#  commands to exe 
+cute (from `makefile', line 34):
+	$(CC) $(LDFLAGS) -c $< -o $@
 	
 
 # Not a target:
@@ -481,7 +482,6 @@ inc/mc96f8x16_cg.h:
 #  Last modified 2021-12-20 08:27:24
 #  File has been updated.
 #  Successfully updated.
- 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -493,22 +493,23 @@ obj/mc96f8x16_tim.rel:
 
 # Not a target:
 src/mc96f8x16_gpio.c:
-#  Implicit rule search has been done.
+#  Implicit rule s 
+earch has been done.
 #  Last modified 2021-12-21 13:18:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-obj/CHARGECASE_HDX_2968.hex: obj/CHARGECAS 
-E_HDX_2968.ihx
+obj/CHARGECASE_HDX_2968.hex: obj/CHARGECASE_HDX_2968.ihx
 #  Implicit rule search has not been done.
 #  Last modified 2021-12-20 10:42:53
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  commands to execute (from `makefile', line 31):
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+#  commands to execute (from `makefile', line 28) 
+:
 	packihx $< > $@
 	
 
@@ -518,28 +519,27 @@ obj/main.rel: src/main.c inc/main.h
 #  Last modified 2021-12-20 10:42:53
 #  File has been updated.
 #  Successfully updated.
-# va 
-riable set hash-table stats:
+# variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `makefile', line 37):
-	$(CC) $(CFLAGS) -c $< -o $@
+#  commands to execute (from `makefile', line 34):
+	$(CC) $(LDFLAGS) -c $< -o $@
 	
 
 # Not a target:
 src/mc96f8x16_cg.c:
 #  Implicit rule search has been done.
 #  Last modified 2021-12-20 08:38:50
-#  File has been updated.
+#  File has be 
+en updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=25/1024=2%, Rehash=0, Collisions=5/69=7%
+# Load=25/1024=2%, Rehash=0, Collisions=5/70=7%
 # VPATH Search Paths
 
-# No `vpath' search 
- paths.
+# No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
@@ -548,6 +548,7 @@ src/mc96f8x16_cg.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Dec 21 13:58:47 2021
+# Finished Make data base on Tu 
+e Dec 21 16:02:09 2021
 
  
