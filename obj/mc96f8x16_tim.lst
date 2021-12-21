@@ -3,7 +3,7 @@
                                       3 ; Version 3.8.0 #10562 (Linux)
                                       4 ;--------------------------------------------------------
                                       5 	.module mc96f8x16_tim
-                                      6 	.optsdcc -mmcs51 --model-small
+                                      6 	.optsdcc -mmcs51 --model-large
                                       7 	
                                       8 ;--------------------------------------------------------
                                       9 ; Public variables in this module
@@ -462,40 +462,40 @@
                                     462 ; internal ram data
                                     463 ;--------------------------------------------------------
                                     464 	.area DSEG    (DATA)
-      000000                        465 _Tick::
-      000000                        466 	.ds 2
+                                    465 ;--------------------------------------------------------
+                                    466 ; overlayable items in internal ram 
                                     467 ;--------------------------------------------------------
-                                    468 ; overlayable items in internal ram 
-                                    469 ;--------------------------------------------------------
+                                    468 ;--------------------------------------------------------
+                                    469 ; indirectly addressable internal ram data
                                     470 ;--------------------------------------------------------
-                                    471 ; indirectly addressable internal ram data
+                                    471 	.area ISEG    (DATA)
                                     472 ;--------------------------------------------------------
-                                    473 	.area ISEG    (DATA)
+                                    473 ; absolute internal ram data
                                     474 ;--------------------------------------------------------
-                                    475 ; absolute internal ram data
-                                    476 ;--------------------------------------------------------
-                                    477 	.area IABS    (ABS,DATA)
-                                    478 	.area IABS    (ABS,DATA)
+                                    475 	.area IABS    (ABS,DATA)
+                                    476 	.area IABS    (ABS,DATA)
+                                    477 ;--------------------------------------------------------
+                                    478 ; bit data
                                     479 ;--------------------------------------------------------
-                                    480 ; bit data
+                                    480 	.area BSEG    (BIT)
                                     481 ;--------------------------------------------------------
-                                    482 	.area BSEG    (BIT)
+                                    482 ; paged external ram data
                                     483 ;--------------------------------------------------------
-                                    484 ; paged external ram data
+                                    484 	.area PSEG    (PAG,XDATA)
                                     485 ;--------------------------------------------------------
-                                    486 	.area PSEG    (PAG,XDATA)
+                                    486 ; external ram data
                                     487 ;--------------------------------------------------------
-                                    488 ; external ram data
+                                    488 	.area XSEG    (XDATA)
                                     489 ;--------------------------------------------------------
-                                    490 	.area XSEG    (XDATA)
+                                    490 ; absolute external ram data
                                     491 ;--------------------------------------------------------
-                                    492 ; absolute external ram data
+                                    492 	.area XABS    (ABS,XDATA)
                                     493 ;--------------------------------------------------------
-                                    494 	.area XABS    (ABS,XDATA)
+                                    494 ; external initialized ram data
                                     495 ;--------------------------------------------------------
-                                    496 ; external initialized ram data
-                                    497 ;--------------------------------------------------------
-                                    498 	.area XISEG   (XDATA)
+                                    496 	.area XISEG   (XDATA)
+      000000                        497 _Tick::
+      000000                        498 	.ds 2
                                     499 	.area HOME    (CODE)
                                     500 	.area GSINIT0 (CODE)
                                     501 	.area GSINIT1 (CODE)
@@ -513,651 +513,658 @@
                                     513 	.area GSINIT  (CODE)
                                     514 	.area GSFINAL (CODE)
                                     515 	.area GSINIT  (CODE)
-                                    516 ;	src/mc96f8x16_tim.c:5: volatile uint16_t Tick = 0;
-      000000 E4               [12]  517 	clr	a
-      000001 F5*00            [12]  518 	mov	_Tick,a
-      000003 F5*01            [12]  519 	mov	(_Tick + 1),a
-                                    520 ;	./inc/MC96F8316.h:17: sfr			P0			= 0x80;			// P0 Data Register
-      000005 75*00 80         [24]  521 	mov	_P0,#0x80
-                                    522 ;	./inc/MC96F8316.h:27: sfr			P0IO		= 0xA1;			// P0 Direction Register
-      000008 75*01 A1         [24]  523 	mov	_P0IO,#0xa1
-                                    524 ;	./inc/MC96F8316.h:28: sfr			P0OD		= 0x91;			// P0 Open-drain Selection Register
-      00000B 75*02 91         [24]  525 	mov	_P0OD,#0x91
-                                    526 ;	./inc/MC96F8316.h:29: sfr			P0PU		= 0xAC;			// P0 Pull-up Resistor Selection Register
-      00000E 75*03 AC         [24]  527 	mov	_P0PU,#0xac
-                                    528 ;	./inc/MC96F8316.h:30: sfr			P03DB		= 0xDE;			// P0/P3 Debounce Enable Register
-      000011 75*04 DE         [24]  529 	mov	_P03DB,#0xde
-                                    530 ;	./inc/MC96F8316.h:32: sfr			P1			= 0x88;			// P1 Data Register
-      000014 75*05 88         [24]  531 	mov	_P1,#0x88
-                                    532 ;	./inc/MC96F8316.h:42: sfr			P1IO		= 0xB1;			// P1 Direction Register
-      000017 75*06 B1         [24]  533 	mov	_P1IO,#0xb1
-                                    534 ;	./inc/MC96F8316.h:43: sfr			P1OD		= 0x92;			// P1 Open-drain Selection Register
-      00001A 75*07 92         [24]  535 	mov	_P1OD,#0x92
-                                    536 ;	./inc/MC96F8316.h:44: sfr			P1PU		= 0xAD;			// P1 Pull-up Resistor Selection Register
-      00001D 75*08 AD         [24]  537 	mov	_P1PU,#0xad
-                                    538 ;	./inc/MC96F8316.h:45: sfr			P12DB		= 0xDF;			// P1/P2 Debounce Enable Register
-      000020 75*09 DF         [24]  539 	mov	_P12DB,#0xdf
-                                    540 ;	./inc/MC96F8316.h:47: sfr			P2			= 0x90;			// P2 Data Register
-      000023 75*0A 90         [24]  541 	mov	_P2,#0x90
-                                    542 ;	./inc/MC96F8316.h:57: sfr			P2IO		= 0xB9;			// P2 Direction Register
-      000026 75*0B B9         [24]  543 	mov	_P2IO,#0xb9
-                                    544 ;	./inc/MC96F8316.h:58: sfr			P2OD		= 0x93;			// P2 Open-drain Selection Register
-      000029 75*0C 93         [24]  545 	mov	_P2OD,#0x93
-                                    546 ;	./inc/MC96F8316.h:59: sfr			P2PU		= 0xAE;			// P2 Pull-up Resistor Selection Register
-      00002C 75*0D AE         [24]  547 	mov	_P2PU,#0xae
-                                    548 ;	./inc/MC96F8316.h:61: sfr			P3			= 0x98;			// P3 Data Register
-      00002F 75*0E 98         [24]  549 	mov	_P3,#0x98
-                                    550 ;	./inc/MC96F8316.h:71: sfr			P3IO		= 0xC1;			// P3 Direction Register
-      000032 75*0F C1         [24]  551 	mov	_P3IO,#0xc1
-                                    552 ;	./inc/MC96F8316.h:72: sfr			P3OD		= 0x94;			// P3 Open-drain Selection Register
-      000035 75*10 94         [24]  553 	mov	_P3OD,#0x94
-                                    554 ;	./inc/MC96F8316.h:73: sfr			P3PU		= 0xAF;			// P3 Pull-up Resistor Selection Register
-      000038 75*11 AF         [24]  555 	mov	_P3PU,#0xaf
-                                    556 ;	./inc/MC96F8316.h:75: sfr			P0FSR		= 0xD3;			//P0 Function Selection Register
-      00003B 75*12 D3         [24]  557 	mov	_P0FSR,#0xd3
-                                    558 ;	./inc/MC96F8316.h:76: sfr			P1FSRL		= 0xD4;			//P1 Function Selection Low Register
-      00003E 75*13 D4         [24]  559 	mov	_P1FSRL,#0xd4
-                                    560 ;	./inc/MC96F8316.h:77: sfr			P1FSRH		= 0xD5;			//P1 Function Selection High Register
-      000041 75*14 D5         [24]  561 	mov	_P1FSRH,#0xd5
-                                    562 ;	./inc/MC96F8316.h:78: sfr			P2FSR		= 0xD6;			//P2 Function Selection Register
-      000044 75*15 D6         [24]  563 	mov	_P2FSR,#0xd6
-                                    564 ;	./inc/MC96F8316.h:79: sfr			P3FSR		= 0xD7;			//P3 Function Selection Register
-      000047 75*16 D7         [24]  565 	mov	_P3FSR,#0xd7
-                                    566 ;	./inc/MC96F8316.h:82: sfr			IE			= 0xA8;			// Interrupt Enable Register 0
-      00004A 75*17 A8         [24]  567 	mov	_IE,#0xa8
-                                    568 ;	./inc/MC96F8316.h:83: sfr			IE1			= 0xA9;			// Interrupt Enable Register 1
-      00004D 75*18 A9         [24]  569 	mov	_IE1,#0xa9
-                                    570 ;	./inc/MC96F8316.h:84: sfr			IE2			= 0xAA;			// Interrupt Enable Register 2
-      000050 75*19 AA         [24]  571 	mov	_IE2,#0xaa
-                                    572 ;	./inc/MC96F8316.h:85: sfr			IE3			= 0xAB;			// Interrupt Enable Register 3
-      000053 75*1A AB         [24]  573 	mov	_IE3,#0xab
-                                    574 ;	./inc/MC96F8316.h:86: sfr			IP			= 0xB8;			// Interrupt Priority Register 0
-      000056 75*1B B8         [24]  575 	mov	_IP,#0xb8
-                                    576 ;	./inc/MC96F8316.h:87: sfr			IP1			= 0xF8;			// Interrupt Priority Register 1
-      000059 75*1C F8         [24]  577 	mov	_IP1,#0xf8
-                                    578 ;	./inc/MC96F8316.h:88: sfr			IIFLAG		= 0xA0;			// Internal Interrupt Flag Register
-      00005C 75*1D A0         [24]  579 	mov	_IIFLAG,#0xa0
-                                    580 ;	./inc/MC96F8316.h:89: sfr			EIFLAG0		= 0xC0;			// External Interrupt Flag 0 Register
-      00005F 75*1E C0         [24]  581 	mov	_EIFLAG0,#0xc0
-                                    582 ;	./inc/MC96F8316.h:90: sfr			EIFLAG1		= 0xB0;			// External Interrupt Flag 1 Register
-      000062 75*1F B0         [24]  583 	mov	_EIFLAG1,#0xb0
-                                    584 ;	./inc/MC96F8316.h:91: sfr			EIPOL0L		= 0xA4;			// External Interrupt Polarity 0 Low Register
-      000065 75*20 A4         [24]  585 	mov	_EIPOL0L,#0xa4
-                                    586 ;	./inc/MC96F8316.h:92: sfr			EIPOL0H		= 0xA5;			// External Interrupt Polarity 0 High Register
-      000068 75*21 A5         [24]  587 	mov	_EIPOL0H,#0xa5
-                                    588 ;	./inc/MC96F8316.h:93: sfr			EIPOL1		= 0xA6;			// External Interrupt Polarity 1 Register
-      00006B 75*22 A6         [24]  589 	mov	_EIPOL1,#0xa6
-                                    590 ;	./inc/MC96F8316.h:94: sfr			EIPOL2		= 0xA7;			// External Interrupt Polarity 2 Register
-      00006E 75*23 A7         [24]  591 	mov	_EIPOL2,#0xa7
-                                    592 ;	./inc/MC96F8316.h:97: sfr			SCCR		= 0x8A;			// System Clock Control Register
-      000071 75*24 8A         [24]  593 	mov	_SCCR,#0x8a
-                                    594 ;	./inc/MC96F8316.h:98: sfr			OSCCR		= 0xC8;			// Oscillator Control Register
-      000074 75*25 C8         [24]  595 	mov	_OSCCR,#0xc8
-                                    596 ;	./inc/MC96F8316.h:99: sfr			BITCNT		= 0x8C;			// Basic Interval Timer Counter Register
-      000077 75*26 8C         [24]  597 	mov	_BITCNT,#0x8c
-                                    598 ;	./inc/MC96F8316.h:100: sfr			BITCR		= 0x8B;			// Basic Interval Timer Control Register
-      00007A 75*27 8B         [24]  599 	mov	_BITCR,#0x8b
-                                    600 ;	./inc/MC96F8316.h:101: sfr			RSTFR		= 0xE8;			// Reset Flag Register
-      00007D 75*28 E8         [24]  601 	mov	_RSTFR,#0xe8
-                                    602 ;	./inc/MC96F8316.h:102: sfr			PCON		= 0x87;			// Power Control Register
-      000080 75*29 87         [24]  603 	mov	_PCON,#0x87
-                                    604 ;	./inc/MC96F8316.h:103: sfr			LVRCR		= 0xD8;			// Low Voltage Reset Control Register
-      000083 75*2A D8         [24]  605 	mov	_LVRCR,#0xd8
-                                    606 ;	./inc/MC96F8316.h:104: sfr			LVICR		= 0x86;			// Low Voltage Indicator Control Register
-      000086 75*2B 86         [24]  607 	mov	_LVICR,#0x86
-                                    608 ;	./inc/MC96F8316.h:107: sfr			WDTDR		= 0x8E;			// Watch Dog Timer Data Register
-      000089 75*2C 8E         [24]  609 	mov	_WDTDR,#0x8e
-                                    610 ;	./inc/MC96F8316.h:108: sfr			WDTCNT		= 0x8E;			// Watch Dog Timer Counter Register
-      00008C 75*2D 8E         [24]  611 	mov	_WDTCNT,#0x8e
-                                    612 ;	./inc/MC96F8316.h:109: sfr			WDTCR		= 0x8D;			// Watch Dog Timer Control Register
-      00008F 75*2E 8D         [24]  613 	mov	_WDTCR,#0x8d
-                                    614 ;	./inc/MC96F8316.h:112: sfr			WTDR		= 0x89;			// Watch Timer Data Register
-      000092 75*2F 89         [24]  615 	mov	_WTDR,#0x89
-                                    616 ;	./inc/MC96F8316.h:113: sfr			WTCNT		= 0x89;			// Watch Timer Counter Register
-      000095 75*30 89         [24]  617 	mov	_WTCNT,#0x89
-                                    618 ;	./inc/MC96F8316.h:114: sfr			WTCR		= 0x96;			// Watch Timer Control Register
-      000098 75*31 96         [24]  619 	mov	_WTCR,#0x96
-                                    620 ;	./inc/MC96F8316.h:117: sfr			T0CR		= 0xB2;			// Timer 0 Control Register
-      00009B 75*32 B2         [24]  621 	mov	_T0CR,#0xb2
-                                    622 ;	./inc/MC96F8316.h:118: sfr			T0CNT		= 0xB3;			// Timer 0 Counter Register
-      00009E 75*33 B3         [24]  623 	mov	_T0CNT,#0xb3
-                                    624 ;	./inc/MC96F8316.h:119: sfr			T0DR		= 0xB4;			// Timer 0 Data Register
-      0000A1 75*34 B4         [24]  625 	mov	_T0DR,#0xb4
-                                    626 ;	./inc/MC96F8316.h:120: sfr			T0CDR		= 0xB4;			// Timer 0 Capture Data Register
-      0000A4 75*35 B4         [24]  627 	mov	_T0CDR,#0xb4
-                                    628 ;	./inc/MC96F8316.h:126: sfr			T1CRL		= 0xBA;			// Timer 1 Control Low Register
-      0000A7 75*36 BA         [24]  629 	mov	_T1CRL,#0xba
-                                    630 ;	./inc/MC96F8316.h:127: sfr			T1CRH		= 0xBB;			// Timer 1 Control High Register
-      0000AA 75*37 BB         [24]  631 	mov	_T1CRH,#0xbb
-                                    632 ;	./inc/MC96F8316.h:128: sfr			T1ADRL		= 0xBC;			// Timer 1 A Data Low Register
-      0000AD 75*38 BC         [24]  633 	mov	_T1ADRL,#0xbc
-                                    634 ;	./inc/MC96F8316.h:129: sfr			T1ADRH		= 0xBD;			// Timer 1 A Data High Register
-      0000B0 75*39 BD         [24]  635 	mov	_T1ADRH,#0xbd
-                                    636 ;	./inc/MC96F8316.h:130: sfr			T1BDRL		= 0xBE;			// Timer 1 B Data Low Register
-      0000B3 75*3A BE         [24]  637 	mov	_T1BDRL,#0xbe
-                                    638 ;	./inc/MC96F8316.h:131: sfr			T1BDRH		= 0xBF;			// Timer 1 B Data High Register
-      0000B6 75*3B BF         [24]  639 	mov	_T1BDRH,#0xbf
-                                    640 ;	./inc/MC96F8316.h:134: sfr			T2CRL		= 0xC2;			// Timer 2 Control Low Register
-      0000B9 75*3C C2         [24]  641 	mov	_T2CRL,#0xc2
-                                    642 ;	./inc/MC96F8316.h:135: sfr			T2CRH		= 0xC3;			// Timer 2 Control High Register
-      0000BC 75*3D C3         [24]  643 	mov	_T2CRH,#0xc3
-                                    644 ;	./inc/MC96F8316.h:136: sfr			T2ADRL		= 0xC4;			// Timer 2 A Data Low Register
-      0000BF 75*3E C4         [24]  645 	mov	_T2ADRL,#0xc4
-                                    646 ;	./inc/MC96F8316.h:137: sfr			T2ADRH		= 0xC5;			// Timer 2 A Data High Register
-      0000C2 75*3F C5         [24]  647 	mov	_T2ADRH,#0xc5
-                                    648 ;	./inc/MC96F8316.h:138: sfr			T2BDRL		= 0xC6;			// Timer 2 B Data Low Register
-      0000C5 75*40 C6         [24]  649 	mov	_T2BDRL,#0xc6
-                                    650 ;	./inc/MC96F8316.h:139: sfr			T2BDRH		= 0xC7;			// Timer 2 B Data High Register
-      0000C8 75*41 C7         [24]  651 	mov	_T2BDRH,#0xc7
-                                    652 ;	./inc/MC96F8316.h:142: sfr			BUZDR		= 0x8F;			// BUZZER Data Register
-      0000CB 75*42 8F         [24]  653 	mov	_BUZDR,#0x8f
-                                    654 ;	./inc/MC96F8316.h:143: sfr			BUZCR		= 0x97;			// BUZZER Control Register
-      0000CE 75*43 97         [24]  655 	mov	_BUZCR,#0x97
-                                    656 ;	./inc/MC96F8316.h:146: sfr			ADCCRL		= 0x9C;			// A/D Converter Control Low Register
-      0000D1 75*44 9C         [24]  657 	mov	_ADCCRL,#0x9c
-                                    658 ;	./inc/MC96F8316.h:147: sfr			ADCCRH		= 0x9D;			// A/D Converter Control High Register
-      0000D4 75*45 9D         [24]  659 	mov	_ADCCRH,#0x9d
-                                    660 ;	./inc/MC96F8316.h:148: sfr			ADCDRL		= 0x9E;			// A/D Converter Data Low Register
-      0000D7 75*46 9E         [24]  661 	mov	_ADCDRL,#0x9e
-                                    662 ;	./inc/MC96F8316.h:149: sfr			ADCDRH		= 0x9F;			// A/D Converter Data High Register
-      0000DA 75*47 9F         [24]  663 	mov	_ADCDRH,#0x9f
-                                    664 ;	./inc/MC96F8316.h:151: sfr			ADWRCR0		= 0xF2;			// ADC Wake-up Resistor Control Register 0
-      0000DD 75*48 F2         [24]  665 	mov	_ADWRCR0,#0xf2
-                                    666 ;	./inc/MC96F8316.h:152: sfr			ADWRCR1		= 0xF3;			// ADC Wake-up Resistor Control Register 1
-      0000E0 75*49 F3         [24]  667 	mov	_ADWRCR1,#0xf3
-                                    668 ;	./inc/MC96F8316.h:153: sfr			ADWRCR2		= 0xF4;			// ADC Wake-up Resistor Control Register 2
-      0000E3 75*4A F4         [24]  669 	mov	_ADWRCR2,#0xf4
-                                    670 ;	./inc/MC96F8316.h:154: sfr			ADWRCR3		= 0xF5;			// ADC Wake-up Resistor Control Register 3
-      0000E6 75*4B F5         [24]  671 	mov	_ADWRCR3,#0xf5
-                                    672 ;	./inc/MC96F8316.h:155: sfr			ADWCRL		= 0xF6;			// ADC Wake-up Control Low Register
-      0000E9 75*4C F6         [24]  673 	mov	_ADWCRL,#0xf6
-                                    674 ;	./inc/MC96F8316.h:156: sfr			ADWCRH		= 0xF7;			// ADC Wake-up Control High Register
-      0000EC 75*4D F7         [24]  675 	mov	_ADWCRH,#0xf7
-                                    676 ;	./inc/MC96F8316.h:157: sfr			ADWIFRL		= 0xDC;			// ADC Wake-up Interrupt Flag Low Register
-      0000EF 75*4E DC         [24]  677 	mov	_ADWIFRL,#0xdc
-                                    678 ;	./inc/MC96F8316.h:158: sfr			ADWIFRH		= 0xDD;			// ADC Wake-up Interrupt Flag High Register
-      0000F2 75*4F DD         [24]  679 	mov	_ADWIFRH,#0xdd
-                                    680 ;	./inc/MC96F8316.h:161: sfr			SPICR		= 0xB5;			// SPI Control Register
-      0000F5 75*50 B5         [24]  681 	mov	_SPICR,#0xb5
-                                    682 ;	./inc/MC96F8316.h:162: sfr			SPIDR		= 0xB6;			// SPI Data Register
-      0000F8 75*51 B6         [24]  683 	mov	_SPIDR,#0xb6
-                                    684 ;	./inc/MC96F8316.h:163: sfr			SPISR		= 0xB7;			// SPI Status Register
-      0000FB 75*52 B7         [24]  685 	mov	_SPISR,#0xb7
-                                    686 ;	./inc/MC96F8316.h:166: sfr			UARTCR1		= 0xE2;			// UART Control Register 1
-      0000FE 75*53 E2         [24]  687 	mov	_UARTCR1,#0xe2
-                                    688 ;	./inc/MC96F8316.h:167: sfr			UARTCR2		= 0xE3;			// UART Control Register 2
-      000101 75*54 E3         [24]  689 	mov	_UARTCR2,#0xe3
-                                    690 ;	./inc/MC96F8316.h:168: sfr			UARTCR3		= 0xE4;			// UART Control Register 3
-      000104 75*55 E4         [24]  691 	mov	_UARTCR3,#0xe4
-                                    692 ;	./inc/MC96F8316.h:169: sfr			UARTST		= 0xE5;			// UART Status Register
-      000107 75*56 E5         [24]  693 	mov	_UARTST,#0xe5
-                                    694 ;	./inc/MC96F8316.h:170: sfr			UARTBD		= 0xE6;			// UART BaudRate Register
-      00010A 75*57 E6         [24]  695 	mov	_UARTBD,#0xe6
-                                    696 ;	./inc/MC96F8316.h:171: sfr			UARTDR		= 0xE7;			// UART Data Register
-      00010D 75*58 E7         [24]  697 	mov	_UARTDR,#0xe7
-                                    698 ;	./inc/MC96F8316.h:174: sfr			I2CCR		= 0xE9;			// I2C Control Register
-      000110 75*59 E9         [24]  699 	mov	_I2CCR,#0xe9
-                                    700 ;	./inc/MC96F8316.h:175: sfr			I2CSR		= 0xEA;			// I2C Status Register
-      000113 75*5A EA         [24]  701 	mov	_I2CSR,#0xea
-                                    702 ;	./inc/MC96F8316.h:176: sfr			I2CSAR0		= 0xEB;			// I2C Slave Address 0 Register
-      000116 75*5B EB         [24]  703 	mov	_I2CSAR0,#0xeb
-                                    704 ;	./inc/MC96F8316.h:177: sfr			I2CSAR1		= 0xF1;			// I2C Slave Address 1 Register
-      000119 75*5C F1         [24]  705 	mov	_I2CSAR1,#0xf1
-                                    706 ;	./inc/MC96F8316.h:178: sfr			I2CDR		= 0xEC;			// I2C Data Register
-      00011C 75*5D EC         [24]  707 	mov	_I2CDR,#0xec
-                                    708 ;	./inc/MC96F8316.h:179: sfr			I2CSDHR		= 0xED;			// I2C SDA Hold Time Register
-      00011F 75*5E ED         [24]  709 	mov	_I2CSDHR,#0xed
-                                    710 ;	./inc/MC96F8316.h:180: sfr			I2CSCLR		= 0xEE;			// I2C SCL Low Period Register
-      000122 75*5F EE         [24]  711 	mov	_I2CSCLR,#0xee
-                                    712 ;	./inc/MC96F8316.h:181: sfr			I2CSCHR		= 0xEF;			// I2C SCL High Period Register
-      000125 75*60 EF         [24]  713 	mov	_I2CSCHR,#0xef
-                                    714 ;	./inc/MC96F8316.h:184: sfr			FSADRH		= 0xFA;			// Flash Sector Address High Register
-      000128 75*61 FA         [24]  715 	mov	_FSADRH,#0xfa
-                                    716 ;	./inc/MC96F8316.h:185: sfr			FSADRM		= 0xFB;			// Flash Sector Address Middle Register
-      00012B 75*62 FB         [24]  717 	mov	_FSADRM,#0xfb
-                                    718 ;	./inc/MC96F8316.h:186: sfr			FSADRL		= 0xFC;			// Flash Sector Address Low Register
-      00012E 75*63 FC         [24]  719 	mov	_FSADRL,#0xfc
-                                    720 ;	./inc/MC96F8316.h:187: sfr			FIDR		= 0xFD;			// Flash Identification Register
-      000131 75*64 FD         [24]  721 	mov	_FIDR,#0xfd
-                                    722 ;	./inc/MC96F8316.h:188: sfr			FMCR		= 0xFE;			// Flash Mode Control Register
-      000134 75*65 FE         [24]  723 	mov	_FMCR,#0xfe
-                                    724 ;	./inc/MC96F8316.h:190: sfr			ACC			= 0xE0;
-      000137 75*66 E0         [24]  725 	mov	_ACC,#0xe0
-                                    726 ;	./inc/MC96F8316.h:191: sfr			B			= 0xF0;
-      00013A 75*67 F0         [24]  727 	mov	_B,#0xf0
-                                    728 ;	./inc/MC96F8316.h:192: sfr			PSW			= 0xD0;
-      00013D 75*68 D0         [24]  729 	mov	_PSW,#0xd0
-                                    730 ;	./inc/MC96F8316.h:193: sfr			SP			= 0x81;
-      000140 75*69 81         [24]  731 	mov	_SP,#0x81
-                                    732 ;	./inc/MC96F8316.h:194: sfr			DPL			= 0x82;
-      000143 75*6A 82         [24]  733 	mov	_DPL,#0x82
-                                    734 ;	./inc/MC96F8316.h:195: sfr			DPH			= 0x83;
-      000146 75*6B 83         [24]  735 	mov	_DPH,#0x83
-                                    736 ;	./inc/MC96F8316.h:196: sfr			DPL1		= 0x84;
-      000149 75*6C 84         [24]  737 	mov	_DPL1,#0x84
-                                    738 ;	./inc/MC96F8316.h:197: sfr			DPH1		= 0x85;
-      00014C 75*6D 85         [24]  739 	mov	_DPH1,#0x85
-                                    740 ;	./inc/MC96F8316.h:198: sfr			EO			= 0xA2;			// EXTENDED OPERATION REGISTER
-      00014F 75*6E A2         [24]  741 	mov	_EO,#0xa2
-                                    742 ;	./inc/MC96F8316.h:18: sbit	P00			= 0x80;
-                                    743 ;	assignBit
-      000152 D2*00            [12]  744 	setb	_P00
-                                    745 ;	./inc/MC96F8316.h:19: sbit	P01			= 0x81;
-                                    746 ;	assignBit
-      000154 D2*01            [12]  747 	setb	_P01
-                                    748 ;	./inc/MC96F8316.h:20: sbit	P02			= 0x82;
-                                    749 ;	assignBit
-      000156 D2*02            [12]  750 	setb	_P02
-                                    751 ;	./inc/MC96F8316.h:21: sbit	P03			= 0x83;
-                                    752 ;	assignBit
-      000158 D2*03            [12]  753 	setb	_P03
-                                    754 ;	./inc/MC96F8316.h:22: sbit	P04			= 0x84;
-                                    755 ;	assignBit
-      00015A D2*04            [12]  756 	setb	_P04
-                                    757 ;	./inc/MC96F8316.h:23: sbit	P05			= 0x85;
-                                    758 ;	assignBit
-      00015C D2*05            [12]  759 	setb	_P05
-                                    760 ;	./inc/MC96F8316.h:24: sbit	P06			= 0x86;
-                                    761 ;	assignBit
-      00015E D2*06            [12]  762 	setb	_P06
-                                    763 ;	./inc/MC96F8316.h:25: sbit	P07			= 0x87;
-                                    764 ;	assignBit
-      000160 D2*07            [12]  765 	setb	_P07
-                                    766 ;	./inc/MC96F8316.h:33: sbit	P10			= 0x88;
-                                    767 ;	assignBit
-      000162 D2*08            [12]  768 	setb	_P10
-                                    769 ;	./inc/MC96F8316.h:34: sbit	P11			= 0x89;
-                                    770 ;	assignBit
-      000164 D2*09            [12]  771 	setb	_P11
-                                    772 ;	./inc/MC96F8316.h:35: sbit	P12			= 0x8A;
-                                    773 ;	assignBit
-      000166 D2*0A            [12]  774 	setb	_P12
-                                    775 ;	./inc/MC96F8316.h:36: sbit	P13			= 0x8B;
-                                    776 ;	assignBit
-      000168 D2*0B            [12]  777 	setb	_P13
-                                    778 ;	./inc/MC96F8316.h:37: sbit	P14			= 0x8C;
-                                    779 ;	assignBit
-      00016A D2*0C            [12]  780 	setb	_P14
-                                    781 ;	./inc/MC96F8316.h:38: sbit	P15			= 0x8D;
-                                    782 ;	assignBit
-      00016C D2*0D            [12]  783 	setb	_P15
-                                    784 ;	./inc/MC96F8316.h:39: sbit	P16			= 0x8E;
-                                    785 ;	assignBit
-      00016E D2*0E            [12]  786 	setb	_P16
-                                    787 ;	./inc/MC96F8316.h:40: sbit	P17			= 0x8F;
-                                    788 ;	assignBit
-      000170 D2*0F            [12]  789 	setb	_P17
-                                    790 ;	./inc/MC96F8316.h:48: sbit	P20			= 0x90;
-                                    791 ;	assignBit
-      000172 D2*10            [12]  792 	setb	_P20
-                                    793 ;	./inc/MC96F8316.h:49: sbit	P21			= 0x91;
-                                    794 ;	assignBit
-      000174 D2*11            [12]  795 	setb	_P21
-                                    796 ;	./inc/MC96F8316.h:50: sbit	P22			= 0x92;
-                                    797 ;	assignBit
-      000176 D2*12            [12]  798 	setb	_P22
-                                    799 ;	./inc/MC96F8316.h:51: sbit	P23			= 0x93;
-                                    800 ;	assignBit
-      000178 D2*13            [12]  801 	setb	_P23
-                                    802 ;	./inc/MC96F8316.h:52: sbit	P24			= 0x94;
-                                    803 ;	assignBit
-      00017A D2*14            [12]  804 	setb	_P24
-                                    805 ;	./inc/MC96F8316.h:53: sbit	P25			= 0x95;
-                                    806 ;	assignBit
-      00017C D2*15            [12]  807 	setb	_P25
-                                    808 ;	./inc/MC96F8316.h:54: sbit	P26			= 0x96;
-                                    809 ;	assignBit
-      00017E D2*16            [12]  810 	setb	_P26
-                                    811 ;	./inc/MC96F8316.h:55: sbit	P27			= 0x97;
-                                    812 ;	assignBit
-      000180 D2*17            [12]  813 	setb	_P27
-                                    814 ;	./inc/MC96F8316.h:62: sbit	P30			= 0x98;
-                                    815 ;	assignBit
-      000182 D2*18            [12]  816 	setb	_P30
-                                    817 ;	./inc/MC96F8316.h:63: sbit	P31			= 0x99;
-                                    818 ;	assignBit
-      000184 D2*19            [12]  819 	setb	_P31
-                                    820 ;	./inc/MC96F8316.h:64: sbit	P32			= 0x9A;
-                                    821 ;	assignBit
-      000186 D2*1A            [12]  822 	setb	_P32
-                                    823 ;	./inc/MC96F8316.h:65: sbit	P33			= 0x9B;
-                                    824 ;	assignBit
-      000188 D2*1B            [12]  825 	setb	_P33
-                                    826 ;	./inc/MC96F8316.h:66: sbit	P34			= 0x9C;
-                                    827 ;	assignBit
-      00018A D2*1C            [12]  828 	setb	_P34
-                                    829 ;	./inc/MC96F8316.h:67: sbit	P35			= 0x9D;
-                                    830 ;	assignBit
-      00018C D2*1D            [12]  831 	setb	_P35
-                                    832 ;	./inc/MC96F8316.h:68: sbit	P36			= 0x9E;
-                                    833 ;	assignBit
-      00018E D2*1E            [12]  834 	setb	_P36
-                                    835 ;	./inc/MC96F8316.h:69: sbit	P37			= 0x9F;
-                                    836 ;	assignBit
-      000190 D2*1F            [12]  837 	setb	_P37
-                                    838 ;--------------------------------------------------------
-                                    839 ; Home
-                                    840 ;--------------------------------------------------------
-                                    841 	.area HOME    (CODE)
-                                    842 	.area HOME    (CODE)
-                                    843 ;--------------------------------------------------------
-                                    844 ; code
-                                    845 ;--------------------------------------------------------
-                                    846 	.area CSEG    (CODE)
-                                    847 ;------------------------------------------------------------
-                                    848 ;Allocation info for local variables in function 'SysTick_Init'
-                                    849 ;------------------------------------------------------------
-                                    850 ;	src/mc96f8x16_tim.c:7: void SysTick_Init(void)
-                                    851 ;	-----------------------------------------
-                                    852 ;	 function SysTick_Init
-                                    853 ;	-----------------------------------------
-      000000                        854 _SysTick_Init:
-                           000007   855 	ar7 = 0x07
-                           000006   856 	ar6 = 0x06
-                           000005   857 	ar5 = 0x05
-                           000004   858 	ar4 = 0x04
-                           000003   859 	ar3 = 0x03
-                           000002   860 	ar2 = 0x02
-                           000001   861 	ar1 = 0x01
-                           000000   862 	ar0 = 0x00
-                                    863 ;	src/mc96f8x16_tim.c:9: BITCR = 0x00;
-      000000 75*27 00         [24]  864 	mov	_BITCR,#0x00
-                                    865 ;	src/mc96f8x16_tim.c:10: BITCR |= (BITCK_FX_DIV_1024 << 5u) | ((BCK_BIT2_OVFL << 0u) | BITCR_BCLR);
-      000003 43*27 2A         [24]  866 	orl	_BITCR,#0x2a
-                                    867 ;	src/mc96f8x16_tim.c:11: IE3 = (IE3 & 0x0F) | (0x10);
-      000006 AE*1A            [24]  868 	mov	r6,_IE3
-      000008 53 06 0F         [24]  869 	anl	ar6,#0x0f
-      00000B 43 06 10         [24]  870 	orl	ar6,#0x10
-      00000E 8E*1A            [24]  871 	mov	_IE3,r6
-                                    872 ;	src/mc96f8x16_tim.c:12: }
-      000010 22               [24]  873 	ret
-                                    874 ;------------------------------------------------------------
-                                    875 ;Allocation info for local variables in function 'GetTick'
-                                    876 ;------------------------------------------------------------
-                                    877 ;	src/mc96f8x16_tim.c:14: uint16_t GetTick(void)
-                                    878 ;	-----------------------------------------
-                                    879 ;	 function GetTick
-                                    880 ;	-----------------------------------------
-      000011                        881 _GetTick:
-                                    882 ;	src/mc96f8x16_tim.c:16: return Tick;
-      000011 85*00 82         [24]  883 	mov	dpl,_Tick
-      000014 85*01 83         [24]  884 	mov	dph,(_Tick + 1)
-                                    885 ;	src/mc96f8x16_tim.c:17: }
-      000017 22               [24]  886 	ret
-                                    887 ;------------------------------------------------------------
-                                    888 ;Allocation info for local variables in function 'SysTick_ISR'
-                                    889 ;------------------------------------------------------------
-                                    890 ;	src/mc96f8x16_tim.c:19: void SysTick_ISR(void) __interrupt 23
-                                    891 ;	-----------------------------------------
-                                    892 ;	 function SysTick_ISR
-                                    893 ;	-----------------------------------------
-      000018                        894 _SysTick_ISR:
-      000018 C0 E0            [24]  895 	push	acc
-      00001A C0 D0            [24]  896 	push	psw
-                                    897 ;	src/mc96f8x16_tim.c:21: Tick++;
-      00001C 74 01            [12]  898 	mov	a,#0x01
-      00001E 25*00            [12]  899 	add	a,_Tick
-      000020 F5*00            [12]  900 	mov	_Tick,a
-      000022 E4               [12]  901 	clr	a
-      000023 35*01            [12]  902 	addc	a,(_Tick + 1)
-      000025 F5*01            [12]  903 	mov	(_Tick + 1),a
-                                    904 ;	src/mc96f8x16_tim.c:23: BITCR |= BITCR_BCLR;
-      000027 43*27 08         [24]  905 	orl	_BITCR,#0x08
-                                    906 ;	src/mc96f8x16_tim.c:24: }
-      00002A D0 D0            [24]  907 	pop	psw
-      00002C D0 E0            [24]  908 	pop	acc
-      00002E 32               [24]  909 	reti
-                                    910 ;	eliminated unneeded mov psw,# (no regs used in bank)
-                                    911 ;	eliminated unneeded push/pop dpl
-                                    912 ;	eliminated unneeded push/pop dph
-                                    913 ;	eliminated unneeded push/pop b
-                                    914 ;------------------------------------------------------------
-                                    915 ;Allocation info for local variables in function 'Delayms'
-                                    916 ;------------------------------------------------------------
-                                    917 ;Timeout                   Allocated to registers r6 r7 
-                                    918 ;StartTick                 Allocated to registers r4 r5 
-                                    919 ;sloc0                     Allocated to stack - _bp +1
-                                    920 ;------------------------------------------------------------
-                                    921 ;	src/mc96f8x16_tim.c:26: void Delayms(uint16_t Timeout)
-                                    922 ;	-----------------------------------------
-                                    923 ;	 function Delayms
-                                    924 ;	-----------------------------------------
-      00002F                        925 _Delayms:
-      00002F C0*00            [24]  926 	push	_bp
-      000031 85 81*00         [24]  927 	mov	_bp,sp
-      000034 05 81            [12]  928 	inc	sp
-      000036 05 81            [12]  929 	inc	sp
-      000038 AE 82            [24]  930 	mov	r6,dpl
-      00003A AF 83            [24]  931 	mov	r7,dph
-                                    932 ;	src/mc96f8x16_tim.c:28: uint16_t StartTick = GetTick();
-      00003C C0 07            [24]  933 	push	ar7
-      00003E C0 06            [24]  934 	push	ar6
-      000040 12r00r11         [24]  935 	lcall	_GetTick
-      000043 AC 82            [24]  936 	mov	r4,dpl
-      000045 AD 83            [24]  937 	mov	r5,dph
-      000047 D0 06            [24]  938 	pop	ar6
-      000049 D0 07            [24]  939 	pop	ar7
-                                    940 ;	src/mc96f8x16_tim.c:29: if(StartTick + Timeout > StartTick)
-      00004B EE               [12]  941 	mov	a,r6
-      00004C 2C               [12]  942 	add	a,r4
-      00004D FA               [12]  943 	mov	r2,a
-      00004E EF               [12]  944 	mov	a,r7
-      00004F 3D               [12]  945 	addc	a,r5
-      000050 FB               [12]  946 	mov	r3,a
-      000051 C3               [12]  947 	clr	c
-      000052 EC               [12]  948 	mov	a,r4
-      000053 9A               [12]  949 	subb	a,r2
-      000054 ED               [12]  950 	mov	a,r5
-      000055 9B               [12]  951 	subb	a,r3
-      000056 50 1E            [24]  952 	jnc	00115$
-                                    953 ;	src/mc96f8x16_tim.c:31: while(GetTick() < StartTick + Timeout);
-      000058 A8*00            [24]  954 	mov	r0,_bp
-      00005A 08               [12]  955 	inc	r0
-      00005B EE               [12]  956 	mov	a,r6
-      00005C 2C               [12]  957 	add	a,r4
-      00005D F6               [12]  958 	mov	@r0,a
-      00005E EF               [12]  959 	mov	a,r7
-      00005F 3D               [12]  960 	addc	a,r5
-      000060 08               [12]  961 	inc	r0
-      000061 F6               [12]  962 	mov	@r0,a
-      000062                        963 00101$:
-      000062 12r00r11         [24]  964 	lcall	_GetTick
-      000065 AA 82            [24]  965 	mov	r2,dpl
-      000067 AB 83            [24]  966 	mov	r3,dph
-      000069 A8*00            [24]  967 	mov	r0,_bp
-      00006B 08               [12]  968 	inc	r0
-      00006C C3               [12]  969 	clr	c
-      00006D EA               [12]  970 	mov	a,r2
-      00006E 96               [12]  971 	subb	a,@r0
-      00006F EB               [12]  972 	mov	a,r3
-      000070 08               [12]  973 	inc	r0
-      000071 96               [12]  974 	subb	a,@r0
-      000072 50 4E            [24]  975 	jnc	00111$
-                                    976 ;	src/mc96f8x16_tim.c:35: while((GetTick() < (Timeout - (0xFFFFU - StartTick))) || (GetTick() > StartTick));
-      000074 80 EC            [24]  977 	sjmp	00101$
-      000076                        978 00115$:
-      000076 74 FF            [12]  979 	mov	a,#0xff
-      000078 C3               [12]  980 	clr	c
-      000079 9C               [12]  981 	subb	a,r4
-      00007A FA               [12]  982 	mov	r2,a
-      00007B 74 FF            [12]  983 	mov	a,#0xff
-      00007D 9D               [12]  984 	subb	a,r5
-      00007E FB               [12]  985 	mov	r3,a
-      00007F EE               [12]  986 	mov	a,r6
-      000080 C3               [12]  987 	clr	c
-      000081 9A               [12]  988 	subb	a,r2
-      000082 FE               [12]  989 	mov	r6,a
-      000083 EF               [12]  990 	mov	a,r7
-      000084 9B               [12]  991 	subb	a,r3
-      000085 FF               [12]  992 	mov	r7,a
-      000086                        993 00105$:
-      000086 C0 07            [24]  994 	push	ar7
-      000088 C0 06            [24]  995 	push	ar6
-      00008A C0 05            [24]  996 	push	ar5
-      00008C C0 04            [24]  997 	push	ar4
-      00008E 12r00r11         [24]  998 	lcall	_GetTick
-      000091 AA 82            [24]  999 	mov	r2,dpl
-      000093 AB 83            [24] 1000 	mov	r3,dph
-      000095 D0 04            [24] 1001 	pop	ar4
-      000097 D0 05            [24] 1002 	pop	ar5
-      000099 D0 06            [24] 1003 	pop	ar6
-      00009B D0 07            [24] 1004 	pop	ar7
-      00009D C3               [12] 1005 	clr	c
-      00009E EA               [12] 1006 	mov	a,r2
-      00009F 9E               [12] 1007 	subb	a,r6
-      0000A0 EB               [12] 1008 	mov	a,r3
-      0000A1 9F               [12] 1009 	subb	a,r7
-      0000A2 40 E2            [24] 1010 	jc	00105$
-      0000A4 C0 07            [24] 1011 	push	ar7
-      0000A6 C0 06            [24] 1012 	push	ar6
-      0000A8 C0 05            [24] 1013 	push	ar5
-      0000AA C0 04            [24] 1014 	push	ar4
-      0000AC 12r00r11         [24] 1015 	lcall	_GetTick
-      0000AF AA 82            [24] 1016 	mov	r2,dpl
-      0000B1 AB 83            [24] 1017 	mov	r3,dph
-      0000B3 D0 04            [24] 1018 	pop	ar4
-      0000B5 D0 05            [24] 1019 	pop	ar5
-      0000B7 D0 06            [24] 1020 	pop	ar6
-      0000B9 D0 07            [24] 1021 	pop	ar7
-      0000BB C3               [12] 1022 	clr	c
-      0000BC EC               [12] 1023 	mov	a,r4
-      0000BD 9A               [12] 1024 	subb	a,r2
-      0000BE ED               [12] 1025 	mov	a,r5
-      0000BF 9B               [12] 1026 	subb	a,r3
-      0000C0 40 C4            [24] 1027 	jc	00105$
-      0000C2                       1028 00111$:
-                                   1029 ;	src/mc96f8x16_tim.c:37: }
-      0000C2 85*00 81         [24] 1030 	mov	sp,_bp
-      0000C5 D0*00            [24] 1031 	pop	_bp
-      0000C7 22               [24] 1032 	ret
-                                   1033 ;------------------------------------------------------------
-                                   1034 ;Allocation info for local variables in function 'CheckTimeout'
-                                   1035 ;------------------------------------------------------------
-                                   1036 ;Timeout                   Allocated to stack - _bp -4
-                                   1037 ;Start                     Allocated to stack - _bp +1
-                                   1038 ;ret                       Allocated to registers r5 
-                                   1039 ;------------------------------------------------------------
-                                   1040 ;	src/mc96f8x16_tim.c:39: HAL_Status CheckTimeout(uint16_t Start, uint16_t Timeout)
-                                   1041 ;	-----------------------------------------
-                                   1042 ;	 function CheckTimeout
-                                   1043 ;	-----------------------------------------
-      0000C8                       1044 _CheckTimeout:
-      0000C8 C0*00            [24] 1045 	push	_bp
-      0000CA 85 81*00         [24] 1046 	mov	_bp,sp
-      0000CD C0 82            [24] 1047 	push	dpl
-      0000CF C0 83            [24] 1048 	push	dph
-                                   1049 ;	src/mc96f8x16_tim.c:42: if(Start + Timeout > Start)
-      0000D1 A8*00            [24] 1050 	mov	r0,_bp
-      0000D3 08               [12] 1051 	inc	r0
-      0000D4 E5*00            [12] 1052 	mov	a,_bp
-      0000D6 24 FC            [12] 1053 	add	a,#0xfc
-      0000D8 F9               [12] 1054 	mov	r1,a
-      0000D9 E7               [12] 1055 	mov	a,@r1
-      0000DA 26               [12] 1056 	add	a,@r0
-      0000DB FC               [12] 1057 	mov	r4,a
-      0000DC 09               [12] 1058 	inc	r1
-      0000DD E7               [12] 1059 	mov	a,@r1
-      0000DE 08               [12] 1060 	inc	r0
-      0000DF 36               [12] 1061 	addc	a,@r0
-      0000E0 FD               [12] 1062 	mov	r5,a
-      0000E1 A8*00            [24] 1063 	mov	r0,_bp
-      0000E3 08               [12] 1064 	inc	r0
-      0000E4 C3               [12] 1065 	clr	c
-      0000E5 E6               [12] 1066 	mov	a,@r0
-      0000E6 9C               [12] 1067 	subb	a,r4
-      0000E7 08               [12] 1068 	inc	r0
-      0000E8 E6               [12] 1069 	mov	a,@r0
-      0000E9 9D               [12] 1070 	subb	a,r5
-      0000EA 50 26            [24] 1071 	jnc	00109$
-                                   1072 ;	src/mc96f8x16_tim.c:44: if(GetTick() < (Start + Timeout))
-      0000EC 12r00r11         [24] 1073 	lcall	_GetTick
-      0000EF AC 82            [24] 1074 	mov	r4,dpl
-      0000F1 AD 83            [24] 1075 	mov	r5,dph
-      0000F3 A8*00            [24] 1076 	mov	r0,_bp
-      0000F5 08               [12] 1077 	inc	r0
-      0000F6 E5*00            [12] 1078 	mov	a,_bp
-      0000F8 24 FC            [12] 1079 	add	a,#0xfc
-      0000FA F9               [12] 1080 	mov	r1,a
-      0000FB E7               [12] 1081 	mov	a,@r1
-      0000FC 26               [12] 1082 	add	a,@r0
-      0000FD FA               [12] 1083 	mov	r2,a
-      0000FE 09               [12] 1084 	inc	r1
-      0000FF E7               [12] 1085 	mov	a,@r1
-      000100 08               [12] 1086 	inc	r0
-      000101 36               [12] 1087 	addc	a,@r0
-      000102 FB               [12] 1088 	mov	r3,a
-      000103 C3               [12] 1089 	clr	c
-      000104 EC               [12] 1090 	mov	a,r4
-      000105 9A               [12] 1091 	subb	a,r2
-      000106 ED               [12] 1092 	mov	a,r5
-      000107 9B               [12] 1093 	subb	a,r3
-      000108 50 04            [24] 1094 	jnc	00102$
-                                   1095 ;	src/mc96f8x16_tim.c:46: ret = HAL_OK;
-      00010A 7D 01            [12] 1096 	mov	r5,#0x01
-      00010C 80 44            [24] 1097 	sjmp	00110$
-      00010E                       1098 00102$:
-                                   1099 ;	src/mc96f8x16_tim.c:50: ret = HAL_TIMEOUT;
-      00010E 7D 02            [12] 1100 	mov	r5,#0x02
-      000110 80 40            [24] 1101 	sjmp	00110$
-      000112                       1102 00109$:
-                                   1103 ;	src/mc96f8x16_tim.c:55: if((GetTick() < (Timeout - (0xFFFFU - Start))) || (GetTick() > Start))
-      000112 12r00r11         [24] 1104 	lcall	_GetTick
-      000115 AB 82            [24] 1105 	mov	r3,dpl
-      000117 AC 83            [24] 1106 	mov	r4,dph
-      000119 A8*00            [24] 1107 	mov	r0,_bp
-      00011B 08               [12] 1108 	inc	r0
-      00011C 74 FF            [12] 1109 	mov	a,#0xff
-      00011E C3               [12] 1110 	clr	c
-      00011F 96               [12] 1111 	subb	a,@r0
-      000120 FA               [12] 1112 	mov	r2,a
-      000121 74 FF            [12] 1113 	mov	a,#0xff
-      000123 08               [12] 1114 	inc	r0
-      000124 96               [12] 1115 	subb	a,@r0
-      000125 FF               [12] 1116 	mov	r7,a
-      000126 E5*00            [12] 1117 	mov	a,_bp
-      000128 24 FC            [12] 1118 	add	a,#0xfc
-      00012A F8               [12] 1119 	mov	r0,a
-      00012B E6               [12] 1120 	mov	a,@r0
-      00012C C3               [12] 1121 	clr	c
-      00012D 9A               [12] 1122 	subb	a,r2
-      00012E FA               [12] 1123 	mov	r2,a
-      00012F 08               [12] 1124 	inc	r0
-      000130 E6               [12] 1125 	mov	a,@r0
-      000131 9F               [12] 1126 	subb	a,r7
-      000132 FF               [12] 1127 	mov	r7,a
-      000133 C3               [12] 1128 	clr	c
-      000134 EB               [12] 1129 	mov	a,r3
-      000135 9A               [12] 1130 	subb	a,r2
-      000136 EC               [12] 1131 	mov	a,r4
-      000137 9F               [12] 1132 	subb	a,r7
-      000138 40 12            [24] 1133 	jc	00104$
-      00013A 12r00r11         [24] 1134 	lcall	_GetTick
-      00013D AE 82            [24] 1135 	mov	r6,dpl
-      00013F AF 83            [24] 1136 	mov	r7,dph
-      000141 A8*00            [24] 1137 	mov	r0,_bp
-      000143 08               [12] 1138 	inc	r0
-      000144 C3               [12] 1139 	clr	c
-      000145 E6               [12] 1140 	mov	a,@r0
-      000146 9E               [12] 1141 	subb	a,r6
-      000147 08               [12] 1142 	inc	r0
-      000148 E6               [12] 1143 	mov	a,@r0
-      000149 9F               [12] 1144 	subb	a,r7
-      00014A 50 04            [24] 1145 	jnc	00105$
-      00014C                       1146 00104$:
-                                   1147 ;	src/mc96f8x16_tim.c:57: ret = HAL_OK;
-      00014C 7D 01            [12] 1148 	mov	r5,#0x01
-      00014E 80 02            [24] 1149 	sjmp	00110$
-      000150                       1150 00105$:
-                                   1151 ;	src/mc96f8x16_tim.c:61: ret = HAL_TIMEOUT;
-      000150 7D 02            [12] 1152 	mov	r5,#0x02
-      000152                       1153 00110$:
-                                   1154 ;	src/mc96f8x16_tim.c:64: return ret;
-      000152 8D 82            [24] 1155 	mov	dpl,r5
-                                   1156 ;	src/mc96f8x16_tim.c:65: }
-      000154 85*00 81         [24] 1157 	mov	sp,_bp
-      000157 D0*00            [24] 1158 	pop	_bp
-      000159 22               [24] 1159 	ret
-                                   1160 	.area CSEG    (CODE)
-                                   1161 	.area CONST   (CODE)
-                                   1162 	.area XINIT   (CODE)
-                                   1163 	.area CABS    (ABS,CODE)
+                                    516 ;	./inc/mc96f8x16.h:37: sfr			P0			= 0x80;			// P0 Data Register
+      000000 75*00 80         [24]  517 	mov	_P0,#0x80
+                                    518 ;	./inc/mc96f8x16.h:47: sfr			P0IO		= 0xA1;			// P0 Direction Register
+      000003 75*01 A1         [24]  519 	mov	_P0IO,#0xa1
+                                    520 ;	./inc/mc96f8x16.h:48: sfr			P0OD		= 0x91;			// P0 Open-drain Selection Register
+      000006 75*02 91         [24]  521 	mov	_P0OD,#0x91
+                                    522 ;	./inc/mc96f8x16.h:49: sfr			P0PU		= 0xAC;			// P0 Pull-up Resistor Selection Register
+      000009 75*03 AC         [24]  523 	mov	_P0PU,#0xac
+                                    524 ;	./inc/mc96f8x16.h:50: sfr			P03DB		= 0xDE;			// P0/P3 Debounce Enable Register
+      00000C 75*04 DE         [24]  525 	mov	_P03DB,#0xde
+                                    526 ;	./inc/mc96f8x16.h:52: sfr			P1			= 0x88;			// P1 Data Register
+      00000F 75*05 88         [24]  527 	mov	_P1,#0x88
+                                    528 ;	./inc/mc96f8x16.h:62: sfr			P1IO		= 0xB1;			// P1 Direction Register
+      000012 75*06 B1         [24]  529 	mov	_P1IO,#0xb1
+                                    530 ;	./inc/mc96f8x16.h:63: sfr			P1OD		= 0x92;			// P1 Open-drain Selection Register
+      000015 75*07 92         [24]  531 	mov	_P1OD,#0x92
+                                    532 ;	./inc/mc96f8x16.h:64: sfr			P1PU		= 0xAD;			// P1 Pull-up Resistor Selection Register
+      000018 75*08 AD         [24]  533 	mov	_P1PU,#0xad
+                                    534 ;	./inc/mc96f8x16.h:65: sfr			P12DB		= 0xDF;			// P1/P2 Debounce Enable Register
+      00001B 75*09 DF         [24]  535 	mov	_P12DB,#0xdf
+                                    536 ;	./inc/mc96f8x16.h:67: sfr			P2			= 0x90;			// P2 Data Register
+      00001E 75*0A 90         [24]  537 	mov	_P2,#0x90
+                                    538 ;	./inc/mc96f8x16.h:77: sfr			P2IO		= 0xB9;			// P2 Direction Register
+      000021 75*0B B9         [24]  539 	mov	_P2IO,#0xb9
+                                    540 ;	./inc/mc96f8x16.h:78: sfr			P2OD		= 0x93;			// P2 Open-drain Selection Register
+      000024 75*0C 93         [24]  541 	mov	_P2OD,#0x93
+                                    542 ;	./inc/mc96f8x16.h:79: sfr			P2PU		= 0xAE;			// P2 Pull-up Resistor Selection Register
+      000027 75*0D AE         [24]  543 	mov	_P2PU,#0xae
+                                    544 ;	./inc/mc96f8x16.h:81: sfr			P3			= 0x98;			// P3 Data Register
+      00002A 75*0E 98         [24]  545 	mov	_P3,#0x98
+                                    546 ;	./inc/mc96f8x16.h:91: sfr			P3IO		= 0xC1;			// P3 Direction Register
+      00002D 75*0F C1         [24]  547 	mov	_P3IO,#0xc1
+                                    548 ;	./inc/mc96f8x16.h:92: sfr			P3OD		= 0x94;			// P3 Open-drain Selection Register
+      000030 75*10 94         [24]  549 	mov	_P3OD,#0x94
+                                    550 ;	./inc/mc96f8x16.h:93: sfr			P3PU		= 0xAF;			// P3 Pull-up Resistor Selection Register
+      000033 75*11 AF         [24]  551 	mov	_P3PU,#0xaf
+                                    552 ;	./inc/mc96f8x16.h:95: sfr			P0FSR		= 0xD3;			//P0 Function Selection Register
+      000036 75*12 D3         [24]  553 	mov	_P0FSR,#0xd3
+                                    554 ;	./inc/mc96f8x16.h:96: sfr			P1FSRL		= 0xD4;			//P1 Function Selection Low Register
+      000039 75*13 D4         [24]  555 	mov	_P1FSRL,#0xd4
+                                    556 ;	./inc/mc96f8x16.h:97: sfr			P1FSRH		= 0xD5;			//P1 Function Selection High Register
+      00003C 75*14 D5         [24]  557 	mov	_P1FSRH,#0xd5
+                                    558 ;	./inc/mc96f8x16.h:98: sfr			P2FSR		= 0xD6;			//P2 Function Selection Register
+      00003F 75*15 D6         [24]  559 	mov	_P2FSR,#0xd6
+                                    560 ;	./inc/mc96f8x16.h:99: sfr			P3FSR		= 0xD7;			//P3 Function Selection Register
+      000042 75*16 D7         [24]  561 	mov	_P3FSR,#0xd7
+                                    562 ;	./inc/mc96f8x16.h:102: sfr			IE			= 0xA8;			// Interrupt Enable Register 0
+      000045 75*17 A8         [24]  563 	mov	_IE,#0xa8
+                                    564 ;	./inc/mc96f8x16.h:103: sfr			IE1			= 0xA9;			// Interrupt Enable Register 1
+      000048 75*18 A9         [24]  565 	mov	_IE1,#0xa9
+                                    566 ;	./inc/mc96f8x16.h:104: sfr			IE2			= 0xAA;			// Interrupt Enable Register 2
+      00004B 75*19 AA         [24]  567 	mov	_IE2,#0xaa
+                                    568 ;	./inc/mc96f8x16.h:105: sfr			IE3			= 0xAB;			// Interrupt Enable Register 3
+      00004E 75*1A AB         [24]  569 	mov	_IE3,#0xab
+                                    570 ;	./inc/mc96f8x16.h:106: sfr			IP			= 0xB8;			// Interrupt Priority Register 0
+      000051 75*1B B8         [24]  571 	mov	_IP,#0xb8
+                                    572 ;	./inc/mc96f8x16.h:107: sfr			IP1			= 0xF8;			// Interrupt Priority Register 1
+      000054 75*1C F8         [24]  573 	mov	_IP1,#0xf8
+                                    574 ;	./inc/mc96f8x16.h:108: sfr			IIFLAG		= 0xA0;			// Internal Interrupt Flag Register
+      000057 75*1D A0         [24]  575 	mov	_IIFLAG,#0xa0
+                                    576 ;	./inc/mc96f8x16.h:109: sfr			EIFLAG0		= 0xC0;			// External Interrupt Flag 0 Register
+      00005A 75*1E C0         [24]  577 	mov	_EIFLAG0,#0xc0
+                                    578 ;	./inc/mc96f8x16.h:110: sfr			EIFLAG1		= 0xB0;			// External Interrupt Flag 1 Register
+      00005D 75*1F B0         [24]  579 	mov	_EIFLAG1,#0xb0
+                                    580 ;	./inc/mc96f8x16.h:111: sfr			EIPOL0L		= 0xA4;			// External Interrupt Polarity 0 Low Register
+      000060 75*20 A4         [24]  581 	mov	_EIPOL0L,#0xa4
+                                    582 ;	./inc/mc96f8x16.h:112: sfr			EIPOL0H		= 0xA5;			// External Interrupt Polarity 0 High Register
+      000063 75*21 A5         [24]  583 	mov	_EIPOL0H,#0xa5
+                                    584 ;	./inc/mc96f8x16.h:113: sfr			EIPOL1		= 0xA6;			// External Interrupt Polarity 1 Register
+      000066 75*22 A6         [24]  585 	mov	_EIPOL1,#0xa6
+                                    586 ;	./inc/mc96f8x16.h:114: sfr			EIPOL2		= 0xA7;			// External Interrupt Polarity 2 Register
+      000069 75*23 A7         [24]  587 	mov	_EIPOL2,#0xa7
+                                    588 ;	./inc/mc96f8x16.h:117: sfr			SCCR		= 0x8A;			// System Clock Control Register
+      00006C 75*24 8A         [24]  589 	mov	_SCCR,#0x8a
+                                    590 ;	./inc/mc96f8x16.h:118: sfr			OSCCR		= 0xC8;			// Oscillator Control Register
+      00006F 75*25 C8         [24]  591 	mov	_OSCCR,#0xc8
+                                    592 ;	./inc/mc96f8x16.h:119: sfr			BITCNT		= 0x8C;			// Basic Interval Timer Counter Register
+      000072 75*26 8C         [24]  593 	mov	_BITCNT,#0x8c
+                                    594 ;	./inc/mc96f8x16.h:120: sfr			BITCR		= 0x8B;			// Basic Interval Timer Control Register
+      000075 75*27 8B         [24]  595 	mov	_BITCR,#0x8b
+                                    596 ;	./inc/mc96f8x16.h:121: sfr			RSTFR		= 0xE8;			// Reset Flag Register
+      000078 75*28 E8         [24]  597 	mov	_RSTFR,#0xe8
+                                    598 ;	./inc/mc96f8x16.h:122: sfr			PCON		= 0x87;			// Power Control Register
+      00007B 75*29 87         [24]  599 	mov	_PCON,#0x87
+                                    600 ;	./inc/mc96f8x16.h:123: sfr			LVRCR		= 0xD8;			// Low Voltage Reset Control Register
+      00007E 75*2A D8         [24]  601 	mov	_LVRCR,#0xd8
+                                    602 ;	./inc/mc96f8x16.h:124: sfr			LVICR		= 0x86;			// Low Voltage Indicator Control Register
+      000081 75*2B 86         [24]  603 	mov	_LVICR,#0x86
+                                    604 ;	./inc/mc96f8x16.h:127: sfr			WDTDR		= 0x8E;			// Watch Dog Timer Data Register
+      000084 75*2C 8E         [24]  605 	mov	_WDTDR,#0x8e
+                                    606 ;	./inc/mc96f8x16.h:128: sfr			WDTCNT		= 0x8E;			// Watch Dog Timer Counter Register
+      000087 75*2D 8E         [24]  607 	mov	_WDTCNT,#0x8e
+                                    608 ;	./inc/mc96f8x16.h:129: sfr			WDTCR		= 0x8D;			// Watch Dog Timer Control Register
+      00008A 75*2E 8D         [24]  609 	mov	_WDTCR,#0x8d
+                                    610 ;	./inc/mc96f8x16.h:132: sfr			WTDR		= 0x89;			// Watch Timer Data Register
+      00008D 75*2F 89         [24]  611 	mov	_WTDR,#0x89
+                                    612 ;	./inc/mc96f8x16.h:133: sfr			WTCNT		= 0x89;			// Watch Timer Counter Register
+      000090 75*30 89         [24]  613 	mov	_WTCNT,#0x89
+                                    614 ;	./inc/mc96f8x16.h:134: sfr			WTCR		= 0x96;			// Watch Timer Control Register
+      000093 75*31 96         [24]  615 	mov	_WTCR,#0x96
+                                    616 ;	./inc/mc96f8x16.h:137: sfr			T0CR		= 0xB2;			// Timer 0 Control Register
+      000096 75*32 B2         [24]  617 	mov	_T0CR,#0xb2
+                                    618 ;	./inc/mc96f8x16.h:138: sfr			T0CNT		= 0xB3;			// Timer 0 Counter Register
+      000099 75*33 B3         [24]  619 	mov	_T0CNT,#0xb3
+                                    620 ;	./inc/mc96f8x16.h:139: sfr			T0DR		= 0xB4;			// Timer 0 Data Register
+      00009C 75*34 B4         [24]  621 	mov	_T0DR,#0xb4
+                                    622 ;	./inc/mc96f8x16.h:140: sfr			T0CDR		= 0xB4;			// Timer 0 Capture Data Register
+      00009F 75*35 B4         [24]  623 	mov	_T0CDR,#0xb4
+                                    624 ;	./inc/mc96f8x16.h:146: sfr			T1CRL		= 0xBA;			// Timer 1 Control Low Register
+      0000A2 75*36 BA         [24]  625 	mov	_T1CRL,#0xba
+                                    626 ;	./inc/mc96f8x16.h:147: sfr			T1CRH		= 0xBB;			// Timer 1 Control High Register
+      0000A5 75*37 BB         [24]  627 	mov	_T1CRH,#0xbb
+                                    628 ;	./inc/mc96f8x16.h:148: sfr			T1ADRL		= 0xBC;			// Timer 1 A Data Low Register
+      0000A8 75*38 BC         [24]  629 	mov	_T1ADRL,#0xbc
+                                    630 ;	./inc/mc96f8x16.h:149: sfr			T1ADRH		= 0xBD;			// Timer 1 A Data High Register
+      0000AB 75*39 BD         [24]  631 	mov	_T1ADRH,#0xbd
+                                    632 ;	./inc/mc96f8x16.h:150: sfr			T1BDRL		= 0xBE;			// Timer 1 B Data Low Register
+      0000AE 75*3A BE         [24]  633 	mov	_T1BDRL,#0xbe
+                                    634 ;	./inc/mc96f8x16.h:151: sfr			T1BDRH		= 0xBF;			// Timer 1 B Data High Register
+      0000B1 75*3B BF         [24]  635 	mov	_T1BDRH,#0xbf
+                                    636 ;	./inc/mc96f8x16.h:154: sfr			T2CRL		= 0xC2;			// Timer 2 Control Low Register
+      0000B4 75*3C C2         [24]  637 	mov	_T2CRL,#0xc2
+                                    638 ;	./inc/mc96f8x16.h:155: sfr			T2CRH		= 0xC3;			// Timer 2 Control High Register
+      0000B7 75*3D C3         [24]  639 	mov	_T2CRH,#0xc3
+                                    640 ;	./inc/mc96f8x16.h:156: sfr			T2ADRL		= 0xC4;			// Timer 2 A Data Low Register
+      0000BA 75*3E C4         [24]  641 	mov	_T2ADRL,#0xc4
+                                    642 ;	./inc/mc96f8x16.h:157: sfr			T2ADRH		= 0xC5;			// Timer 2 A Data High Register
+      0000BD 75*3F C5         [24]  643 	mov	_T2ADRH,#0xc5
+                                    644 ;	./inc/mc96f8x16.h:158: sfr			T2BDRL		= 0xC6;			// Timer 2 B Data Low Register
+      0000C0 75*40 C6         [24]  645 	mov	_T2BDRL,#0xc6
+                                    646 ;	./inc/mc96f8x16.h:159: sfr			T2BDRH		= 0xC7;			// Timer 2 B Data High Register
+      0000C3 75*41 C7         [24]  647 	mov	_T2BDRH,#0xc7
+                                    648 ;	./inc/mc96f8x16.h:162: sfr			BUZDR		= 0x8F;			// BUZZER Data Register
+      0000C6 75*42 8F         [24]  649 	mov	_BUZDR,#0x8f
+                                    650 ;	./inc/mc96f8x16.h:163: sfr			BUZCR		= 0x97;			// BUZZER Control Register
+      0000C9 75*43 97         [24]  651 	mov	_BUZCR,#0x97
+                                    652 ;	./inc/mc96f8x16.h:166: sfr			ADCCRL		= 0x9C;			// A/D Converter Control Low Register
+      0000CC 75*44 9C         [24]  653 	mov	_ADCCRL,#0x9c
+                                    654 ;	./inc/mc96f8x16.h:167: sfr			ADCCRH		= 0x9D;			// A/D Converter Control High Register
+      0000CF 75*45 9D         [24]  655 	mov	_ADCCRH,#0x9d
+                                    656 ;	./inc/mc96f8x16.h:168: sfr			ADCDRL		= 0x9E;			// A/D Converter Data Low Register
+      0000D2 75*46 9E         [24]  657 	mov	_ADCDRL,#0x9e
+                                    658 ;	./inc/mc96f8x16.h:169: sfr			ADCDRH		= 0x9F;			// A/D Converter Data High Register
+      0000D5 75*47 9F         [24]  659 	mov	_ADCDRH,#0x9f
+                                    660 ;	./inc/mc96f8x16.h:171: sfr			ADWRCR0		= 0xF2;			// ADC Wake-up Resistor Control Register 0
+      0000D8 75*48 F2         [24]  661 	mov	_ADWRCR0,#0xf2
+                                    662 ;	./inc/mc96f8x16.h:172: sfr			ADWRCR1		= 0xF3;			// ADC Wake-up Resistor Control Register 1
+      0000DB 75*49 F3         [24]  663 	mov	_ADWRCR1,#0xf3
+                                    664 ;	./inc/mc96f8x16.h:173: sfr			ADWRCR2		= 0xF4;			// ADC Wake-up Resistor Control Register 2
+      0000DE 75*4A F4         [24]  665 	mov	_ADWRCR2,#0xf4
+                                    666 ;	./inc/mc96f8x16.h:174: sfr			ADWRCR3		= 0xF5;			// ADC Wake-up Resistor Control Register 3
+      0000E1 75*4B F5         [24]  667 	mov	_ADWRCR3,#0xf5
+                                    668 ;	./inc/mc96f8x16.h:175: sfr			ADWCRL		= 0xF6;			// ADC Wake-up Control Low Register
+      0000E4 75*4C F6         [24]  669 	mov	_ADWCRL,#0xf6
+                                    670 ;	./inc/mc96f8x16.h:176: sfr			ADWCRH		= 0xF7;			// ADC Wake-up Control High Register
+      0000E7 75*4D F7         [24]  671 	mov	_ADWCRH,#0xf7
+                                    672 ;	./inc/mc96f8x16.h:177: sfr			ADWIFRL		= 0xDC;			// ADC Wake-up Interrupt Flag Low Register
+      0000EA 75*4E DC         [24]  673 	mov	_ADWIFRL,#0xdc
+                                    674 ;	./inc/mc96f8x16.h:178: sfr			ADWIFRH		= 0xDD;			// ADC Wake-up Interrupt Flag High Register
+      0000ED 75*4F DD         [24]  675 	mov	_ADWIFRH,#0xdd
+                                    676 ;	./inc/mc96f8x16.h:181: sfr			SPICR		= 0xB5;			// SPI Control Register
+      0000F0 75*50 B5         [24]  677 	mov	_SPICR,#0xb5
+                                    678 ;	./inc/mc96f8x16.h:182: sfr			SPIDR		= 0xB6;			// SPI Data Register
+      0000F3 75*51 B6         [24]  679 	mov	_SPIDR,#0xb6
+                                    680 ;	./inc/mc96f8x16.h:183: sfr			SPISR		= 0xB7;			// SPI Status Register
+      0000F6 75*52 B7         [24]  681 	mov	_SPISR,#0xb7
+                                    682 ;	./inc/mc96f8x16.h:186: sfr			UARTCR1		= 0xE2;			// UART Control Register 1
+      0000F9 75*53 E2         [24]  683 	mov	_UARTCR1,#0xe2
+                                    684 ;	./inc/mc96f8x16.h:187: sfr			UARTCR2		= 0xE3;			// UART Control Register 2
+      0000FC 75*54 E3         [24]  685 	mov	_UARTCR2,#0xe3
+                                    686 ;	./inc/mc96f8x16.h:188: sfr			UARTCR3		= 0xE4;			// UART Control Register 3
+      0000FF 75*55 E4         [24]  687 	mov	_UARTCR3,#0xe4
+                                    688 ;	./inc/mc96f8x16.h:189: sfr			UARTST		= 0xE5;			// UART Status Register
+      000102 75*56 E5         [24]  689 	mov	_UARTST,#0xe5
+                                    690 ;	./inc/mc96f8x16.h:190: sfr			UARTBD		= 0xE6;			// UART BaudRate Register
+      000105 75*57 E6         [24]  691 	mov	_UARTBD,#0xe6
+                                    692 ;	./inc/mc96f8x16.h:191: sfr			UARTDR		= 0xE7;			// UART Data Register
+      000108 75*58 E7         [24]  693 	mov	_UARTDR,#0xe7
+                                    694 ;	./inc/mc96f8x16.h:194: sfr			I2CCR		= 0xE9;			// I2C Control Register
+      00010B 75*59 E9         [24]  695 	mov	_I2CCR,#0xe9
+                                    696 ;	./inc/mc96f8x16.h:195: sfr			I2CSR		= 0xEA;			// I2C Status Register
+      00010E 75*5A EA         [24]  697 	mov	_I2CSR,#0xea
+                                    698 ;	./inc/mc96f8x16.h:196: sfr			I2CSAR0		= 0xEB;			// I2C Slave Address 0 Register
+      000111 75*5B EB         [24]  699 	mov	_I2CSAR0,#0xeb
+                                    700 ;	./inc/mc96f8x16.h:197: sfr			I2CSAR1		= 0xF1;			// I2C Slave Address 1 Register
+      000114 75*5C F1         [24]  701 	mov	_I2CSAR1,#0xf1
+                                    702 ;	./inc/mc96f8x16.h:198: sfr			I2CDR		= 0xEC;			// I2C Data Register
+      000117 75*5D EC         [24]  703 	mov	_I2CDR,#0xec
+                                    704 ;	./inc/mc96f8x16.h:199: sfr			I2CSDHR		= 0xED;			// I2C SDA Hold Time Register
+      00011A 75*5E ED         [24]  705 	mov	_I2CSDHR,#0xed
+                                    706 ;	./inc/mc96f8x16.h:200: sfr			I2CSCLR		= 0xEE;			// I2C SCL Low Period Register
+      00011D 75*5F EE         [24]  707 	mov	_I2CSCLR,#0xee
+                                    708 ;	./inc/mc96f8x16.h:201: sfr			I2CSCHR		= 0xEF;			// I2C SCL High Period Register
+      000120 75*60 EF         [24]  709 	mov	_I2CSCHR,#0xef
+                                    710 ;	./inc/mc96f8x16.h:204: sfr			FSADRH		= 0xFA;			// Flash Sector Address High Register
+      000123 75*61 FA         [24]  711 	mov	_FSADRH,#0xfa
+                                    712 ;	./inc/mc96f8x16.h:205: sfr			FSADRM		= 0xFB;			// Flash Sector Address Middle Register
+      000126 75*62 FB         [24]  713 	mov	_FSADRM,#0xfb
+                                    714 ;	./inc/mc96f8x16.h:206: sfr			FSADRL		= 0xFC;			// Flash Sector Address Low Register
+      000129 75*63 FC         [24]  715 	mov	_FSADRL,#0xfc
+                                    716 ;	./inc/mc96f8x16.h:207: sfr			FIDR		= 0xFD;			// Flash Identification Register
+      00012C 75*64 FD         [24]  717 	mov	_FIDR,#0xfd
+                                    718 ;	./inc/mc96f8x16.h:208: sfr			FMCR		= 0xFE;			// Flash Mode Control Register
+      00012F 75*65 FE         [24]  719 	mov	_FMCR,#0xfe
+                                    720 ;	./inc/mc96f8x16.h:210: sfr			ACC			= 0xE0;
+      000132 75*66 E0         [24]  721 	mov	_ACC,#0xe0
+                                    722 ;	./inc/mc96f8x16.h:211: sfr			B			= 0xF0;
+      000135 75*67 F0         [24]  723 	mov	_B,#0xf0
+                                    724 ;	./inc/mc96f8x16.h:212: sfr			PSW			= 0xD0;
+      000138 75*68 D0         [24]  725 	mov	_PSW,#0xd0
+                                    726 ;	./inc/mc96f8x16.h:213: sfr			SP			= 0x81;
+      00013B 75*69 81         [24]  727 	mov	_SP,#0x81
+                                    728 ;	./inc/mc96f8x16.h:214: sfr			DPL			= 0x82;
+      00013E 75*6A 82         [24]  729 	mov	_DPL,#0x82
+                                    730 ;	./inc/mc96f8x16.h:215: sfr			DPH			= 0x83;
+      000141 75*6B 83         [24]  731 	mov	_DPH,#0x83
+                                    732 ;	./inc/mc96f8x16.h:216: sfr			DPL1		= 0x84;
+      000144 75*6C 84         [24]  733 	mov	_DPL1,#0x84
+                                    734 ;	./inc/mc96f8x16.h:217: sfr			DPH1		= 0x85;
+      000147 75*6D 85         [24]  735 	mov	_DPH1,#0x85
+                                    736 ;	./inc/mc96f8x16.h:218: sfr			EO			= 0xA2;			// EXTENDED OPERATION REGISTER
+      00014A 75*6E A2         [24]  737 	mov	_EO,#0xa2
+                                    738 ;	./inc/mc96f8x16.h:38: sbit	P00			= 0x80;
+                                    739 ;	assignBit
+      00014D D2*00            [12]  740 	setb	_P00
+                                    741 ;	./inc/mc96f8x16.h:39: sbit	P01			= 0x81;
+                                    742 ;	assignBit
+      00014F D2*01            [12]  743 	setb	_P01
+                                    744 ;	./inc/mc96f8x16.h:40: sbit	P02			= 0x82;
+                                    745 ;	assignBit
+      000151 D2*02            [12]  746 	setb	_P02
+                                    747 ;	./inc/mc96f8x16.h:41: sbit	P03			= 0x83;
+                                    748 ;	assignBit
+      000153 D2*03            [12]  749 	setb	_P03
+                                    750 ;	./inc/mc96f8x16.h:42: sbit	P04			= 0x84;
+                                    751 ;	assignBit
+      000155 D2*04            [12]  752 	setb	_P04
+                                    753 ;	./inc/mc96f8x16.h:43: sbit	P05			= 0x85;
+                                    754 ;	assignBit
+      000157 D2*05            [12]  755 	setb	_P05
+                                    756 ;	./inc/mc96f8x16.h:44: sbit	P06			= 0x86;
+                                    757 ;	assignBit
+      000159 D2*06            [12]  758 	setb	_P06
+                                    759 ;	./inc/mc96f8x16.h:45: sbit	P07			= 0x87;
+                                    760 ;	assignBit
+      00015B D2*07            [12]  761 	setb	_P07
+                                    762 ;	./inc/mc96f8x16.h:53: sbit	P10			= 0x88;
+                                    763 ;	assignBit
+      00015D D2*08            [12]  764 	setb	_P10
+                                    765 ;	./inc/mc96f8x16.h:54: sbit	P11			= 0x89;
+                                    766 ;	assignBit
+      00015F D2*09            [12]  767 	setb	_P11
+                                    768 ;	./inc/mc96f8x16.h:55: sbit	P12			= 0x8A;
+                                    769 ;	assignBit
+      000161 D2*0A            [12]  770 	setb	_P12
+                                    771 ;	./inc/mc96f8x16.h:56: sbit	P13			= 0x8B;
+                                    772 ;	assignBit
+      000163 D2*0B            [12]  773 	setb	_P13
+                                    774 ;	./inc/mc96f8x16.h:57: sbit	P14			= 0x8C;
+                                    775 ;	assignBit
+      000165 D2*0C            [12]  776 	setb	_P14
+                                    777 ;	./inc/mc96f8x16.h:58: sbit	P15			= 0x8D;
+                                    778 ;	assignBit
+      000167 D2*0D            [12]  779 	setb	_P15
+                                    780 ;	./inc/mc96f8x16.h:59: sbit	P16			= 0x8E;
+                                    781 ;	assignBit
+      000169 D2*0E            [12]  782 	setb	_P16
+                                    783 ;	./inc/mc96f8x16.h:60: sbit	P17			= 0x8F;
+                                    784 ;	assignBit
+      00016B D2*0F            [12]  785 	setb	_P17
+                                    786 ;	./inc/mc96f8x16.h:68: sbit	P20			= 0x90;
+                                    787 ;	assignBit
+      00016D D2*10            [12]  788 	setb	_P20
+                                    789 ;	./inc/mc96f8x16.h:69: sbit	P21			= 0x91;
+                                    790 ;	assignBit
+      00016F D2*11            [12]  791 	setb	_P21
+                                    792 ;	./inc/mc96f8x16.h:70: sbit	P22			= 0x92;
+                                    793 ;	assignBit
+      000171 D2*12            [12]  794 	setb	_P22
+                                    795 ;	./inc/mc96f8x16.h:71: sbit	P23			= 0x93;
+                                    796 ;	assignBit
+      000173 D2*13            [12]  797 	setb	_P23
+                                    798 ;	./inc/mc96f8x16.h:72: sbit	P24			= 0x94;
+                                    799 ;	assignBit
+      000175 D2*14            [12]  800 	setb	_P24
+                                    801 ;	./inc/mc96f8x16.h:73: sbit	P25			= 0x95;
+                                    802 ;	assignBit
+      000177 D2*15            [12]  803 	setb	_P25
+                                    804 ;	./inc/mc96f8x16.h:74: sbit	P26			= 0x96;
+                                    805 ;	assignBit
+      000179 D2*16            [12]  806 	setb	_P26
+                                    807 ;	./inc/mc96f8x16.h:75: sbit	P27			= 0x97;
+                                    808 ;	assignBit
+      00017B D2*17            [12]  809 	setb	_P27
+                                    810 ;	./inc/mc96f8x16.h:82: sbit	P30			= 0x98;
+                                    811 ;	assignBit
+      00017D D2*18            [12]  812 	setb	_P30
+                                    813 ;	./inc/mc96f8x16.h:83: sbit	P31			= 0x99;
+                                    814 ;	assignBit
+      00017F D2*19            [12]  815 	setb	_P31
+                                    816 ;	./inc/mc96f8x16.h:84: sbit	P32			= 0x9A;
+                                    817 ;	assignBit
+      000181 D2*1A            [12]  818 	setb	_P32
+                                    819 ;	./inc/mc96f8x16.h:85: sbit	P33			= 0x9B;
+                                    820 ;	assignBit
+      000183 D2*1B            [12]  821 	setb	_P33
+                                    822 ;	./inc/mc96f8x16.h:86: sbit	P34			= 0x9C;
+                                    823 ;	assignBit
+      000185 D2*1C            [12]  824 	setb	_P34
+                                    825 ;	./inc/mc96f8x16.h:87: sbit	P35			= 0x9D;
+                                    826 ;	assignBit
+      000187 D2*1D            [12]  827 	setb	_P35
+                                    828 ;	./inc/mc96f8x16.h:88: sbit	P36			= 0x9E;
+                                    829 ;	assignBit
+      000189 D2*1E            [12]  830 	setb	_P36
+                                    831 ;	./inc/mc96f8x16.h:89: sbit	P37			= 0x9F;
+                                    832 ;	assignBit
+      00018B D2*1F            [12]  833 	setb	_P37
+                                    834 ;--------------------------------------------------------
+                                    835 ; Home
+                                    836 ;--------------------------------------------------------
+                                    837 	.area HOME    (CODE)
+                                    838 	.area HOME    (CODE)
+                                    839 ;--------------------------------------------------------
+                                    840 ; code
+                                    841 ;--------------------------------------------------------
+                                    842 	.area CSEG    (CODE)
+                                    843 ;------------------------------------------------------------
+                                    844 ;Allocation info for local variables in function 'SysTick_Init'
+                                    845 ;------------------------------------------------------------
+                                    846 ;	src/mc96f8x16_tim.c:6: void SysTick_Init(void)
+                                    847 ;	-----------------------------------------
+                                    848 ;	 function SysTick_Init
+                                    849 ;	-----------------------------------------
+      000000                        850 _SysTick_Init:
+                           000007   851 	ar7 = 0x07
+                           000006   852 	ar6 = 0x06
+                           000005   853 	ar5 = 0x05
+                           000004   854 	ar4 = 0x04
+                           000003   855 	ar3 = 0x03
+                           000002   856 	ar2 = 0x02
+                           000001   857 	ar1 = 0x01
+                           000000   858 	ar0 = 0x00
+                                    859 ;	src/mc96f8x16_tim.c:8: BITCR = 0x00;
+      000000 75*27 00         [24]  860 	mov	_BITCR,#0x00
+                                    861 ;	src/mc96f8x16_tim.c:9: BITCR |= (BITCK_FX_DIV_1024 << 5u) | ((BCK_BIT2_OVFL << 0u) | BITCR_BCLR);
+      000003 43*27 2A         [24]  862 	orl	_BITCR,#0x2a
+                                    863 ;	src/mc96f8x16_tim.c:10: IE3 = (IE3 & 0x0F) | (0x10);
+      000006 AE*1A            [24]  864 	mov	r6,_IE3
+      000008 53 06 0F         [24]  865 	anl	ar6,#0x0f
+      00000B 43 06 10         [24]  866 	orl	ar6,#0x10
+      00000E 8E*1A            [24]  867 	mov	_IE3,r6
+                                    868 ;	src/mc96f8x16_tim.c:11: }
+      000010 22               [24]  869 	ret
+                                    870 ;------------------------------------------------------------
+                                    871 ;Allocation info for local variables in function 'GetTick'
+                                    872 ;------------------------------------------------------------
+                                    873 ;	src/mc96f8x16_tim.c:13: uint16_t GetTick(void)
+                                    874 ;	-----------------------------------------
+                                    875 ;	 function GetTick
+                                    876 ;	-----------------------------------------
+      000011                        877 _GetTick:
+                                    878 ;	src/mc96f8x16_tim.c:15: return Tick;
+      000011 90r00r00         [24]  879 	mov	dptr,#_Tick
+      000014 E0               [24]  880 	movx	a,@dptr
+      000015 FE               [12]  881 	mov	r6,a
+      000016 A3               [24]  882 	inc	dptr
+      000017 E0               [24]  883 	movx	a,@dptr
+                                    884 ;	src/mc96f8x16_tim.c:16: }
+      000018 8E 82            [24]  885 	mov	dpl,r6
+      00001A F5 83            [12]  886 	mov	dph,a
+      00001C 22               [24]  887 	ret
+                                    888 ;------------------------------------------------------------
+                                    889 ;Allocation info for local variables in function 'SysTick_ISR'
+                                    890 ;------------------------------------------------------------
+                                    891 ;	src/mc96f8x16_tim.c:18: void SysTick_ISR(void) __interrupt 23
+                                    892 ;	-----------------------------------------
+                                    893 ;	 function SysTick_ISR
+                                    894 ;	-----------------------------------------
+      00001D                        895 _SysTick_ISR:
+      00001D C0 E0            [24]  896 	push	acc
+      00001F C0 82            [24]  897 	push	dpl
+      000021 C0 83            [24]  898 	push	dph
+      000023 C0 D0            [24]  899 	push	psw
+                                    900 ;	src/mc96f8x16_tim.c:20: Tick++;
+      000025 90r00r00         [24]  901 	mov	dptr,#_Tick
+      000028 E0               [24]  902 	movx	a,@dptr
+      000029 24 01            [12]  903 	add	a,#0x01
+      00002B F0               [24]  904 	movx	@dptr,a
+      00002C A3               [24]  905 	inc	dptr
+      00002D E0               [24]  906 	movx	a,@dptr
+      00002E 34 00            [12]  907 	addc	a,#0x00
+      000030 F0               [24]  908 	movx	@dptr,a
+                                    909 ;	src/mc96f8x16_tim.c:22: BITCR |= BITCR_BCLR;
+      000031 43*27 08         [24]  910 	orl	_BITCR,#0x08
+                                    911 ;	src/mc96f8x16_tim.c:23: }
+      000034 D0 D0            [24]  912 	pop	psw
+      000036 D0 83            [24]  913 	pop	dph
+      000038 D0 82            [24]  914 	pop	dpl
+      00003A D0 E0            [24]  915 	pop	acc
+      00003C 32               [24]  916 	reti
+                                    917 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    918 ;	eliminated unneeded push/pop b
+                                    919 ;------------------------------------------------------------
+                                    920 ;Allocation info for local variables in function 'Delayms'
+                                    921 ;------------------------------------------------------------
+                                    922 ;Timeout                   Allocated to registers r6 r7 
+                                    923 ;StartTick                 Allocated to registers r4 r5 
+                                    924 ;sloc0                     Allocated to stack - _bp +1
+                                    925 ;------------------------------------------------------------
+                                    926 ;	src/mc96f8x16_tim.c:25: void Delayms(uint16_t Timeout)
+                                    927 ;	-----------------------------------------
+                                    928 ;	 function Delayms
+                                    929 ;	-----------------------------------------
+      00003D                        930 _Delayms:
+      00003D C0*00            [24]  931 	push	_bp
+      00003F 85 81*00         [24]  932 	mov	_bp,sp
+      000042 05 81            [12]  933 	inc	sp
+      000044 05 81            [12]  934 	inc	sp
+      000046 AE 82            [24]  935 	mov	r6,dpl
+      000048 AF 83            [24]  936 	mov	r7,dph
+                                    937 ;	src/mc96f8x16_tim.c:27: uint16_t StartTick = GetTick();
+      00004A C0 07            [24]  938 	push	ar7
+      00004C C0 06            [24]  939 	push	ar6
+      00004E 12r00r11         [24]  940 	lcall	_GetTick
+      000051 AC 82            [24]  941 	mov	r4,dpl
+      000053 AD 83            [24]  942 	mov	r5,dph
+      000055 D0 06            [24]  943 	pop	ar6
+      000057 D0 07            [24]  944 	pop	ar7
+                                    945 ;	src/mc96f8x16_tim.c:28: if(StartTick + Timeout > StartTick)
+      000059 EE               [12]  946 	mov	a,r6
+      00005A 2C               [12]  947 	add	a,r4
+      00005B FA               [12]  948 	mov	r2,a
+      00005C EF               [12]  949 	mov	a,r7
+      00005D 3D               [12]  950 	addc	a,r5
+      00005E FB               [12]  951 	mov	r3,a
+      00005F C3               [12]  952 	clr	c
+      000060 EC               [12]  953 	mov	a,r4
+      000061 9A               [12]  954 	subb	a,r2
+      000062 ED               [12]  955 	mov	a,r5
+      000063 9B               [12]  956 	subb	a,r3
+      000064 50 1E            [24]  957 	jnc	00115$
+                                    958 ;	src/mc96f8x16_tim.c:30: while(GetTick() < StartTick + Timeout);
+      000066 A8*00            [24]  959 	mov	r0,_bp
+      000068 08               [12]  960 	inc	r0
+      000069 EE               [12]  961 	mov	a,r6
+      00006A 2C               [12]  962 	add	a,r4
+      00006B F6               [12]  963 	mov	@r0,a
+      00006C EF               [12]  964 	mov	a,r7
+      00006D 3D               [12]  965 	addc	a,r5
+      00006E 08               [12]  966 	inc	r0
+      00006F F6               [12]  967 	mov	@r0,a
+      000070                        968 00101$:
+      000070 12r00r11         [24]  969 	lcall	_GetTick
+      000073 AA 82            [24]  970 	mov	r2,dpl
+      000075 AB 83            [24]  971 	mov	r3,dph
+      000077 A8*00            [24]  972 	mov	r0,_bp
+      000079 08               [12]  973 	inc	r0
+      00007A C3               [12]  974 	clr	c
+      00007B EA               [12]  975 	mov	a,r2
+      00007C 96               [12]  976 	subb	a,@r0
+      00007D EB               [12]  977 	mov	a,r3
+      00007E 08               [12]  978 	inc	r0
+      00007F 96               [12]  979 	subb	a,@r0
+      000080 50 4E            [24]  980 	jnc	00111$
+                                    981 ;	src/mc96f8x16_tim.c:34: while((GetTick() < (Timeout - (0xFFFFU - StartTick))) || (GetTick() > StartTick));
+      000082 80 EC            [24]  982 	sjmp	00101$
+      000084                        983 00115$:
+      000084 74 FF            [12]  984 	mov	a,#0xff
+      000086 C3               [12]  985 	clr	c
+      000087 9C               [12]  986 	subb	a,r4
+      000088 FA               [12]  987 	mov	r2,a
+      000089 74 FF            [12]  988 	mov	a,#0xff
+      00008B 9D               [12]  989 	subb	a,r5
+      00008C FB               [12]  990 	mov	r3,a
+      00008D EE               [12]  991 	mov	a,r6
+      00008E C3               [12]  992 	clr	c
+      00008F 9A               [12]  993 	subb	a,r2
+      000090 FE               [12]  994 	mov	r6,a
+      000091 EF               [12]  995 	mov	a,r7
+      000092 9B               [12]  996 	subb	a,r3
+      000093 FF               [12]  997 	mov	r7,a
+      000094                        998 00105$:
+      000094 C0 07            [24]  999 	push	ar7
+      000096 C0 06            [24] 1000 	push	ar6
+      000098 C0 05            [24] 1001 	push	ar5
+      00009A C0 04            [24] 1002 	push	ar4
+      00009C 12r00r11         [24] 1003 	lcall	_GetTick
+      00009F AA 82            [24] 1004 	mov	r2,dpl
+      0000A1 AB 83            [24] 1005 	mov	r3,dph
+      0000A3 D0 04            [24] 1006 	pop	ar4
+      0000A5 D0 05            [24] 1007 	pop	ar5
+      0000A7 D0 06            [24] 1008 	pop	ar6
+      0000A9 D0 07            [24] 1009 	pop	ar7
+      0000AB C3               [12] 1010 	clr	c
+      0000AC EA               [12] 1011 	mov	a,r2
+      0000AD 9E               [12] 1012 	subb	a,r6
+      0000AE EB               [12] 1013 	mov	a,r3
+      0000AF 9F               [12] 1014 	subb	a,r7
+      0000B0 40 E2            [24] 1015 	jc	00105$
+      0000B2 C0 07            [24] 1016 	push	ar7
+      0000B4 C0 06            [24] 1017 	push	ar6
+      0000B6 C0 05            [24] 1018 	push	ar5
+      0000B8 C0 04            [24] 1019 	push	ar4
+      0000BA 12r00r11         [24] 1020 	lcall	_GetTick
+      0000BD AA 82            [24] 1021 	mov	r2,dpl
+      0000BF AB 83            [24] 1022 	mov	r3,dph
+      0000C1 D0 04            [24] 1023 	pop	ar4
+      0000C3 D0 05            [24] 1024 	pop	ar5
+      0000C5 D0 06            [24] 1025 	pop	ar6
+      0000C7 D0 07            [24] 1026 	pop	ar7
+      0000C9 C3               [12] 1027 	clr	c
+      0000CA EC               [12] 1028 	mov	a,r4
+      0000CB 9A               [12] 1029 	subb	a,r2
+      0000CC ED               [12] 1030 	mov	a,r5
+      0000CD 9B               [12] 1031 	subb	a,r3
+      0000CE 40 C4            [24] 1032 	jc	00105$
+      0000D0                       1033 00111$:
+                                   1034 ;	src/mc96f8x16_tim.c:36: }
+      0000D0 85*00 81         [24] 1035 	mov	sp,_bp
+      0000D3 D0*00            [24] 1036 	pop	_bp
+      0000D5 22               [24] 1037 	ret
+                                   1038 ;------------------------------------------------------------
+                                   1039 ;Allocation info for local variables in function 'CheckTimeout'
+                                   1040 ;------------------------------------------------------------
+                                   1041 ;Timeout                   Allocated to stack - _bp -4
+                                   1042 ;Start                     Allocated to stack - _bp +1
+                                   1043 ;ret                       Allocated to registers r5 
+                                   1044 ;------------------------------------------------------------
+                                   1045 ;	src/mc96f8x16_tim.c:38: HAL_Status CheckTimeout(uint16_t Start, uint16_t Timeout)
+                                   1046 ;	-----------------------------------------
+                                   1047 ;	 function CheckTimeout
+                                   1048 ;	-----------------------------------------
+      0000D6                       1049 _CheckTimeout:
+      0000D6 C0*00            [24] 1050 	push	_bp
+      0000D8 85 81*00         [24] 1051 	mov	_bp,sp
+      0000DB C0 82            [24] 1052 	push	dpl
+      0000DD C0 83            [24] 1053 	push	dph
+                                   1054 ;	src/mc96f8x16_tim.c:41: if(Start + Timeout > Start)
+      0000DF A8*00            [24] 1055 	mov	r0,_bp
+      0000E1 08               [12] 1056 	inc	r0
+      0000E2 E5*00            [12] 1057 	mov	a,_bp
+      0000E4 24 FC            [12] 1058 	add	a,#0xfc
+      0000E6 F9               [12] 1059 	mov	r1,a
+      0000E7 E7               [12] 1060 	mov	a,@r1
+      0000E8 26               [12] 1061 	add	a,@r0
+      0000E9 FC               [12] 1062 	mov	r4,a
+      0000EA 09               [12] 1063 	inc	r1
+      0000EB E7               [12] 1064 	mov	a,@r1
+      0000EC 08               [12] 1065 	inc	r0
+      0000ED 36               [12] 1066 	addc	a,@r0
+      0000EE FD               [12] 1067 	mov	r5,a
+      0000EF A8*00            [24] 1068 	mov	r0,_bp
+      0000F1 08               [12] 1069 	inc	r0
+      0000F2 C3               [12] 1070 	clr	c
+      0000F3 E6               [12] 1071 	mov	a,@r0
+      0000F4 9C               [12] 1072 	subb	a,r4
+      0000F5 08               [12] 1073 	inc	r0
+      0000F6 E6               [12] 1074 	mov	a,@r0
+      0000F7 9D               [12] 1075 	subb	a,r5
+      0000F8 50 26            [24] 1076 	jnc	00109$
+                                   1077 ;	src/mc96f8x16_tim.c:43: if(GetTick() < (Start + Timeout))
+      0000FA 12r00r11         [24] 1078 	lcall	_GetTick
+      0000FD AC 82            [24] 1079 	mov	r4,dpl
+      0000FF AD 83            [24] 1080 	mov	r5,dph
+      000101 A8*00            [24] 1081 	mov	r0,_bp
+      000103 08               [12] 1082 	inc	r0
+      000104 E5*00            [12] 1083 	mov	a,_bp
+      000106 24 FC            [12] 1084 	add	a,#0xfc
+      000108 F9               [12] 1085 	mov	r1,a
+      000109 E7               [12] 1086 	mov	a,@r1
+      00010A 26               [12] 1087 	add	a,@r0
+      00010B FA               [12] 1088 	mov	r2,a
+      00010C 09               [12] 1089 	inc	r1
+      00010D E7               [12] 1090 	mov	a,@r1
+      00010E 08               [12] 1091 	inc	r0
+      00010F 36               [12] 1092 	addc	a,@r0
+      000110 FB               [12] 1093 	mov	r3,a
+      000111 C3               [12] 1094 	clr	c
+      000112 EC               [12] 1095 	mov	a,r4
+      000113 9A               [12] 1096 	subb	a,r2
+      000114 ED               [12] 1097 	mov	a,r5
+      000115 9B               [12] 1098 	subb	a,r3
+      000116 50 04            [24] 1099 	jnc	00102$
+                                   1100 ;	src/mc96f8x16_tim.c:45: ret = HAL_OK;
+      000118 7D 01            [12] 1101 	mov	r5,#0x01
+      00011A 80 44            [24] 1102 	sjmp	00110$
+      00011C                       1103 00102$:
+                                   1104 ;	src/mc96f8x16_tim.c:49: ret = HAL_TIMEOUT;
+      00011C 7D 02            [12] 1105 	mov	r5,#0x02
+      00011E 80 40            [24] 1106 	sjmp	00110$
+      000120                       1107 00109$:
+                                   1108 ;	src/mc96f8x16_tim.c:54: if((GetTick() < (Timeout - (0xFFFFU - Start))) || (GetTick() > Start))
+      000120 12r00r11         [24] 1109 	lcall	_GetTick
+      000123 AB 82            [24] 1110 	mov	r3,dpl
+      000125 AC 83            [24] 1111 	mov	r4,dph
+      000127 A8*00            [24] 1112 	mov	r0,_bp
+      000129 08               [12] 1113 	inc	r0
+      00012A 74 FF            [12] 1114 	mov	a,#0xff
+      00012C C3               [12] 1115 	clr	c
+      00012D 96               [12] 1116 	subb	a,@r0
+      00012E FA               [12] 1117 	mov	r2,a
+      00012F 74 FF            [12] 1118 	mov	a,#0xff
+      000131 08               [12] 1119 	inc	r0
+      000132 96               [12] 1120 	subb	a,@r0
+      000133 FF               [12] 1121 	mov	r7,a
+      000134 E5*00            [12] 1122 	mov	a,_bp
+      000136 24 FC            [12] 1123 	add	a,#0xfc
+      000138 F8               [12] 1124 	mov	r0,a
+      000139 E6               [12] 1125 	mov	a,@r0
+      00013A C3               [12] 1126 	clr	c
+      00013B 9A               [12] 1127 	subb	a,r2
+      00013C FA               [12] 1128 	mov	r2,a
+      00013D 08               [12] 1129 	inc	r0
+      00013E E6               [12] 1130 	mov	a,@r0
+      00013F 9F               [12] 1131 	subb	a,r7
+      000140 FF               [12] 1132 	mov	r7,a
+      000141 C3               [12] 1133 	clr	c
+      000142 EB               [12] 1134 	mov	a,r3
+      000143 9A               [12] 1135 	subb	a,r2
+      000144 EC               [12] 1136 	mov	a,r4
+      000145 9F               [12] 1137 	subb	a,r7
+      000146 40 12            [24] 1138 	jc	00104$
+      000148 12r00r11         [24] 1139 	lcall	_GetTick
+      00014B AE 82            [24] 1140 	mov	r6,dpl
+      00014D AF 83            [24] 1141 	mov	r7,dph
+      00014F A8*00            [24] 1142 	mov	r0,_bp
+      000151 08               [12] 1143 	inc	r0
+      000152 C3               [12] 1144 	clr	c
+      000153 E6               [12] 1145 	mov	a,@r0
+      000154 9E               [12] 1146 	subb	a,r6
+      000155 08               [12] 1147 	inc	r0
+      000156 E6               [12] 1148 	mov	a,@r0
+      000157 9F               [12] 1149 	subb	a,r7
+      000158 50 04            [24] 1150 	jnc	00105$
+      00015A                       1151 00104$:
+                                   1152 ;	src/mc96f8x16_tim.c:56: ret = HAL_OK;
+      00015A 7D 01            [12] 1153 	mov	r5,#0x01
+      00015C 80 02            [24] 1154 	sjmp	00110$
+      00015E                       1155 00105$:
+                                   1156 ;	src/mc96f8x16_tim.c:60: ret = HAL_TIMEOUT;
+      00015E 7D 02            [12] 1157 	mov	r5,#0x02
+      000160                       1158 00110$:
+                                   1159 ;	src/mc96f8x16_tim.c:63: return ret;
+      000160 8D 82            [24] 1160 	mov	dpl,r5
+                                   1161 ;	src/mc96f8x16_tim.c:64: }
+      000162 85*00 81         [24] 1162 	mov	sp,_bp
+      000165 D0*00            [24] 1163 	pop	_bp
+      000167 22               [24] 1164 	ret
+                                   1165 	.area CSEG    (CODE)
+                                   1166 	.area CONST   (CODE)
+                                   1167 	.area XINIT   (CODE)
+      000000                       1168 __xinit__Tick:
+      000000 00 00                 1169 	.byte #0x00,#0x00	; 0
+                                   1170 	.area CABS    (ABS,CODE)

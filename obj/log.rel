@@ -1,7 +1,7 @@
 XH3
 H 1A areas 93 global symbols
 M log
-O -mmcs51 --model-small
+O -mmcs51 --model-large
 S _UART_Transmit Ref000000
 S .__.ABS. Def000000
 S _bp Ref000000

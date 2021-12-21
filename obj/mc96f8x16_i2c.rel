@@ -1,7 +1,7 @@
 XH3
 H 1A areas 98 global symbols
 M mc96f8x16_i2c
-O -mmcs51 --model-small
+O -mmcs51 --model-large
 S _GetTick Ref000000
 S __gptrput Ref000000
 S .__.ABS. Def000000

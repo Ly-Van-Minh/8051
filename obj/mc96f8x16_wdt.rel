@@ -1,7 +1,7 @@
 XH3
 H 1A areas 92 global symbols
 M mc96f8x16_wdt
-O -mmcs51 --model-small
+O -mmcs51 --model-large
 S .__.ABS. Def000000
 A _CODE size 0 flags 0 addr 0
 A RSEG size 0 flags 8 addr 0

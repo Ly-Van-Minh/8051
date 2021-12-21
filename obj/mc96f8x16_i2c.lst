@@ -3,7 +3,7 @@
                                       3 ; Version 3.8.0 #10562 (Linux)
                                       4 ;--------------------------------------------------------
                                       5 	.module mc96f8x16_i2c
-                                      6 	.optsdcc -mmcs51 --model-small
+                                      6 	.optsdcc -mmcs51 --model-large
                                       7 	
                                       8 ;--------------------------------------------------------
                                       9 ; Public variables in this module
@@ -510,322 +510,322 @@
                                     510 	.area GSINIT  (CODE)
                                     511 	.area GSFINAL (CODE)
                                     512 	.area GSINIT  (CODE)
-                                    513 ;	./inc/MC96F8316.h:17: sfr			P0			= 0x80;			// P0 Data Register
+                                    513 ;	./inc/mc96f8x16.h:37: sfr			P0			= 0x80;			// P0 Data Register
       000000 75*00 80         [24]  514 	mov	_P0,#0x80
-                                    515 ;	./inc/MC96F8316.h:27: sfr			P0IO		= 0xA1;			// P0 Direction Register
+                                    515 ;	./inc/mc96f8x16.h:47: sfr			P0IO		= 0xA1;			// P0 Direction Register
       000003 75*01 A1         [24]  516 	mov	_P0IO,#0xa1
-                                    517 ;	./inc/MC96F8316.h:28: sfr			P0OD		= 0x91;			// P0 Open-drain Selection Register
+                                    517 ;	./inc/mc96f8x16.h:48: sfr			P0OD		= 0x91;			// P0 Open-drain Selection Register
       000006 75*02 91         [24]  518 	mov	_P0OD,#0x91
-                                    519 ;	./inc/MC96F8316.h:29: sfr			P0PU		= 0xAC;			// P0 Pull-up Resistor Selection Register
+                                    519 ;	./inc/mc96f8x16.h:49: sfr			P0PU		= 0xAC;			// P0 Pull-up Resistor Selection Register
       000009 75*03 AC         [24]  520 	mov	_P0PU,#0xac
-                                    521 ;	./inc/MC96F8316.h:30: sfr			P03DB		= 0xDE;			// P0/P3 Debounce Enable Register
+                                    521 ;	./inc/mc96f8x16.h:50: sfr			P03DB		= 0xDE;			// P0/P3 Debounce Enable Register
       00000C 75*04 DE         [24]  522 	mov	_P03DB,#0xde
-                                    523 ;	./inc/MC96F8316.h:32: sfr			P1			= 0x88;			// P1 Data Register
+                                    523 ;	./inc/mc96f8x16.h:52: sfr			P1			= 0x88;			// P1 Data Register
       00000F 75*05 88         [24]  524 	mov	_P1,#0x88
-                                    525 ;	./inc/MC96F8316.h:42: sfr			P1IO		= 0xB1;			// P1 Direction Register
+                                    525 ;	./inc/mc96f8x16.h:62: sfr			P1IO		= 0xB1;			// P1 Direction Register
       000012 75*06 B1         [24]  526 	mov	_P1IO,#0xb1
-                                    527 ;	./inc/MC96F8316.h:43: sfr			P1OD		= 0x92;			// P1 Open-drain Selection Register
+                                    527 ;	./inc/mc96f8x16.h:63: sfr			P1OD		= 0x92;			// P1 Open-drain Selection Register
       000015 75*07 92         [24]  528 	mov	_P1OD,#0x92
-                                    529 ;	./inc/MC96F8316.h:44: sfr			P1PU		= 0xAD;			// P1 Pull-up Resistor Selection Register
+                                    529 ;	./inc/mc96f8x16.h:64: sfr			P1PU		= 0xAD;			// P1 Pull-up Resistor Selection Register
       000018 75*08 AD         [24]  530 	mov	_P1PU,#0xad
-                                    531 ;	./inc/MC96F8316.h:45: sfr			P12DB		= 0xDF;			// P1/P2 Debounce Enable Register
+                                    531 ;	./inc/mc96f8x16.h:65: sfr			P12DB		= 0xDF;			// P1/P2 Debounce Enable Register
       00001B 75*09 DF         [24]  532 	mov	_P12DB,#0xdf
-                                    533 ;	./inc/MC96F8316.h:47: sfr			P2			= 0x90;			// P2 Data Register
+                                    533 ;	./inc/mc96f8x16.h:67: sfr			P2			= 0x90;			// P2 Data Register
       00001E 75*0A 90         [24]  534 	mov	_P2,#0x90
-                                    535 ;	./inc/MC96F8316.h:57: sfr			P2IO		= 0xB9;			// P2 Direction Register
+                                    535 ;	./inc/mc96f8x16.h:77: sfr			P2IO		= 0xB9;			// P2 Direction Register
       000021 75*0B B9         [24]  536 	mov	_P2IO,#0xb9
-                                    537 ;	./inc/MC96F8316.h:58: sfr			P2OD		= 0x93;			// P2 Open-drain Selection Register
+                                    537 ;	./inc/mc96f8x16.h:78: sfr			P2OD		= 0x93;			// P2 Open-drain Selection Register
       000024 75*0C 93         [24]  538 	mov	_P2OD,#0x93
-                                    539 ;	./inc/MC96F8316.h:59: sfr			P2PU		= 0xAE;			// P2 Pull-up Resistor Selection Register
+                                    539 ;	./inc/mc96f8x16.h:79: sfr			P2PU		= 0xAE;			// P2 Pull-up Resistor Selection Register
       000027 75*0D AE         [24]  540 	mov	_P2PU,#0xae
-                                    541 ;	./inc/MC96F8316.h:61: sfr			P3			= 0x98;			// P3 Data Register
+                                    541 ;	./inc/mc96f8x16.h:81: sfr			P3			= 0x98;			// P3 Data Register
       00002A 75*0E 98         [24]  542 	mov	_P3,#0x98
-                                    543 ;	./inc/MC96F8316.h:71: sfr			P3IO		= 0xC1;			// P3 Direction Register
+                                    543 ;	./inc/mc96f8x16.h:91: sfr			P3IO		= 0xC1;			// P3 Direction Register
       00002D 75*0F C1         [24]  544 	mov	_P3IO,#0xc1
-                                    545 ;	./inc/MC96F8316.h:72: sfr			P3OD		= 0x94;			// P3 Open-drain Selection Register
+                                    545 ;	./inc/mc96f8x16.h:92: sfr			P3OD		= 0x94;			// P3 Open-drain Selection Register
       000030 75*10 94         [24]  546 	mov	_P3OD,#0x94
-                                    547 ;	./inc/MC96F8316.h:73: sfr			P3PU		= 0xAF;			// P3 Pull-up Resistor Selection Register
+                                    547 ;	./inc/mc96f8x16.h:93: sfr			P3PU		= 0xAF;			// P3 Pull-up Resistor Selection Register
       000033 75*11 AF         [24]  548 	mov	_P3PU,#0xaf
-                                    549 ;	./inc/MC96F8316.h:75: sfr			P0FSR		= 0xD3;			//P0 Function Selection Register
+                                    549 ;	./inc/mc96f8x16.h:95: sfr			P0FSR		= 0xD3;			//P0 Function Selection Register
       000036 75*12 D3         [24]  550 	mov	_P0FSR,#0xd3
-                                    551 ;	./inc/MC96F8316.h:76: sfr			P1FSRL		= 0xD4;			//P1 Function Selection Low Register
+                                    551 ;	./inc/mc96f8x16.h:96: sfr			P1FSRL		= 0xD4;			//P1 Function Selection Low Register
       000039 75*13 D4         [24]  552 	mov	_P1FSRL,#0xd4
-                                    553 ;	./inc/MC96F8316.h:77: sfr			P1FSRH		= 0xD5;			//P1 Function Selection High Register
+                                    553 ;	./inc/mc96f8x16.h:97: sfr			P1FSRH		= 0xD5;			//P1 Function Selection High Register
       00003C 75*14 D5         [24]  554 	mov	_P1FSRH,#0xd5
-                                    555 ;	./inc/MC96F8316.h:78: sfr			P2FSR		= 0xD6;			//P2 Function Selection Register
+                                    555 ;	./inc/mc96f8x16.h:98: sfr			P2FSR		= 0xD6;			//P2 Function Selection Register
       00003F 75*15 D6         [24]  556 	mov	_P2FSR,#0xd6
-                                    557 ;	./inc/MC96F8316.h:79: sfr			P3FSR		= 0xD7;			//P3 Function Selection Register
+                                    557 ;	./inc/mc96f8x16.h:99: sfr			P3FSR		= 0xD7;			//P3 Function Selection Register
       000042 75*16 D7         [24]  558 	mov	_P3FSR,#0xd7
-                                    559 ;	./inc/MC96F8316.h:82: sfr			IE			= 0xA8;			// Interrupt Enable Register 0
+                                    559 ;	./inc/mc96f8x16.h:102: sfr			IE			= 0xA8;			// Interrupt Enable Register 0
       000045 75*17 A8         [24]  560 	mov	_IE,#0xa8
-                                    561 ;	./inc/MC96F8316.h:83: sfr			IE1			= 0xA9;			// Interrupt Enable Register 1
+                                    561 ;	./inc/mc96f8x16.h:103: sfr			IE1			= 0xA9;			// Interrupt Enable Register 1
       000048 75*18 A9         [24]  562 	mov	_IE1,#0xa9
-                                    563 ;	./inc/MC96F8316.h:84: sfr			IE2			= 0xAA;			// Interrupt Enable Register 2
+                                    563 ;	./inc/mc96f8x16.h:104: sfr			IE2			= 0xAA;			// Interrupt Enable Register 2
       00004B 75*19 AA         [24]  564 	mov	_IE2,#0xaa
-                                    565 ;	./inc/MC96F8316.h:85: sfr			IE3			= 0xAB;			// Interrupt Enable Register 3
+                                    565 ;	./inc/mc96f8x16.h:105: sfr			IE3			= 0xAB;			// Interrupt Enable Register 3
       00004E 75*1A AB         [24]  566 	mov	_IE3,#0xab
-                                    567 ;	./inc/MC96F8316.h:86: sfr			IP			= 0xB8;			// Interrupt Priority Register 0
+                                    567 ;	./inc/mc96f8x16.h:106: sfr			IP			= 0xB8;			// Interrupt Priority Register 0
       000051 75*1B B8         [24]  568 	mov	_IP,#0xb8
-                                    569 ;	./inc/MC96F8316.h:87: sfr			IP1			= 0xF8;			// Interrupt Priority Register 1
+                                    569 ;	./inc/mc96f8x16.h:107: sfr			IP1			= 0xF8;			// Interrupt Priority Register 1
       000054 75*1C F8         [24]  570 	mov	_IP1,#0xf8
-                                    571 ;	./inc/MC96F8316.h:88: sfr			IIFLAG		= 0xA0;			// Internal Interrupt Flag Register
+                                    571 ;	./inc/mc96f8x16.h:108: sfr			IIFLAG		= 0xA0;			// Internal Interrupt Flag Register
       000057 75*1D A0         [24]  572 	mov	_IIFLAG,#0xa0
-                                    573 ;	./inc/MC96F8316.h:89: sfr			EIFLAG0		= 0xC0;			// External Interrupt Flag 0 Register
+                                    573 ;	./inc/mc96f8x16.h:109: sfr			EIFLAG0		= 0xC0;			// External Interrupt Flag 0 Register
       00005A 75*1E C0         [24]  574 	mov	_EIFLAG0,#0xc0
-                                    575 ;	./inc/MC96F8316.h:90: sfr			EIFLAG1		= 0xB0;			// External Interrupt Flag 1 Register
+                                    575 ;	./inc/mc96f8x16.h:110: sfr			EIFLAG1		= 0xB0;			// External Interrupt Flag 1 Register
       00005D 75*1F B0         [24]  576 	mov	_EIFLAG1,#0xb0
-                                    577 ;	./inc/MC96F8316.h:91: sfr			EIPOL0L		= 0xA4;			// External Interrupt Polarity 0 Low Register
+                                    577 ;	./inc/mc96f8x16.h:111: sfr			EIPOL0L		= 0xA4;			// External Interrupt Polarity 0 Low Register
       000060 75*20 A4         [24]  578 	mov	_EIPOL0L,#0xa4
-                                    579 ;	./inc/MC96F8316.h:92: sfr			EIPOL0H		= 0xA5;			// External Interrupt Polarity 0 High Register
+                                    579 ;	./inc/mc96f8x16.h:112: sfr			EIPOL0H		= 0xA5;			// External Interrupt Polarity 0 High Register
       000063 75*21 A5         [24]  580 	mov	_EIPOL0H,#0xa5
-                                    581 ;	./inc/MC96F8316.h:93: sfr			EIPOL1		= 0xA6;			// External Interrupt Polarity 1 Register
+                                    581 ;	./inc/mc96f8x16.h:113: sfr			EIPOL1		= 0xA6;			// External Interrupt Polarity 1 Register
       000066 75*22 A6         [24]  582 	mov	_EIPOL1,#0xa6
-                                    583 ;	./inc/MC96F8316.h:94: sfr			EIPOL2		= 0xA7;			// External Interrupt Polarity 2 Register
+                                    583 ;	./inc/mc96f8x16.h:114: sfr			EIPOL2		= 0xA7;			// External Interrupt Polarity 2 Register
       000069 75*23 A7         [24]  584 	mov	_EIPOL2,#0xa7
-                                    585 ;	./inc/MC96F8316.h:97: sfr			SCCR		= 0x8A;			// System Clock Control Register
+                                    585 ;	./inc/mc96f8x16.h:117: sfr			SCCR		= 0x8A;			// System Clock Control Register
       00006C 75*24 8A         [24]  586 	mov	_SCCR,#0x8a
-                                    587 ;	./inc/MC96F8316.h:98: sfr			OSCCR		= 0xC8;			// Oscillator Control Register
+                                    587 ;	./inc/mc96f8x16.h:118: sfr			OSCCR		= 0xC8;			// Oscillator Control Register
       00006F 75*25 C8         [24]  588 	mov	_OSCCR,#0xc8
-                                    589 ;	./inc/MC96F8316.h:99: sfr			BITCNT		= 0x8C;			// Basic Interval Timer Counter Register
+                                    589 ;	./inc/mc96f8x16.h:119: sfr			BITCNT		= 0x8C;			// Basic Interval Timer Counter Register
       000072 75*26 8C         [24]  590 	mov	_BITCNT,#0x8c
-                                    591 ;	./inc/MC96F8316.h:100: sfr			BITCR		= 0x8B;			// Basic Interval Timer Control Register
+                                    591 ;	./inc/mc96f8x16.h:120: sfr			BITCR		= 0x8B;			// Basic Interval Timer Control Register
       000075 75*27 8B         [24]  592 	mov	_BITCR,#0x8b
-                                    593 ;	./inc/MC96F8316.h:101: sfr			RSTFR		= 0xE8;			// Reset Flag Register
+                                    593 ;	./inc/mc96f8x16.h:121: sfr			RSTFR		= 0xE8;			// Reset Flag Register
       000078 75*28 E8         [24]  594 	mov	_RSTFR,#0xe8
-                                    595 ;	./inc/MC96F8316.h:102: sfr			PCON		= 0x87;			// Power Control Register
+                                    595 ;	./inc/mc96f8x16.h:122: sfr			PCON		= 0x87;			// Power Control Register
       00007B 75*29 87         [24]  596 	mov	_PCON,#0x87
-                                    597 ;	./inc/MC96F8316.h:103: sfr			LVRCR		= 0xD8;			// Low Voltage Reset Control Register
+                                    597 ;	./inc/mc96f8x16.h:123: sfr			LVRCR		= 0xD8;			// Low Voltage Reset Control Register
       00007E 75*2A D8         [24]  598 	mov	_LVRCR,#0xd8
-                                    599 ;	./inc/MC96F8316.h:104: sfr			LVICR		= 0x86;			// Low Voltage Indicator Control Register
+                                    599 ;	./inc/mc96f8x16.h:124: sfr			LVICR		= 0x86;			// Low Voltage Indicator Control Register
       000081 75*2B 86         [24]  600 	mov	_LVICR,#0x86
-                                    601 ;	./inc/MC96F8316.h:107: sfr			WDTDR		= 0x8E;			// Watch Dog Timer Data Register
+                                    601 ;	./inc/mc96f8x16.h:127: sfr			WDTDR		= 0x8E;			// Watch Dog Timer Data Register
       000084 75*2C 8E         [24]  602 	mov	_WDTDR,#0x8e
-                                    603 ;	./inc/MC96F8316.h:108: sfr			WDTCNT		= 0x8E;			// Watch Dog Timer Counter Register
+                                    603 ;	./inc/mc96f8x16.h:128: sfr			WDTCNT		= 0x8E;			// Watch Dog Timer Counter Register
       000087 75*2D 8E         [24]  604 	mov	_WDTCNT,#0x8e
-                                    605 ;	./inc/MC96F8316.h:109: sfr			WDTCR		= 0x8D;			// Watch Dog Timer Control Register
+                                    605 ;	./inc/mc96f8x16.h:129: sfr			WDTCR		= 0x8D;			// Watch Dog Timer Control Register
       00008A 75*2E 8D         [24]  606 	mov	_WDTCR,#0x8d
-                                    607 ;	./inc/MC96F8316.h:112: sfr			WTDR		= 0x89;			// Watch Timer Data Register
+                                    607 ;	./inc/mc96f8x16.h:132: sfr			WTDR		= 0x89;			// Watch Timer Data Register
       00008D 75*2F 89         [24]  608 	mov	_WTDR,#0x89
-                                    609 ;	./inc/MC96F8316.h:113: sfr			WTCNT		= 0x89;			// Watch Timer Counter Register
+                                    609 ;	./inc/mc96f8x16.h:133: sfr			WTCNT		= 0x89;			// Watch Timer Counter Register
       000090 75*30 89         [24]  610 	mov	_WTCNT,#0x89
-                                    611 ;	./inc/MC96F8316.h:114: sfr			WTCR		= 0x96;			// Watch Timer Control Register
+                                    611 ;	./inc/mc96f8x16.h:134: sfr			WTCR		= 0x96;			// Watch Timer Control Register
       000093 75*31 96         [24]  612 	mov	_WTCR,#0x96
-                                    613 ;	./inc/MC96F8316.h:117: sfr			T0CR		= 0xB2;			// Timer 0 Control Register
+                                    613 ;	./inc/mc96f8x16.h:137: sfr			T0CR		= 0xB2;			// Timer 0 Control Register
       000096 75*32 B2         [24]  614 	mov	_T0CR,#0xb2
-                                    615 ;	./inc/MC96F8316.h:118: sfr			T0CNT		= 0xB3;			// Timer 0 Counter Register
+                                    615 ;	./inc/mc96f8x16.h:138: sfr			T0CNT		= 0xB3;			// Timer 0 Counter Register
       000099 75*33 B3         [24]  616 	mov	_T0CNT,#0xb3
-                                    617 ;	./inc/MC96F8316.h:119: sfr			T0DR		= 0xB4;			// Timer 0 Data Register
+                                    617 ;	./inc/mc96f8x16.h:139: sfr			T0DR		= 0xB4;			// Timer 0 Data Register
       00009C 75*34 B4         [24]  618 	mov	_T0DR,#0xb4
-                                    619 ;	./inc/MC96F8316.h:120: sfr			T0CDR		= 0xB4;			// Timer 0 Capture Data Register
+                                    619 ;	./inc/mc96f8x16.h:140: sfr			T0CDR		= 0xB4;			// Timer 0 Capture Data Register
       00009F 75*35 B4         [24]  620 	mov	_T0CDR,#0xb4
-                                    621 ;	./inc/MC96F8316.h:126: sfr			T1CRL		= 0xBA;			// Timer 1 Control Low Register
+                                    621 ;	./inc/mc96f8x16.h:146: sfr			T1CRL		= 0xBA;			// Timer 1 Control Low Register
       0000A2 75*36 BA         [24]  622 	mov	_T1CRL,#0xba
-                                    623 ;	./inc/MC96F8316.h:127: sfr			T1CRH		= 0xBB;			// Timer 1 Control High Register
+                                    623 ;	./inc/mc96f8x16.h:147: sfr			T1CRH		= 0xBB;			// Timer 1 Control High Register
       0000A5 75*37 BB         [24]  624 	mov	_T1CRH,#0xbb
-                                    625 ;	./inc/MC96F8316.h:128: sfr			T1ADRL		= 0xBC;			// Timer 1 A Data Low Register
+                                    625 ;	./inc/mc96f8x16.h:148: sfr			T1ADRL		= 0xBC;			// Timer 1 A Data Low Register
       0000A8 75*38 BC         [24]  626 	mov	_T1ADRL,#0xbc
-                                    627 ;	./inc/MC96F8316.h:129: sfr			T1ADRH		= 0xBD;			// Timer 1 A Data High Register
+                                    627 ;	./inc/mc96f8x16.h:149: sfr			T1ADRH		= 0xBD;			// Timer 1 A Data High Register
       0000AB 75*39 BD         [24]  628 	mov	_T1ADRH,#0xbd
-                                    629 ;	./inc/MC96F8316.h:130: sfr			T1BDRL		= 0xBE;			// Timer 1 B Data Low Register
+                                    629 ;	./inc/mc96f8x16.h:150: sfr			T1BDRL		= 0xBE;			// Timer 1 B Data Low Register
       0000AE 75*3A BE         [24]  630 	mov	_T1BDRL,#0xbe
-                                    631 ;	./inc/MC96F8316.h:131: sfr			T1BDRH		= 0xBF;			// Timer 1 B Data High Register
+                                    631 ;	./inc/mc96f8x16.h:151: sfr			T1BDRH		= 0xBF;			// Timer 1 B Data High Register
       0000B1 75*3B BF         [24]  632 	mov	_T1BDRH,#0xbf
-                                    633 ;	./inc/MC96F8316.h:134: sfr			T2CRL		= 0xC2;			// Timer 2 Control Low Register
+                                    633 ;	./inc/mc96f8x16.h:154: sfr			T2CRL		= 0xC2;			// Timer 2 Control Low Register
       0000B4 75*3C C2         [24]  634 	mov	_T2CRL,#0xc2
-                                    635 ;	./inc/MC96F8316.h:135: sfr			T2CRH		= 0xC3;			// Timer 2 Control High Register
+                                    635 ;	./inc/mc96f8x16.h:155: sfr			T2CRH		= 0xC3;			// Timer 2 Control High Register
       0000B7 75*3D C3         [24]  636 	mov	_T2CRH,#0xc3
-                                    637 ;	./inc/MC96F8316.h:136: sfr			T2ADRL		= 0xC4;			// Timer 2 A Data Low Register
+                                    637 ;	./inc/mc96f8x16.h:156: sfr			T2ADRL		= 0xC4;			// Timer 2 A Data Low Register
       0000BA 75*3E C4         [24]  638 	mov	_T2ADRL,#0xc4
-                                    639 ;	./inc/MC96F8316.h:137: sfr			T2ADRH		= 0xC5;			// Timer 2 A Data High Register
+                                    639 ;	./inc/mc96f8x16.h:157: sfr			T2ADRH		= 0xC5;			// Timer 2 A Data High Register
       0000BD 75*3F C5         [24]  640 	mov	_T2ADRH,#0xc5
-                                    641 ;	./inc/MC96F8316.h:138: sfr			T2BDRL		= 0xC6;			// Timer 2 B Data Low Register
+                                    641 ;	./inc/mc96f8x16.h:158: sfr			T2BDRL		= 0xC6;			// Timer 2 B Data Low Register
       0000C0 75*40 C6         [24]  642 	mov	_T2BDRL,#0xc6
-                                    643 ;	./inc/MC96F8316.h:139: sfr			T2BDRH		= 0xC7;			// Timer 2 B Data High Register
+                                    643 ;	./inc/mc96f8x16.h:159: sfr			T2BDRH		= 0xC7;			// Timer 2 B Data High Register
       0000C3 75*41 C7         [24]  644 	mov	_T2BDRH,#0xc7
-                                    645 ;	./inc/MC96F8316.h:142: sfr			BUZDR		= 0x8F;			// BUZZER Data Register
+                                    645 ;	./inc/mc96f8x16.h:162: sfr			BUZDR		= 0x8F;			// BUZZER Data Register
       0000C6 75*42 8F         [24]  646 	mov	_BUZDR,#0x8f
-                                    647 ;	./inc/MC96F8316.h:143: sfr			BUZCR		= 0x97;			// BUZZER Control Register
+                                    647 ;	./inc/mc96f8x16.h:163: sfr			BUZCR		= 0x97;			// BUZZER Control Register
       0000C9 75*43 97         [24]  648 	mov	_BUZCR,#0x97
-                                    649 ;	./inc/MC96F8316.h:146: sfr			ADCCRL		= 0x9C;			// A/D Converter Control Low Register
+                                    649 ;	./inc/mc96f8x16.h:166: sfr			ADCCRL		= 0x9C;			// A/D Converter Control Low Register
       0000CC 75*44 9C         [24]  650 	mov	_ADCCRL,#0x9c
-                                    651 ;	./inc/MC96F8316.h:147: sfr			ADCCRH		= 0x9D;			// A/D Converter Control High Register
+                                    651 ;	./inc/mc96f8x16.h:167: sfr			ADCCRH		= 0x9D;			// A/D Converter Control High Register
       0000CF 75*45 9D         [24]  652 	mov	_ADCCRH,#0x9d
-                                    653 ;	./inc/MC96F8316.h:148: sfr			ADCDRL		= 0x9E;			// A/D Converter Data Low Register
+                                    653 ;	./inc/mc96f8x16.h:168: sfr			ADCDRL		= 0x9E;			// A/D Converter Data Low Register
       0000D2 75*46 9E         [24]  654 	mov	_ADCDRL,#0x9e
-                                    655 ;	./inc/MC96F8316.h:149: sfr			ADCDRH		= 0x9F;			// A/D Converter Data High Register
+                                    655 ;	./inc/mc96f8x16.h:169: sfr			ADCDRH		= 0x9F;			// A/D Converter Data High Register
       0000D5 75*47 9F         [24]  656 	mov	_ADCDRH,#0x9f
-                                    657 ;	./inc/MC96F8316.h:151: sfr			ADWRCR0		= 0xF2;			// ADC Wake-up Resistor Control Register 0
+                                    657 ;	./inc/mc96f8x16.h:171: sfr			ADWRCR0		= 0xF2;			// ADC Wake-up Resistor Control Register 0
       0000D8 75*48 F2         [24]  658 	mov	_ADWRCR0,#0xf2
-                                    659 ;	./inc/MC96F8316.h:152: sfr			ADWRCR1		= 0xF3;			// ADC Wake-up Resistor Control Register 1
+                                    659 ;	./inc/mc96f8x16.h:172: sfr			ADWRCR1		= 0xF3;			// ADC Wake-up Resistor Control Register 1
       0000DB 75*49 F3         [24]  660 	mov	_ADWRCR1,#0xf3
-                                    661 ;	./inc/MC96F8316.h:153: sfr			ADWRCR2		= 0xF4;			// ADC Wake-up Resistor Control Register 2
+                                    661 ;	./inc/mc96f8x16.h:173: sfr			ADWRCR2		= 0xF4;			// ADC Wake-up Resistor Control Register 2
       0000DE 75*4A F4         [24]  662 	mov	_ADWRCR2,#0xf4
-                                    663 ;	./inc/MC96F8316.h:154: sfr			ADWRCR3		= 0xF5;			// ADC Wake-up Resistor Control Register 3
+                                    663 ;	./inc/mc96f8x16.h:174: sfr			ADWRCR3		= 0xF5;			// ADC Wake-up Resistor Control Register 3
       0000E1 75*4B F5         [24]  664 	mov	_ADWRCR3,#0xf5
-                                    665 ;	./inc/MC96F8316.h:155: sfr			ADWCRL		= 0xF6;			// ADC Wake-up Control Low Register
+                                    665 ;	./inc/mc96f8x16.h:175: sfr			ADWCRL		= 0xF6;			// ADC Wake-up Control Low Register
       0000E4 75*4C F6         [24]  666 	mov	_ADWCRL,#0xf6
-                                    667 ;	./inc/MC96F8316.h:156: sfr			ADWCRH		= 0xF7;			// ADC Wake-up Control High Register
+                                    667 ;	./inc/mc96f8x16.h:176: sfr			ADWCRH		= 0xF7;			// ADC Wake-up Control High Register
       0000E7 75*4D F7         [24]  668 	mov	_ADWCRH,#0xf7
-                                    669 ;	./inc/MC96F8316.h:157: sfr			ADWIFRL		= 0xDC;			// ADC Wake-up Interrupt Flag Low Register
+                                    669 ;	./inc/mc96f8x16.h:177: sfr			ADWIFRL		= 0xDC;			// ADC Wake-up Interrupt Flag Low Register
       0000EA 75*4E DC         [24]  670 	mov	_ADWIFRL,#0xdc
-                                    671 ;	./inc/MC96F8316.h:158: sfr			ADWIFRH		= 0xDD;			// ADC Wake-up Interrupt Flag High Register
+                                    671 ;	./inc/mc96f8x16.h:178: sfr			ADWIFRH		= 0xDD;			// ADC Wake-up Interrupt Flag High Register
       0000ED 75*4F DD         [24]  672 	mov	_ADWIFRH,#0xdd
-                                    673 ;	./inc/MC96F8316.h:161: sfr			SPICR		= 0xB5;			// SPI Control Register
+                                    673 ;	./inc/mc96f8x16.h:181: sfr			SPICR		= 0xB5;			// SPI Control Register
       0000F0 75*50 B5         [24]  674 	mov	_SPICR,#0xb5
-                                    675 ;	./inc/MC96F8316.h:162: sfr			SPIDR		= 0xB6;			// SPI Data Register
+                                    675 ;	./inc/mc96f8x16.h:182: sfr			SPIDR		= 0xB6;			// SPI Data Register
       0000F3 75*51 B6         [24]  676 	mov	_SPIDR,#0xb6
-                                    677 ;	./inc/MC96F8316.h:163: sfr			SPISR		= 0xB7;			// SPI Status Register
+                                    677 ;	./inc/mc96f8x16.h:183: sfr			SPISR		= 0xB7;			// SPI Status Register
       0000F6 75*52 B7         [24]  678 	mov	_SPISR,#0xb7
-                                    679 ;	./inc/MC96F8316.h:166: sfr			UARTCR1		= 0xE2;			// UART Control Register 1
+                                    679 ;	./inc/mc96f8x16.h:186: sfr			UARTCR1		= 0xE2;			// UART Control Register 1
       0000F9 75*53 E2         [24]  680 	mov	_UARTCR1,#0xe2
-                                    681 ;	./inc/MC96F8316.h:167: sfr			UARTCR2		= 0xE3;			// UART Control Register 2
+                                    681 ;	./inc/mc96f8x16.h:187: sfr			UARTCR2		= 0xE3;			// UART Control Register 2
       0000FC 75*54 E3         [24]  682 	mov	_UARTCR2,#0xe3
-                                    683 ;	./inc/MC96F8316.h:168: sfr			UARTCR3		= 0xE4;			// UART Control Register 3
+                                    683 ;	./inc/mc96f8x16.h:188: sfr			UARTCR3		= 0xE4;			// UART Control Register 3
       0000FF 75*55 E4         [24]  684 	mov	_UARTCR3,#0xe4
-                                    685 ;	./inc/MC96F8316.h:169: sfr			UARTST		= 0xE5;			// UART Status Register
+                                    685 ;	./inc/mc96f8x16.h:189: sfr			UARTST		= 0xE5;			// UART Status Register
       000102 75*56 E5         [24]  686 	mov	_UARTST,#0xe5
-                                    687 ;	./inc/MC96F8316.h:170: sfr			UARTBD		= 0xE6;			// UART BaudRate Register
+                                    687 ;	./inc/mc96f8x16.h:190: sfr			UARTBD		= 0xE6;			// UART BaudRate Register
       000105 75*57 E6         [24]  688 	mov	_UARTBD,#0xe6
-                                    689 ;	./inc/MC96F8316.h:171: sfr			UARTDR		= 0xE7;			// UART Data Register
+                                    689 ;	./inc/mc96f8x16.h:191: sfr			UARTDR		= 0xE7;			// UART Data Register
       000108 75*58 E7         [24]  690 	mov	_UARTDR,#0xe7
-                                    691 ;	./inc/MC96F8316.h:174: sfr			I2CCR		= 0xE9;			// I2C Control Register
+                                    691 ;	./inc/mc96f8x16.h:194: sfr			I2CCR		= 0xE9;			// I2C Control Register
       00010B 75*59 E9         [24]  692 	mov	_I2CCR,#0xe9
-                                    693 ;	./inc/MC96F8316.h:175: sfr			I2CSR		= 0xEA;			// I2C Status Register
+                                    693 ;	./inc/mc96f8x16.h:195: sfr			I2CSR		= 0xEA;			// I2C Status Register
       00010E 75*5A EA         [24]  694 	mov	_I2CSR,#0xea
-                                    695 ;	./inc/MC96F8316.h:176: sfr			I2CSAR0		= 0xEB;			// I2C Slave Address 0 Register
+                                    695 ;	./inc/mc96f8x16.h:196: sfr			I2CSAR0		= 0xEB;			// I2C Slave Address 0 Register
       000111 75*5B EB         [24]  696 	mov	_I2CSAR0,#0xeb
-                                    697 ;	./inc/MC96F8316.h:177: sfr			I2CSAR1		= 0xF1;			// I2C Slave Address 1 Register
+                                    697 ;	./inc/mc96f8x16.h:197: sfr			I2CSAR1		= 0xF1;			// I2C Slave Address 1 Register
       000114 75*5C F1         [24]  698 	mov	_I2CSAR1,#0xf1
-                                    699 ;	./inc/MC96F8316.h:178: sfr			I2CDR		= 0xEC;			// I2C Data Register
+                                    699 ;	./inc/mc96f8x16.h:198: sfr			I2CDR		= 0xEC;			// I2C Data Register
       000117 75*5D EC         [24]  700 	mov	_I2CDR,#0xec
-                                    701 ;	./inc/MC96F8316.h:179: sfr			I2CSDHR		= 0xED;			// I2C SDA Hold Time Register
+                                    701 ;	./inc/mc96f8x16.h:199: sfr			I2CSDHR		= 0xED;			// I2C SDA Hold Time Register
       00011A 75*5E ED         [24]  702 	mov	_I2CSDHR,#0xed
-                                    703 ;	./inc/MC96F8316.h:180: sfr			I2CSCLR		= 0xEE;			// I2C SCL Low Period Register
+                                    703 ;	./inc/mc96f8x16.h:200: sfr			I2CSCLR		= 0xEE;			// I2C SCL Low Period Register
       00011D 75*5F EE         [24]  704 	mov	_I2CSCLR,#0xee
-                                    705 ;	./inc/MC96F8316.h:181: sfr			I2CSCHR		= 0xEF;			// I2C SCL High Period Register
+                                    705 ;	./inc/mc96f8x16.h:201: sfr			I2CSCHR		= 0xEF;			// I2C SCL High Period Register
       000120 75*60 EF         [24]  706 	mov	_I2CSCHR,#0xef
-                                    707 ;	./inc/MC96F8316.h:184: sfr			FSADRH		= 0xFA;			// Flash Sector Address High Register
+                                    707 ;	./inc/mc96f8x16.h:204: sfr			FSADRH		= 0xFA;			// Flash Sector Address High Register
       000123 75*61 FA         [24]  708 	mov	_FSADRH,#0xfa
-                                    709 ;	./inc/MC96F8316.h:185: sfr			FSADRM		= 0xFB;			// Flash Sector Address Middle Register
+                                    709 ;	./inc/mc96f8x16.h:205: sfr			FSADRM		= 0xFB;			// Flash Sector Address Middle Register
       000126 75*62 FB         [24]  710 	mov	_FSADRM,#0xfb
-                                    711 ;	./inc/MC96F8316.h:186: sfr			FSADRL		= 0xFC;			// Flash Sector Address Low Register
+                                    711 ;	./inc/mc96f8x16.h:206: sfr			FSADRL		= 0xFC;			// Flash Sector Address Low Register
       000129 75*63 FC         [24]  712 	mov	_FSADRL,#0xfc
-                                    713 ;	./inc/MC96F8316.h:187: sfr			FIDR		= 0xFD;			// Flash Identification Register
+                                    713 ;	./inc/mc96f8x16.h:207: sfr			FIDR		= 0xFD;			// Flash Identification Register
       00012C 75*64 FD         [24]  714 	mov	_FIDR,#0xfd
-                                    715 ;	./inc/MC96F8316.h:188: sfr			FMCR		= 0xFE;			// Flash Mode Control Register
+                                    715 ;	./inc/mc96f8x16.h:208: sfr			FMCR		= 0xFE;			// Flash Mode Control Register
       00012F 75*65 FE         [24]  716 	mov	_FMCR,#0xfe
-                                    717 ;	./inc/MC96F8316.h:190: sfr			ACC			= 0xE0;
+                                    717 ;	./inc/mc96f8x16.h:210: sfr			ACC			= 0xE0;
       000132 75*66 E0         [24]  718 	mov	_ACC,#0xe0
-                                    719 ;	./inc/MC96F8316.h:191: sfr			B			= 0xF0;
+                                    719 ;	./inc/mc96f8x16.h:211: sfr			B			= 0xF0;
       000135 75*67 F0         [24]  720 	mov	_B,#0xf0
-                                    721 ;	./inc/MC96F8316.h:192: sfr			PSW			= 0xD0;
+                                    721 ;	./inc/mc96f8x16.h:212: sfr			PSW			= 0xD0;
       000138 75*68 D0         [24]  722 	mov	_PSW,#0xd0
-                                    723 ;	./inc/MC96F8316.h:193: sfr			SP			= 0x81;
+                                    723 ;	./inc/mc96f8x16.h:213: sfr			SP			= 0x81;
       00013B 75*69 81         [24]  724 	mov	_SP,#0x81
-                                    725 ;	./inc/MC96F8316.h:194: sfr			DPL			= 0x82;
+                                    725 ;	./inc/mc96f8x16.h:214: sfr			DPL			= 0x82;
       00013E 75*6A 82         [24]  726 	mov	_DPL,#0x82
-                                    727 ;	./inc/MC96F8316.h:195: sfr			DPH			= 0x83;
+                                    727 ;	./inc/mc96f8x16.h:215: sfr			DPH			= 0x83;
       000141 75*6B 83         [24]  728 	mov	_DPH,#0x83
-                                    729 ;	./inc/MC96F8316.h:196: sfr			DPL1		= 0x84;
+                                    729 ;	./inc/mc96f8x16.h:216: sfr			DPL1		= 0x84;
       000144 75*6C 84         [24]  730 	mov	_DPL1,#0x84
-                                    731 ;	./inc/MC96F8316.h:197: sfr			DPH1		= 0x85;
+                                    731 ;	./inc/mc96f8x16.h:217: sfr			DPH1		= 0x85;
       000147 75*6D 85         [24]  732 	mov	_DPH1,#0x85
-                                    733 ;	./inc/MC96F8316.h:198: sfr			EO			= 0xA2;			// EXTENDED OPERATION REGISTER
+                                    733 ;	./inc/mc96f8x16.h:218: sfr			EO			= 0xA2;			// EXTENDED OPERATION REGISTER
       00014A 75*6E A2         [24]  734 	mov	_EO,#0xa2
-                                    735 ;	./inc/MC96F8316.h:18: sbit	P00			= 0x80;
+                                    735 ;	./inc/mc96f8x16.h:38: sbit	P00			= 0x80;
                                     736 ;	assignBit
       00014D D2*00            [12]  737 	setb	_P00
-                                    738 ;	./inc/MC96F8316.h:19: sbit	P01			= 0x81;
+                                    738 ;	./inc/mc96f8x16.h:39: sbit	P01			= 0x81;
                                     739 ;	assignBit
       00014F D2*01            [12]  740 	setb	_P01
-                                    741 ;	./inc/MC96F8316.h:20: sbit	P02			= 0x82;
+                                    741 ;	./inc/mc96f8x16.h:40: sbit	P02			= 0x82;
                                     742 ;	assignBit
       000151 D2*02            [12]  743 	setb	_P02
-                                    744 ;	./inc/MC96F8316.h:21: sbit	P03			= 0x83;
+                                    744 ;	./inc/mc96f8x16.h:41: sbit	P03			= 0x83;
                                     745 ;	assignBit
       000153 D2*03            [12]  746 	setb	_P03
-                                    747 ;	./inc/MC96F8316.h:22: sbit	P04			= 0x84;
+                                    747 ;	./inc/mc96f8x16.h:42: sbit	P04			= 0x84;
                                     748 ;	assignBit
       000155 D2*04            [12]  749 	setb	_P04
-                                    750 ;	./inc/MC96F8316.h:23: sbit	P05			= 0x85;
+                                    750 ;	./inc/mc96f8x16.h:43: sbit	P05			= 0x85;
                                     751 ;	assignBit
       000157 D2*05            [12]  752 	setb	_P05
-                                    753 ;	./inc/MC96F8316.h:24: sbit	P06			= 0x86;
+                                    753 ;	./inc/mc96f8x16.h:44: sbit	P06			= 0x86;
                                     754 ;	assignBit
       000159 D2*06            [12]  755 	setb	_P06
-                                    756 ;	./inc/MC96F8316.h:25: sbit	P07			= 0x87;
+                                    756 ;	./inc/mc96f8x16.h:45: sbit	P07			= 0x87;
                                     757 ;	assignBit
       00015B D2*07            [12]  758 	setb	_P07
-                                    759 ;	./inc/MC96F8316.h:33: sbit	P10			= 0x88;
+                                    759 ;	./inc/mc96f8x16.h:53: sbit	P10			= 0x88;
                                     760 ;	assignBit
       00015D D2*08            [12]  761 	setb	_P10
-                                    762 ;	./inc/MC96F8316.h:34: sbit	P11			= 0x89;
+                                    762 ;	./inc/mc96f8x16.h:54: sbit	P11			= 0x89;
                                     763 ;	assignBit
       00015F D2*09            [12]  764 	setb	_P11
-                                    765 ;	./inc/MC96F8316.h:35: sbit	P12			= 0x8A;
+                                    765 ;	./inc/mc96f8x16.h:55: sbit	P12			= 0x8A;
                                     766 ;	assignBit
       000161 D2*0A            [12]  767 	setb	_P12
-                                    768 ;	./inc/MC96F8316.h:36: sbit	P13			= 0x8B;
+                                    768 ;	./inc/mc96f8x16.h:56: sbit	P13			= 0x8B;
                                     769 ;	assignBit
       000163 D2*0B            [12]  770 	setb	_P13
-                                    771 ;	./inc/MC96F8316.h:37: sbit	P14			= 0x8C;
+                                    771 ;	./inc/mc96f8x16.h:57: sbit	P14			= 0x8C;
                                     772 ;	assignBit
       000165 D2*0C            [12]  773 	setb	_P14
-                                    774 ;	./inc/MC96F8316.h:38: sbit	P15			= 0x8D;
+                                    774 ;	./inc/mc96f8x16.h:58: sbit	P15			= 0x8D;
                                     775 ;	assignBit
       000167 D2*0D            [12]  776 	setb	_P15
-                                    777 ;	./inc/MC96F8316.h:39: sbit	P16			= 0x8E;
+                                    777 ;	./inc/mc96f8x16.h:59: sbit	P16			= 0x8E;
                                     778 ;	assignBit
       000169 D2*0E            [12]  779 	setb	_P16
-                                    780 ;	./inc/MC96F8316.h:40: sbit	P17			= 0x8F;
+                                    780 ;	./inc/mc96f8x16.h:60: sbit	P17			= 0x8F;
                                     781 ;	assignBit
       00016B D2*0F            [12]  782 	setb	_P17
-                                    783 ;	./inc/MC96F8316.h:48: sbit	P20			= 0x90;
+                                    783 ;	./inc/mc96f8x16.h:68: sbit	P20			= 0x90;
                                     784 ;	assignBit
       00016D D2*10            [12]  785 	setb	_P20
-                                    786 ;	./inc/MC96F8316.h:49: sbit	P21			= 0x91;
+                                    786 ;	./inc/mc96f8x16.h:69: sbit	P21			= 0x91;
                                     787 ;	assignBit
       00016F D2*11            [12]  788 	setb	_P21
-                                    789 ;	./inc/MC96F8316.h:50: sbit	P22			= 0x92;
+                                    789 ;	./inc/mc96f8x16.h:70: sbit	P22			= 0x92;
                                     790 ;	assignBit
       000171 D2*12            [12]  791 	setb	_P22
-                                    792 ;	./inc/MC96F8316.h:51: sbit	P23			= 0x93;
+                                    792 ;	./inc/mc96f8x16.h:71: sbit	P23			= 0x93;
                                     793 ;	assignBit
       000173 D2*13            [12]  794 	setb	_P23
-                                    795 ;	./inc/MC96F8316.h:52: sbit	P24			= 0x94;
+                                    795 ;	./inc/mc96f8x16.h:72: sbit	P24			= 0x94;
                                     796 ;	assignBit
       000175 D2*14            [12]  797 	setb	_P24
-                                    798 ;	./inc/MC96F8316.h:53: sbit	P25			= 0x95;
+                                    798 ;	./inc/mc96f8x16.h:73: sbit	P25			= 0x95;
                                     799 ;	assignBit
       000177 D2*15            [12]  800 	setb	_P25
-                                    801 ;	./inc/MC96F8316.h:54: sbit	P26			= 0x96;
+                                    801 ;	./inc/mc96f8x16.h:74: sbit	P26			= 0x96;
                                     802 ;	assignBit
       000179 D2*16            [12]  803 	setb	_P26
-                                    804 ;	./inc/MC96F8316.h:55: sbit	P27			= 0x97;
+                                    804 ;	./inc/mc96f8x16.h:75: sbit	P27			= 0x97;
                                     805 ;	assignBit
       00017B D2*17            [12]  806 	setb	_P27
-                                    807 ;	./inc/MC96F8316.h:62: sbit	P30			= 0x98;
+                                    807 ;	./inc/mc96f8x16.h:82: sbit	P30			= 0x98;
                                     808 ;	assignBit
       00017D D2*18            [12]  809 	setb	_P30
-                                    810 ;	./inc/MC96F8316.h:63: sbit	P31			= 0x99;
+                                    810 ;	./inc/mc96f8x16.h:83: sbit	P31			= 0x99;
                                     811 ;	assignBit
       00017F D2*19            [12]  812 	setb	_P31
-                                    813 ;	./inc/MC96F8316.h:64: sbit	P32			= 0x9A;
+                                    813 ;	./inc/mc96f8x16.h:84: sbit	P32			= 0x9A;
                                     814 ;	assignBit
       000181 D2*1A            [12]  815 	setb	_P32
-                                    816 ;	./inc/MC96F8316.h:65: sbit	P33			= 0x9B;
+                                    816 ;	./inc/mc96f8x16.h:85: sbit	P33			= 0x9B;
                                     817 ;	assignBit
       000183 D2*1B            [12]  818 	setb	_P33
-                                    819 ;	./inc/MC96F8316.h:66: sbit	P34			= 0x9C;
+                                    819 ;	./inc/mc96f8x16.h:86: sbit	P34			= 0x9C;
                                     820 ;	assignBit
       000185 D2*1C            [12]  821 	setb	_P34
-                                    822 ;	./inc/MC96F8316.h:67: sbit	P35			= 0x9D;
+                                    822 ;	./inc/mc96f8x16.h:87: sbit	P35			= 0x9D;
                                     823 ;	assignBit
       000187 D2*1D            [12]  824 	setb	_P35
-                                    825 ;	./inc/MC96F8316.h:68: sbit	P36			= 0x9E;
+                                    825 ;	./inc/mc96f8x16.h:88: sbit	P36			= 0x9E;
                                     826 ;	assignBit
       000189 D2*1E            [12]  827 	setb	_P36
-                                    828 ;	./inc/MC96F8316.h:69: sbit	P37			= 0x9F;
+                                    828 ;	./inc/mc96f8x16.h:89: sbit	P37			= 0x9F;
                                     829 ;	assignBit
       00018B D2*1F            [12]  830 	setb	_P37
                                     831 ;--------------------------------------------------------
@@ -842,7 +842,7 @@
                                     842 ;------------------------------------------------------------
                                     843 ;I2C_Conf                  Allocated to registers r5 r6 r7 
                                     844 ;------------------------------------------------------------
-                                    845 ;	src/mc96f8x16_i2c.c:8: void I2C_Config(I2C_Config_Typedef *I2C_Conf)
+                                    845 ;	src/mc96f8x16_i2c.c:7: void I2C_Config(I2C_Config_Typedef *I2C_Conf)
                                     846 ;	-----------------------------------------
                                     847 ;	 function I2C_Config
                                     848 ;	-----------------------------------------
@@ -858,7 +858,7 @@
       000000 AD 82            [24]  858 	mov	r5,dpl
       000002 AE 83            [24]  859 	mov	r6,dph
       000004 AF F0            [24]  860 	mov	r7,b
-                                    861 ;	src/mc96f8x16_i2c.c:10: I2CCR = (I2CCR & ~I2CCR_IMASTER) | ((I2C_Conf->Mode) << 2u);
+                                    861 ;	src/mc96f8x16_i2c.c:9: I2CCR = (I2CCR & ~I2CCR_IMASTER) | ((I2C_Conf->Mode) << 2u);
       000006 74 FB            [12]  862 	mov	a,#0xfb
       000008 55*59            [12]  863 	anl	a,_I2CCR
       00000A FC               [12]  864 	mov	r4,a
@@ -870,7 +870,7 @@
       000016 25 E0            [12]  870 	add	a,acc
       000018 4C               [12]  871 	orl	a,r4
       000019 F5*59            [12]  872 	mov	_I2CCR,a
-                                    873 ;	src/mc96f8x16_i2c.c:11: I2CSDHR = I2C_Conf->HoldTime;
+                                    873 ;	src/mc96f8x16_i2c.c:10: I2CSDHR = I2C_Conf->HoldTime;
       00001B 74 01            [12]  874 	mov	a,#0x01
       00001D 2D               [12]  875 	add	a,r5
       00001E FA               [12]  876 	mov	r2,a
@@ -883,7 +883,7 @@
       000028 8C F0            [24]  883 	mov	b,r4
       00002A 12r00r00         [24]  884 	lcall	__gptrget
       00002D F5*5E            [12]  885 	mov	_I2CSDHR,a
-                                    886 ;	src/mc96f8x16_i2c.c:12: I2CSCLR = (uint8_t)(I2C_Conf->Period);
+                                    886 ;	src/mc96f8x16_i2c.c:11: I2CSCLR = (uint8_t)(I2C_Conf->Period);
       00002F 74 02            [12]  887 	mov	a,#0x02
       000031 2D               [12]  888 	add	a,r5
       000032 FD               [12]  889 	mov	r5,a
@@ -895,7 +895,7 @@
       00003A 8F F0            [24]  895 	mov	b,r7
       00003C 12r00r00         [24]  896 	lcall	__gptrget
       00003F F5*5F            [12]  897 	mov	_I2CSCLR,a
-                                    898 ;	src/mc96f8x16_i2c.c:13: I2CSCHR = (uint8_t)((I2C_Conf->Period) >> 8u);
+                                    898 ;	src/mc96f8x16_i2c.c:12: I2CSCHR = (uint8_t)((I2C_Conf->Period) >> 8u);
       000041 8D 82            [24]  899 	mov	dpl,r5
       000043 8E 83            [24]  900 	mov	dph,r6
       000045 8F F0            [24]  901 	mov	b,r7
@@ -904,9 +904,9 @@
       00004B 12r00r00         [24]  904 	lcall	__gptrget
       00004E FE               [12]  905 	mov	r6,a
       00004F 8E*60            [24]  906 	mov	_I2CSCHR,r6
-                                    907 ;	src/mc96f8x16_i2c.c:14: I2CCR |= (I2CCR_ACKEN | I2CCR_IICEN);
+                                    907 ;	src/mc96f8x16_i2c.c:13: I2CCR |= (I2CCR_ACKEN | I2CCR_IICEN);
       000051 43*59 48         [24]  908 	orl	_I2CCR,#0x48
-                                    909 ;	src/mc96f8x16_i2c.c:15: }
+                                    909 ;	src/mc96f8x16_i2c.c:14: }
       000054 22               [24]  910 	ret
                                     911 ;------------------------------------------------------------
                                     912 ;Allocation info for local variables in function 'I2C_Master_Transmit'
@@ -917,7 +917,7 @@
                                     917 ;DevAddr                   Allocated to registers r7 
                                     918 ;StartTick                 Allocated to registers r5 r6 
                                     919 ;------------------------------------------------------------
-                                    920 ;	src/mc96f8x16_i2c.c:17: HAL_Status I2C_Master_Transmit(uint8_t DevAddr, uint8_t RegAddr, uint8_t Data,  uint16_t Timeout)
+                                    920 ;	src/mc96f8x16_i2c.c:16: HAL_Status I2C_Master_Transmit(uint8_t DevAddr, uint8_t RegAddr, uint8_t Data,  uint16_t Timeout)
                                     921 ;	-----------------------------------------
                                     922 ;	 function I2C_Master_Transmit
                                     923 ;	-----------------------------------------
@@ -925,21 +925,21 @@
       000055 C0*00            [24]  925 	push	_bp
       000057 85 81*00         [24]  926 	mov	_bp,sp
       00005A AF 82            [24]  927 	mov	r7,dpl
-                                    928 ;	src/mc96f8x16_i2c.c:19: uint16_t StartTick = GetTick();
+                                    928 ;	src/mc96f8x16_i2c.c:18: uint16_t StartTick = GetTick();
       00005C C0 07            [24]  929 	push	ar7
       00005E 12r00r00         [24]  930 	lcall	_GetTick
       000061 AD 82            [24]  931 	mov	r5,dpl
       000063 AE 83            [24]  932 	mov	r6,dph
       000065 D0 07            [24]  933 	pop	ar7
-                                    934 ;	src/mc96f8x16_i2c.c:20: I2CDR = (DevAddr << 1u);
+                                    934 ;	src/mc96f8x16_i2c.c:19: I2CDR = (DevAddr << 1u);
       000067 EF               [12]  935 	mov	a,r7
       000068 2F               [12]  936 	add	a,r7
       000069 F5*5D            [12]  937 	mov	_I2CDR,a
-                                    938 ;	src/mc96f8x16_i2c.c:21: while ((I2CSR & I2CSR_BUSY))
+                                    938 ;	src/mc96f8x16_i2c.c:20: while ((I2CSR & I2CSR_BUSY))
       00006B                        939 00103$:
       00006B E5*5A            [12]  940 	mov	a,_I2CSR
       00006D 30 E2 2C         [24]  941 	jnb	acc.2,00105$
-                                    942 ;	src/mc96f8x16_i2c.c:23: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                    942 ;	src/mc96f8x16_i2c.c:22: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       000070 C0 06            [24]  943 	push	ar6
       000072 C0 05            [24]  944 	push	ar5
       000074 E5*00            [12]  945 	mov	a,_bp
@@ -961,17 +961,17 @@
       000091 BF 01 02         [24]  961 	cjne	r7,#0x01,00179$
       000094 80 D5            [24]  962 	sjmp	00103$
       000096                        963 00179$:
-                                    964 ;	src/mc96f8x16_i2c.c:25: return HAL_TIMEOUT;
+                                    964 ;	src/mc96f8x16_i2c.c:24: return HAL_TIMEOUT;
       000096 75 82 02         [24]  965 	mov	dpl,#0x02
       000099 02r01r51         [24]  966 	ljmp	00124$
       00009C                        967 00105$:
-                                    968 ;	src/mc96f8x16_i2c.c:28: I2CCR |= I2CCR_STARTC;  /* Start transmit */
+                                    968 ;	src/mc96f8x16_i2c.c:27: I2CCR |= I2CCR_STARTC;  /* Start transmit */
       00009C 43*59 01         [24]  969 	orl	_I2CCR,#0x01
-                                    970 ;	src/mc96f8x16_i2c.c:29: while(!(I2CSR & I2CSR_RXACK))
+                                    970 ;	src/mc96f8x16_i2c.c:28: while(!(I2CSR & I2CSR_RXACK))
       00009F                        971 00108$:
       00009F E5*5A            [12]  972 	mov	a,_I2CSR
       0000A1 20 E0 2C         [24]  973 	jb	acc.0,00110$
-                                    974 ;	src/mc96f8x16_i2c.c:31: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                    974 ;	src/mc96f8x16_i2c.c:30: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       0000A4 C0 06            [24]  975 	push	ar6
       0000A6 C0 05            [24]  976 	push	ar5
       0000A8 E5*00            [12]  977 	mov	a,_bp
@@ -993,23 +993,23 @@
       0000C5 BF 01 02         [24]  993 	cjne	r7,#0x01,00181$
       0000C8 80 D5            [24]  994 	sjmp	00108$
       0000CA                        995 00181$:
-                                    996 ;	src/mc96f8x16_i2c.c:33: return HAL_TIMEOUT;
+                                    996 ;	src/mc96f8x16_i2c.c:32: return HAL_TIMEOUT;
       0000CA 75 82 02         [24]  997 	mov	dpl,#0x02
       0000CD 02r01r51         [24]  998 	ljmp	00124$
       0000D0                        999 00110$:
-                                   1000 ;	src/mc96f8x16_i2c.c:36: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
+                                   1000 ;	src/mc96f8x16_i2c.c:35: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
       0000D0 E5*5A            [12] 1001 	mov	a,_I2CSR
       0000D2 20 E3 6E         [24] 1002 	jb	acc.3,00122$
-                                   1003 ;	src/mc96f8x16_i2c.c:38: I2CDR = RegAddr;
+                                   1003 ;	src/mc96f8x16_i2c.c:37: I2CDR = RegAddr;
       0000D5 E5*00            [12] 1004 	mov	a,_bp
       0000D7 24 FD            [12] 1005 	add	a,#0xfd
       0000D9 F8               [12] 1006 	mov	r0,a
       0000DA 86*5D            [24] 1007 	mov	_I2CDR,@r0
-                                   1008 ;	src/mc96f8x16_i2c.c:39: while(!(I2CSR & I2CSR_RXACK))
+                                   1008 ;	src/mc96f8x16_i2c.c:38: while(!(I2CSR & I2CSR_RXACK))
       0000DC                       1009 00113$:
       0000DC E5*5A            [12] 1010 	mov	a,_I2CSR
       0000DE 20 E0 2B         [24] 1011 	jb	acc.0,00115$
-                                   1012 ;	src/mc96f8x16_i2c.c:41: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                   1012 ;	src/mc96f8x16_i2c.c:40: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       0000E1 C0 06            [24] 1013 	push	ar6
       0000E3 C0 05            [24] 1014 	push	ar5
       0000E5 E5*00            [12] 1015 	mov	a,_bp
@@ -1031,20 +1031,20 @@
       000102 BF 01 02         [24] 1031 	cjne	r7,#0x01,00184$
       000105 80 D5            [24] 1032 	sjmp	00113$
       000107                       1033 00184$:
-                                   1034 ;	src/mc96f8x16_i2c.c:43: return HAL_TIMEOUT;
+                                   1034 ;	src/mc96f8x16_i2c.c:42: return HAL_TIMEOUT;
       000107 75 82 02         [24] 1035 	mov	dpl,#0x02
       00010A 80 45            [24] 1036 	sjmp	00124$
       00010C                       1037 00115$:
-                                   1038 ;	src/mc96f8x16_i2c.c:46: I2CDR = Data;
+                                   1038 ;	src/mc96f8x16_i2c.c:45: I2CDR = Data;
       00010C E5*00            [12] 1039 	mov	a,_bp
       00010E 24 FC            [12] 1040 	add	a,#0xfc
       000110 F8               [12] 1041 	mov	r0,a
       000111 86*5D            [24] 1042 	mov	_I2CDR,@r0
-                                   1043 ;	src/mc96f8x16_i2c.c:47: while(!(I2CSR & I2CSR_RXACK))
+                                   1043 ;	src/mc96f8x16_i2c.c:46: while(!(I2CSR & I2CSR_RXACK))
       000113                       1044 00118$:
       000113 E5*5A            [12] 1045 	mov	a,_I2CSR
       000115 20 E0 30         [24] 1046 	jb	acc.0,00123$
-                                   1047 ;	src/mc96f8x16_i2c.c:49: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                   1047 ;	src/mc96f8x16_i2c.c:48: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       000118 C0 06            [24] 1048 	push	ar6
       00011A C0 05            [24] 1049 	push	ar5
       00011C E5*00            [12] 1050 	mov	a,_bp
@@ -1066,22 +1066,22 @@
       000139 BF 01 02         [24] 1066 	cjne	r7,#0x01,00186$
       00013C 80 D5            [24] 1067 	sjmp	00118$
       00013E                       1068 00186$:
-                                   1069 ;	src/mc96f8x16_i2c.c:51: return HAL_TIMEOUT;
+                                   1069 ;	src/mc96f8x16_i2c.c:50: return HAL_TIMEOUT;
       00013E 75 82 02         [24] 1070 	mov	dpl,#0x02
       000141 80 0E            [24] 1071 	sjmp	00124$
       000143                       1072 00122$:
-                                   1073 ;	src/mc96f8x16_i2c.c:57: return HAL_BUSY;
+                                   1073 ;	src/mc96f8x16_i2c.c:56: return HAL_BUSY;
       000143 75 82 04         [24] 1074 	mov	dpl,#0x04
       000146 80 09            [24] 1075 	sjmp	00124$
       000148                       1076 00123$:
-                                   1077 ;	src/mc96f8x16_i2c.c:59: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
+                                   1077 ;	src/mc96f8x16_i2c.c:58: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
       000148 43*59 02         [24] 1078 	orl	_I2CCR,#0x02
-                                   1079 ;	src/mc96f8x16_i2c.c:60: I2CSR &= ~(I2CSR_GCALL | I2CSR_TEND | I2CSR_STOPD | I2CSR_SSEL | I2CSR_MLOST);  /* Clear interrupt bits */  
+                                   1079 ;	src/mc96f8x16_i2c.c:59: I2CSR &= ~(I2CSR_GCALL | I2CSR_TEND | I2CSR_STOPD | I2CSR_SSEL | I2CSR_MLOST);  /* Clear interrupt bits */  
       00014B 53*5A 07         [24] 1080 	anl	_I2CSR,#0x07
-                                   1081 ;	src/mc96f8x16_i2c.c:61: return HAL_OK;
+                                   1081 ;	src/mc96f8x16_i2c.c:60: return HAL_OK;
       00014E 75 82 01         [24] 1082 	mov	dpl,#0x01
       000151                       1083 00124$:
-                                   1084 ;	src/mc96f8x16_i2c.c:62: }
+                                   1084 ;	src/mc96f8x16_i2c.c:61: }
       000151 D0*00            [24] 1085 	pop	_bp
       000153 22               [24] 1086 	ret
                                    1087 ;------------------------------------------------------------
@@ -1093,7 +1093,7 @@
                                    1093 ;DevAddr                   Allocated to registers r7 
                                    1094 ;StartTick                 Allocated to registers r5 r6 
                                    1095 ;------------------------------------------------------------
-                                   1096 ;	src/mc96f8x16_i2c.c:64: HAL_Status I2C_Master_Receive(uint8_t DevAddr, uint8_t RegAddr, uint8_t *pData, uint16_t Timeout)
+                                   1096 ;	src/mc96f8x16_i2c.c:63: HAL_Status I2C_Master_Receive(uint8_t DevAddr, uint8_t RegAddr, uint8_t *pData, uint16_t Timeout)
                                    1097 ;	-----------------------------------------
                                    1098 ;	 function I2C_Master_Receive
                                    1099 ;	-----------------------------------------
@@ -1101,24 +1101,24 @@
       000154 C0*00            [24] 1101 	push	_bp
       000156 85 81*00         [24] 1102 	mov	_bp,sp
       000159 AF 82            [24] 1103 	mov	r7,dpl
-                                   1104 ;	src/mc96f8x16_i2c.c:66: uint16_t StartTick = GetTick();
+                                   1104 ;	src/mc96f8x16_i2c.c:65: uint16_t StartTick = GetTick();
       00015B C0 07            [24] 1105 	push	ar7
       00015D 12r00r00         [24] 1106 	lcall	_GetTick
       000160 AD 82            [24] 1107 	mov	r5,dpl
       000162 AE 83            [24] 1108 	mov	r6,dph
       000164 D0 07            [24] 1109 	pop	ar7
-                                   1110 ;	src/mc96f8x16_i2c.c:67: I2CDR = (DevAddr << 1u) | 0x01;
+                                   1110 ;	src/mc96f8x16_i2c.c:66: I2CDR = (DevAddr << 1u) | 0x01;
       000166 EF               [12] 1111 	mov	a,r7
       000167 2F               [12] 1112 	add	a,r7
       000168 FF               [12] 1113 	mov	r7,a
       000169 7C 00            [12] 1114 	mov	r4,#0x00
       00016B 43 07 01         [24] 1115 	orl	ar7,#0x01
       00016E 8F*5D            [24] 1116 	mov	_I2CDR,r7
-                                   1117 ;	src/mc96f8x16_i2c.c:68: while ((I2CSR & I2CSR_BUSY))
+                                   1117 ;	src/mc96f8x16_i2c.c:67: while ((I2CSR & I2CSR_BUSY))
       000170                       1118 00103$:
       000170 E5*5A            [12] 1119 	mov	a,_I2CSR
       000172 30 E2 2C         [24] 1120 	jnb	acc.2,00105$
-                                   1121 ;	src/mc96f8x16_i2c.c:70: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                   1121 ;	src/mc96f8x16_i2c.c:69: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       000175 C0 06            [24] 1122 	push	ar6
       000177 C0 05            [24] 1123 	push	ar5
       000179 E5*00            [12] 1124 	mov	a,_bp
@@ -1140,17 +1140,17 @@
       000196 BF 01 02         [24] 1140 	cjne	r7,#0x01,00179$
       000199 80 D5            [24] 1141 	sjmp	00103$
       00019B                       1142 00179$:
-                                   1143 ;	src/mc96f8x16_i2c.c:72: return HAL_TIMEOUT;
+                                   1143 ;	src/mc96f8x16_i2c.c:71: return HAL_TIMEOUT;
       00019B 75 82 02         [24] 1144 	mov	dpl,#0x02
       00019E 02r02r6C         [24] 1145 	ljmp	00124$
       0001A1                       1146 00105$:
-                                   1147 ;	src/mc96f8x16_i2c.c:75: I2CCR |= I2CCR_STARTC;  /* Start transmit */
+                                   1147 ;	src/mc96f8x16_i2c.c:74: I2CCR |= I2CCR_STARTC;  /* Start transmit */
       0001A1 43*59 01         [24] 1148 	orl	_I2CCR,#0x01
-                                   1149 ;	src/mc96f8x16_i2c.c:76: while(!(I2CSR & I2CSR_RXACK))
+                                   1149 ;	src/mc96f8x16_i2c.c:75: while(!(I2CSR & I2CSR_RXACK))
       0001A4                       1150 00108$:
       0001A4 E5*5A            [12] 1151 	mov	a,_I2CSR
       0001A6 20 E0 2C         [24] 1152 	jb	acc.0,00110$
-                                   1153 ;	src/mc96f8x16_i2c.c:78: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                   1153 ;	src/mc96f8x16_i2c.c:77: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       0001A9 C0 06            [24] 1154 	push	ar6
       0001AB C0 05            [24] 1155 	push	ar5
       0001AD E5*00            [12] 1156 	mov	a,_bp
@@ -1172,25 +1172,25 @@
       0001CA BF 01 02         [24] 1172 	cjne	r7,#0x01,00181$
       0001CD 80 D5            [24] 1173 	sjmp	00108$
       0001CF                       1174 00181$:
-                                   1175 ;	src/mc96f8x16_i2c.c:80: return HAL_TIMEOUT;
+                                   1175 ;	src/mc96f8x16_i2c.c:79: return HAL_TIMEOUT;
       0001CF 75 82 02         [24] 1176 	mov	dpl,#0x02
       0001D2 02r02r6C         [24] 1177 	ljmp	00124$
       0001D5                       1178 00110$:
-                                   1179 ;	src/mc96f8x16_i2c.c:83: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
+                                   1179 ;	src/mc96f8x16_i2c.c:82: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
       0001D5 E5*5A            [12] 1180 	mov	a,_I2CSR
       0001D7 30 E3 03         [24] 1181 	jnb	acc.3,00182$
       0001DA 02r02r5E         [24] 1182 	ljmp	00122$
       0001DD                       1183 00182$:
-                                   1184 ;	src/mc96f8x16_i2c.c:85: I2CDR = RegAddr;
+                                   1184 ;	src/mc96f8x16_i2c.c:84: I2CDR = RegAddr;
       0001DD E5*00            [12] 1185 	mov	a,_bp
       0001DF 24 FD            [12] 1186 	add	a,#0xfd
       0001E1 F8               [12] 1187 	mov	r0,a
       0001E2 86*5D            [24] 1188 	mov	_I2CDR,@r0
-                                   1189 ;	src/mc96f8x16_i2c.c:86: while(!(I2CSR & I2CSR_RXACK))
+                                   1189 ;	src/mc96f8x16_i2c.c:85: while(!(I2CSR & I2CSR_RXACK))
       0001E4                       1190 00113$:
       0001E4 E5*5A            [12] 1191 	mov	a,_I2CSR
       0001E6 20 E0 2B         [24] 1192 	jb	acc.0,00118$
-                                   1193 ;	src/mc96f8x16_i2c.c:88: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                   1193 ;	src/mc96f8x16_i2c.c:87: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       0001E9 C0 06            [24] 1194 	push	ar6
       0001EB C0 05            [24] 1195 	push	ar5
       0001ED E5*00            [12] 1196 	mov	a,_bp
@@ -1212,14 +1212,14 @@
       00020A BF 01 02         [24] 1212 	cjne	r7,#0x01,00184$
       00020D 80 D5            [24] 1213 	sjmp	00113$
       00020F                       1214 00184$:
-                                   1215 ;	src/mc96f8x16_i2c.c:90: return HAL_TIMEOUT;
+                                   1215 ;	src/mc96f8x16_i2c.c:89: return HAL_TIMEOUT;
       00020F 75 82 02         [24] 1216 	mov	dpl,#0x02
-                                   1217 ;	src/mc96f8x16_i2c.c:93: while(!(I2CSR & I2CSR_TEND))
+                                   1217 ;	src/mc96f8x16_i2c.c:92: while(!(I2CSR & I2CSR_TEND))
       000212 80 58            [24] 1218 	sjmp	00124$
       000214                       1219 00118$:
       000214 E5*5A            [12] 1220 	mov	a,_I2CSR
       000216 20 E6 2B         [24] 1221 	jb	acc.6,00120$
-                                   1222 ;	src/mc96f8x16_i2c.c:95: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+                                   1222 ;	src/mc96f8x16_i2c.c:94: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
       000219 C0 06            [24] 1223 	push	ar6
       00021B C0 05            [24] 1224 	push	ar5
       00021D E5*00            [12] 1225 	mov	a,_bp
@@ -1241,11 +1241,11 @@
       00023A BF 01 02         [24] 1241 	cjne	r7,#0x01,00186$
       00023D 80 D5            [24] 1242 	sjmp	00118$
       00023F                       1243 00186$:
-                                   1244 ;	src/mc96f8x16_i2c.c:97: return HAL_TIMEOUT;
+                                   1244 ;	src/mc96f8x16_i2c.c:96: return HAL_TIMEOUT;
       00023F 75 82 02         [24] 1245 	mov	dpl,#0x02
       000242 80 28            [24] 1246 	sjmp	00124$
       000244                       1247 00120$:
-                                   1248 ;	src/mc96f8x16_i2c.c:100: *pData = I2CDR;
+                                   1248 ;	src/mc96f8x16_i2c.c:99: *pData = I2CDR;
       000244 E5*00            [12] 1249 	mov	a,_bp
       000246 24 FA            [12] 1250 	add	a,#0xfa
       000248 F8               [12] 1251 	mov	r0,a
@@ -1261,18 +1261,18 @@
       000259 12r00r00         [24] 1261 	lcall	__gptrput
       00025C 80 05            [24] 1262 	sjmp	00123$
       00025E                       1263 00122$:
-                                   1264 ;	src/mc96f8x16_i2c.c:104: return HAL_BUSY;
+                                   1264 ;	src/mc96f8x16_i2c.c:103: return HAL_BUSY;
       00025E 75 82 04         [24] 1265 	mov	dpl,#0x04
       000261 80 09            [24] 1266 	sjmp	00124$
       000263                       1267 00123$:
-                                   1268 ;	src/mc96f8x16_i2c.c:106: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
+                                   1268 ;	src/mc96f8x16_i2c.c:105: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
       000263 43*59 02         [24] 1269 	orl	_I2CCR,#0x02
-                                   1270 ;	src/mc96f8x16_i2c.c:107: I2CSR &= ~(I2CSR_GCALL | I2CSR_TEND | I2CSR_STOPD | I2CSR_SSEL | I2CSR_MLOST);  /* Clear interrupt bits */  
+                                   1270 ;	src/mc96f8x16_i2c.c:106: I2CSR &= ~(I2CSR_GCALL | I2CSR_TEND | I2CSR_STOPD | I2CSR_SSEL | I2CSR_MLOST);  /* Clear interrupt bits */  
       000266 53*5A 07         [24] 1271 	anl	_I2CSR,#0x07
-                                   1272 ;	src/mc96f8x16_i2c.c:108: return HAL_OK;
+                                   1272 ;	src/mc96f8x16_i2c.c:107: return HAL_OK;
       000269 75 82 01         [24] 1273 	mov	dpl,#0x01
       00026C                       1274 00124$:
-                                   1275 ;	src/mc96f8x16_i2c.c:109: }
+                                   1275 ;	src/mc96f8x16_i2c.c:108: }
       00026C D0*00            [24] 1276 	pop	_bp
       00026E 22               [24] 1277 	ret
                                    1278 	.area CSEG    (CODE)
