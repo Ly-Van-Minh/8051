@@ -28,7 +28,7 @@ $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
-	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
