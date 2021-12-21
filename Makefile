@@ -10,7 +10,7 @@ OBJ_DIR 		= ./obj
 CFLAGS 			= -I$(INC_DIR) --stack-auto --model-large \
 					--xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 \
 					--xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 \
-					--iram-size 0x0100 --xram-size 0x0200 \
+					-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 \
 					--code-size 0x4000 --stack-size 0x40
 # LDFLAGS			= --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 \
 # 					--xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 \
@@ -23,7 +23,7 @@ TARGET 			= all
 PROJECT_NAME	= CHARGECASE_HDX_2968
 #####################################################################
 
-$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).hex $(OBJ_DIR)/$(PROJECT_NAME).bin $(OBJ_DIR)/$(PROJECT_NAME).ihx
+$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).bin
 
 $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
 	objcopy -I ihex -O binary $< $@
