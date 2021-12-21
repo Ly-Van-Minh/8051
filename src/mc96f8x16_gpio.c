@@ -20,7 +20,7 @@ void GPIO_Config(void)
     P2FSR = (P2FSR0 | P2FSR1);    /* Select Pin I2C */
 
     /* Configure P3: P30 as UART_TX, P31 as UART_RX, P33-P37 as Ouputs */
-    P3IO = (P30IO | P33IO | P34IO | P35IO | P36IO | P37IO);
+    P3IO = (uint8_t)(P30IO | P33IO | P34IO | P35IO | P36IO | P37IO);
     P3FSR = P3FSR0;
     // P3PU |= (P30PU | P31PU);
 }

@@ -1,18 +1,5 @@
-make.exe --dry-run --always-make --keep-going --print-directory
+make.exe --dry-run --keep-going --print-directory
 make.exe: Entering directory `c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051'
-sdcc -I./inc --stack-auto --model-large -c src/log.c -o obj/log.rel
-sdcc -I./inc --stack-auto --model-large -c src/main.c -o obj/main.rel
-sdcc -I./inc --stack-auto --model-large -c src/mc96f8x16_cg.c -o obj/mc96f8x16_cg.rel
-sdcc -I./inc --stack-auto --model-large -c src/mc96f8x16_gpio.c -o obj/mc96f8x16_gpio.rel
-sdcc -I./inc --stack-auto --model-large -c src/mc96f8x16_i2c.c -o obj/mc96f8x16_i2c.rel
- 
-sdcc -I./inc --stack-auto --model-large -c src/mc96f8x16_tim.c -o obj/mc96f8x16_tim.rel
- 
-sdcc -I./inc --stack-auto --model-large -c src/mc96f8x16_uart.c -o obj/mc96f8x16_uart.rel
- 
-sdcc -I./inc --stack-auto --model-large -c src/mc96f8x16_wdt.c -o obj/mc96f8x16_wdt.rel
-sdcc -I./inc --stack-auto --model-large --xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 --xstack-loc 0x0100 --data-loc 0x00 --idata-loc 0x30 -Wl-bBSEG=0x20 --iram-size 0x100 --xram-size 0x200 --code-size 0x4000 --stack-size 0x80 obj/log.rel obj/main.rel obj/mc96f8x16_cg.rel obj/mc96f8x16_gpio.rel obj/mc96f8x16_i2c.rel obj/mc96f8x16_tim.rel obj/mc96f8x16_uart.rel obj/mc96f8x16_wdt.rel -o obj/CHARGECASE_HDX_2968.ihx
-packihx obj/CHARGECASE_HDX_2968.ihx > obj/CHARGECASE_HDX_2968.hex
-objcopy -I ihex -O binary obj/CHARGECASE_HDX_2968.hex obj/CHARGECASE_HDX_2968.bin
+make.exe: Nothing to be done for `all'.
 make.exe: Leaving directory `c:/Users/PC DESIGN/Documents/SDCC_ABOV/HDX_2968/8051'
  
