@@ -8,8 +8,8 @@ SRC_DIR 		= ./src
 INC_DIR			= ./inc
 OBJ_DIR 		= ./obj
 LDFLAGS			= --stack-auto --model-large --xram-loc 0x00 --code-loc 0x00 \
-					--stack-loc 0x80 --xstack-loc 0x0100 --data-loc 0x30 \
-					--idata-loc 0xB0 -Wl-bBSEG=0x20 --iram-size 0x0100 \
+					--stack-loc 0x40 --xstack-loc 0x0100 --data-loc 0x30 \
+					--idata-loc 0x80 -Wl-bBSEG=0x20 --iram-size 0x0100 \
 					--xram-size 0x0200 --code-size 0x4000 --stack-size 0x0140
 CFLAGS 			= -I$(INC_DIR) $(LDFLAGS)
 RM 				= rm -rf
