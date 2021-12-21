@@ -2,6 +2,7 @@
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
         "mc96f8x16_i2c.h": "c",
-        "mc96f8x16_cg.h": "c"
+        "mc96f8x16_cg.h": "c",
+        "mc96f8x16.h": "c"
     }
 }

@@ -1,4 +1,3 @@
-#include "MC96F8316.h"
 #include "mc96f8x16.h"
 #include "mc96f8x16_uart.h"
 #include "mc96f8x16_tim.h"

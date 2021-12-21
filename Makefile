@@ -31,7 +31,7 @@ $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
 	$(CC) --stack-auto --model-large $(LDFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
-	$(CC) $(LDFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
