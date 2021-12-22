@@ -19,13 +19,13 @@ TARGET 			= all
 PROJECT_NAME	= HDX_2968
 #####################################################################
 
-$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).ihx
+$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).bin
 
-# $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
-# 	makebin $< > $@
+$(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
+	makebin $< > $@
 
-# $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
-# 	packihx $< > $@
+$(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
+	packihx $< > $@
 
 $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
 	$(CC) $(CFLAGS) $^ -o $@
