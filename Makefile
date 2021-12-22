@@ -16,7 +16,7 @@ RM 				= rm -rf
 SRCS 			= $(wildcard $(SRC_DIR)/*.c)
 RELS			= $(patsubst %.c,$(OBJ_DIR)/%.rel,$(notdir $(SRCS)))
 TARGET 			= all
-PROJECT_NAME	= HDX_2968
+PROJECT_NAME	= HDX2968
 #####################################################################
 
 $(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).bin
