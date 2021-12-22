@@ -22,7 +22,7 @@ PROJECT_NAME	= HDX_2968
 $(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).bin
 
 $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
-	objcopy -I ihex -O binary $< $@
+	makebin $< > $@
 
 $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
