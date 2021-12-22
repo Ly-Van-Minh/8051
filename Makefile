@@ -20,7 +20,7 @@ TARGET 			= all
 PROJECT_NAME	= HDX2968
 #####################################################################
 
-$(TARGET): $(PROJECT_NAME).bin
+$(TARGET): $(PROJECT_NAME).ihx
 
 # $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
 # 	makebin $< > $@
