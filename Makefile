@@ -4,9 +4,9 @@
 #####################################################################
 
 CC 				= sdcc
-SRC_DIR 		= ./src
-INC_DIR			= ./inc
-OBJ_DIR 		= ./obj
+SRC_DIR 		= src
+INC_DIR			= inc
+OBJ_DIR 		= obj
 CFLAGS 			= -I$(INC_DIR) --stack-auto --model-large \
 					--xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 \
 					--xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 \
@@ -28,7 +28,7 @@ $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
 	$(CC) $(CFLAGS) -c $< -o $@
