@@ -17,18 +17,18 @@ RM 				= rm -rf
 SRCS 			= $(wildcard $(SRC_DIR)/*.c)
 RELS			= $(patsubst %.c,$(OBJ_DIR)/%.rel,$(notdir $(SRCS)))
 TARGET 			= all
-PROJECT_NAME	= HDX2968
+PROJECT_NAME	= chargecase
 #####################################################################
 
-$(TARGET): $(PROJECT_NAME).ihx
+$(TARGET): $(OBJ_DIR)/$(PROJECT_NAME).bin
 
-# $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
-# 	makebin $< > $@
+$(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
+	makebin $< > $@
 
-# $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
+$(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
-$(PROJECT_NAME).ihx: $(RELS)
+$(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
