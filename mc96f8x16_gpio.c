@@ -1,4 +1,3 @@
-#include <MC96F8316.h>
 #include "mc96f8x16.h"
 #include "mc96f8x16_gpio.h"
 
@@ -20,7 +19,7 @@ void GPIO_Config(void)
     P2FSR = (P2FSR0 | P2FSR1);    /* Select Pin I2C */
 
     /* Configure P3: P30 as UART_TX, P31 as UART_RX, P33-P37 as Ouputs */
-    P3IO = (P30IO | P33IO | P34IO | P35IO | P36IO | P37IO);
+    P3IO = (uint8_t)(P30IO | P33IO | P34IO | P35IO | P36IO | P37IO);
     P3FSR = P3FSR0;
     // P3PU |= (P30PU | P31PU);
 }
@@ -128,22 +127,22 @@ void GPIOPin_Toggle(OUTPUTPin_t GPIO_Pin)
     switch (GPIO_Pin)
     {
         case GPIO_LED1:
-            P33 = ~P33;
+            P33 = !P33;
             break;
         case GPIO_LED2:
-            P34 = ~P34;
+            P34 = !P34;
             break;
         case GPIO_LED3:
-            P35 = ~P35;
+            P35 = !P35;
             break;
         case GPIO_5V_CNTL:
-            P36 = ~P36;
+            P36 = !P36;
             break;
         case GPIO_DCDC_EN:
-            P37 = ~P37;
+            P37 = !P37;
             break;
         case GPIO_COM_MODE:
-            P14 = ~P14;
+            P14 = !P14;
             break;
         default:
             break;
