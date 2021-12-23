@@ -13,7 +13,7 @@ CFLAGS 			= -I$(INC_DIR)  --stack-auto --model-large \
 					--xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 \
 					-Wl,-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 \
 					--code-size 0x4000 --stack-size 0x40
-LDFLAGS			= -l -m -I -X -C -M -Y -S
+LDFLAGS			= -lmIXCMYS
 RM 				= rm -rf
 SRCS 			= $(wildcard $(SRC_DIR)/*.c)
 RELS			= $(patsubst %.c,$(OBJ_DIR)/%.rel,$(notdir $(SRCS)))
