@@ -4,6 +4,7 @@
 #####################################################################
 
 CC 				= sdcc
+LD				= sdld
 CFLAGS 			= -I.
 RM 				= rm -rf
 SRCS 			= $(wildcard *.c)
@@ -21,7 +22,7 @@ $(PROJECT_NAME).hex: $(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(PROJECT_NAME).ihx: $(RELS)
-	$(CC) $@ $^
+	$(ld) $@ $^
 
 %.rel: %.c %.h
 	$(CC) -c $(CFLAGS) $< -o $@
