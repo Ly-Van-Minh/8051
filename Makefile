@@ -4,6 +4,7 @@
 #####################################################################
 
 CC 				= sdcc
+LD				=sdld
 SRC_DIR 		= src
 INC_DIR			= inc
 OBJ_DIR 		= obj
@@ -29,7 +30,7 @@ $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(LD) $(LDFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
 	$(CC) $(CFLAGS) -c $< -o $@
