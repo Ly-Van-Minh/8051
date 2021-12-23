@@ -5,7 +5,7 @@
 
 CC 				= sdcc
 LD				= sdld
-CFLAGS 			= -I. --stack-auto --model-large \
+CFLAGS 			= -I. -V -mmcs51 --stack-auto --model-large \
 					--xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 \
 					--xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 \
 					-Wl,-bBSEG=0x20 --iram-size 0x0100 --xram-size 0x0200 \
@@ -14,7 +14,7 @@ RM 				= rm -rf
 SRCS 			= $(wildcard *.c)
 RELS			= $(patsubst %.c,%.rel,$(SRCS))
 TARGET 			= all
-PROJECT_NAME	= main
+PROJECT_NAME	= hdx_2968
 #####################################################################
 
 $(TARGET): $(PROJECT_NAME).hex $(PROJECT_NAME).bin
@@ -26,7 +26,7 @@ $(PROJECT_NAME).hex: $(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(PROJECT_NAME).ihx: $(RELS)
-	$(LD) $@ $^
+	$(CC) $(CFLAGS) $< -o $@
 
 %.rel: %.c %.h
 	$(CC) -c $(CFLAGS) $< -o $@
