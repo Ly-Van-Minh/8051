@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.8.0 #10562 (Linux)
+; Version 4.1.14 #12827 (Linux)
 ;--------------------------------------------------------
 	.module mc96f8x16_tim
 	.optsdcc -mmcs51 --model-large
@@ -153,6 +153,7 @@
 	.globl _P0IO
 	.globl _P0
 	.globl _Tick
+	.globl _CheckTimeout_PARM_2
 	.globl _SysTick_Init
 	.globl _GetTick
 	.globl _Delayms
@@ -486,6 +487,14 @@ _P37::
 ; external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
+_Delayms_Timeout_65536_15:
+	.ds 2
+_CheckTimeout_PARM_2:
+	.ds 2
+_CheckTimeout_Start_65536_19:
+	.ds 2
+_CheckTimeout_ret_65536_20:
+	.ds 1
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -861,10 +870,10 @@ _SysTick_Init:
 ;	src/mc96f8x16_tim.c:9: BITCR |= (BITCK_FX_DIV_1024 << 5u) | ((BCK_BIT2_OVFL << 0u) | BITCR_BCLR);
 	orl	_BITCR,#0x2a
 ;	src/mc96f8x16_tim.c:10: IE3 = (IE3 & 0x0F) | (0x10);
-	mov	r6,_IE3
-	anl	ar6,#0x0f
-	orl	ar6,#0x10
-	mov	_IE3,r6
+	mov	a,_IE3
+	anl	a,#0x0f
+	orl	a,#0x10
+	mov	_IE3,a
 ;	src/mc96f8x16_tim.c:11: }
 	ret
 ;------------------------------------------------------------
@@ -896,105 +905,115 @@ _SysTick_ISR:
 	push	acc
 	push	dpl
 	push	dph
+	push	ar7
+	push	ar6
 	push	psw
+	mov	psw,#0x00
 ;	src/mc96f8x16_tim.c:20: Tick++;
 	mov	dptr,#_Tick
 	movx	a,@dptr
-	add	a,#0x01
-	movx	@dptr,a
+	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
-	addc	a,#0x00
+	mov	r7,a
+	mov	dptr,#_Tick
+	mov	a,#0x01
+	add	a,r6
+	movx	@dptr,a
+	clr	a
+	addc	a,r7
+	inc	dptr
 	movx	@dptr,a
 ;	src/mc96f8x16_tim.c:22: BITCR |= BITCR_BCLR;
 	orl	_BITCR,#0x08
 ;	src/mc96f8x16_tim.c:23: }
 	pop	psw
+	pop	ar6
+	pop	ar7
 	pop	dph
 	pop	dpl
 	pop	acc
 	reti
-;	eliminated unneeded mov psw,# (no regs used in bank)
 ;	eliminated unneeded push/pop b
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'Delayms'
 ;------------------------------------------------------------
-;Timeout                   Allocated to registers r6 r7 
-;StartTick                 Allocated to registers r4 r5 
-;sloc0                     Allocated to stack - _bp +1
+;Timeout                   Allocated with name '_Delayms_Timeout_65536_15'
+;StartTick                 Allocated with name '_Delayms_StartTick_65536_16'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_tim.c:25: void Delayms(uint16_t Timeout)
 ;	-----------------------------------------
 ;	 function Delayms
 ;	-----------------------------------------
 _Delayms:
-	push	_bp
-	mov	_bp,sp
-	inc	sp
-	inc	sp
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_Delayms_Timeout_65536_15
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	src/mc96f8x16_tim.c:27: uint16_t StartTick = GetTick();
+	lcall	_GetTick
 	mov	r6,dpl
 	mov	r7,dph
-;	src/mc96f8x16_tim.c:27: uint16_t StartTick = GetTick();
-	push	ar7
-	push	ar6
-	lcall	_GetTick
-	mov	r4,dpl
-	mov	r5,dph
-	pop	ar6
-	pop	ar7
 ;	src/mc96f8x16_tim.c:28: if(StartTick + Timeout > StartTick)
-	mov	a,r6
-	add	a,r4
+	mov	dptr,#_Delayms_Timeout_65536_15
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	mov	a,r4
+	add	a,r6
 	mov	r2,a
-	mov	a,r7
-	addc	a,r5
+	mov	a,r5
+	addc	a,r7
 	mov	r3,a
 	clr	c
-	mov	a,r4
+	mov	a,r6
 	subb	a,r2
-	mov	a,r5
+	mov	a,r7
 	subb	a,r3
 	jnc	00115$
 ;	src/mc96f8x16_tim.c:30: while(GetTick() < StartTick + Timeout);
-	mov	r0,_bp
-	inc	r0
-	mov	a,r6
-	add	a,r4
-	mov	@r0,a
-	mov	a,r7
-	addc	a,r5
-	inc	r0
-	mov	@r0,a
+	mov	a,r4
+	add	a,r6
+	mov	r2,a
+	mov	a,r5
+	addc	a,r7
+	mov	r3,a
 00101$:
+	push	ar3
+	push	ar2
 	lcall	_GetTick
-	mov	r2,dpl
-	mov	r3,dph
-	mov	r0,_bp
-	inc	r0
+	mov	r0,dpl
+	mov	r1,dph
+	pop	ar2
+	pop	ar3
 	clr	c
-	mov	a,r2
-	subb	a,@r0
-	mov	a,r3
-	inc	r0
-	subb	a,@r0
+	mov	a,r0
+	subb	a,r2
+	mov	a,r1
+	subb	a,r3
 	jnc	00111$
 ;	src/mc96f8x16_tim.c:34: while((GetTick() < (Timeout - (0xFFFFU - StartTick))) || (GetTick() > StartTick));
 	sjmp	00101$
 00115$:
 	mov	a,#0xff
 	clr	c
-	subb	a,r4
+	subb	a,r6
 	mov	r2,a
 	mov	a,#0xff
-	subb	a,r5
+	subb	a,r7
 	mov	r3,a
-	mov	a,r6
+	mov	a,r4
 	clr	c
 	subb	a,r2
-	mov	r6,a
-	mov	a,r7
+	mov	r4,a
+	mov	a,r5
 	subb	a,r3
-	mov	r7,a
+	mov	r5,a
 00105$:
 	push	ar7
 	push	ar6
@@ -1009,9 +1028,9 @@ _Delayms:
 	pop	ar7
 	clr	c
 	mov	a,r2
-	subb	a,r6
+	subb	a,r4
 	mov	a,r3
-	subb	a,r7
+	subb	a,r5
 	jc	00105$
 	push	ar7
 	push	ar6
@@ -1025,146 +1044,160 @@ _Delayms:
 	pop	ar6
 	pop	ar7
 	clr	c
-	mov	a,r4
+	mov	a,r6
 	subb	a,r2
-	mov	a,r5
+	mov	a,r7
 	subb	a,r3
 	jc	00105$
 00111$:
 ;	src/mc96f8x16_tim.c:36: }
-	mov	sp,_bp
-	pop	_bp
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'CheckTimeout'
 ;------------------------------------------------------------
-;Timeout                   Allocated to stack - _bp -4
-;Start                     Allocated to stack - _bp +1
-;ret                       Allocated to registers r5 
+;Timeout                   Allocated with name '_CheckTimeout_PARM_2'
+;Start                     Allocated with name '_CheckTimeout_Start_65536_19'
+;ret                       Allocated with name '_CheckTimeout_ret_65536_20'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_tim.c:38: HAL_Status CheckTimeout(uint16_t Start, uint16_t Timeout)
 ;	-----------------------------------------
 ;	 function CheckTimeout
 ;	-----------------------------------------
 _CheckTimeout:
-	push	_bp
-	mov	_bp,sp
-	push	dpl
-	push	dph
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_CheckTimeout_Start_65536_19
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
 ;	src/mc96f8x16_tim.c:41: if(Start + Timeout > Start)
-	mov	r0,_bp
-	inc	r0
-	mov	a,_bp
-	add	a,#0xfc
-	mov	r1,a
-	mov	a,@r1
-	add	a,@r0
+	mov	dptr,#_CheckTimeout_PARM_2
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	dptr,#_CheckTimeout_Start_65536_19
+	movx	a,@dptr
 	mov	r4,a
-	inc	r1
-	mov	a,@r1
-	inc	r0
-	addc	a,@r0
+	inc	dptr
+	movx	a,@dptr
 	mov	r5,a
-	mov	r0,_bp
-	inc	r0
-	clr	c
-	mov	a,@r0
-	subb	a,r4
-	inc	r0
-	mov	a,@r0
-	subb	a,r5
-	jnc	00109$
-;	src/mc96f8x16_tim.c:43: if(GetTick() < (Start + Timeout))
-	lcall	_GetTick
-	mov	r4,dpl
-	mov	r5,dph
-	mov	r0,_bp
-	inc	r0
-	mov	a,_bp
-	add	a,#0xfc
-	mov	r1,a
-	mov	a,@r1
-	add	a,@r0
+	mov	a,r6
+	add	a,r4
 	mov	r2,a
-	inc	r1
-	mov	a,@r1
-	inc	r0
-	addc	a,@r0
+	mov	a,r7
+	addc	a,r5
 	mov	r3,a
 	clr	c
 	mov	a,r4
 	subb	a,r2
 	mov	a,r5
 	subb	a,r3
+	jnc	00109$
+;	src/mc96f8x16_tim.c:43: if(GetTick() < (Start + Timeout))
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_GetTick
+	mov	r2,dpl
+	mov	r3,dph
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+	mov	a,r6
+	add	a,r4
+	mov	r0,a
+	mov	a,r7
+	addc	a,r5
+	mov	r1,a
+	clr	c
+	mov	a,r2
+	subb	a,r0
+	mov	a,r3
+	subb	a,r1
 	jnc	00102$
 ;	src/mc96f8x16_tim.c:45: ret = HAL_OK;
-	mov	r5,#0x01
+	mov	dptr,#_CheckTimeout_ret_65536_20
+	mov	a,#0x01
+	movx	@dptr,a
 	sjmp	00110$
 00102$:
 ;	src/mc96f8x16_tim.c:49: ret = HAL_TIMEOUT;
-	mov	r5,#0x02
+	mov	dptr,#_CheckTimeout_ret_65536_20
+	mov	a,#0x02
+	movx	@dptr,a
 	sjmp	00110$
 00109$:
 ;	src/mc96f8x16_tim.c:54: if((GetTick() < (Timeout - (0xFFFFU - Start))) || (GetTick() > Start))
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
 	lcall	_GetTick
-	mov	r3,dpl
-	mov	r4,dph
-	mov	r0,_bp
-	inc	r0
+	mov	r2,dpl
+	mov	r3,dph
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
 	mov	a,#0xff
 	clr	c
-	subb	a,@r0
-	mov	r2,a
-	mov	a,#0xff
-	inc	r0
-	subb	a,@r0
-	mov	r7,a
-	mov	a,_bp
-	add	a,#0xfc
+	subb	a,r4
 	mov	r0,a
-	mov	a,@r0
+	mov	a,#0xff
+	subb	a,r5
+	mov	r1,a
+	mov	a,r6
 	clr	c
-	subb	a,r2
-	mov	r2,a
-	inc	r0
-	mov	a,@r0
-	subb	a,r7
+	subb	a,r0
+	mov	r6,a
+	mov	a,r7
+	subb	a,r1
 	mov	r7,a
 	clr	c
+	mov	a,r2
+	subb	a,r6
 	mov	a,r3
-	subb	a,r2
-	mov	a,r4
 	subb	a,r7
 	jc	00104$
+	push	ar5
+	push	ar4
 	lcall	_GetTick
 	mov	r6,dpl
 	mov	r7,dph
-	mov	r0,_bp
-	inc	r0
+	pop	ar4
+	pop	ar5
 	clr	c
-	mov	a,@r0
+	mov	a,r4
 	subb	a,r6
-	inc	r0
-	mov	a,@r0
+	mov	a,r5
 	subb	a,r7
 	jnc	00105$
 00104$:
 ;	src/mc96f8x16_tim.c:56: ret = HAL_OK;
-	mov	r5,#0x01
+	mov	dptr,#_CheckTimeout_ret_65536_20
+	mov	a,#0x01
+	movx	@dptr,a
 	sjmp	00110$
 00105$:
 ;	src/mc96f8x16_tim.c:60: ret = HAL_TIMEOUT;
-	mov	r5,#0x02
+	mov	dptr,#_CheckTimeout_ret_65536_20
+	mov	a,#0x02
+	movx	@dptr,a
 00110$:
 ;	src/mc96f8x16_tim.c:63: return ret;
-	mov	dpl,r5
+	mov	dptr,#_CheckTimeout_ret_65536_20
+	movx	a,@dptr
 ;	src/mc96f8x16_tim.c:64: }
-	mov	sp,_bp
-	pop	_bp
+	mov	dpl,a
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area XINIT   (CODE)
 __xinit__Tick:
-	.byte #0x00,#0x00	; 0
+	.byte #0x00, #0x00	; 0
 	.area CABS    (ABS,CODE)

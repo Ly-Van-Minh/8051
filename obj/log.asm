@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.8.0 #10562 (Linux)
+; Version 4.1.14 #12827 (Linux)
 ;--------------------------------------------------------
 	.module log
 	.optsdcc -mmcs51 --model-large
@@ -482,6 +482,8 @@ _P37::
 ; external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
+_putchar_c_65536_18:
+	.ds 2
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -837,7 +839,7 @@ _P37::
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'putchar'
 ;------------------------------------------------------------
-;c                         Allocated to stack - _bp +1
+;c                         Allocated with name '_putchar_c_65536_18'
 ;------------------------------------------------------------
 ;	src/log.c:7: int putchar(int c)
 ;	-----------------------------------------
@@ -852,46 +854,45 @@ _putchar:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-	push	_bp
-	mov	_bp,sp
-	push	dpl
-	push	dph
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_putchar_c_65536_18
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
 ;	src/log.c:9: if(UART_Transmit((uint8_t *)&c, 1, 2000) == HAL_OK)
-	mov	r7,_bp
-	inc	r7
-	mov	r6,#0x00
-	mov	r5,#0x40
-	mov	a,#0xd0
-	push	acc
-	mov	a,#0x07
-	push	acc
+	mov	dptr,#_UART_Transmit_PARM_2
 	mov	a,#0x01
-	push	acc
+	movx	@dptr,a
 	clr	a
-	push	acc
-	mov	dpl,r7
-	mov	dph,r6
-	mov	b,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dptr,#_UART_Transmit_PARM_3
+	mov	a,#0xd0
+	movx	@dptr,a
+	mov	a,#0x07
+	inc	dptr
+	movx	@dptr,a
+	mov	dptr,#_putchar_c_65536_18
+	mov	b,#0x00
 	lcall	_UART_Transmit
 	mov	r7,dpl
-	mov	a,sp
-	add	a,#0xfc
-	mov	sp,a
 	cjne	r7,#0x01,00102$
 ;	src/log.c:11: return c;
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	inc	r0
-	mov	dph,@r0
-	sjmp	00104$
+	mov	dptr,#_putchar_c_65536_18
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+	ret
 00102$:
 ;	src/log.c:15: return -1;
 	mov	dptr,#0xffff
-00104$:
 ;	src/log.c:17: }
-	mov	sp,_bp
-	pop	_bp
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)

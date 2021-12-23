@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.8.0 #10562 (Linux)
+; Version 4.1.14 #12827 (Linux)
 ;--------------------------------------------------------
 	.module main
 	.optsdcc -mmcs51 --model-large
@@ -500,6 +500,10 @@ __start__stack:
 	.area XSEG    (XDATA)
 _Buf::
 	.ds 1
+_main_uart_65536_58:
+	.ds 4
+_main_i2c_65536_58:
+	.ds 6
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -874,8 +878,8 @@ __sdcc_program_startup:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;uart                      Allocated to stack - _bp +1
-;i2c                       Allocated to stack - _bp +5
+;uart                      Allocated with name '_main_uart_65536_58'
+;i2c                       Allocated with name '_main_i2c_65536_58'
 ;------------------------------------------------------------
 ;	src/main.c:20: int main(void)
 ;	-----------------------------------------
@@ -890,88 +894,64 @@ _main:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-	push	_bp
-	mov	a,sp
-	mov	_bp,a
-	add	a,#0x0a
-	mov	sp,a
 ;	src/main.c:25: uart.Baud       = 12;
-	mov	a,_bp
-	inc	a
-	mov	r0,a
-	mov	@r0,#0x0c
+	mov	dptr,#_main_uart_65536_58
+	mov	a,#0x0c
+	movx	@dptr,a
 ;	src/main.c:26: uart.Parity     = UART_NO_PARITY;
-	mov	r7,_bp
-	inc	r7
-	mov	a,r7
-	inc	a
-	mov	r0,a
-	mov	@r0,#0x00
+	mov	dptr,#(_main_uart_65536_58 + 0x0001)
+	clr	a
+	movx	@dptr,a
 ;	src/main.c:27: uart.DataLength = UART_DATA_LEN_8BIT;
-	mov	a,#0x02
-	add	a,r7
-	mov	r0,a
-;	src/main.c:28: uart.StopBits   = UART_1_STOP_BIT;
+	mov	dptr,#(_main_uart_65536_58 + 0x0002)
 	mov	a,#0x03
-	mov	@r0,a
-	add	a,r7
-	mov	r0,a
-	mov	@r0,#0x00
+	movx	@dptr,a
+;	src/main.c:28: uart.StopBits   = UART_1_STOP_BIT;
+	mov	dptr,#(_main_uart_65536_58 + 0x0003)
+	clr	a
+	movx	@dptr,a
 ;	src/main.c:35: cli();
 	anl	_IE,#0x7f
 ;	src/main.c:37: SysClock_Config();
-	push	ar7
 	lcall	_SysClock_Config
-	pop	ar7
 ;	src/main.c:38: UART_Config(&uart);
-	mov	r6,#0x00
-	mov	r5,#0x40
-	mov	dpl,r7
-	mov	dph,r6
-	mov	b,r5
+	mov	dptr,#_main_uart_65536_58
+	mov	b,#0x00
 	lcall	_UART_Config
 ;	src/main.c:39: I2C_Config(&i2c);
-	mov	a,_bp
-	add	a,#0x05
-	mov	r7,a
-	mov	r6,#0x00
-	mov	r5,#0x40
-	mov	dpl,r7
-	mov	dph,r6
-	mov	b,r5
+	mov	dptr,#_main_i2c_65536_58
+	mov	b,#0x00
 	lcall	_I2C_Config
 ;	src/main.c:40: GPIO_Config();
 	lcall	_GPIO_Config
 ;	src/main.c:41: SysTick_Init();
 	lcall	_SysTick_Init
 ;	src/main.c:44: sei();
-	mov	r6,_IE
-	orl	ar6,#0x80
-	mov	_IE,r6
+	orl	_IE,#0x80
 ;	src/main.c:45: GPIOPin_Write(GPIO_LED2, GPIO_SET);
+	mov	dptr,#_GPIOPin_Write_PARM_2
 	mov	a,#0x01
-	push	acc
+	movx	@dptr,a
 	mov	dpl,#0x01
 	lcall	_GPIOPin_Write
-	dec	sp
 ;	src/main.c:46: GPIOPin_Write(GPIO_COM_MODE, GPIO_RESET);
+	mov	dptr,#_GPIOPin_Write_PARM_2
 	clr	a
-	push	acc
+	movx	@dptr,a
 	mov	dpl,#0x05
 	lcall	_GPIOPin_Write
-	dec	sp
 ;	src/main.c:47: GPIOPin_Write(GPIO_DCDC_EN, GPIO_SET);
+	mov	dptr,#_GPIOPin_Write_PARM_2
 	mov	a,#0x01
-	push	acc
+	movx	@dptr,a
 	mov	dpl,#0x04
 	lcall	_GPIOPin_Write
-	dec	sp
 ;	src/main.c:48: GPIOPin_Write(GPIO_5V_CNTL, GPIO_SET);
+	mov	dptr,#_GPIOPin_Write_PARM_2
 	mov	a,#0x01
-	push	acc
+	movx	@dptr,a
 	mov	dpl,#0x03
 	lcall	_GPIOPin_Write
-	dec	sp
 ;	src/main.c:50: while(1)
 00108$:
 ;	src/main.c:63: Delayms(2000);
@@ -987,14 +967,11 @@ _main:
 ;	src/main.c:88: GPIOPin_Toggle(GPIO_LED2);
 	mov	dpl,#0x01
 	lcall	_GPIOPin_Toggle
-	sjmp	00108$
 ;	src/main.c:108: }
-	mov	sp,_bp
-	pop	_bp
-	ret
+	sjmp	00108$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area XINIT   (CODE)
 __xinit__i:
-	.byte #0x00,#0x00	;  0
+	.byte #0x00, #0x00	;  0
 	.area CABS    (ABS,CODE)

@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.8.0 #10562 (Linux)
+; Version 4.1.14 #12827 (Linux)
 ;--------------------------------------------------------
 	.module mc96f8x16_wdt
 	.optsdcc -mmcs51 --model-large
@@ -482,6 +482,8 @@ _P37::
 ; external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
+_WDT_Config_Time_65536_3:
+	.ds 1
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -837,7 +839,7 @@ _P37::
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'WDT_Config'
 ;------------------------------------------------------------
-;Time                      Allocated to registers 
+;Time                      Allocated with name '_WDT_Config_Time_65536_3'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_wdt.c:4: void WDT_Config(uint8_t Time)
 ;	-----------------------------------------
@@ -852,7 +854,12 @@ _WDT_Config:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-	mov	_WDTDR,dpl
+	mov	a,dpl
+	mov	dptr,#_WDT_Config_Time_65536_3
+	movx	@dptr,a
+;	src/mc96f8x16_wdt.c:6: WDTDR = Time;
+	movx	a,@dptr
+	mov	_WDTDR,a
 ;	src/mc96f8x16_wdt.c:7: WDTCR = WDTCK | WDTCL | WDTRSON | WDTEN; 
 	mov	_WDTCR,#0xe2
 ;	src/mc96f8x16_wdt.c:8: }
@@ -866,9 +873,7 @@ _WDT_Config:
 ;	-----------------------------------------
 _WDT_Clear:
 ;	src/mc96f8x16_wdt.c:12: WDTCR |= WDTCL;
-	mov	r6,_WDTCR
-	orl	ar6,#0x20
-	mov	_WDTCR,r6
+	orl	_WDTCR,#0x20
 ;	src/mc96f8x16_wdt.c:13: }
 	ret
 	.area CSEG    (CODE)

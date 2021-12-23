@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.8.0 #10562 (Linux)
+; Version 4.1.14 #12827 (Linux)
 ;--------------------------------------------------------
 	.module mc96f8x16_i2c
 	.optsdcc -mmcs51 --model-large
@@ -153,6 +153,12 @@
 	.globl _P0OD
 	.globl _P0IO
 	.globl _P0
+	.globl _I2C_Master_Receive_PARM_4
+	.globl _I2C_Master_Receive_PARM_3
+	.globl _I2C_Master_Receive_PARM_2
+	.globl _I2C_Master_Transmit_PARM_4
+	.globl _I2C_Master_Transmit_PARM_3
+	.globl _I2C_Master_Transmit_PARM_2
 	.globl _I2C_Config
 	.globl _I2C_Master_Transmit
 	.globl _I2C_Master_Receive
@@ -485,6 +491,24 @@ _P37::
 ; external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
+_I2C_Config_I2C_Conf_65536_23:
+	.ds 3
+_I2C_Master_Transmit_PARM_2:
+	.ds 1
+_I2C_Master_Transmit_PARM_3:
+	.ds 1
+_I2C_Master_Transmit_PARM_4:
+	.ds 2
+_I2C_Master_Transmit_DevAddr_65536_25:
+	.ds 1
+_I2C_Master_Receive_PARM_2:
+	.ds 1
+_I2C_Master_Receive_PARM_3:
+	.ds 3
+_I2C_Master_Receive_PARM_4:
+	.ds 2
+_I2C_Master_Receive_DevAddr_65536_37:
+	.ds 1
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -840,7 +864,7 @@ _P37::
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'I2C_Config'
 ;------------------------------------------------------------
-;I2C_Conf                  Allocated to registers r5 r6 r7 
+;I2C_Conf                  Allocated with name '_I2C_Config_I2C_Conf_65536_23'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_i2c.c:7: void I2C_Config(I2C_Config_Typedef *I2C_Conf)
 ;	-----------------------------------------
@@ -855,55 +879,72 @@ _I2C_Config:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-	mov	r5,dpl
-	mov	r6,dph
 	mov	r7,b
+	mov	r6,dph
+	mov	a,dpl
+	mov	dptr,#_I2C_Config_I2C_Conf_65536_23
+	movx	@dptr,a
+	mov	a,r6
+	inc	dptr
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
 ;	src/mc96f8x16_i2c.c:9: I2CCR = (I2CCR & ~I2CCR_IMASTER) | ((I2C_Conf->Mode) << 2u);
 	mov	a,#0xfb
 	anl	a,_I2CCR
+	mov	r7,a
+	mov	dptr,#_I2C_Config_I2C_Conf_65536_23
+	movx	a,@dptr
 	mov	r4,a
-	mov	dpl,r5
-	mov	dph,r6
-	mov	b,r7
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
 	lcall	__gptrget
 	add	a,acc
 	add	a,acc
-	orl	a,r4
+	orl	a,r7
 	mov	_I2CCR,a
 ;	src/mc96f8x16_i2c.c:10: I2CSDHR = I2C_Conf->HoldTime;
 	mov	a,#0x01
-	add	a,r5
+	add	a,r4
 	mov	r2,a
 	clr	a
-	addc	a,r6
+	addc	a,r5
 	mov	r3,a
-	mov	ar4,r7
+	mov	ar7,r6
 	mov	dpl,r2
 	mov	dph,r3
-	mov	b,r4
+	mov	b,r7
 	lcall	__gptrget
 	mov	_I2CSDHR,a
 ;	src/mc96f8x16_i2c.c:11: I2CSCLR = (uint8_t)(I2C_Conf->Period);
 	mov	a,#0x02
-	add	a,r5
-	mov	r5,a
+	add	a,r4
+	mov	r4,a
 	clr	a
-	addc	a,r6
-	mov	r6,a
-	mov	dpl,r5
-	mov	dph,r6
-	mov	b,r7
+	addc	a,r5
+	mov	r5,a
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
 	lcall	__gptrget
 	mov	_I2CSCLR,a
 ;	src/mc96f8x16_i2c.c:12: I2CSCHR = (uint8_t)((I2C_Conf->Period) >> 8u);
-	mov	dpl,r5
-	mov	dph,r6
-	mov	b,r7
+	mov	dpl,r4
+	mov	dph,r5
+	mov	b,r6
 	lcall	__gptrget
 	inc	dptr
 	lcall	__gptrget
-	mov	r6,a
-	mov	_I2CSCHR,r6
+	mov	r5,a
+	mov	_I2CSCHR,r5
 ;	src/mc96f8x16_i2c.c:13: I2CCR |= (I2CCR_ACKEN | I2CCR_IICEN);
 	orl	_I2CCR,#0x48
 ;	src/mc96f8x16_i2c.c:14: }
@@ -911,168 +952,183 @@ _I2C_Config:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'I2C_Master_Transmit'
 ;------------------------------------------------------------
-;RegAddr                   Allocated to stack - _bp -3
-;Data                      Allocated to stack - _bp -4
-;Timeout                   Allocated to stack - _bp -6
-;DevAddr                   Allocated to registers r7 
-;StartTick                 Allocated to registers r5 r6 
+;RegAddr                   Allocated with name '_I2C_Master_Transmit_PARM_2'
+;Data                      Allocated with name '_I2C_Master_Transmit_PARM_3'
+;Timeout                   Allocated with name '_I2C_Master_Transmit_PARM_4'
+;DevAddr                   Allocated with name '_I2C_Master_Transmit_DevAddr_65536_25'
+;StartTick                 Allocated with name '_I2C_Master_Transmit_StartTick_65536_26'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_i2c.c:16: HAL_Status I2C_Master_Transmit(uint8_t DevAddr, uint8_t RegAddr, uint8_t Data,  uint16_t Timeout)
 ;	-----------------------------------------
 ;	 function I2C_Master_Transmit
 ;	-----------------------------------------
 _I2C_Master_Transmit:
-	push	_bp
-	mov	_bp,sp
-	mov	r7,dpl
+	mov	a,dpl
+	mov	dptr,#_I2C_Master_Transmit_DevAddr_65536_25
+	movx	@dptr,a
 ;	src/mc96f8x16_i2c.c:18: uint16_t StartTick = GetTick();
-	push	ar7
 	lcall	_GetTick
-	mov	r5,dpl
-	mov	r6,dph
-	pop	ar7
+	mov	r6,dpl
+	mov	r7,dph
 ;	src/mc96f8x16_i2c.c:19: I2CDR = (DevAddr << 1u);
-	mov	a,r7
-	add	a,r7
+	mov	dptr,#_I2C_Master_Transmit_DevAddr_65536_25
+	movx	a,@dptr
+	add	a,acc
 	mov	_I2CDR,a
 ;	src/mc96f8x16_i2c.c:20: while ((I2CSR & I2CSR_BUSY))
+	mov	dptr,#_I2C_Master_Transmit_PARM_4
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
 00103$:
 	mov	a,_I2CSR
 	jnb	acc.2,00105$
 ;	src/mc96f8x16_i2c.c:22: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r3,dpl
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00179$
+	pop	ar7
+	cjne	r3,#0x01,00179$
 	sjmp	00103$
 00179$:
 ;	src/mc96f8x16_i2c.c:24: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	ljmp	00124$
+	ret
 00105$:
 ;	src/mc96f8x16_i2c.c:27: I2CCR |= I2CCR_STARTC;  /* Start transmit */
 	orl	_I2CCR,#0x01
 ;	src/mc96f8x16_i2c.c:28: while(!(I2CSR & I2CSR_RXACK))
+	mov	ar2,r4
+	mov	ar3,r5
 00108$:
 	mov	a,_I2CSR
 	jb	acc.0,00110$
 ;	src/mc96f8x16_i2c.c:30: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r2
+	movx	@dptr,a
+	mov	a,r3
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
+	push	ar3
+	push	ar2
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r1,dpl
+	pop	ar2
+	pop	ar3
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00181$
+	pop	ar7
+	cjne	r1,#0x01,00181$
 	sjmp	00108$
 00181$:
 ;	src/mc96f8x16_i2c.c:32: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	ljmp	00124$
+	ret
 00110$:
 ;	src/mc96f8x16_i2c.c:35: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
 	mov	a,_I2CSR
 	jb	acc.3,00122$
 ;	src/mc96f8x16_i2c.c:37: I2CDR = RegAddr;
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	_I2CDR,@r0
+	mov	dptr,#_I2C_Master_Transmit_PARM_2
+	movx	a,@dptr
+	mov	_I2CDR,a
 ;	src/mc96f8x16_i2c.c:38: while(!(I2CSR & I2CSR_RXACK))
+	mov	ar2,r4
+	mov	ar3,r5
 00113$:
 	mov	a,_I2CSR
 	jb	acc.0,00115$
 ;	src/mc96f8x16_i2c.c:40: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r2
+	movx	@dptr,a
+	mov	a,r3
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
+	push	ar3
+	push	ar2
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r1,dpl
+	pop	ar2
+	pop	ar3
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00184$
+	pop	ar7
+	cjne	r1,#0x01,00184$
 	sjmp	00113$
 00184$:
 ;	src/mc96f8x16_i2c.c:42: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	sjmp	00124$
+	ret
 00115$:
 ;	src/mc96f8x16_i2c.c:45: I2CDR = Data;
-	mov	a,_bp
-	add	a,#0xfc
-	mov	r0,a
-	mov	_I2CDR,@r0
+	mov	dptr,#_I2C_Master_Transmit_PARM_3
+	movx	a,@dptr
+	mov	_I2CDR,a
 ;	src/mc96f8x16_i2c.c:46: while(!(I2CSR & I2CSR_RXACK))
 00118$:
 	mov	a,_I2CSR
 	jb	acc.0,00123$
 ;	src/mc96f8x16_i2c.c:48: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r3,dpl
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00186$
+	pop	ar7
+	cjne	r3,#0x01,00186$
 	sjmp	00118$
 00186$:
 ;	src/mc96f8x16_i2c.c:50: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	sjmp	00124$
+	ret
 00122$:
 ;	src/mc96f8x16_i2c.c:56: return HAL_BUSY;
 	mov	dpl,#0x04
-	sjmp	00124$
+	ret
 00123$:
 ;	src/mc96f8x16_i2c.c:58: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
 	orl	_I2CCR,#0x02
@@ -1080,101 +1136,110 @@ _I2C_Master_Transmit:
 	anl	_I2CSR,#0x07
 ;	src/mc96f8x16_i2c.c:60: return HAL_OK;
 	mov	dpl,#0x01
-00124$:
 ;	src/mc96f8x16_i2c.c:61: }
-	pop	_bp
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'I2C_Master_Receive'
 ;------------------------------------------------------------
-;RegAddr                   Allocated to stack - _bp -3
-;pData                     Allocated to stack - _bp -6
-;Timeout                   Allocated to stack - _bp -8
-;DevAddr                   Allocated to registers r7 
-;StartTick                 Allocated to registers r5 r6 
+;RegAddr                   Allocated with name '_I2C_Master_Receive_PARM_2'
+;pData                     Allocated with name '_I2C_Master_Receive_PARM_3'
+;Timeout                   Allocated with name '_I2C_Master_Receive_PARM_4'
+;DevAddr                   Allocated with name '_I2C_Master_Receive_DevAddr_65536_37'
+;StartTick                 Allocated with name '_I2C_Master_Receive_StartTick_65536_38'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_i2c.c:63: HAL_Status I2C_Master_Receive(uint8_t DevAddr, uint8_t RegAddr, uint8_t *pData, uint16_t Timeout)
 ;	-----------------------------------------
 ;	 function I2C_Master_Receive
 ;	-----------------------------------------
 _I2C_Master_Receive:
-	push	_bp
-	mov	_bp,sp
-	mov	r7,dpl
+	mov	a,dpl
+	mov	dptr,#_I2C_Master_Receive_DevAddr_65536_37
+	movx	@dptr,a
 ;	src/mc96f8x16_i2c.c:65: uint16_t StartTick = GetTick();
-	push	ar7
 	lcall	_GetTick
-	mov	r5,dpl
-	mov	r6,dph
-	pop	ar7
+	mov	r6,dpl
+	mov	r7,dph
 ;	src/mc96f8x16_i2c.c:66: I2CDR = (DevAddr << 1u) | 0x01;
-	mov	a,r7
-	add	a,r7
-	mov	r7,a
-	mov	r4,#0x00
-	orl	ar7,#0x01
-	mov	_I2CDR,r7
+	mov	dptr,#_I2C_Master_Receive_DevAddr_65536_37
+	movx	a,@dptr
+	add	a,acc
+	mov	r5,a
+	mov	a,#0x01
+	orl	a,r5
+	mov	_I2CDR,a
 ;	src/mc96f8x16_i2c.c:67: while ((I2CSR & I2CSR_BUSY))
+	mov	dptr,#_I2C_Master_Receive_PARM_4
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
 00103$:
 	mov	a,_I2CSR
 	jnb	acc.2,00105$
 ;	src/mc96f8x16_i2c.c:69: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xf8
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r3,dpl
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00179$
+	pop	ar7
+	cjne	r3,#0x01,00179$
 	sjmp	00103$
 00179$:
 ;	src/mc96f8x16_i2c.c:71: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	ljmp	00124$
+	ret
 00105$:
 ;	src/mc96f8x16_i2c.c:74: I2CCR |= I2CCR_STARTC;  /* Start transmit */
 	orl	_I2CCR,#0x01
 ;	src/mc96f8x16_i2c.c:75: while(!(I2CSR & I2CSR_RXACK))
+	mov	ar2,r4
+	mov	ar3,r5
 00108$:
 	mov	a,_I2CSR
 	jb	acc.0,00110$
 ;	src/mc96f8x16_i2c.c:77: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r2
+	movx	@dptr,a
+	mov	a,r3
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xf8
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
+	push	ar3
+	push	ar2
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r1,dpl
+	pop	ar2
+	pop	ar3
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00181$
+	pop	ar7
+	cjne	r1,#0x01,00181$
 	sjmp	00108$
 00181$:
 ;	src/mc96f8x16_i2c.c:79: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	ljmp	00124$
+	ret
 00110$:
 ;	src/mc96f8x16_i2c.c:82: if(!(I2CSR & I2CSR_MLOST))  /* Check I2C maintains bus mastership */
 	mov	a,_I2CSR
@@ -1182,78 +1247,85 @@ _I2C_Master_Receive:
 	ljmp	00122$
 00182$:
 ;	src/mc96f8x16_i2c.c:84: I2CDR = RegAddr;
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	_I2CDR,@r0
+	mov	dptr,#_I2C_Master_Receive_PARM_2
+	movx	a,@dptr
+	mov	_I2CDR,a
 ;	src/mc96f8x16_i2c.c:85: while(!(I2CSR & I2CSR_RXACK))
+	mov	ar2,r4
+	mov	ar3,r5
 00113$:
 	mov	a,_I2CSR
-	jb	acc.0,00118$
+	jb	acc.0,00137$
 ;	src/mc96f8x16_i2c.c:87: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r2
+	movx	@dptr,a
+	mov	a,r3
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xf8
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
+	push	ar3
+	push	ar2
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r1,dpl
+	pop	ar2
+	pop	ar3
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00184$
+	pop	ar7
+	cjne	r1,#0x01,00184$
 	sjmp	00113$
 00184$:
 ;	src/mc96f8x16_i2c.c:89: return HAL_TIMEOUT;
 	mov	dpl,#0x02
 ;	src/mc96f8x16_i2c.c:92: while(!(I2CSR & I2CSR_TEND))
-	sjmp	00124$
+	ret
+00137$:
 00118$:
 	mov	a,_I2CSR
 	jb	acc.6,00120$
 ;	src/mc96f8x16_i2c.c:94: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,_bp
-	add	a,#0xf8
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r5
-	mov	dph,r6
+	push	ar4
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
+	mov	r3,dpl
+	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00186$
+	pop	ar7
+	cjne	r3,#0x01,00186$
 	sjmp	00118$
 00186$:
 ;	src/mc96f8x16_i2c.c:96: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	sjmp	00124$
+	ret
 00120$:
 ;	src/mc96f8x16_i2c.c:99: *pData = I2CDR;
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	ar5,@r0
-	inc	r0
-	mov	ar6,@r0
-	inc	r0
-	mov	ar7,@r0
+	mov	dptr,#_I2C_Master_Receive_PARM_3
+	movx	a,@dptr
+	mov	r5,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -1263,7 +1335,7 @@ _I2C_Master_Receive:
 00122$:
 ;	src/mc96f8x16_i2c.c:103: return HAL_BUSY;
 	mov	dpl,#0x04
-	sjmp	00124$
+	ret
 00123$:
 ;	src/mc96f8x16_i2c.c:105: I2CCR |= I2CCR_STOPC;   /* Stop transmit */
 	orl	_I2CCR,#0x02
@@ -1271,9 +1343,7 @@ _I2C_Master_Receive:
 	anl	_I2CSR,#0x07
 ;	src/mc96f8x16_i2c.c:107: return HAL_OK;
 	mov	dpl,#0x01
-00124$:
 ;	src/mc96f8x16_i2c.c:108: }
-	pop	_bp
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)

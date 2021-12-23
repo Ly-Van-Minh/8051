@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.8.0 #10562 (Linux)
+; Version 4.1.14 #12827 (Linux)
 ;--------------------------------------------------------
 	.module mc96f8x16_gpio
 	.optsdcc -mmcs51 --model-large
@@ -151,6 +151,7 @@
 	.globl _P0OD
 	.globl _P0IO
 	.globl _P0
+	.globl _GPIOPin_Write_PARM_2
 	.globl _GPIO_Config
 	.globl _GPIOPin_Write
 	.globl _GPIOPin_Read
@@ -484,6 +485,16 @@ _P37::
 ; external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
+_GPIOPin_Write_PARM_2:
+	.ds 1
+_GPIOPin_Write_GPIO_Pin_65536_7:
+	.ds 1
+_GPIOPin_Read_GPIO_Pin_65536_22:
+	.ds 1
+_GPIOPin_Read_ret_65536_23:
+	.ds 1
+_GPIOPin_Toggle_GPIO_Pin_65536_25:
+	.ds 1
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -873,23 +884,22 @@ _GPIO_Config:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'GPIOPin_Write'
 ;------------------------------------------------------------
-;PIN_State                 Allocated to stack - _bp -3
-;GPIO_Pin                  Allocated to registers r7 
+;PIN_State                 Allocated with name '_GPIOPin_Write_PARM_2'
+;GPIO_Pin                  Allocated with name '_GPIOPin_Write_GPIO_Pin_65536_7'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_gpio.c:27: void GPIOPin_Write(OUTPUTPin_t GPIO_Pin, GPIOPin_State PIN_State)
 ;	-----------------------------------------
 ;	 function GPIOPin_Write
 ;	-----------------------------------------
 _GPIOPin_Write:
-	push	_bp
-	mov	_bp,sp
-;	src/mc96f8x16_gpio.c:29: switch (GPIO_Pin)
 	mov	a,dpl
-	mov	r7,a
+	mov	dptr,#_GPIOPin_Write_GPIO_Pin_65536_7
+	movx	@dptr,a
+;	src/mc96f8x16_gpio.c:29: switch (GPIO_Pin)
+	movx	a,@dptr
+	mov  r7,a
 	add	a,#0xff - 0x05
-	jnc	00157$
-	ljmp	00127$
-00157$:
+	jc	00127$
 	mov	a,r7
 	add	a,r7
 ;	src/mc96f8x16_gpio.c:31: case GPIO_LED1:
@@ -904,105 +914,93 @@ _GPIOPin_Write:
 	sjmp	00121$
 00101$:
 ;	src/mc96f8x16_gpio.c:32: if(PIN_State == GPIO_RESET)
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	a,@r0
+	mov	dptr,#_GPIOPin_Write_PARM_2
+	movx	a,@dptr
 	jnz	00103$
 ;	src/mc96f8x16_gpio.c:34: P33 = 0;
 ;	assignBit
 	clr	_P33
-	sjmp	00127$
+	ret
 00103$:
 ;	src/mc96f8x16_gpio.c:38: P33 = 1;
 ;	assignBit
 	setb	_P33
 ;	src/mc96f8x16_gpio.c:40: break;
 ;	src/mc96f8x16_gpio.c:41: case GPIO_LED2:
-	sjmp	00127$
+	ret
 00105$:
 ;	src/mc96f8x16_gpio.c:42: if(PIN_State == GPIO_RESET)
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	a,@r0
+	mov	dptr,#_GPIOPin_Write_PARM_2
+	movx	a,@dptr
 	jnz	00107$
 ;	src/mc96f8x16_gpio.c:44: P34 = 0;
 ;	assignBit
 	clr	_P34
-	sjmp	00127$
+	ret
 00107$:
 ;	src/mc96f8x16_gpio.c:48: P34 = 1;
 ;	assignBit
 	setb	_P34
 ;	src/mc96f8x16_gpio.c:50: break;
 ;	src/mc96f8x16_gpio.c:51: case GPIO_LED3:
-	sjmp	00127$
+	ret
 00109$:
 ;	src/mc96f8x16_gpio.c:52: if(PIN_State == GPIO_RESET)
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	a,@r0
+	mov	dptr,#_GPIOPin_Write_PARM_2
+	movx	a,@dptr
 	jnz	00111$
 ;	src/mc96f8x16_gpio.c:54: P35 = 0;
 ;	assignBit
 	clr	_P35
-	sjmp	00127$
+	ret
 00111$:
 ;	src/mc96f8x16_gpio.c:58: P35 = 1;
 ;	assignBit
 	setb	_P35
 ;	src/mc96f8x16_gpio.c:60: break;
 ;	src/mc96f8x16_gpio.c:61: case GPIO_5V_CNTL:
-	sjmp	00127$
+	ret
 00113$:
 ;	src/mc96f8x16_gpio.c:62: if(PIN_State == GPIO_RESET)
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	a,@r0
+	mov	dptr,#_GPIOPin_Write_PARM_2
+	movx	a,@dptr
 	jnz	00115$
 ;	src/mc96f8x16_gpio.c:64: P36 = 0;
 ;	assignBit
 	clr	_P36
-	sjmp	00127$
+	ret
 00115$:
 ;	src/mc96f8x16_gpio.c:68: P36 = 1;
 ;	assignBit
 	setb	_P36
 ;	src/mc96f8x16_gpio.c:70: break;
 ;	src/mc96f8x16_gpio.c:71: case GPIO_DCDC_EN:
-	sjmp	00127$
+	ret
 00117$:
 ;	src/mc96f8x16_gpio.c:72: if(PIN_State == GPIO_RESET)
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	a,@r0
+	mov	dptr,#_GPIOPin_Write_PARM_2
+	movx	a,@dptr
 	jnz	00119$
 ;	src/mc96f8x16_gpio.c:74: P37 = 0;
 ;	assignBit
 	clr	_P37
-	sjmp	00127$
+	ret
 00119$:
 ;	src/mc96f8x16_gpio.c:78: P37 = 1;
 ;	assignBit
 	setb	_P37
 ;	src/mc96f8x16_gpio.c:80: break;
 ;	src/mc96f8x16_gpio.c:81: case GPIO_COM_MODE:
-	sjmp	00127$
+	ret
 00121$:
 ;	src/mc96f8x16_gpio.c:82: if(PIN_State == GPIO_RESET)
-	mov	a,_bp
-	add	a,#0xfd
-	mov	r0,a
-	mov	a,@r0
+	mov	dptr,#_GPIOPin_Write_PARM_2
+	movx	a,@dptr
 	jnz	00123$
 ;	src/mc96f8x16_gpio.c:84: P14 = 0;
 ;	assignBit
 	clr	_P14
-	sjmp	00127$
+	ret
 00123$:
 ;	src/mc96f8x16_gpio.c:88: P14 = 1;
 ;	assignBit
@@ -1010,24 +1008,29 @@ _GPIOPin_Write:
 ;	src/mc96f8x16_gpio.c:93: }
 00127$:
 ;	src/mc96f8x16_gpio.c:94: }
-	pop	_bp
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'GPIOPin_Read'
 ;------------------------------------------------------------
-;GPIO_Pin                  Allocated to registers r7 
-;ret                       Allocated to registers r6 
+;GPIO_Pin                  Allocated with name '_GPIOPin_Read_GPIO_Pin_65536_22'
+;ret                       Allocated with name '_GPIOPin_Read_ret_65536_23'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_gpio.c:96: GPIOPin_State GPIOPin_Read(OUTPUTPin_t GPIO_Pin)
 ;	-----------------------------------------
 ;	 function GPIOPin_Read
 ;	-----------------------------------------
 _GPIOPin_Read:
-	mov	r7,dpl
+	mov	a,dpl
+	mov	dptr,#_GPIOPin_Read_GPIO_Pin_65536_22
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:98: GPIOPin_State ret = GPIO_RESET;
-	mov	r6,#0x00
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
+	clr	a
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:99: switch (GPIO_Pin)
-	mov	a,r7
+	mov	dptr,#_GPIOPin_Read_GPIO_Pin_65536_22
+	movx	a,@dptr
+	mov  r7,a
 	add	a,#0xff - 0x05
 	jc	00108$
 	mov	a,r7
@@ -1044,74 +1047,85 @@ _GPIOPin_Read:
 	sjmp	00106$
 00101$:
 ;	src/mc96f8x16_gpio.c:102: ret = P33;
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
 	mov	c,_P33
 	clr	a
 	rlc	a
-	mov	r6,a
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:103: break;
 ;	src/mc96f8x16_gpio.c:104: case GPIO_LED2:
 	sjmp	00108$
 00102$:
 ;	src/mc96f8x16_gpio.c:105: ret = P34;
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
 	mov	c,_P34
 	clr	a
 	rlc	a
-	mov	r6,a
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:106: break;
 ;	src/mc96f8x16_gpio.c:107: case GPIO_LED3:
 	sjmp	00108$
 00103$:
 ;	src/mc96f8x16_gpio.c:108: ret = P35;
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
 	mov	c,_P35
 	clr	a
 	rlc	a
-	mov	r6,a
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:109: break;
 ;	src/mc96f8x16_gpio.c:110: case GPIO_5V_CNTL:
 	sjmp	00108$
 00104$:
 ;	src/mc96f8x16_gpio.c:111: ret = P36;
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
 	mov	c,_P36
 	clr	a
 	rlc	a
-	mov	r6,a
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:112: break;
 ;	src/mc96f8x16_gpio.c:113: case GPIO_DCDC_EN:
 	sjmp	00108$
 00105$:
 ;	src/mc96f8x16_gpio.c:114: ret = P37;
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
 	mov	c,_P37
 	clr	a
 	rlc	a
-	mov	r6,a
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:115: break;
 ;	src/mc96f8x16_gpio.c:116: case GPIO_COM_MODE:
 	sjmp	00108$
 00106$:
 ;	src/mc96f8x16_gpio.c:117: ret = P14;
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
 	mov	c,_P14
 	clr	a
 	rlc	a
-	mov	r6,a
+	movx	@dptr,a
 ;	src/mc96f8x16_gpio.c:121: }
 00108$:
 ;	src/mc96f8x16_gpio.c:122: return ret;
-	mov	dpl,r6
+	mov	dptr,#_GPIOPin_Read_ret_65536_23
+	movx	a,@dptr
 ;	src/mc96f8x16_gpio.c:123: }
+	mov	dpl,a
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'GPIOPin_Toggle'
 ;------------------------------------------------------------
-;GPIO_Pin                  Allocated to registers r7 
+;GPIO_Pin                  Allocated with name '_GPIOPin_Toggle_GPIO_Pin_65536_25'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_gpio.c:125: void GPIOPin_Toggle(OUTPUTPin_t GPIO_Pin)
 ;	-----------------------------------------
 ;	 function GPIOPin_Toggle
 ;	-----------------------------------------
 _GPIOPin_Toggle:
-;	src/mc96f8x16_gpio.c:127: switch (GPIO_Pin)
 	mov	a,dpl
-	mov	r7,a
+	mov	dptr,#_GPIOPin_Toggle_GPIO_Pin_65536_25
+	movx	@dptr,a
+;	src/mc96f8x16_gpio.c:127: switch (GPIO_Pin)
+	movx	a,@dptr
+	mov  r7,a
 	add	a,#0xff - 0x05
 	jc	00109$
 	mov	a,r7

@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.8.0 #10562 (Linux)
+; Version 4.1.14 #12827 (Linux)
 ;--------------------------------------------------------
 	.module mc96f8x16_uart
 	.optsdcc -mmcs51 --model-large
@@ -155,6 +155,10 @@
 	.globl _P0IO
 	.globl _P0
 	.globl _RxData
+	.globl _UART_Receive_PARM_3
+	.globl _UART_Receive_PARM_2
+	.globl _UART_Transmit_PARM_3
+	.globl _UART_Transmit_PARM_2
 	.globl _UART_Config
 	.globl _UART_Transmit
 	.globl _UART_Receive
@@ -463,6 +467,14 @@ _P37::
 ; internal ram data
 ;--------------------------------------------------------
 	.area DSEG    (DATA)
+_UART_Transmit_sloc0_1_0:
+	.ds 2
+_UART_Transmit_sloc1_1_0:
+	.ds 3
+_UART_Receive_sloc0_1_0:
+	.ds 2
+_UART_Receive_sloc1_1_0:
+	.ds 3
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -487,6 +499,20 @@ _P37::
 ; external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
+_UART_Config_UART_Conf_65536_12:
+	.ds 3
+_UART_Transmit_PARM_2:
+	.ds 2
+_UART_Transmit_PARM_3:
+	.ds 2
+_UART_Transmit_Buffer_65536_14:
+	.ds 3
+_UART_Receive_PARM_2:
+	.ds 2
+_UART_Receive_PARM_3:
+	.ds 2
+_UART_Receive_Buffer_65536_21:
+	.ds 3
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -844,7 +870,7 @@ _RxData::
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'UART_Config'
 ;------------------------------------------------------------
-;UART_Conf                 Allocated to registers r5 r6 r7 
+;UART_Conf                 Allocated with name '_UART_Config_UART_Conf_65536_12'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_uart.c:8: void UART_Config(UARTConfig_Typedef *UART_Conf)
 ;	-----------------------------------------
@@ -859,59 +885,73 @@ _UART_Config:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	src/mc96f8x16_uart.c:10: UARTBD = UART_Conf->Baud;
-	mov	r5,dpl
-	mov	r6,dph
 	mov	r7,b
+	mov	r6,dph
+	mov	a,dpl
+	mov	dptr,#_UART_Config_UART_Conf_65536_12
+	movx	@dptr,a
+	mov	a,r6
+	inc	dptr
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	src/mc96f8x16_uart.c:10: UARTBD = UART_Conf->Baud;
+	mov	dptr,#_UART_Config_UART_Conf_65536_12
+	movx	a,@dptr
+	mov	r5,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	dpl,r5
+	mov	dph,r6
+	mov	b,r7
 	lcall	__gptrget
 	mov	_UARTBD,a
 ;	src/mc96f8x16_uart.c:11: UARTCR1 = (UARTCR1 & 0x0F) | ((UART_Conf->Parity) << 4u);
-	mov	r3,_UARTCR1
-	anl	ar3,#0x0f
-	mov	r4,#0x00
+	mov	a,_UARTCR1
+	anl	a,#0x0f
+	mov	r4,a
 	mov	a,#0x01
 	add	a,r5
-	mov	r0,a
+	mov	r1,a
 	clr	a
 	addc	a,r6
-	mov	r1,a
-	mov	ar2,r7
-	mov	dpl,r0
-	mov	dph,r1
-	mov	b,r2
+	mov	r2,a
+	mov	ar3,r7
+	mov	dpl,r1
+	mov	dph,r2
+	mov	b,r3
 	lcall	__gptrget
 	swap	a
 	anl	a,#0xf0
-	mov	r2,#0x00
-	orl	ar3,a
-	mov	a,r2
-	orl	ar4,a
-	mov	_UARTCR1,r3
+	orl	a,r4
+	mov	_UARTCR1,a
 ;	src/mc96f8x16_uart.c:12: UARTCR1 = (UARTCR1 & 0xF0) | ((UART_Conf->DataLength) << 1u);
-	mov	r3,_UARTCR1
-	anl	ar3,#0xf0
-	mov	r4,#0x00
+	mov	a,_UARTCR1
+	anl	a,#0xf0
+	mov	r4,a
 	mov	a,#0x02
 	add	a,r5
-	mov	r0,a
+	mov	r1,a
 	clr	a
 	addc	a,r6
-	mov	r1,a
-	mov	ar2,r7
-	mov	dpl,r0
-	mov	dph,r1
-	mov	b,r2
+	mov	r2,a
+	mov	ar3,r7
+	mov	dpl,r1
+	mov	dph,r2
+	mov	b,r3
 	lcall	__gptrget
 	add	a,acc
-	mov	r2,#0x00
-	orl	ar3,a
-	mov	a,r2
-	orl	ar4,a
-	mov	_UARTCR1,r3
+	orl	a,r4
+	mov	_UARTCR1,a
 ;	src/mc96f8x16_uart.c:13: UARTCR3 = (UARTCR3 & 0xF4) | (UART_Conf->StopBits);
-	mov	r3,_UARTCR3
-	anl	ar3,#0xf4
-	mov	r4,#0x00
+	mov	a,_UARTCR3
+	anl	a,#0xf4
+	mov	r4,a
 	mov	a,#0x03
 	add	a,r5
 	mov	r5,a
@@ -922,334 +962,327 @@ _UART_Config:
 	mov	dph,r6
 	mov	b,r7
 	lcall	__gptrget
-	mov	r7,#0x00
-	orl	ar3,a
-	mov	a,r7
-	orl	ar4,a
-	mov	_UARTCR3,r3
+	orl	a,r4
+	mov	_UARTCR3,a
 ;	src/mc96f8x16_uart.c:14: UARTCR2 = (UARTCR2 & 0xD1) | (UARTCR2_RXE | UARTCR2_RXCIE | UARTCR2_TXE | UARTCR2_UARTEN);
-	mov	r6,_UARTCR2
-	anl	ar6,#0xd1
-	orl	ar6,#0x2e
-	mov	_UARTCR2,r6
+	mov	a,_UARTCR2
+	anl	a,#0xd1
+	orl	a,#0x2e
+	mov	_UARTCR2,a
 ;	src/mc96f8x16_uart.c:15: IE1 = (IE1 & 0xF7) | (0x08);
-	mov	r6,_IE1
-	anl	ar6,#0xf7
-	orl	ar6,#0x08
-	mov	_IE1,r6
+	mov	a,_IE1
+	anl	a,#0xf7
+	orl	a,#0x08
+	mov	_IE1,a
 ;	src/mc96f8x16_uart.c:16: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'UART_Transmit'
 ;------------------------------------------------------------
-;Size                      Allocated to stack - _bp -4
-;Timeout                   Allocated to stack - _bp -6
-;Buffer                    Allocated to stack - _bp +1
-;i                         Allocated to stack - _bp +4
-;StartTick                 Allocated to registers r3 r4 
+;sloc0                     Allocated with name '_UART_Transmit_sloc0_1_0'
+;sloc1                     Allocated with name '_UART_Transmit_sloc1_1_0'
+;Size                      Allocated with name '_UART_Transmit_PARM_2'
+;Timeout                   Allocated with name '_UART_Transmit_PARM_3'
+;Buffer                    Allocated with name '_UART_Transmit_Buffer_65536_14'
+;i                         Allocated with name '_UART_Transmit_i_65536_15'
+;StartTick                 Allocated with name '_UART_Transmit_StartTick_65536_15'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_uart.c:18: HAL_Status UART_Transmit(uint8_t *Buffer, uint16_t Size, uint16_t Timeout)
 ;	-----------------------------------------
 ;	 function UART_Transmit
 ;	-----------------------------------------
 _UART_Transmit:
-	push	_bp
-	mov	_bp,sp
-	push	dpl
-	push	dph
-	push	b
-	inc	sp
-	inc	sp
+	mov	r7,b
+	mov	r6,dph
+	mov	a,dpl
+	mov	dptr,#_UART_Transmit_Buffer_65536_14
+	movx	@dptr,a
+	mov	a,r6
+	inc	dptr
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
 ;	src/mc96f8x16_uart.c:21: uint16_t StartTick = GetTick();
 	lcall	_GetTick
-	mov	r3,dpl
-	mov	r4,dph
+	mov	r6,dpl
+	mov	r7,dph
 ;	src/mc96f8x16_uart.c:22: while(Size--)
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	clr	a
-	mov	@r0,a
-	inc	r0
-	mov	@r0,a
-	mov	a,_bp
-	add	a,#0xfc
-	mov	r0,a
-	mov	ar5,@r0
-	inc	r0
-	mov	ar6,@r0
+	mov	dptr,#_UART_Transmit_Buffer_65536_14
+	movx	a,@dptr
+	mov	_UART_Transmit_sloc1_1_0,a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_UART_Transmit_sloc1_1_0 + 1),a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_UART_Transmit_sloc1_1_0 + 2),a
+	mov	r1,#0x00
+	mov	r2,#0x00
+	mov	dptr,#_UART_Transmit_PARM_2
+	movx	a,@dptr
+	mov	_UART_Transmit_sloc0_1_0,a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_UART_Transmit_sloc0_1_0 + 1),a
 00109$:
-	mov	ar2,r5
-	mov	ar7,r6
-	dec	r5
-	cjne	r5,#0xff,00134$
-	dec	r6
+	mov	r0,_UART_Transmit_sloc0_1_0
+	mov	r5,(_UART_Transmit_sloc0_1_0 + 1)
+	dec	_UART_Transmit_sloc0_1_0
+	mov	a,#0xff
+	cjne	a,_UART_Transmit_sloc0_1_0,00134$
+	dec	(_UART_Transmit_sloc0_1_0 + 1)
 00134$:
-	mov	a,r2
-	orl	a,r7
+	mov	a,r0
+	orl	a,r5
 	jnz	00135$
 	ljmp	00111$
 00135$:
 ;	src/mc96f8x16_uart.c:24: if(CheckTimeout(StartTick, Timeout) == HAL_OK)
+	mov	dptr,#_UART_Transmit_PARM_3
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r3
-	mov	dph,r4
+	push	ar2
+	push	ar1
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
-	pop	ar3
+	mov	r3,dpl
+	pop	ar1
+	pop	ar2
 	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00107$
+	pop	ar7
+	cjne	r3,#0x01,00107$
 ;	src/mc96f8x16_uart.c:26: while(!(UARTST & UARTST_UDRE))
 00103$:
 	mov	a,_UARTST
 	jb	acc.7,00105$
 ;	src/mc96f8x16_uart.c:28: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r3
-	mov	dph,r4
+	push	ar2
+	push	ar1
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
-	pop	ar3
+	mov	r3,dpl
+	pop	ar1
+	pop	ar2
 	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00139$
+	pop	ar7
+	cjne	r3,#0x01,00139$
 	sjmp	00103$
 00139$:
 ;	src/mc96f8x16_uart.c:30: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	sjmp	00112$
+	ret
 00105$:
 ;	src/mc96f8x16_uart.c:33: UARTDR = *(Buffer + i);
-	push	ar5
-	push	ar6
-	mov	r0,_bp
-	inc	r0
-	mov	a,_bp
-	add	a,#0x04
-	mov	r1,a
-	mov	a,@r1
-	add	a,@r0
-	mov	r2,a
-	inc	r1
-	mov	a,@r1
-	inc	r0
-	addc	a,@r0
-	mov	r6,a
-	inc	r0
-	mov	ar7,@r0
-	mov	dpl,r2
-	mov	dph,r6
-	mov	b,r7
+	mov	a,r1
+	add	a,_UART_Transmit_sloc1_1_0
+	mov	r3,a
+	mov	a,r2
+	addc	a,(_UART_Transmit_sloc1_1_0 + 1)
+	mov	r4,a
+	mov	r5,(_UART_Transmit_sloc1_1_0 + 2)
+	mov	dpl,r3
+	mov	dph,r4
+	mov	b,r5
 	lcall	__gptrget
 	mov	_UARTDR,a
 ;	src/mc96f8x16_uart.c:34: i++;
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	inc	@r0
-	cjne	@r0,#0x00,00140$
-	inc	r0
-	inc	@r0
+	inc	r1
+	cjne	r1,#0x00,00140$
+	inc	r2
 00140$:
-	pop	ar6
-	pop	ar5
 	ljmp	00109$
 00107$:
 ;	src/mc96f8x16_uart.c:38: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	sjmp	00112$
+	ret
 00111$:
 ;	src/mc96f8x16_uart.c:41: return HAL_OK;
 	mov	dpl,#0x01
-00112$:
 ;	src/mc96f8x16_uart.c:42: }
-	mov	sp,_bp
-	pop	_bp
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'UART_Receive'
 ;------------------------------------------------------------
-;Size                      Allocated to stack - _bp -4
-;Timeout                   Allocated to stack - _bp -6
-;Buffer                    Allocated to stack - _bp +1
-;i                         Allocated to stack - _bp +4
-;StartTick                 Allocated to registers r3 r4 
+;sloc0                     Allocated with name '_UART_Receive_sloc0_1_0'
+;sloc1                     Allocated with name '_UART_Receive_sloc1_1_0'
+;Size                      Allocated with name '_UART_Receive_PARM_2'
+;Timeout                   Allocated with name '_UART_Receive_PARM_3'
+;Buffer                    Allocated with name '_UART_Receive_Buffer_65536_21'
+;i                         Allocated with name '_UART_Receive_i_65536_22'
+;StartTick                 Allocated with name '_UART_Receive_StartTick_65536_22'
 ;------------------------------------------------------------
 ;	src/mc96f8x16_uart.c:44: HAL_Status UART_Receive(uint8_t *Buffer, uint16_t Size, uint16_t Timeout)
 ;	-----------------------------------------
 ;	 function UART_Receive
 ;	-----------------------------------------
 _UART_Receive:
-	push	_bp
-	mov	_bp,sp
-	push	dpl
-	push	dph
-	push	b
-	inc	sp
-	inc	sp
+	mov	r7,b
+	mov	r6,dph
+	mov	a,dpl
+	mov	dptr,#_UART_Receive_Buffer_65536_21
+	movx	@dptr,a
+	mov	a,r6
+	inc	dptr
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
 ;	src/mc96f8x16_uart.c:47: uint16_t StartTick = GetTick();
 	lcall	_GetTick
-	mov	r3,dpl
-	mov	r4,dph
+	mov	r6,dpl
+	mov	r7,dph
 ;	src/mc96f8x16_uart.c:48: while(Size--)
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	clr	a
-	mov	@r0,a
-	inc	r0
-	mov	@r0,a
-	mov	a,_bp
-	add	a,#0xfc
-	mov	r0,a
-	mov	ar5,@r0
-	inc	r0
-	mov	ar6,@r0
+	mov	dptr,#_UART_Receive_Buffer_65536_21
+	movx	a,@dptr
+	mov	_UART_Receive_sloc1_1_0,a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_UART_Receive_sloc1_1_0 + 1),a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_UART_Receive_sloc1_1_0 + 2),a
+	mov	r1,#0x00
+	mov	r2,#0x00
+	mov	dptr,#_UART_Receive_PARM_2
+	movx	a,@dptr
+	mov	_UART_Receive_sloc0_1_0,a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_UART_Receive_sloc0_1_0 + 1),a
 00109$:
-	mov	ar2,r5
-	mov	ar7,r6
-	dec	r5
-	cjne	r5,#0xff,00134$
-	dec	r6
+	mov	r0,_UART_Receive_sloc0_1_0
+	mov	r5,(_UART_Receive_sloc0_1_0 + 1)
+	dec	_UART_Receive_sloc0_1_0
+	mov	a,#0xff
+	cjne	a,_UART_Receive_sloc0_1_0,00134$
+	dec	(_UART_Receive_sloc0_1_0 + 1)
 00134$:
-	mov	a,r2
-	orl	a,r7
+	mov	a,r0
+	orl	a,r5
 	jnz	00135$
 	ljmp	00111$
 00135$:
 ;	src/mc96f8x16_uart.c:50: if(CheckTimeout(StartTick, Timeout) == HAL_OK)
+	mov	dptr,#_UART_Receive_PARM_3
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r3
-	mov	dph,r4
+	push	ar2
+	push	ar1
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
-	pop	ar3
+	mov	r3,dpl
+	pop	ar1
+	pop	ar2
 	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00107$
+	pop	ar7
+	cjne	r3,#0x01,00107$
 ;	src/mc96f8x16_uart.c:52: while(!(UARTST & UARTST_RXC))
 00103$:
 	mov	a,_UARTST
 	jb	acc.5,00105$
 ;	src/mc96f8x16_uart.c:54: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
+	mov	dptr,#_CheckTimeout_PARM_2
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+	mov	dpl,r6
+	mov	dph,r7
+	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
-	mov	a,_bp
-	add	a,#0xfa
-	mov	r0,a
-	mov	a,@r0
-	push	acc
-	inc	r0
-	mov	a,@r0
-	push	acc
-	mov	dpl,r3
-	mov	dph,r4
+	push	ar2
+	push	ar1
 	lcall	_CheckTimeout
-	mov	r7,dpl
-	dec	sp
-	dec	sp
-	pop	ar3
+	mov	r3,dpl
+	pop	ar1
+	pop	ar2
 	pop	ar4
 	pop	ar5
 	pop	ar6
-	cjne	r7,#0x01,00139$
+	pop	ar7
+	cjne	r3,#0x01,00139$
 	sjmp	00103$
 00139$:
 ;	src/mc96f8x16_uart.c:56: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	sjmp	00112$
+	ret
 00105$:
 ;	src/mc96f8x16_uart.c:59: *(Buffer + i) = UARTDR;
-	push	ar5
-	push	ar6
-	mov	r0,_bp
-	inc	r0
-	mov	a,_bp
-	add	a,#0x04
-	mov	r1,a
-	mov	a,@r1
-	add	a,@r0
-	mov	r2,a
-	inc	r1
-	mov	a,@r1
-	inc	r0
-	addc	a,@r0
-	mov	r6,a
-	inc	r0
-	mov	ar7,@r0
-	mov	dpl,r2
-	mov	dph,r6
-	mov	b,r7
+	mov	a,r1
+	add	a,_UART_Receive_sloc1_1_0
+	mov	r3,a
+	mov	a,r2
+	addc	a,(_UART_Receive_sloc1_1_0 + 1)
+	mov	r4,a
+	mov	r5,(_UART_Receive_sloc1_1_0 + 2)
+	mov	dpl,r3
+	mov	dph,r4
+	mov	b,r5
 	mov	a,_UARTDR
 	lcall	__gptrput
 ;	src/mc96f8x16_uart.c:60: i++;
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	inc	@r0
-	cjne	@r0,#0x00,00140$
-	inc	r0
-	inc	@r0
+	inc	r1
+	cjne	r1,#0x00,00140$
+	inc	r2
 00140$:
-	pop	ar6
-	pop	ar5
 	ljmp	00109$
 00107$:
 ;	src/mc96f8x16_uart.c:64: return HAL_TIMEOUT;
 	mov	dpl,#0x02
-	sjmp	00112$
+	ret
 00111$:
 ;	src/mc96f8x16_uart.c:67: return HAL_OK;
 	mov	dpl,#0x01
-00112$:
 ;	src/mc96f8x16_uart.c:68: }
-	mov	sp,_bp
-	pop	_bp
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'UART_Receive_ISR'
@@ -1272,7 +1305,7 @@ _UART_Receive_ISR:
 	pop	acc
 	reti
 ;	eliminated unneeded mov psw,# (no regs used in bank)
-;	eliminated unneeded push/pop psw
+;	eliminated unneeded push/pop not_psw
 ;	eliminated unneeded push/pop b
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
