@@ -17,7 +17,7 @@ ASFLAGS			= -plosgff
 RM 				= rm -rf
 SRCS 			= $(wildcard $(SRC_DIR)/*.c)
 RELS			= $(patsubst %.c,$(OBJ_DIR)/%.rel,$(notdir $(SRCS)))
-RELS			+= $(patsubst %.asm,$(OBJ_DIR)/%.rel,./*.asm)
+RELS			+= $(patsubst %.asm,$(OBJ_DIR)/%.rel,$(notdir ./*.asm))
 TARGET 			= all
 PROJECT_NAME	= chargecase
 #####################################################################
