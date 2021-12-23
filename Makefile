@@ -17,7 +17,7 @@ ASFLAGS			= -qplosgff
 RM 				= rm -rf
 SRCS 			= $(wildcard $(SRC_DIR)/*.c)
 RELS			= $(patsubst %.c,$(OBJ_DIR)/%.rel,$(notdir $(SRCS)))
-RELS			+= $(patsubst %.asm,$(OBJ_DIR)/%.rel,$(wildcard *.asm))
+# RELS			+= $(patsubst %.asm,$(OBJ_DIR)/%.rel,$(wildcard *.asm))
 TARGET 			= all
 PROJECT_NAME	= chargecase
 #####################################################################
@@ -31,13 +31,13 @@ $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) $(notdir $(RELS)) $(LDFLAGS) -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
-$(OBJ_DIR)/%.rel: %.asm
-	$(AS) $(ASFLAGS) $<
+# $(OBJ_DIR)/%.rel: %.asm
+# 	$(AS) $(ASFLAGS) $<
 
 .PHONY: clean
 clean:
