@@ -22,7 +22,7 @@ $(PROJECT_NAME).hex: $(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(PROJECT_NAME).ihx: $(RELS)
-	$(ld) $@ $^
+	$(LD) $@ $^
 
 %.rel: %.c %.h
 	$(CC) -c $(CFLAGS) $< -o $@
