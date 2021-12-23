@@ -28,10 +28,10 @@ $(OBJ_DIR)/$(PROJECT_NAME).bin: $(OBJ_DIR)/$(PROJECT_NAME).hex
 $(OBJ_DIR)/$(PROJECT_NAME).hex: $(OBJ_DIR)/$(PROJECT_NAME).ihx
 	packihx $< > $@
 
-$(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS) | $(OBJ_DIR)
-	$(CC) $(LDFLAGS) $^ -o $@
+$(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS)
+	$(CC) $(LDFLAGS) -o $@ $^
 
-$(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c $(INC_DIR)/%.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 .PHONY: clean
