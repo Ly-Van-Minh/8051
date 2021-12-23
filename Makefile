@@ -8,7 +8,7 @@ LD				= sdld
 SRC_DIR 		= ./src
 INC_DIR			= ./inc
 OBJ_DIR 		= ./obj
-# CFLAGS 			= -I$(INC_DIR)
+CFLAGS 			= -I$(INC_DIR)
 LDFLAGS			= --stack-auto --model-large \
 					--xram-loc 0x00 --code-loc 0x00 --stack-loc 0xB0 \
 					--xstack-loc 0x0100 --data-loc 0x30 --idata-loc 0x80 \
@@ -33,7 +33,7 @@ $(OBJ_DIR)/$(PROJECT_NAME).ihx: $(RELS) | $(OBJ_DIR)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.rel: $(SRC_DIR)/%.c | $(OBJ_DIR) $(INC_DIR)/%.h
-	$(CC) -c $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 .PHONY: clean
 clean:
