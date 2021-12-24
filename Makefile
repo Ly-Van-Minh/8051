@@ -14,7 +14,7 @@ RM 				= rm -rf
 SRCS 			= $(wildcard *.c)
 RELS			= $(patsubst %.c,%.rel,$(SRCS))
 TARGET 			= all
-PROJECT_NAME	= main
+PROJECT_NAME	= hdx2968
 #####################################################################
 
 $(TARGET): $(PROJECT_NAME).hex $(PROJECT_NAME).bin
