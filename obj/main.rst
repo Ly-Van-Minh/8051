@@ -331,8 +331,8 @@
                                     331 ; Stack segment in internal ram 
                                     332 ;--------------------------------------------------------
                                     333 	.area	SSEG
-      000000                        334 __start__stack:
-      000000                        335 	.ds	1
+      000080                        334 __start__stack:
+      000080                        335 	.ds	1
                                     336 
                                     337 ;--------------------------------------------------------
                                     338 ; indirectly addressable internal ram data
@@ -355,12 +355,12 @@
                                     355 ; external ram data
                                     356 ;--------------------------------------------------------
                                     357 	.area XSEG    (XDATA)
-      000000                        358 _Buf::
-      000000                        359 	.ds 1
-      000001                        360 _main_uart_65536_58:
-      000001                        361 	.ds 4
-      000005                        362 _main_i2c_65536_58:
-      000005                        363 	.ds 6
+      000112                        358 _Buf::
+      000112                        359 	.ds 1
+      000113                        360 _main_uart_65536_58:
+      000113                        361 	.ds 4
+      000117                        362 _main_i2c_65536_58:
+      000117                        363 	.ds 6
                                     364 ;--------------------------------------------------------
                                     365 ; absolute external ram data
                                     366 ;--------------------------------------------------------
@@ -369,8 +369,8 @@
                                     369 ; external initialized ram data
                                     370 ;--------------------------------------------------------
                                     371 	.area XISEG   (XDATA)
-      000000                        372 _i::
-      000000                        373 	.ds 2
+      00013B                        372 _i::
+      00013B                        373 	.ds 2
                                     374 	.area HOME    (CODE)
                                     375 	.area GSINIT0 (CODE)
                                     376 	.area GSINIT1 (CODE)
@@ -386,7 +386,7 @@
                                     386 ;--------------------------------------------------------
                                     387 	.area HOME    (CODE)
       000000                        388 __interrupt_vect:
-      000000 02r00r00         [24]  389 	ljmp	__sdcc_gsinit_startup
+      000000 02 00 06         [24]  389 	ljmp	__sdcc_gsinit_startup
                                     390 ;--------------------------------------------------------
                                     391 ; global & static initialisations
                                     392 ;--------------------------------------------------------
@@ -401,14 +401,14 @@
                                     401 	.globl __mcs51_genXRAMCLEAR
                                     402 	.globl __mcs51_genRAMCLEAR
                                     403 	.area GSFINAL (CODE)
-      000000 02r00r03         [24]  404 	ljmp	__sdcc_program_startup
+      00005F 02 00 03         [24]  404 	ljmp	__sdcc_program_startup
                                     405 ;--------------------------------------------------------
                                     406 ; Home
                                     407 ;--------------------------------------------------------
                                     408 	.area HOME    (CODE)
                                     409 	.area HOME    (CODE)
       000003                        410 __sdcc_program_startup:
-      000003 02r00r00         [24]  411 	ljmp	_main
+      000003 02 03 59         [24]  411 	ljmp	_main
                                     412 ;	return from main will return to caller
                                     413 ;--------------------------------------------------------
                                     414 ; code
@@ -424,7 +424,7 @@
                                     424 ;	-----------------------------------------
                                     425 ;	 function main
                                     426 ;	-----------------------------------------
-      000000                        427 _main:
+      000359                        427 _main:
                            000007   428 	ar7 = 0x07
                            000006   429 	ar6 = 0x06
                            000005   430 	ar5 = 0x05
@@ -434,83 +434,83 @@
                            000001   434 	ar1 = 0x01
                            000000   435 	ar0 = 0x00
                                     436 ;	src/main.c:25: uart.Baud       = 12;
-      000000 90r00r01         [24]  437 	mov	dptr,#_main_uart_65536_58
-      000003 74 0C            [12]  438 	mov	a,#0x0c
-      000005 F0               [24]  439 	movx	@dptr,a
+      000359 90 01 13         [24]  437 	mov	dptr,#_main_uart_65536_58
+      00035C 74 0C            [12]  438 	mov	a,#0x0c
+      00035E F0               [24]  439 	movx	@dptr,a
                                     440 ;	src/main.c:26: uart.Parity     = UART_NO_PARITY;
-      000006 90r00r02         [24]  441 	mov	dptr,#(_main_uart_65536_58 + 0x0001)
-      000009 E4               [12]  442 	clr	a
-      00000A F0               [24]  443 	movx	@dptr,a
+      00035F 90 01 14         [24]  441 	mov	dptr,#(_main_uart_65536_58 + 0x0001)
+      000362 E4               [12]  442 	clr	a
+      000363 F0               [24]  443 	movx	@dptr,a
                                     444 ;	src/main.c:27: uart.DataLength = UART_DATA_LEN_8BIT;
-      00000B 90r00r03         [24]  445 	mov	dptr,#(_main_uart_65536_58 + 0x0002)
-      00000E 74 03            [12]  446 	mov	a,#0x03
-      000010 F0               [24]  447 	movx	@dptr,a
+      000364 90 01 15         [24]  445 	mov	dptr,#(_main_uart_65536_58 + 0x0002)
+      000367 74 03            [12]  446 	mov	a,#0x03
+      000369 F0               [24]  447 	movx	@dptr,a
                                     448 ;	src/main.c:28: uart.StopBits   = UART_1_STOP_BIT;
-      000011 90r00r04         [24]  449 	mov	dptr,#(_main_uart_65536_58 + 0x0003)
-      000014 E4               [12]  450 	clr	a
-      000015 F0               [24]  451 	movx	@dptr,a
+      00036A 90 01 16         [24]  449 	mov	dptr,#(_main_uart_65536_58 + 0x0003)
+      00036D E4               [12]  450 	clr	a
+      00036E F0               [24]  451 	movx	@dptr,a
                                     452 ;	src/main.c:35: cli();
-      000016 53 A8 7F         [24]  453 	anl	_IE,#0x7f
+      00036F 53 A8 7F         [24]  453 	anl	_IE,#0x7f
                                     454 ;	src/main.c:37: SysClock_Config();
-      000019 12r00r00         [24]  455 	lcall	_SysClock_Config
+      000372 12 03 D8         [24]  455 	lcall	_SysClock_Config
                                     456 ;	src/main.c:38: UART_Config(&uart);
-      00001C 90r00r01         [24]  457 	mov	dptr,#_main_uart_65536_58
-      00001F 75 F0 00         [24]  458 	mov	b,#0x00
-      000022 12r00r00         [24]  459 	lcall	_UART_Config
+      000375 90 01 13         [24]  457 	mov	dptr,#_main_uart_65536_58
+      000378 75 F0 00         [24]  458 	mov	b,#0x00
+      00037B 12 05 74         [24]  459 	lcall	_UART_Config
                                     460 ;	src/main.c:39: I2C_Config(&i2c);
-      000025 90r00r05         [24]  461 	mov	dptr,#_main_i2c_65536_58
-      000028 75 F0 00         [24]  462 	mov	b,#0x00
-      00002B 12r00r00         [24]  463 	lcall	_I2C_Config
+      00037E 90 01 17         [24]  461 	mov	dptr,#_main_i2c_65536_58
+      000381 75 F0 00         [24]  462 	mov	b,#0x00
+      000384 12 00 62         [24]  463 	lcall	_I2C_Config
                                     464 ;	src/main.c:40: GPIO_Config();
-      00002E 12r00r00         [24]  465 	lcall	_GPIO_Config
+      000387 12 07 BD         [24]  465 	lcall	_GPIO_Config
                                     466 ;	src/main.c:41: SysTick_Init();
-      000031 12r00r00         [24]  467 	lcall	_SysTick_Init
+      00038A 12 03 E0         [24]  467 	lcall	_SysTick_Init
                                     468 ;	src/main.c:44: sei();
-      000034 43 A8 80         [24]  469 	orl	_IE,#0x80
+      00038D 43 A8 80         [24]  469 	orl	_IE,#0x80
                                     470 ;	src/main.c:45: GPIOPin_Write(GPIO_LED2, GPIO_SET);
-      000037 90r00r00         [24]  471 	mov	dptr,#_GPIOPin_Write_PARM_2
-      00003A 74 01            [12]  472 	mov	a,#0x01
-      00003C F0               [24]  473 	movx	@dptr,a
-      00003D 75 82 01         [24]  474 	mov	dpl,#0x01
-      000040 12r00r00         [24]  475 	lcall	_GPIOPin_Write
+      000390 90 01 35         [24]  471 	mov	dptr,#_GPIOPin_Write_PARM_2
+      000393 74 01            [12]  472 	mov	a,#0x01
+      000395 F0               [24]  473 	movx	@dptr,a
+      000396 75 82 01         [24]  474 	mov	dpl,#0x01
+      000399 12 07 D6         [24]  475 	lcall	_GPIOPin_Write
                                     476 ;	src/main.c:46: GPIOPin_Write(GPIO_COM_MODE, GPIO_RESET);
-      000043 90r00r00         [24]  477 	mov	dptr,#_GPIOPin_Write_PARM_2
-      000046 E4               [12]  478 	clr	a
-      000047 F0               [24]  479 	movx	@dptr,a
-      000048 75 82 05         [24]  480 	mov	dpl,#0x05
-      00004B 12r00r00         [24]  481 	lcall	_GPIOPin_Write
+      00039C 90 01 35         [24]  477 	mov	dptr,#_GPIOPin_Write_PARM_2
+      00039F E4               [12]  478 	clr	a
+      0003A0 F0               [24]  479 	movx	@dptr,a
+      0003A1 75 82 05         [24]  480 	mov	dpl,#0x05
+      0003A4 12 07 D6         [24]  481 	lcall	_GPIOPin_Write
                                     482 ;	src/main.c:47: GPIOPin_Write(GPIO_DCDC_EN, GPIO_SET);
-      00004E 90r00r00         [24]  483 	mov	dptr,#_GPIOPin_Write_PARM_2
-      000051 74 01            [12]  484 	mov	a,#0x01
-      000053 F0               [24]  485 	movx	@dptr,a
-      000054 75 82 04         [24]  486 	mov	dpl,#0x04
-      000057 12r00r00         [24]  487 	lcall	_GPIOPin_Write
+      0003A7 90 01 35         [24]  483 	mov	dptr,#_GPIOPin_Write_PARM_2
+      0003AA 74 01            [12]  484 	mov	a,#0x01
+      0003AC F0               [24]  485 	movx	@dptr,a
+      0003AD 75 82 04         [24]  486 	mov	dpl,#0x04
+      0003B0 12 07 D6         [24]  487 	lcall	_GPIOPin_Write
                                     488 ;	src/main.c:48: GPIOPin_Write(GPIO_5V_CNTL, GPIO_SET);
-      00005A 90r00r00         [24]  489 	mov	dptr,#_GPIOPin_Write_PARM_2
-      00005D 74 01            [12]  490 	mov	a,#0x01
-      00005F F0               [24]  491 	movx	@dptr,a
-      000060 75 82 03         [24]  492 	mov	dpl,#0x03
-      000063 12r00r00         [24]  493 	lcall	_GPIOPin_Write
+      0003B3 90 01 35         [24]  489 	mov	dptr,#_GPIOPin_Write_PARM_2
+      0003B6 74 01            [12]  490 	mov	a,#0x01
+      0003B8 F0               [24]  491 	movx	@dptr,a
+      0003B9 75 82 03         [24]  492 	mov	dpl,#0x03
+      0003BC 12 07 D6         [24]  493 	lcall	_GPIOPin_Write
                                     494 ;	src/main.c:50: while(1)
-      000066                        495 00108$:
+      0003BF                        495 00108$:
                                     496 ;	src/main.c:63: Delayms(2000);
-      000066 90 07 D0         [24]  497 	mov	dptr,#0x07d0
-      000069 12r00r00         [24]  498 	lcall	_Delayms
+      0003BF 90 07 D0         [24]  497 	mov	dptr,#0x07d0
+      0003C2 12 04 2D         [24]  498 	lcall	_Delayms
                                     499 ;	src/main.c:64: UARTCR2 = (UARTCR2 & (~UARTCR2_RXE));
-      00006C 53 E3 FB         [24]  500 	anl	_UARTCR2,#0xfb
+      0003C5 53 E3 FB         [24]  500 	anl	_UARTCR2,#0xfb
                                     501 ;	src/main.c:74: UARTCR2 = ((UARTCR2 & (~UARTCR2_RXE)) | UARTCR2_RXE);
-      00006F 74 FB            [12]  502 	mov	a,#0xfb
-      000071 55 E3            [12]  503 	anl	a,_UARTCR2
-      000073 44 04            [12]  504 	orl	a,#0x04
-      000075 F5 E3            [12]  505 	mov	_UARTCR2,a
+      0003C8 74 FB            [12]  502 	mov	a,#0xfb
+      0003CA 55 E3            [12]  503 	anl	a,_UARTCR2
+      0003CC 44 04            [12]  504 	orl	a,#0x04
+      0003CE F5 E3            [12]  505 	mov	_UARTCR2,a
                                     506 ;	src/main.c:88: GPIOPin_Toggle(GPIO_LED2);
-      000077 75 82 01         [24]  507 	mov	dpl,#0x01
-      00007A 12r00r00         [24]  508 	lcall	_GPIOPin_Toggle
+      0003D0 75 82 01         [24]  507 	mov	dpl,#0x01
+      0003D3 12 08 A3         [24]  508 	lcall	_GPIOPin_Toggle
                                     509 ;	src/main.c:108: }
-      00007D 80 E7            [24]  510 	sjmp	00108$
+      0003D6 80 E7            [24]  510 	sjmp	00108$
                                     511 	.area CSEG    (CODE)
                                     512 	.area CONST   (CODE)
                                     513 	.area XINIT   (CODE)
-      000000                        514 __xinit__i:
-      000000 00 00                  515 	.byte #0x00, #0x00	;  0
+      00090E                        514 __xinit__i:
+      00090E 00 00                  515 	.byte #0x00, #0x00	;  0
                                     516 	.area CABS    (ABS,CODE)

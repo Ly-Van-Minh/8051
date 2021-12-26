@@ -24,198 +24,194 @@ typedef enum
     HAL_BUSY
 } HAL_Status;
 
-#define		cli()		do{IE &= ~0x80;}while(0)
-#define		sei()		do{IE |=  0x80;}while(0)
-#define		nop()	\
-			__asm 	\
-			nop		\
-			__endasm
+__sfr __at (0x80)   P0;             /* P0 Data Register */
+    __sbit __at (0x80)  P00;
+    __sbit __at (0x81)  P01;
+    __sbit __at (0x82)  P02;
+    __sbit __at (0x83)  P03;
+    __sbit __at (0x84)  P04;
+    __sbit __at (0x85)  P05;
+    __sbit __at (0x86)  P06;
+    __sbit __at (0x87)  P07;
 
-#define sfr				__sfr
-#define sbit			__sbit
+__sfr __at (0xA1)   P0IO;           /* P0 Direction Register */
+__sfr __at (0x91)   P0OD;           /* P0 Open-drain Selection Register */
+__sfr __at (0xAC)   P0PU;           /* P0 Pull-up Resistor Selection Register */
+__sfr __at (0xDE)   P03DB;          /* P0/P3 Debounce Enable Register */
 
-sfr			P0			= 0x80;			// P0 Data Register
-	sbit	P00			= 0x80;
-	sbit	P01			= 0x81;
-	sbit	P02			= 0x82;
-	sbit	P03			= 0x83;
-	sbit	P04			= 0x84;
-	sbit	P05			= 0x85;
-	sbit	P06			= 0x86;
-	sbit	P07			= 0x87;
-
-sfr			P0IO		= 0xA1;			// P0 Direction Register
-sfr			P0OD		= 0x91;			// P0 Open-drain Selection Register
-sfr			P0PU		= 0xAC;			// P0 Pull-up Resistor Selection Register
-sfr			P03DB		= 0xDE;			// P0/P3 Debounce Enable Register
-
-sfr			P1			= 0x88;			// P1 Data Register
-	sbit	P10			= 0x88;
-	sbit	P11			= 0x89;
-	sbit	P12			= 0x8A;
-	sbit	P13			= 0x8B;
-	sbit	P14			= 0x8C;
-	sbit	P15			= 0x8D;
-	sbit	P16			= 0x8E;
-	sbit	P17			= 0x8F;
+__sfr __at (0x88)   P1;             /* P1 Data Register */
+    __sbit __at (0x88)  P10;
+    __sbit __at (0x89)  P11;
+    __sbit __at (0x8A)  P12;
+    __sbit __at (0x8B)  P13;
+    __sbit __at (0x8C)  P14;
+    __sbit __at (0x8D)  P15;
+    __sbit __at (0x8E)  P16;
+    __sbit __at (0x8F)  P17;
 	
-sfr			P1IO		= 0xB1;			// P1 Direction Register
-sfr			P1OD		= 0x92;			// P1 Open-drain Selection Register
-sfr			P1PU		= 0xAD;			// P1 Pull-up Resistor Selection Register
-sfr			P12DB		= 0xDF;			// P1/P2 Debounce Enable Register
+__sfr __at (0xB1)   P1IO;           /* P1 Direction Register */
+__sfr __at (0x92)   P1OD;           /* P1 Open-drain Selection Register */
+__sfr __at (0xAD)   P1PU;           /* P1 Pull-up Resistor Selection Register */
+__sfr __at (0xDF)   P12DB;          /* P1/P2 Debounce Enable Register */
 
-sfr			P2			= 0x90;			// P2 Data Register
-	sbit	P20			= 0x90;
-	sbit	P21			= 0x91;
-	sbit	P22			= 0x92;
-	sbit	P23			= 0x93;
-	sbit	P24			= 0x94;
-	sbit	P25			= 0x95;
-	sbit	P26			= 0x96;
-	sbit	P27			= 0x97;
+__sfr __at (0x90)   P2;             /* P2 Data Register */
+    __sbit __at (0x90)  P20;
+    __sbit __at (0x91)  P21;
+    __sbit __at (0x92)  P22;
+    __sbit __at (0x93)  P23;
+    __sbit __at (0x94)  P24;
+    __sbit __at (0x95)  P25;
+    __sbit __at (0x96)  P26;
+    __sbit __at (0x97)  P27;
 
-sfr			P2IO		= 0xB9;			// P2 Direction Register
-sfr			P2OD		= 0x93;			// P2 Open-drain Selection Register
-sfr			P2PU		= 0xAE;			// P2 Pull-up Resistor Selection Register
+__sfr __at (0xB9)   P2IO;           /* P2 Direction Register */
+__sfr __at (0x93)   P2OD;           /* P2 Open-drain Selection Register */
+__sfr __at (0xAE)   P2PU;           /* P2 Pull-up Resistor Selection Register */
 
-sfr			P3			= 0x98;			// P3 Data Register
-	sbit	P30			= 0x98;
-	sbit	P31			= 0x99;
-	sbit	P32			= 0x9A;
-	sbit	P33			= 0x9B;
-	sbit	P34			= 0x9C;
-	sbit	P35			= 0x9D;
-	sbit	P36			= 0x9E;
-	sbit	P37			= 0x9F;
+__sfr __at (0x98)   P3;			    /* P3 Data Register */
+    __sbit __at (0x98)  P30;
+    __sbit __at (0x99)  P31;
+    __sbit __at (0x9A)  P32;
+    __sbit __at (0x9B)  P33;
+    __sbit __at (0x9C)  P34;
+    __sbit __at (0x9D)  P35;
+    __sbit __at (0x9E)  P36;
+    __sbit __at (0x9F)  P37;
 
-sfr			P3IO		= 0xC1;			// P3 Direction Register
-sfr			P3OD		= 0x94;			// P3 Open-drain Selection Register
-sfr			P3PU		= 0xAF;			// P3 Pull-up Resistor Selection Register
+__sfr __at (0xC1)   P3IO;           /* P3 Direction Register*/
+__sfr __at (0x94)   P3OD;           /* P3 Open-drain Selection Register */
+__sfr __at (0xAF)   P3PU;           /* P3 Pull-up Resistor Selection Register */
    			
-sfr			P0FSR		= 0xD3;			//P0 Function Selection Register
-sfr			P1FSRL		= 0xD4;			//P1 Function Selection Low Register
-sfr			P1FSRH		= 0xD5;			//P1 Function Selection High Register
-sfr			P2FSR		= 0xD6;			//P2 Function Selection Register
-sfr			P3FSR		= 0xD7;			//P3 Function Selection Register
+__sfr __at (0xD3)   P0FSR;          /* P0 Function Selection Register */
+__sfr __at (0xD4)   P1FSRL;         /* P1 Function Selection Low Register */
+__sfr __at (0xD5)   P1FSRH;         /* P1 Function Selection High Register */
+__sfr __at (0xD6)   P2FSR;          /* P2 Function Selection Register */
+__sfr __at (0xD7)   P3FSR;          /* P3 Function Selection Register */
 
 // Interrupt Control
-sfr			IE			= 0xA8;			// Interrupt Enable Register 0
-sfr			IE1			= 0xA9;			// Interrupt Enable Register 1
-sfr			IE2			= 0xAA;			// Interrupt Enable Register 2
-sfr			IE3			= 0xAB;			// Interrupt Enable Register 3
-sfr			IP			= 0xB8;			// Interrupt Priority Register 0
-sfr			IP1			= 0xF8;			// Interrupt Priority Register 1
-sfr			IIFLAG		= 0xA0;			// Internal Interrupt Flag Register
-sfr			EIFLAG0		= 0xC0;			// External Interrupt Flag 0 Register
-sfr			EIFLAG1		= 0xB0;			// External Interrupt Flag 1 Register
-sfr			EIPOL0L		= 0xA4;			// External Interrupt Polarity 0 Low Register
-sfr			EIPOL0H		= 0xA5;			// External Interrupt Polarity 0 High Register
-sfr			EIPOL1		= 0xA6;			// External Interrupt Polarity 1 Register
-sfr			EIPOL2		= 0xA7;			// External Interrupt Polarity 2 Register
+__sfr __at (0xA8)   IE;             /* Interrupt Enable Register 0 */
+__sfr __at (0xA9)   IE1;            /* Interrupt Enable Register 1 */
+__sfr __at (0xAA)   IE2;            /* Interrupt Enable Register 2 */
+__sfr __at (0xAB)   IE3;            /* Interrupt Enable Register 3 */
+__sfr __at (0xB8)   IP;             /* Interrupt Priority Register 0 */
+__sfr __at (0xF8)   IP1;            /* Interrupt Priority Register 1 */
+__sfr __at (0xA0)   IIFLAG;         /* Internal Interrupt Flag Register */
+__sfr __at (0xC0)   EIFLAG0;        /* External Interrupt Flag 0 Register */
+__sfr __at (0xB0)   EIFLAG1;        /* External Interrupt Flag 1 Register */
+__sfr __at (0xA4)   EIPOL0L;        /* External Interrupt Polarity 0 Low Register */
+__sfr __at (0xA5)   EIPOL0H;        /* External Interrupt Polarity 0 High Register */
+__sfr __at (0xA6)   EIPOL1;         /* External Interrupt Polarity 1 Register */
+__sfr __at (0xA7)   EIPOL2;         /* External Interrupt Polarity 2 Register */
 
 // System Oscillator, Reset Control
-sfr			SCCR		= 0x8A;			// System Clock Control Register
-sfr			OSCCR		= 0xC8;			// Oscillator Control Register
-sfr			BITCNT		= 0x8C;			// Basic Interval Timer Counter Register
-sfr			BITCR		= 0x8B;			// Basic Interval Timer Control Register
-sfr			RSTFR		= 0xE8;			// Reset Flag Register
-sfr			PCON		= 0x87;			// Power Control Register
-sfr			LVRCR		= 0xD8;			// Low Voltage Reset Control Register
-sfr			LVICR		= 0x86;			// Low Voltage Indicator Control Register
+__sfr __at (0x8A)   SCCR;           /* System Clock Control Register */
+__sfr __at (0xC8)   OSCCR;          /* Oscillator Control Register */
+__sfr __at (0x8C)   BITCNT;         /* Basic Interval Timer Counter Register */
+__sfr __at (0x8B)   BITCR;          /* Basic Interval Timer Control Register */
+__sfr __at (0xE8)   RSTFR;          /* Reset Flag Register */
+__sfr __at (0x87)   PCON;           /* Power Control Register */
+__sfr __at (0xD8)   LVRCR;          /* Low Voltage Reset Control Register */
+__sfr __at (0x86)   LVICR;          /* Low Voltage Indicator Control Register */
 
 //  Watch Dog Timer Control 
-sfr			WDTDR		= 0x8E;			// Watch Dog Timer Data Register
-sfr			WDTCNT		= 0x8E;			// Watch Dog Timer Counter Register
-sfr			WDTCR		= 0x8D;			// Watch Dog Timer Control Register
+__sfr __at (0x8E)   WDTDR;          /* Watch Dog Timer Data Register */
+__sfr __at (0x8E)   WDTCNT;         /* Watch Dog Timer Counter Register */
+__sfr __at (0x8D)   WDTCR;          /* Watch Dog Timer Control Register */
 
 //  Watch Timer Control
-sfr			WTDR		= 0x89;			// Watch Timer Data Register
-sfr			WTCNT		= 0x89;			// Watch Timer Counter Register
-sfr			WTCR		= 0x96;			// Watch Timer Control Register
+__sfr __at (0x89)   WTDR;           /* Watch Timer Data Register */
+__sfr __at (0x89)   WTCNT;          /* Watch Timer Counter Register */
+__sfr __at (0x96)   WTCR;           /* Watch Timer Control Register */
 
 // TIMER 0 Control
-sfr			T0CR		= 0xB2;			// Timer 0 Control Register
-sfr			T0CNT		= 0xB3;			// Timer 0 Counter Register
-sfr			T0DR		= 0xB4;			// Timer 0 Data Register
-sfr			T0CDR		= 0xB4;			// Timer 0 Capture Data Register
+__sfr __at (0xB2)   T0CR;           /* Timer 0 Control Register */
+__sfr __at (0xB3)   T0CNT;          /* Timer 0 Counter Register */
+__sfr __at (0xB4)   T0DR;           /* Timer 0 Data Register */
+__sfr __at (0xB4)   T0CDR;          /* Timer 0 Capture Data Register */
 
 // TIMER interrupt Control
-//sfr   TIFR    =  0xC3;// Timer Interrupt Flag Register
+// __sfr __at (0xC3)   TIFR;         /* Timer Interrupt Flag Register */
 
 // TIMER 1 Control
-sfr			T1CRL		= 0xBA;			// Timer 1 Control Low Register
-sfr			T1CRH		= 0xBB;			// Timer 1 Control High Register
-sfr			T1ADRL		= 0xBC;			// Timer 1 A Data Low Register
-sfr			T1ADRH		= 0xBD;			// Timer 1 A Data High Register
-sfr			T1BDRL		= 0xBE;			// Timer 1 B Data Low Register
-sfr			T1BDRH		= 0xBF;			// Timer 1 B Data High Register
+__sfr __at (0xBA)   T1CRL;          /* Timer 1 Control Low Register */
+__sfr __at (0xBB)   T1CRH;          /* Timer 1 Control High Register */
+__sfr __at (0xBC)   T1ADRL;         /* Timer 1 A Data Low Register */
+__sfr __at (0xBD)   T1ADRH;         /* Timer 1 A Data High Register */
+__sfr __at (0xBE)   T1BDRL;         /* Timer 1 B Data Low Register */
+__sfr __at (0xBF)   T1BDRH;         /* Timer 1 B Data High Register */
 
 // TIMER 2 Control
-sfr			T2CRL		= 0xC2;			// Timer 2 Control Low Register
-sfr			T2CRH		= 0xC3;			// Timer 2 Control High Register
-sfr			T2ADRL		= 0xC4;			// Timer 2 A Data Low Register
-sfr			T2ADRH		= 0xC5;			// Timer 2 A Data High Register
-sfr			T2BDRL		= 0xC6;			// Timer 2 B Data Low Register
-sfr			T2BDRH		= 0xC7;			// Timer 2 B Data High Register
+__sfr __at (0xC2)   T2CRL;          /* Timer 2 Control Low Register */
+__sfr __at (0xC3)   T2CRH;          /* Timer 2 Control High Register */
+__sfr __at (0xC4)   T2ADRL;         /* Timer 2 A Data Low Register */
+__sfr __at (0xC5)   T2ADRH;         /* Timer 2 A Data High Register */
+__sfr __at (0xC6)   T2BDRL;         /* Timer 2 B Data Low Register */
+__sfr __at (0xC7)   T2BDRH;         /* Timer 2 B Data High Register */
 
 // BUZZER Control
-sfr			BUZDR		= 0x8F;			// BUZZER Data Register
-sfr			BUZCR		= 0x97;			// BUZZER Control Register
+__sfr __at (0x8F)   BUZDR;          /* BUZZER Data Register */
+__sfr __at (0x97)   BUZCR;          /* BUZZER Control Register */
 
 // ADC Contol
-sfr			ADCCRL		= 0x9C;			// A/D Converter Control Low Register
-sfr			ADCCRH		= 0x9D;			// A/D Converter Control High Register
-sfr			ADCDRL		= 0x9E;			// A/D Converter Data Low Register
-sfr			ADCDRH		= 0x9F;			// A/D Converter Data High Register
+__sfr __at (0x9C)   ADCCRL;         /* A/D Converter Control Low Register */
+__sfr __at (0x9D)   ADCCRH;         /* A/D Converter Control High Register */
+__sfr __at (0x9E)   ADCDRL;         /* A/D Converter Data Low Register */
+__sfr __at (0x9F)   ADCDRH;         /* A/D Converter Data High Register */
 
-sfr			ADWRCR0		= 0xF2;			// ADC Wake-up Resistor Control Register 0
-sfr			ADWRCR1		= 0xF3;			// ADC Wake-up Resistor Control Register 1
-sfr			ADWRCR2		= 0xF4;			// ADC Wake-up Resistor Control Register 2
-sfr			ADWRCR3		= 0xF5;			// ADC Wake-up Resistor Control Register 3
-sfr			ADWCRL		= 0xF6;			// ADC Wake-up Control Low Register
-sfr			ADWCRH		= 0xF7;			// ADC Wake-up Control High Register
-sfr			ADWIFRL		= 0xDC;			// ADC Wake-up Interrupt Flag Low Register
-sfr			ADWIFRH		= 0xDD;			// ADC Wake-up Interrupt Flag High Register
+__sfr __at (0xF2)   ADWRCR0;        /* ADC Wake-up Resistor Control Register 0 */
+__sfr __at (0xF3)   ADWRCR1;        /* ADC Wake-up Resistor Control Register 1 */
+__sfr __at (0xF4)   ADWRCR2;        /* ADC Wake-up Resistor Control Register 2 */
+__sfr __at (0xF5)   ADWRCR3;        /* ADC Wake-up Resistor Control Register 3 */
+__sfr __at (0xF6)   ADWCRL;         /* ADC Wake-up Control Low Register */
+__sfr __at (0xF7)   ADWCRH;         /* ADC Wake-up Control High Register */
+__sfr __at (0xDC)   ADWIFRL;        /* ADC Wake-up Interrupt Flag Low Register */
+__sfr __at (0xDD)   ADWIFRH;        /* ADC Wake-up Interrupt Flag High Register */
 
 // SPI(SIO) Control
-sfr			SPICR		= 0xB5;			// SPI Control Register
-sfr			SPIDR		= 0xB6;			// SPI Data Register
-sfr			SPISR		= 0xB7;			// SPI Status Register
+__sfr __at (0xB5)   SPICR;          /* SPI Control Register */
+__sfr __at (0xB6)   SPIDR;          /* SPI Data Register */
+__sfr __at (0xB7)   SPISR;          /* SPI Status Register */
 
 // UART Control
-sfr			UARTCR1		= 0xE2;			// UART Control Register 1
-sfr			UARTCR2		= 0xE3;			// UART Control Register 2
-sfr			UARTCR3		= 0xE4;			// UART Control Register 3
-sfr			UARTST		= 0xE5;			// UART Status Register
-sfr			UARTBD		= 0xE6;			// UART BaudRate Register
-sfr			UARTDR		= 0xE7;			// UART Data Register
+__sfr __at (0xE2)   UARTCR1;        /* UART Control Register 1 */
+__sfr __at (0xE3)   UARTCR2;        /* UART Control Register 2 */
+__sfr __at (0xE4)   UARTCR3;        /* UART Control Register 3 */
+__sfr __at (0xE5)   UARTST;         /* UART Status Register */
+__sfr __at (0xE6)   UARTBD;         /* UART BaudRate Register */
+__sfr __at (0xE7)   UARTDR;         /* UART Data Register */
 
 // I2C Control
-sfr			I2CCR		= 0xE9;			// I2C Control Register
-sfr			I2CSR		= 0xEA;			// I2C Status Register
-sfr			I2CSAR0		= 0xEB;			// I2C Slave Address 0 Register
-sfr			I2CSAR1		= 0xF1;			// I2C Slave Address 1 Register
-sfr			I2CDR		= 0xEC;			// I2C Data Register
-sfr			I2CSDHR		= 0xED;			// I2C SDA Hold Time Register
-sfr			I2CSCLR		= 0xEE;			// I2C SCL Low Period Register
-sfr			I2CSCHR		= 0xEF;			// I2C SCL High Period Register
+__sfr __at (0xE9)   I2CCR;          /* I2C Control Register */
+__sfr __at (0xEA)   I2CSR;          /* I2C Status Register */
+__sfr __at (0xEB)   I2CSAR0;        /* I2C Slave Address 0 Register */
+__sfr __at (0xF1)   I2CSAR1;        /* I2C Slave Address 1 Register */
+__sfr __at (0xEC)   I2CDR;          /* I2C Data Register */
+__sfr __at (0xED)   I2CSDHR;        /* I2C SDA Hold Time Register */
+__sfr __at (0xEE)   I2CSCLR;        /* I2C SCL Low Period Register*/
+__sfr __at (0xEF)   I2CSCHR;        /* I2C SCL High Period Register*/
 
 // Flash Memory Control
-sfr			FSADRH		= 0xFA;			// Flash Sector Address High Register
-sfr			FSADRM		= 0xFB;			// Flash Sector Address Middle Register
-sfr			FSADRL		= 0xFC;			// Flash Sector Address Low Register
-sfr			FIDR		= 0xFD;			// Flash Identification Register
-sfr			FMCR		= 0xFE;			// Flash Mode Control Register
+__sfr __at (0xFA)   FSADRH;         /* Flash Sector Address High Register */
+__sfr __at (0xFB)   FSADRM;         /* Flash Sector Address Middle Register */
+__sfr __at (0xFC)   FSADRL;         /* Flash Sector Address Low Register */
+__sfr __at (0xFD)   FIDR;           /* Flash Identification Register */
+__sfr __at (0xFE)   FMCR;           /* Flash Mode Control Register */
 
-sfr			ACC			= 0xE0;
-sfr			B			= 0xF0;
-sfr			PSW			= 0xD0;
-sfr			SP			= 0x81;
-sfr			DPL			= 0x82;
-sfr			DPH			= 0x83;
-sfr			DPL1		= 0x84;
-sfr			DPH1		= 0x85;
-sfr			EO			= 0xA2;			// EXTENDED OPERATION REGISTER
+__sfr __at (0xE0)   ACC;
+__sfr __at (0xF0)   B;
+__sfr __at (0xD0)   PSW;
+__sfr __at (0x81)   SP;
+__sfr __at (0x82)   DPL;
+__sfr __at (0x83)   DPH;
+__sfr __at (0x84)   DPL1;
+__sfr __at (0x85)   DPH1;
+__sfr __at (0xA2)   EO;             /* EXTENDED OPERATION REGISTER */
+
+#define cli()   do{IE &= ~0x80;}while(0)
+#define sei()   do{IE |=  0x80;}while(0)
+#define nop()   __asm \
+nop	\
+__endasm
 
 #ifdef __cplusplus
     }

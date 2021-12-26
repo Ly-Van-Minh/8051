@@ -379,7 +379,7 @@
                                     379 ;	-----------------------------------------
                                     380 ;	 function SysClock_Config
                                     381 ;	-----------------------------------------
-      000000                        382 _SysClock_Config:
+      0003D8                        382 _SysClock_Config:
                            000007   383 	ar7 = 0x07
                            000006   384 	ar6 = 0x06
                            000005   385 	ar5 = 0x05
@@ -389,13 +389,13 @@
                            000001   389 	ar1 = 0x01
                            000000   390 	ar0 = 0x00
                                     391 ;	src/mc96f8x16_cg.c:9: OSCCR = (FIRC_8MHZ << 3U); /* Select INT-RC/2 (8MHz) */
-      000000 75 C8 20         [24]  392 	mov	_OSCCR,#0x20
+      0003D8 75 C8 20         [24]  392 	mov	_OSCCR,#0x20
                                     393 ;	src/mc96f8x16_cg.c:10: SCCR = SYS_CLK_SEL_FIRC;    /* Select f(IRC) for system clock */
-      000003 75 8A 00         [24]  394 	mov	_SCCR,#0x00
+      0003DB 75 8A 00         [24]  394 	mov	_SCCR,#0x00
                                     395 ;	src/mc96f8x16_cg.c:11: nop();
-      000006 00               [12]  396 	nop 
+      0003DE 00               [12]  396 	nop 
                                     397 ;	src/mc96f8x16_cg.c:12: }
-      000007 22               [24]  398 	ret
+      0003DF 22               [24]  398 	ret
                                     399 	.area CSEG    (CODE)
                                     400 	.area CONST   (CODE)
                                     401 	.area XINIT   (CODE)

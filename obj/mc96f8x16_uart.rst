@@ -324,14 +324,14 @@
                                     324 ; internal ram data
                                     325 ;--------------------------------------------------------
                                     326 	.area DSEG    (DATA)
-      000000                        327 _UART_Transmit_sloc0_1_0:
-      000000                        328 	.ds 2
-      000002                        329 _UART_Transmit_sloc1_1_0:
-      000002                        330 	.ds 3
-      000005                        331 _UART_Receive_sloc0_1_0:
-      000005                        332 	.ds 2
-      000007                        333 _UART_Receive_sloc1_1_0:
-      000007                        334 	.ds 3
+      000030                        327 _UART_Transmit_sloc0_1_0:
+      000030                        328 	.ds 2
+      000032                        329 _UART_Transmit_sloc1_1_0:
+      000032                        330 	.ds 3
+      000035                        331 _UART_Receive_sloc0_1_0:
+      000035                        332 	.ds 2
+      000037                        333 _UART_Receive_sloc1_1_0:
+      000037                        334 	.ds 3
                                     335 ;--------------------------------------------------------
                                     336 ; overlayable items in internal ram 
                                     337 ;--------------------------------------------------------
@@ -356,20 +356,20 @@
                                     356 ; external ram data
                                     357 ;--------------------------------------------------------
                                     358 	.area XSEG    (XDATA)
-      000000                        359 _UART_Config_UART_Conf_65536_12:
-      000000                        360 	.ds 3
-      000003                        361 _UART_Transmit_PARM_2:
-      000003                        362 	.ds 2
-      000005                        363 _UART_Transmit_PARM_3:
-      000005                        364 	.ds 2
-      000007                        365 _UART_Transmit_Buffer_65536_14:
-      000007                        366 	.ds 3
-      00000A                        367 _UART_Receive_PARM_2:
-      00000A                        368 	.ds 2
-      00000C                        369 _UART_Receive_PARM_3:
-      00000C                        370 	.ds 2
-      00000E                        371 _UART_Receive_Buffer_65536_21:
-      00000E                        372 	.ds 3
+      000124                        359 _UART_Config_UART_Conf_65536_12:
+      000124                        360 	.ds 3
+      000127                        361 _UART_Transmit_PARM_2:
+      000127                        362 	.ds 2
+      000129                        363 _UART_Transmit_PARM_3:
+      000129                        364 	.ds 2
+      00012B                        365 _UART_Transmit_Buffer_65536_14:
+      00012B                        366 	.ds 3
+      00012E                        367 _UART_Receive_PARM_2:
+      00012E                        368 	.ds 2
+      000130                        369 _UART_Receive_PARM_3:
+      000130                        370 	.ds 2
+      000132                        371 _UART_Receive_Buffer_65536_21:
+      000132                        372 	.ds 3
                                     373 ;--------------------------------------------------------
                                     374 ; absolute external ram data
                                     375 ;--------------------------------------------------------
@@ -378,8 +378,8 @@
                                     378 ; external initialized ram data
                                     379 ;--------------------------------------------------------
                                     380 	.area XISEG   (XDATA)
-      000000                        381 _RxData::
-      000000                        382 	.ds 1
+      00013F                        381 _RxData::
+      00013F                        382 	.ds 1
                                     383 	.area HOME    (CODE)
                                     384 	.area GSINIT0 (CODE)
                                     385 	.area GSINIT1 (CODE)
@@ -415,7 +415,7 @@
                                     415 ;	-----------------------------------------
                                     416 ;	 function UART_Config
                                     417 ;	-----------------------------------------
-      000000                        418 _UART_Config:
+      000574                        418 _UART_Config:
                            000007   419 	ar7 = 0x07
                            000006   420 	ar6 = 0x06
                            000005   421 	ar5 = 0x05
@@ -424,97 +424,97 @@
                            000002   424 	ar2 = 0x02
                            000001   425 	ar1 = 0x01
                            000000   426 	ar0 = 0x00
-      000000 AF F0            [24]  427 	mov	r7,b
-      000002 AE 83            [24]  428 	mov	r6,dph
-      000004 E5 82            [12]  429 	mov	a,dpl
-      000006 90r00r00         [24]  430 	mov	dptr,#_UART_Config_UART_Conf_65536_12
-      000009 F0               [24]  431 	movx	@dptr,a
-      00000A EE               [12]  432 	mov	a,r6
-      00000B A3               [24]  433 	inc	dptr
-      00000C F0               [24]  434 	movx	@dptr,a
-      00000D EF               [12]  435 	mov	a,r7
-      00000E A3               [24]  436 	inc	dptr
-      00000F F0               [24]  437 	movx	@dptr,a
+      000574 AF F0            [24]  427 	mov	r7,b
+      000576 AE 83            [24]  428 	mov	r6,dph
+      000578 E5 82            [12]  429 	mov	a,dpl
+      00057A 90 01 24         [24]  430 	mov	dptr,#_UART_Config_UART_Conf_65536_12
+      00057D F0               [24]  431 	movx	@dptr,a
+      00057E EE               [12]  432 	mov	a,r6
+      00057F A3               [24]  433 	inc	dptr
+      000580 F0               [24]  434 	movx	@dptr,a
+      000581 EF               [12]  435 	mov	a,r7
+      000582 A3               [24]  436 	inc	dptr
+      000583 F0               [24]  437 	movx	@dptr,a
                                     438 ;	src/mc96f8x16_uart.c:10: UARTBD = UART_Conf->Baud;
-      000010 90r00r00         [24]  439 	mov	dptr,#_UART_Config_UART_Conf_65536_12
-      000013 E0               [24]  440 	movx	a,@dptr
-      000014 FD               [12]  441 	mov	r5,a
-      000015 A3               [24]  442 	inc	dptr
-      000016 E0               [24]  443 	movx	a,@dptr
-      000017 FE               [12]  444 	mov	r6,a
-      000018 A3               [24]  445 	inc	dptr
-      000019 E0               [24]  446 	movx	a,@dptr
-      00001A FF               [12]  447 	mov	r7,a
-      00001B 8D 82            [24]  448 	mov	dpl,r5
-      00001D 8E 83            [24]  449 	mov	dph,r6
-      00001F 8F F0            [24]  450 	mov	b,r7
-      000021 12r00r00         [24]  451 	lcall	__gptrget
-      000024 F5 E6            [12]  452 	mov	_UARTBD,a
+      000584 90 01 24         [24]  439 	mov	dptr,#_UART_Config_UART_Conf_65536_12
+      000587 E0               [24]  440 	movx	a,@dptr
+      000588 FD               [12]  441 	mov	r5,a
+      000589 A3               [24]  442 	inc	dptr
+      00058A E0               [24]  443 	movx	a,@dptr
+      00058B FE               [12]  444 	mov	r6,a
+      00058C A3               [24]  445 	inc	dptr
+      00058D E0               [24]  446 	movx	a,@dptr
+      00058E FF               [12]  447 	mov	r7,a
+      00058F 8D 82            [24]  448 	mov	dpl,r5
+      000591 8E 83            [24]  449 	mov	dph,r6
+      000593 8F F0            [24]  450 	mov	b,r7
+      000595 12 08 EE         [24]  451 	lcall	__gptrget
+      000598 F5 E6            [12]  452 	mov	_UARTBD,a
                                     453 ;	src/mc96f8x16_uart.c:11: UARTCR1 = (UARTCR1 & 0x0F) | ((UART_Conf->Parity) << 4u);
-      000026 E5 E2            [12]  454 	mov	a,_UARTCR1
-      000028 54 0F            [12]  455 	anl	a,#0x0f
-      00002A FC               [12]  456 	mov	r4,a
-      00002B 74 01            [12]  457 	mov	a,#0x01
-      00002D 2D               [12]  458 	add	a,r5
-      00002E F9               [12]  459 	mov	r1,a
-      00002F E4               [12]  460 	clr	a
-      000030 3E               [12]  461 	addc	a,r6
-      000031 FA               [12]  462 	mov	r2,a
-      000032 8F 03            [24]  463 	mov	ar3,r7
-      000034 89 82            [24]  464 	mov	dpl,r1
-      000036 8A 83            [24]  465 	mov	dph,r2
-      000038 8B F0            [24]  466 	mov	b,r3
-      00003A 12r00r00         [24]  467 	lcall	__gptrget
-      00003D C4               [12]  468 	swap	a
-      00003E 54 F0            [12]  469 	anl	a,#0xf0
-      000040 4C               [12]  470 	orl	a,r4
-      000041 F5 E2            [12]  471 	mov	_UARTCR1,a
+      00059A E5 E2            [12]  454 	mov	a,_UARTCR1
+      00059C 54 0F            [12]  455 	anl	a,#0x0f
+      00059E FC               [12]  456 	mov	r4,a
+      00059F 74 01            [12]  457 	mov	a,#0x01
+      0005A1 2D               [12]  458 	add	a,r5
+      0005A2 F9               [12]  459 	mov	r1,a
+      0005A3 E4               [12]  460 	clr	a
+      0005A4 3E               [12]  461 	addc	a,r6
+      0005A5 FA               [12]  462 	mov	r2,a
+      0005A6 8F 03            [24]  463 	mov	ar3,r7
+      0005A8 89 82            [24]  464 	mov	dpl,r1
+      0005AA 8A 83            [24]  465 	mov	dph,r2
+      0005AC 8B F0            [24]  466 	mov	b,r3
+      0005AE 12 08 EE         [24]  467 	lcall	__gptrget
+      0005B1 C4               [12]  468 	swap	a
+      0005B2 54 F0            [12]  469 	anl	a,#0xf0
+      0005B4 4C               [12]  470 	orl	a,r4
+      0005B5 F5 E2            [12]  471 	mov	_UARTCR1,a
                                     472 ;	src/mc96f8x16_uart.c:12: UARTCR1 = (UARTCR1 & 0xF0) | ((UART_Conf->DataLength) << 1u);
-      000043 E5 E2            [12]  473 	mov	a,_UARTCR1
-      000045 54 F0            [12]  474 	anl	a,#0xf0
-      000047 FC               [12]  475 	mov	r4,a
-      000048 74 02            [12]  476 	mov	a,#0x02
-      00004A 2D               [12]  477 	add	a,r5
-      00004B F9               [12]  478 	mov	r1,a
-      00004C E4               [12]  479 	clr	a
-      00004D 3E               [12]  480 	addc	a,r6
-      00004E FA               [12]  481 	mov	r2,a
-      00004F 8F 03            [24]  482 	mov	ar3,r7
-      000051 89 82            [24]  483 	mov	dpl,r1
-      000053 8A 83            [24]  484 	mov	dph,r2
-      000055 8B F0            [24]  485 	mov	b,r3
-      000057 12r00r00         [24]  486 	lcall	__gptrget
-      00005A 25 E0            [12]  487 	add	a,acc
-      00005C 4C               [12]  488 	orl	a,r4
-      00005D F5 E2            [12]  489 	mov	_UARTCR1,a
+      0005B7 E5 E2            [12]  473 	mov	a,_UARTCR1
+      0005B9 54 F0            [12]  474 	anl	a,#0xf0
+      0005BB FC               [12]  475 	mov	r4,a
+      0005BC 74 02            [12]  476 	mov	a,#0x02
+      0005BE 2D               [12]  477 	add	a,r5
+      0005BF F9               [12]  478 	mov	r1,a
+      0005C0 E4               [12]  479 	clr	a
+      0005C1 3E               [12]  480 	addc	a,r6
+      0005C2 FA               [12]  481 	mov	r2,a
+      0005C3 8F 03            [24]  482 	mov	ar3,r7
+      0005C5 89 82            [24]  483 	mov	dpl,r1
+      0005C7 8A 83            [24]  484 	mov	dph,r2
+      0005C9 8B F0            [24]  485 	mov	b,r3
+      0005CB 12 08 EE         [24]  486 	lcall	__gptrget
+      0005CE 25 E0            [12]  487 	add	a,acc
+      0005D0 4C               [12]  488 	orl	a,r4
+      0005D1 F5 E2            [12]  489 	mov	_UARTCR1,a
                                     490 ;	src/mc96f8x16_uart.c:13: UARTCR3 = (UARTCR3 & 0xF4) | (UART_Conf->StopBits);
-      00005F E5 E4            [12]  491 	mov	a,_UARTCR3
-      000061 54 F4            [12]  492 	anl	a,#0xf4
-      000063 FC               [12]  493 	mov	r4,a
-      000064 74 03            [12]  494 	mov	a,#0x03
-      000066 2D               [12]  495 	add	a,r5
-      000067 FD               [12]  496 	mov	r5,a
-      000068 E4               [12]  497 	clr	a
-      000069 3E               [12]  498 	addc	a,r6
-      00006A FE               [12]  499 	mov	r6,a
-      00006B 8D 82            [24]  500 	mov	dpl,r5
-      00006D 8E 83            [24]  501 	mov	dph,r6
-      00006F 8F F0            [24]  502 	mov	b,r7
-      000071 12r00r00         [24]  503 	lcall	__gptrget
-      000074 4C               [12]  504 	orl	a,r4
-      000075 F5 E4            [12]  505 	mov	_UARTCR3,a
+      0005D3 E5 E4            [12]  491 	mov	a,_UARTCR3
+      0005D5 54 F4            [12]  492 	anl	a,#0xf4
+      0005D7 FC               [12]  493 	mov	r4,a
+      0005D8 74 03            [12]  494 	mov	a,#0x03
+      0005DA 2D               [12]  495 	add	a,r5
+      0005DB FD               [12]  496 	mov	r5,a
+      0005DC E4               [12]  497 	clr	a
+      0005DD 3E               [12]  498 	addc	a,r6
+      0005DE FE               [12]  499 	mov	r6,a
+      0005DF 8D 82            [24]  500 	mov	dpl,r5
+      0005E1 8E 83            [24]  501 	mov	dph,r6
+      0005E3 8F F0            [24]  502 	mov	b,r7
+      0005E5 12 08 EE         [24]  503 	lcall	__gptrget
+      0005E8 4C               [12]  504 	orl	a,r4
+      0005E9 F5 E4            [12]  505 	mov	_UARTCR3,a
                                     506 ;	src/mc96f8x16_uart.c:14: UARTCR2 = (UARTCR2 & 0xD1) | (UARTCR2_RXE | UARTCR2_RXCIE | UARTCR2_TXE | UARTCR2_UARTEN);
-      000077 E5 E3            [12]  507 	mov	a,_UARTCR2
-      000079 54 D1            [12]  508 	anl	a,#0xd1
-      00007B 44 2E            [12]  509 	orl	a,#0x2e
-      00007D F5 E3            [12]  510 	mov	_UARTCR2,a
+      0005EB E5 E3            [12]  507 	mov	a,_UARTCR2
+      0005ED 54 D1            [12]  508 	anl	a,#0xd1
+      0005EF 44 2E            [12]  509 	orl	a,#0x2e
+      0005F1 F5 E3            [12]  510 	mov	_UARTCR2,a
                                     511 ;	src/mc96f8x16_uart.c:15: IE1 = (IE1 & 0xF7) | (0x08);
-      00007F E5 A9            [12]  512 	mov	a,_IE1
-      000081 54 F7            [12]  513 	anl	a,#0xf7
-      000083 44 08            [12]  514 	orl	a,#0x08
-      000085 F5 A9            [12]  515 	mov	_IE1,a
+      0005F3 E5 A9            [12]  512 	mov	a,_IE1
+      0005F5 54 F7            [12]  513 	anl	a,#0xf7
+      0005F7 44 08            [12]  514 	orl	a,#0x08
+      0005F9 F5 A9            [12]  515 	mov	_IE1,a
                                     516 ;	src/mc96f8x16_uart.c:16: }
-      000087 22               [24]  517 	ret
+      0005FB 22               [24]  517 	ret
                                     518 ;------------------------------------------------------------
                                     519 ;Allocation info for local variables in function 'UART_Transmit'
                                     520 ;------------------------------------------------------------
@@ -530,145 +530,145 @@
                                     530 ;	-----------------------------------------
                                     531 ;	 function UART_Transmit
                                     532 ;	-----------------------------------------
-      000088                        533 _UART_Transmit:
-      000088 AF F0            [24]  534 	mov	r7,b
-      00008A AE 83            [24]  535 	mov	r6,dph
-      00008C E5 82            [12]  536 	mov	a,dpl
-      00008E 90r00r07         [24]  537 	mov	dptr,#_UART_Transmit_Buffer_65536_14
-      000091 F0               [24]  538 	movx	@dptr,a
-      000092 EE               [12]  539 	mov	a,r6
-      000093 A3               [24]  540 	inc	dptr
-      000094 F0               [24]  541 	movx	@dptr,a
-      000095 EF               [12]  542 	mov	a,r7
-      000096 A3               [24]  543 	inc	dptr
-      000097 F0               [24]  544 	movx	@dptr,a
+      0005FC                        533 _UART_Transmit:
+      0005FC AF F0            [24]  534 	mov	r7,b
+      0005FE AE 83            [24]  535 	mov	r6,dph
+      000600 E5 82            [12]  536 	mov	a,dpl
+      000602 90 01 2B         [24]  537 	mov	dptr,#_UART_Transmit_Buffer_65536_14
+      000605 F0               [24]  538 	movx	@dptr,a
+      000606 EE               [12]  539 	mov	a,r6
+      000607 A3               [24]  540 	inc	dptr
+      000608 F0               [24]  541 	movx	@dptr,a
+      000609 EF               [12]  542 	mov	a,r7
+      00060A A3               [24]  543 	inc	dptr
+      00060B F0               [24]  544 	movx	@dptr,a
                                     545 ;	src/mc96f8x16_uart.c:21: uint16_t StartTick = GetTick();
-      000098 12r00r00         [24]  546 	lcall	_GetTick
-      00009B AE 82            [24]  547 	mov	r6,dpl
-      00009D AF 83            [24]  548 	mov	r7,dph
+      00060C 12 03 EF         [24]  546 	lcall	_GetTick
+      00060F AE 82            [24]  547 	mov	r6,dpl
+      000611 AF 83            [24]  548 	mov	r7,dph
                                     549 ;	src/mc96f8x16_uart.c:22: while(Size--)
-      00009F 90r00r07         [24]  550 	mov	dptr,#_UART_Transmit_Buffer_65536_14
-      0000A2 E0               [24]  551 	movx	a,@dptr
-      0000A3 F5*02            [12]  552 	mov	_UART_Transmit_sloc1_1_0,a
-      0000A5 A3               [24]  553 	inc	dptr
-      0000A6 E0               [24]  554 	movx	a,@dptr
-      0000A7 F5*03            [12]  555 	mov	(_UART_Transmit_sloc1_1_0 + 1),a
-      0000A9 A3               [24]  556 	inc	dptr
-      0000AA E0               [24]  557 	movx	a,@dptr
-      0000AB F5*04            [12]  558 	mov	(_UART_Transmit_sloc1_1_0 + 2),a
-      0000AD 79 00            [12]  559 	mov	r1,#0x00
-      0000AF 7A 00            [12]  560 	mov	r2,#0x00
-      0000B1 90r00r03         [24]  561 	mov	dptr,#_UART_Transmit_PARM_2
-      0000B4 E0               [24]  562 	movx	a,@dptr
-      0000B5 F5*00            [12]  563 	mov	_UART_Transmit_sloc0_1_0,a
-      0000B7 A3               [24]  564 	inc	dptr
-      0000B8 E0               [24]  565 	movx	a,@dptr
-      0000B9 F5*01            [12]  566 	mov	(_UART_Transmit_sloc0_1_0 + 1),a
-      0000BB                        567 00109$:
-      0000BB A8*00            [24]  568 	mov	r0,_UART_Transmit_sloc0_1_0
-      0000BD AD*01            [24]  569 	mov	r5,(_UART_Transmit_sloc0_1_0 + 1)
-      0000BF 15*00            [12]  570 	dec	_UART_Transmit_sloc0_1_0
-      0000C1 74 FF            [12]  571 	mov	a,#0xff
-      0000C3 B5*00 02         [24]  572 	cjne	a,_UART_Transmit_sloc0_1_0,00134$
-      0000C6 15*01            [12]  573 	dec	(_UART_Transmit_sloc0_1_0 + 1)
-      0000C8                        574 00134$:
-      0000C8 E8               [12]  575 	mov	a,r0
-      0000C9 4D               [12]  576 	orl	a,r5
-      0000CA 70 03            [24]  577 	jnz	00135$
-      0000CC 02r01r5B         [24]  578 	ljmp	00111$
-      0000CF                        579 00135$:
+      000613 90 01 2B         [24]  550 	mov	dptr,#_UART_Transmit_Buffer_65536_14
+      000616 E0               [24]  551 	movx	a,@dptr
+      000617 F5 32            [12]  552 	mov	_UART_Transmit_sloc1_1_0,a
+      000619 A3               [24]  553 	inc	dptr
+      00061A E0               [24]  554 	movx	a,@dptr
+      00061B F5 33            [12]  555 	mov	(_UART_Transmit_sloc1_1_0 + 1),a
+      00061D A3               [24]  556 	inc	dptr
+      00061E E0               [24]  557 	movx	a,@dptr
+      00061F F5 34            [12]  558 	mov	(_UART_Transmit_sloc1_1_0 + 2),a
+      000621 79 00            [12]  559 	mov	r1,#0x00
+      000623 7A 00            [12]  560 	mov	r2,#0x00
+      000625 90 01 27         [24]  561 	mov	dptr,#_UART_Transmit_PARM_2
+      000628 E0               [24]  562 	movx	a,@dptr
+      000629 F5 30            [12]  563 	mov	_UART_Transmit_sloc0_1_0,a
+      00062B A3               [24]  564 	inc	dptr
+      00062C E0               [24]  565 	movx	a,@dptr
+      00062D F5 31            [12]  566 	mov	(_UART_Transmit_sloc0_1_0 + 1),a
+      00062F                        567 00109$:
+      00062F A8 30            [24]  568 	mov	r0,_UART_Transmit_sloc0_1_0
+      000631 AD 31            [24]  569 	mov	r5,(_UART_Transmit_sloc0_1_0 + 1)
+      000633 15 30            [12]  570 	dec	_UART_Transmit_sloc0_1_0
+      000635 74 FF            [12]  571 	mov	a,#0xff
+      000637 B5 30 02         [24]  572 	cjne	a,_UART_Transmit_sloc0_1_0,00134$
+      00063A 15 31            [12]  573 	dec	(_UART_Transmit_sloc0_1_0 + 1)
+      00063C                        574 00134$:
+      00063C E8               [12]  575 	mov	a,r0
+      00063D 4D               [12]  576 	orl	a,r5
+      00063E 70 03            [24]  577 	jnz	00135$
+      000640 02 06 CF         [24]  578 	ljmp	00111$
+      000643                        579 00135$:
                                     580 ;	src/mc96f8x16_uart.c:24: if(CheckTimeout(StartTick, Timeout) == HAL_OK)
-      0000CF 90r00r05         [24]  581 	mov	dptr,#_UART_Transmit_PARM_3
-      0000D2 E0               [24]  582 	movx	a,@dptr
-      0000D3 FC               [12]  583 	mov	r4,a
-      0000D4 A3               [24]  584 	inc	dptr
-      0000D5 E0               [24]  585 	movx	a,@dptr
-      0000D6 FD               [12]  586 	mov	r5,a
-      0000D7 90r00r00         [24]  587 	mov	dptr,#_CheckTimeout_PARM_2
-      0000DA EC               [12]  588 	mov	a,r4
-      0000DB F0               [24]  589 	movx	@dptr,a
-      0000DC ED               [12]  590 	mov	a,r5
-      0000DD A3               [24]  591 	inc	dptr
-      0000DE F0               [24]  592 	movx	@dptr,a
-      0000DF 8E 82            [24]  593 	mov	dpl,r6
-      0000E1 8F 83            [24]  594 	mov	dph,r7
-      0000E3 C0 07            [24]  595 	push	ar7
-      0000E5 C0 06            [24]  596 	push	ar6
-      0000E7 C0 05            [24]  597 	push	ar5
-      0000E9 C0 04            [24]  598 	push	ar4
-      0000EB C0 02            [24]  599 	push	ar2
-      0000ED C0 01            [24]  600 	push	ar1
-      0000EF 12r00r00         [24]  601 	lcall	_CheckTimeout
-      0000F2 AB 82            [24]  602 	mov	r3,dpl
-      0000F4 D0 01            [24]  603 	pop	ar1
-      0000F6 D0 02            [24]  604 	pop	ar2
-      0000F8 D0 04            [24]  605 	pop	ar4
-      0000FA D0 05            [24]  606 	pop	ar5
-      0000FC D0 06            [24]  607 	pop	ar6
-      0000FE D0 07            [24]  608 	pop	ar7
-      000100 BB 01 54         [24]  609 	cjne	r3,#0x01,00107$
+      000643 90 01 29         [24]  581 	mov	dptr,#_UART_Transmit_PARM_3
+      000646 E0               [24]  582 	movx	a,@dptr
+      000647 FC               [12]  583 	mov	r4,a
+      000648 A3               [24]  584 	inc	dptr
+      000649 E0               [24]  585 	movx	a,@dptr
+      00064A FD               [12]  586 	mov	r5,a
+      00064B 90 01 1F         [24]  587 	mov	dptr,#_CheckTimeout_PARM_2
+      00064E EC               [12]  588 	mov	a,r4
+      00064F F0               [24]  589 	movx	@dptr,a
+      000650 ED               [12]  590 	mov	a,r5
+      000651 A3               [24]  591 	inc	dptr
+      000652 F0               [24]  592 	movx	@dptr,a
+      000653 8E 82            [24]  593 	mov	dpl,r6
+      000655 8F 83            [24]  594 	mov	dph,r7
+      000657 C0 07            [24]  595 	push	ar7
+      000659 C0 06            [24]  596 	push	ar6
+      00065B C0 05            [24]  597 	push	ar5
+      00065D C0 04            [24]  598 	push	ar4
+      00065F C0 02            [24]  599 	push	ar2
+      000661 C0 01            [24]  600 	push	ar1
+      000663 12 04 BF         [24]  601 	lcall	_CheckTimeout
+      000666 AB 82            [24]  602 	mov	r3,dpl
+      000668 D0 01            [24]  603 	pop	ar1
+      00066A D0 02            [24]  604 	pop	ar2
+      00066C D0 04            [24]  605 	pop	ar4
+      00066E D0 05            [24]  606 	pop	ar5
+      000670 D0 06            [24]  607 	pop	ar6
+      000672 D0 07            [24]  608 	pop	ar7
+      000674 BB 01 54         [24]  609 	cjne	r3,#0x01,00107$
                                     610 ;	src/mc96f8x16_uart.c:26: while(!(UARTST & UARTST_UDRE))
-      000103                        611 00103$:
-      000103 E5 E5            [12]  612 	mov	a,_UARTST
-      000105 20 E7 32         [24]  613 	jb	acc.7,00105$
+      000677                        611 00103$:
+      000677 E5 E5            [12]  612 	mov	a,_UARTST
+      000679 20 E7 32         [24]  613 	jb	acc.7,00105$
                                     614 ;	src/mc96f8x16_uart.c:28: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
-      000108 90r00r00         [24]  615 	mov	dptr,#_CheckTimeout_PARM_2
-      00010B EC               [12]  616 	mov	a,r4
-      00010C F0               [24]  617 	movx	@dptr,a
-      00010D ED               [12]  618 	mov	a,r5
-      00010E A3               [24]  619 	inc	dptr
-      00010F F0               [24]  620 	movx	@dptr,a
-      000110 8E 82            [24]  621 	mov	dpl,r6
-      000112 8F 83            [24]  622 	mov	dph,r7
-      000114 C0 07            [24]  623 	push	ar7
-      000116 C0 06            [24]  624 	push	ar6
-      000118 C0 05            [24]  625 	push	ar5
-      00011A C0 04            [24]  626 	push	ar4
-      00011C C0 02            [24]  627 	push	ar2
-      00011E C0 01            [24]  628 	push	ar1
-      000120 12r00r00         [24]  629 	lcall	_CheckTimeout
-      000123 AB 82            [24]  630 	mov	r3,dpl
-      000125 D0 01            [24]  631 	pop	ar1
-      000127 D0 02            [24]  632 	pop	ar2
-      000129 D0 04            [24]  633 	pop	ar4
-      00012B D0 05            [24]  634 	pop	ar5
-      00012D D0 06            [24]  635 	pop	ar6
-      00012F D0 07            [24]  636 	pop	ar7
-      000131 BB 01 02         [24]  637 	cjne	r3,#0x01,00139$
-      000134 80 CD            [24]  638 	sjmp	00103$
-      000136                        639 00139$:
+      00067C 90 01 1F         [24]  615 	mov	dptr,#_CheckTimeout_PARM_2
+      00067F EC               [12]  616 	mov	a,r4
+      000680 F0               [24]  617 	movx	@dptr,a
+      000681 ED               [12]  618 	mov	a,r5
+      000682 A3               [24]  619 	inc	dptr
+      000683 F0               [24]  620 	movx	@dptr,a
+      000684 8E 82            [24]  621 	mov	dpl,r6
+      000686 8F 83            [24]  622 	mov	dph,r7
+      000688 C0 07            [24]  623 	push	ar7
+      00068A C0 06            [24]  624 	push	ar6
+      00068C C0 05            [24]  625 	push	ar5
+      00068E C0 04            [24]  626 	push	ar4
+      000690 C0 02            [24]  627 	push	ar2
+      000692 C0 01            [24]  628 	push	ar1
+      000694 12 04 BF         [24]  629 	lcall	_CheckTimeout
+      000697 AB 82            [24]  630 	mov	r3,dpl
+      000699 D0 01            [24]  631 	pop	ar1
+      00069B D0 02            [24]  632 	pop	ar2
+      00069D D0 04            [24]  633 	pop	ar4
+      00069F D0 05            [24]  634 	pop	ar5
+      0006A1 D0 06            [24]  635 	pop	ar6
+      0006A3 D0 07            [24]  636 	pop	ar7
+      0006A5 BB 01 02         [24]  637 	cjne	r3,#0x01,00139$
+      0006A8 80 CD            [24]  638 	sjmp	00103$
+      0006AA                        639 00139$:
                                     640 ;	src/mc96f8x16_uart.c:30: return HAL_TIMEOUT;
-      000136 75 82 02         [24]  641 	mov	dpl,#0x02
-      000139 22               [24]  642 	ret
-      00013A                        643 00105$:
+      0006AA 75 82 02         [24]  641 	mov	dpl,#0x02
+      0006AD 22               [24]  642 	ret
+      0006AE                        643 00105$:
                                     644 ;	src/mc96f8x16_uart.c:33: UARTDR = *(Buffer + i);
-      00013A E9               [12]  645 	mov	a,r1
-      00013B 25*02            [12]  646 	add	a,_UART_Transmit_sloc1_1_0
-      00013D FB               [12]  647 	mov	r3,a
-      00013E EA               [12]  648 	mov	a,r2
-      00013F 35*03            [12]  649 	addc	a,(_UART_Transmit_sloc1_1_0 + 1)
-      000141 FC               [12]  650 	mov	r4,a
-      000142 AD*04            [24]  651 	mov	r5,(_UART_Transmit_sloc1_1_0 + 2)
-      000144 8B 82            [24]  652 	mov	dpl,r3
-      000146 8C 83            [24]  653 	mov	dph,r4
-      000148 8D F0            [24]  654 	mov	b,r5
-      00014A 12r00r00         [24]  655 	lcall	__gptrget
-      00014D F5 E7            [12]  656 	mov	_UARTDR,a
+      0006AE E9               [12]  645 	mov	a,r1
+      0006AF 25 32            [12]  646 	add	a,_UART_Transmit_sloc1_1_0
+      0006B1 FB               [12]  647 	mov	r3,a
+      0006B2 EA               [12]  648 	mov	a,r2
+      0006B3 35 33            [12]  649 	addc	a,(_UART_Transmit_sloc1_1_0 + 1)
+      0006B5 FC               [12]  650 	mov	r4,a
+      0006B6 AD 34            [24]  651 	mov	r5,(_UART_Transmit_sloc1_1_0 + 2)
+      0006B8 8B 82            [24]  652 	mov	dpl,r3
+      0006BA 8C 83            [24]  653 	mov	dph,r4
+      0006BC 8D F0            [24]  654 	mov	b,r5
+      0006BE 12 08 EE         [24]  655 	lcall	__gptrget
+      0006C1 F5 E7            [12]  656 	mov	_UARTDR,a
                                     657 ;	src/mc96f8x16_uart.c:34: i++;
-      00014F 09               [12]  658 	inc	r1
-      000150 B9 00 01         [24]  659 	cjne	r1,#0x00,00140$
-      000153 0A               [12]  660 	inc	r2
-      000154                        661 00140$:
-      000154 02r00rBB         [24]  662 	ljmp	00109$
-      000157                        663 00107$:
+      0006C3 09               [12]  658 	inc	r1
+      0006C4 B9 00 01         [24]  659 	cjne	r1,#0x00,00140$
+      0006C7 0A               [12]  660 	inc	r2
+      0006C8                        661 00140$:
+      0006C8 02 06 2F         [24]  662 	ljmp	00109$
+      0006CB                        663 00107$:
                                     664 ;	src/mc96f8x16_uart.c:38: return HAL_TIMEOUT;
-      000157 75 82 02         [24]  665 	mov	dpl,#0x02
-      00015A 22               [24]  666 	ret
-      00015B                        667 00111$:
+      0006CB 75 82 02         [24]  665 	mov	dpl,#0x02
+      0006CE 22               [24]  666 	ret
+      0006CF                        667 00111$:
                                     668 ;	src/mc96f8x16_uart.c:41: return HAL_OK;
-      00015B 75 82 01         [24]  669 	mov	dpl,#0x01
+      0006CF 75 82 01         [24]  669 	mov	dpl,#0x01
                                     670 ;	src/mc96f8x16_uart.c:42: }
-      00015E 22               [24]  671 	ret
+      0006D2 22               [24]  671 	ret
                                     672 ;------------------------------------------------------------
                                     673 ;Allocation info for local variables in function 'UART_Receive'
                                     674 ;------------------------------------------------------------
@@ -684,145 +684,145 @@
                                     684 ;	-----------------------------------------
                                     685 ;	 function UART_Receive
                                     686 ;	-----------------------------------------
-      00015F                        687 _UART_Receive:
-      00015F AF F0            [24]  688 	mov	r7,b
-      000161 AE 83            [24]  689 	mov	r6,dph
-      000163 E5 82            [12]  690 	mov	a,dpl
-      000165 90r00r0E         [24]  691 	mov	dptr,#_UART_Receive_Buffer_65536_21
-      000168 F0               [24]  692 	movx	@dptr,a
-      000169 EE               [12]  693 	mov	a,r6
-      00016A A3               [24]  694 	inc	dptr
-      00016B F0               [24]  695 	movx	@dptr,a
-      00016C EF               [12]  696 	mov	a,r7
-      00016D A3               [24]  697 	inc	dptr
-      00016E F0               [24]  698 	movx	@dptr,a
+      0006D3                        687 _UART_Receive:
+      0006D3 AF F0            [24]  688 	mov	r7,b
+      0006D5 AE 83            [24]  689 	mov	r6,dph
+      0006D7 E5 82            [12]  690 	mov	a,dpl
+      0006D9 90 01 32         [24]  691 	mov	dptr,#_UART_Receive_Buffer_65536_21
+      0006DC F0               [24]  692 	movx	@dptr,a
+      0006DD EE               [12]  693 	mov	a,r6
+      0006DE A3               [24]  694 	inc	dptr
+      0006DF F0               [24]  695 	movx	@dptr,a
+      0006E0 EF               [12]  696 	mov	a,r7
+      0006E1 A3               [24]  697 	inc	dptr
+      0006E2 F0               [24]  698 	movx	@dptr,a
                                     699 ;	src/mc96f8x16_uart.c:47: uint16_t StartTick = GetTick();
-      00016F 12r00r00         [24]  700 	lcall	_GetTick
-      000172 AE 82            [24]  701 	mov	r6,dpl
-      000174 AF 83            [24]  702 	mov	r7,dph
+      0006E3 12 03 EF         [24]  700 	lcall	_GetTick
+      0006E6 AE 82            [24]  701 	mov	r6,dpl
+      0006E8 AF 83            [24]  702 	mov	r7,dph
                                     703 ;	src/mc96f8x16_uart.c:48: while(Size--)
-      000176 90r00r0E         [24]  704 	mov	dptr,#_UART_Receive_Buffer_65536_21
-      000179 E0               [24]  705 	movx	a,@dptr
-      00017A F5*07            [12]  706 	mov	_UART_Receive_sloc1_1_0,a
-      00017C A3               [24]  707 	inc	dptr
-      00017D E0               [24]  708 	movx	a,@dptr
-      00017E F5*08            [12]  709 	mov	(_UART_Receive_sloc1_1_0 + 1),a
-      000180 A3               [24]  710 	inc	dptr
-      000181 E0               [24]  711 	movx	a,@dptr
-      000182 F5*09            [12]  712 	mov	(_UART_Receive_sloc1_1_0 + 2),a
-      000184 79 00            [12]  713 	mov	r1,#0x00
-      000186 7A 00            [12]  714 	mov	r2,#0x00
-      000188 90r00r0A         [24]  715 	mov	dptr,#_UART_Receive_PARM_2
-      00018B E0               [24]  716 	movx	a,@dptr
-      00018C F5*05            [12]  717 	mov	_UART_Receive_sloc0_1_0,a
-      00018E A3               [24]  718 	inc	dptr
-      00018F E0               [24]  719 	movx	a,@dptr
-      000190 F5*06            [12]  720 	mov	(_UART_Receive_sloc0_1_0 + 1),a
-      000192                        721 00109$:
-      000192 A8*05            [24]  722 	mov	r0,_UART_Receive_sloc0_1_0
-      000194 AD*06            [24]  723 	mov	r5,(_UART_Receive_sloc0_1_0 + 1)
-      000196 15*05            [12]  724 	dec	_UART_Receive_sloc0_1_0
-      000198 74 FF            [12]  725 	mov	a,#0xff
-      00019A B5*05 02         [24]  726 	cjne	a,_UART_Receive_sloc0_1_0,00134$
-      00019D 15*06            [12]  727 	dec	(_UART_Receive_sloc0_1_0 + 1)
-      00019F                        728 00134$:
-      00019F E8               [12]  729 	mov	a,r0
-      0001A0 4D               [12]  730 	orl	a,r5
-      0001A1 70 03            [24]  731 	jnz	00135$
-      0001A3 02r02r32         [24]  732 	ljmp	00111$
-      0001A6                        733 00135$:
+      0006EA 90 01 32         [24]  704 	mov	dptr,#_UART_Receive_Buffer_65536_21
+      0006ED E0               [24]  705 	movx	a,@dptr
+      0006EE F5 37            [12]  706 	mov	_UART_Receive_sloc1_1_0,a
+      0006F0 A3               [24]  707 	inc	dptr
+      0006F1 E0               [24]  708 	movx	a,@dptr
+      0006F2 F5 38            [12]  709 	mov	(_UART_Receive_sloc1_1_0 + 1),a
+      0006F4 A3               [24]  710 	inc	dptr
+      0006F5 E0               [24]  711 	movx	a,@dptr
+      0006F6 F5 39            [12]  712 	mov	(_UART_Receive_sloc1_1_0 + 2),a
+      0006F8 79 00            [12]  713 	mov	r1,#0x00
+      0006FA 7A 00            [12]  714 	mov	r2,#0x00
+      0006FC 90 01 2E         [24]  715 	mov	dptr,#_UART_Receive_PARM_2
+      0006FF E0               [24]  716 	movx	a,@dptr
+      000700 F5 35            [12]  717 	mov	_UART_Receive_sloc0_1_0,a
+      000702 A3               [24]  718 	inc	dptr
+      000703 E0               [24]  719 	movx	a,@dptr
+      000704 F5 36            [12]  720 	mov	(_UART_Receive_sloc0_1_0 + 1),a
+      000706                        721 00109$:
+      000706 A8 35            [24]  722 	mov	r0,_UART_Receive_sloc0_1_0
+      000708 AD 36            [24]  723 	mov	r5,(_UART_Receive_sloc0_1_0 + 1)
+      00070A 15 35            [12]  724 	dec	_UART_Receive_sloc0_1_0
+      00070C 74 FF            [12]  725 	mov	a,#0xff
+      00070E B5 35 02         [24]  726 	cjne	a,_UART_Receive_sloc0_1_0,00134$
+      000711 15 36            [12]  727 	dec	(_UART_Receive_sloc0_1_0 + 1)
+      000713                        728 00134$:
+      000713 E8               [12]  729 	mov	a,r0
+      000714 4D               [12]  730 	orl	a,r5
+      000715 70 03            [24]  731 	jnz	00135$
+      000717 02 07 A6         [24]  732 	ljmp	00111$
+      00071A                        733 00135$:
                                     734 ;	src/mc96f8x16_uart.c:50: if(CheckTimeout(StartTick, Timeout) == HAL_OK)
-      0001A6 90r00r0C         [24]  735 	mov	dptr,#_UART_Receive_PARM_3
-      0001A9 E0               [24]  736 	movx	a,@dptr
-      0001AA FC               [12]  737 	mov	r4,a
-      0001AB A3               [24]  738 	inc	dptr
-      0001AC E0               [24]  739 	movx	a,@dptr
-      0001AD FD               [12]  740 	mov	r5,a
-      0001AE 90r00r00         [24]  741 	mov	dptr,#_CheckTimeout_PARM_2
-      0001B1 EC               [12]  742 	mov	a,r4
-      0001B2 F0               [24]  743 	movx	@dptr,a
-      0001B3 ED               [12]  744 	mov	a,r5
-      0001B4 A3               [24]  745 	inc	dptr
-      0001B5 F0               [24]  746 	movx	@dptr,a
-      0001B6 8E 82            [24]  747 	mov	dpl,r6
-      0001B8 8F 83            [24]  748 	mov	dph,r7
-      0001BA C0 07            [24]  749 	push	ar7
-      0001BC C0 06            [24]  750 	push	ar6
-      0001BE C0 05            [24]  751 	push	ar5
-      0001C0 C0 04            [24]  752 	push	ar4
-      0001C2 C0 02            [24]  753 	push	ar2
-      0001C4 C0 01            [24]  754 	push	ar1
-      0001C6 12r00r00         [24]  755 	lcall	_CheckTimeout
-      0001C9 AB 82            [24]  756 	mov	r3,dpl
-      0001CB D0 01            [24]  757 	pop	ar1
-      0001CD D0 02            [24]  758 	pop	ar2
-      0001CF D0 04            [24]  759 	pop	ar4
-      0001D1 D0 05            [24]  760 	pop	ar5
-      0001D3 D0 06            [24]  761 	pop	ar6
-      0001D5 D0 07            [24]  762 	pop	ar7
-      0001D7 BB 01 54         [24]  763 	cjne	r3,#0x01,00107$
+      00071A 90 01 30         [24]  735 	mov	dptr,#_UART_Receive_PARM_3
+      00071D E0               [24]  736 	movx	a,@dptr
+      00071E FC               [12]  737 	mov	r4,a
+      00071F A3               [24]  738 	inc	dptr
+      000720 E0               [24]  739 	movx	a,@dptr
+      000721 FD               [12]  740 	mov	r5,a
+      000722 90 01 1F         [24]  741 	mov	dptr,#_CheckTimeout_PARM_2
+      000725 EC               [12]  742 	mov	a,r4
+      000726 F0               [24]  743 	movx	@dptr,a
+      000727 ED               [12]  744 	mov	a,r5
+      000728 A3               [24]  745 	inc	dptr
+      000729 F0               [24]  746 	movx	@dptr,a
+      00072A 8E 82            [24]  747 	mov	dpl,r6
+      00072C 8F 83            [24]  748 	mov	dph,r7
+      00072E C0 07            [24]  749 	push	ar7
+      000730 C0 06            [24]  750 	push	ar6
+      000732 C0 05            [24]  751 	push	ar5
+      000734 C0 04            [24]  752 	push	ar4
+      000736 C0 02            [24]  753 	push	ar2
+      000738 C0 01            [24]  754 	push	ar1
+      00073A 12 04 BF         [24]  755 	lcall	_CheckTimeout
+      00073D AB 82            [24]  756 	mov	r3,dpl
+      00073F D0 01            [24]  757 	pop	ar1
+      000741 D0 02            [24]  758 	pop	ar2
+      000743 D0 04            [24]  759 	pop	ar4
+      000745 D0 05            [24]  760 	pop	ar5
+      000747 D0 06            [24]  761 	pop	ar6
+      000749 D0 07            [24]  762 	pop	ar7
+      00074B BB 01 54         [24]  763 	cjne	r3,#0x01,00107$
                                     764 ;	src/mc96f8x16_uart.c:52: while(!(UARTST & UARTST_RXC))
-      0001DA                        765 00103$:
-      0001DA E5 E5            [12]  766 	mov	a,_UARTST
-      0001DC 20 E5 32         [24]  767 	jb	acc.5,00105$
+      00074E                        765 00103$:
+      00074E E5 E5            [12]  766 	mov	a,_UARTST
+      000750 20 E5 32         [24]  767 	jb	acc.5,00105$
                                     768 ;	src/mc96f8x16_uart.c:54: if(CheckTimeout(StartTick, Timeout) != HAL_OK)
-      0001DF 90r00r00         [24]  769 	mov	dptr,#_CheckTimeout_PARM_2
-      0001E2 EC               [12]  770 	mov	a,r4
-      0001E3 F0               [24]  771 	movx	@dptr,a
-      0001E4 ED               [12]  772 	mov	a,r5
-      0001E5 A3               [24]  773 	inc	dptr
-      0001E6 F0               [24]  774 	movx	@dptr,a
-      0001E7 8E 82            [24]  775 	mov	dpl,r6
-      0001E9 8F 83            [24]  776 	mov	dph,r7
-      0001EB C0 07            [24]  777 	push	ar7
-      0001ED C0 06            [24]  778 	push	ar6
-      0001EF C0 05            [24]  779 	push	ar5
-      0001F1 C0 04            [24]  780 	push	ar4
-      0001F3 C0 02            [24]  781 	push	ar2
-      0001F5 C0 01            [24]  782 	push	ar1
-      0001F7 12r00r00         [24]  783 	lcall	_CheckTimeout
-      0001FA AB 82            [24]  784 	mov	r3,dpl
-      0001FC D0 01            [24]  785 	pop	ar1
-      0001FE D0 02            [24]  786 	pop	ar2
-      000200 D0 04            [24]  787 	pop	ar4
-      000202 D0 05            [24]  788 	pop	ar5
-      000204 D0 06            [24]  789 	pop	ar6
-      000206 D0 07            [24]  790 	pop	ar7
-      000208 BB 01 02         [24]  791 	cjne	r3,#0x01,00139$
-      00020B 80 CD            [24]  792 	sjmp	00103$
-      00020D                        793 00139$:
+      000753 90 01 1F         [24]  769 	mov	dptr,#_CheckTimeout_PARM_2
+      000756 EC               [12]  770 	mov	a,r4
+      000757 F0               [24]  771 	movx	@dptr,a
+      000758 ED               [12]  772 	mov	a,r5
+      000759 A3               [24]  773 	inc	dptr
+      00075A F0               [24]  774 	movx	@dptr,a
+      00075B 8E 82            [24]  775 	mov	dpl,r6
+      00075D 8F 83            [24]  776 	mov	dph,r7
+      00075F C0 07            [24]  777 	push	ar7
+      000761 C0 06            [24]  778 	push	ar6
+      000763 C0 05            [24]  779 	push	ar5
+      000765 C0 04            [24]  780 	push	ar4
+      000767 C0 02            [24]  781 	push	ar2
+      000769 C0 01            [24]  782 	push	ar1
+      00076B 12 04 BF         [24]  783 	lcall	_CheckTimeout
+      00076E AB 82            [24]  784 	mov	r3,dpl
+      000770 D0 01            [24]  785 	pop	ar1
+      000772 D0 02            [24]  786 	pop	ar2
+      000774 D0 04            [24]  787 	pop	ar4
+      000776 D0 05            [24]  788 	pop	ar5
+      000778 D0 06            [24]  789 	pop	ar6
+      00077A D0 07            [24]  790 	pop	ar7
+      00077C BB 01 02         [24]  791 	cjne	r3,#0x01,00139$
+      00077F 80 CD            [24]  792 	sjmp	00103$
+      000781                        793 00139$:
                                     794 ;	src/mc96f8x16_uart.c:56: return HAL_TIMEOUT;
-      00020D 75 82 02         [24]  795 	mov	dpl,#0x02
-      000210 22               [24]  796 	ret
-      000211                        797 00105$:
+      000781 75 82 02         [24]  795 	mov	dpl,#0x02
+      000784 22               [24]  796 	ret
+      000785                        797 00105$:
                                     798 ;	src/mc96f8x16_uart.c:59: *(Buffer + i) = UARTDR;
-      000211 E9               [12]  799 	mov	a,r1
-      000212 25*07            [12]  800 	add	a,_UART_Receive_sloc1_1_0
-      000214 FB               [12]  801 	mov	r3,a
-      000215 EA               [12]  802 	mov	a,r2
-      000216 35*08            [12]  803 	addc	a,(_UART_Receive_sloc1_1_0 + 1)
-      000218 FC               [12]  804 	mov	r4,a
-      000219 AD*09            [24]  805 	mov	r5,(_UART_Receive_sloc1_1_0 + 2)
-      00021B 8B 82            [24]  806 	mov	dpl,r3
-      00021D 8C 83            [24]  807 	mov	dph,r4
-      00021F 8D F0            [24]  808 	mov	b,r5
-      000221 E5 E7            [12]  809 	mov	a,_UARTDR
-      000223 12r00r00         [24]  810 	lcall	__gptrput
+      000785 E9               [12]  799 	mov	a,r1
+      000786 25 37            [12]  800 	add	a,_UART_Receive_sloc1_1_0
+      000788 FB               [12]  801 	mov	r3,a
+      000789 EA               [12]  802 	mov	a,r2
+      00078A 35 38            [12]  803 	addc	a,(_UART_Receive_sloc1_1_0 + 1)
+      00078C FC               [12]  804 	mov	r4,a
+      00078D AD 39            [24]  805 	mov	r5,(_UART_Receive_sloc1_1_0 + 2)
+      00078F 8B 82            [24]  806 	mov	dpl,r3
+      000791 8C 83            [24]  807 	mov	dph,r4
+      000793 8D F0            [24]  808 	mov	b,r5
+      000795 E5 E7            [12]  809 	mov	a,_UARTDR
+      000797 12 08 D3         [24]  810 	lcall	__gptrput
                                     811 ;	src/mc96f8x16_uart.c:60: i++;
-      000226 09               [12]  812 	inc	r1
-      000227 B9 00 01         [24]  813 	cjne	r1,#0x00,00140$
-      00022A 0A               [12]  814 	inc	r2
-      00022B                        815 00140$:
-      00022B 02r01r92         [24]  816 	ljmp	00109$
-      00022E                        817 00107$:
+      00079A 09               [12]  812 	inc	r1
+      00079B B9 00 01         [24]  813 	cjne	r1,#0x00,00140$
+      00079E 0A               [12]  814 	inc	r2
+      00079F                        815 00140$:
+      00079F 02 07 06         [24]  816 	ljmp	00109$
+      0007A2                        817 00107$:
                                     818 ;	src/mc96f8x16_uart.c:64: return HAL_TIMEOUT;
-      00022E 75 82 02         [24]  819 	mov	dpl,#0x02
-      000231 22               [24]  820 	ret
-      000232                        821 00111$:
+      0007A2 75 82 02         [24]  819 	mov	dpl,#0x02
+      0007A5 22               [24]  820 	ret
+      0007A6                        821 00111$:
                                     822 ;	src/mc96f8x16_uart.c:67: return HAL_OK;
-      000232 75 82 01         [24]  823 	mov	dpl,#0x01
+      0007A6 75 82 01         [24]  823 	mov	dpl,#0x01
                                     824 ;	src/mc96f8x16_uart.c:68: }
-      000235 22               [24]  825 	ret
+      0007A9 22               [24]  825 	ret
                                     826 ;------------------------------------------------------------
                                     827 ;Allocation info for local variables in function 'UART_Receive_ISR'
                                     828 ;------------------------------------------------------------
@@ -830,25 +830,25 @@
                                     830 ;	-----------------------------------------
                                     831 ;	 function UART_Receive_ISR
                                     832 ;	-----------------------------------------
-      000236                        833 _UART_Receive_ISR:
-      000236 C0 E0            [24]  834 	push	acc
-      000238 C0 82            [24]  835 	push	dpl
-      00023A C0 83            [24]  836 	push	dph
+      0007AA                        833 _UART_Receive_ISR:
+      0007AA C0 E0            [24]  834 	push	acc
+      0007AC C0 82            [24]  835 	push	dpl
+      0007AE C0 83            [24]  836 	push	dph
                                     837 ;	src/mc96f8x16_uart.c:72: RxData = UARTDR;
-      00023C 90r00r00         [24]  838 	mov	dptr,#_RxData
-      00023F E5 E7            [12]  839 	mov	a,_UARTDR
-      000241 F0               [24]  840 	movx	@dptr,a
+      0007B0 90 01 3F         [24]  838 	mov	dptr,#_RxData
+      0007B3 E5 E7            [12]  839 	mov	a,_UARTDR
+      0007B5 F0               [24]  840 	movx	@dptr,a
                                     841 ;	src/mc96f8x16_uart.c:73: }
-      000242 D0 83            [24]  842 	pop	dph
-      000244 D0 82            [24]  843 	pop	dpl
-      000246 D0 E0            [24]  844 	pop	acc
-      000248 32               [24]  845 	reti
+      0007B6 D0 83            [24]  842 	pop	dph
+      0007B8 D0 82            [24]  843 	pop	dpl
+      0007BA D0 E0            [24]  844 	pop	acc
+      0007BC 32               [24]  845 	reti
                                     846 ;	eliminated unneeded mov psw,# (no regs used in bank)
                                     847 ;	eliminated unneeded push/pop not_psw
                                     848 ;	eliminated unneeded push/pop b
                                     849 	.area CSEG    (CODE)
                                     850 	.area CONST   (CODE)
                                     851 	.area XINIT   (CODE)
-      000000                        852 __xinit__RxData:
-      000000 00                     853 	.db #0x00	; 0
+      000912                        852 __xinit__RxData:
+      000912 00                     853 	.db #0x00	; 0
                                     854 	.area CABS    (ABS,CODE)

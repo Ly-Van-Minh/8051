@@ -2,157 +2,157 @@
                                       2 ; File Created by SDCC : free open source ANSI-C Compiler
                                       3 ; Version 4.1.14 #12827 (Linux)
                                       4 ;--------------------------------------------------------
-                                      5 	.module mc96f8x16_wdt
+                                      5 	.module log
                                       6 	.optsdcc -mmcs51 --model-large
                                       7 	
                                       8 ;--------------------------------------------------------
                                       9 ; Public variables in this module
                                      10 ;--------------------------------------------------------
-                                     11 	.globl _P37
-                                     12 	.globl _P36
-                                     13 	.globl _P35
-                                     14 	.globl _P34
-                                     15 	.globl _P33
-                                     16 	.globl _P32
-                                     17 	.globl _P31
-                                     18 	.globl _P30
-                                     19 	.globl _P27
-                                     20 	.globl _P26
-                                     21 	.globl _P25
-                                     22 	.globl _P24
-                                     23 	.globl _P23
-                                     24 	.globl _P22
-                                     25 	.globl _P21
-                                     26 	.globl _P20
-                                     27 	.globl _P17
-                                     28 	.globl _P16
-                                     29 	.globl _P15
-                                     30 	.globl _P14
-                                     31 	.globl _P13
-                                     32 	.globl _P12
-                                     33 	.globl _P11
-                                     34 	.globl _P10
-                                     35 	.globl _P07
-                                     36 	.globl _P06
-                                     37 	.globl _P05
-                                     38 	.globl _P04
-                                     39 	.globl _P03
-                                     40 	.globl _P02
-                                     41 	.globl _P01
-                                     42 	.globl _P00
-                                     43 	.globl _EO
-                                     44 	.globl _DPH1
-                                     45 	.globl _DPL1
-                                     46 	.globl _DPH
-                                     47 	.globl _DPL
-                                     48 	.globl _SP
-                                     49 	.globl _PSW
-                                     50 	.globl _B
-                                     51 	.globl _ACC
-                                     52 	.globl _FMCR
-                                     53 	.globl _FIDR
-                                     54 	.globl _FSADRL
-                                     55 	.globl _FSADRM
-                                     56 	.globl _FSADRH
-                                     57 	.globl _I2CSCHR
-                                     58 	.globl _I2CSCLR
-                                     59 	.globl _I2CSDHR
-                                     60 	.globl _I2CDR
-                                     61 	.globl _I2CSAR1
-                                     62 	.globl _I2CSAR0
-                                     63 	.globl _I2CSR
-                                     64 	.globl _I2CCR
-                                     65 	.globl _UARTDR
-                                     66 	.globl _UARTBD
-                                     67 	.globl _UARTST
-                                     68 	.globl _UARTCR3
-                                     69 	.globl _UARTCR2
-                                     70 	.globl _UARTCR1
-                                     71 	.globl _SPISR
-                                     72 	.globl _SPIDR
-                                     73 	.globl _SPICR
-                                     74 	.globl _ADWIFRH
-                                     75 	.globl _ADWIFRL
-                                     76 	.globl _ADWCRH
-                                     77 	.globl _ADWCRL
-                                     78 	.globl _ADWRCR3
-                                     79 	.globl _ADWRCR2
-                                     80 	.globl _ADWRCR1
-                                     81 	.globl _ADWRCR0
-                                     82 	.globl _ADCDRH
-                                     83 	.globl _ADCDRL
-                                     84 	.globl _ADCCRH
-                                     85 	.globl _ADCCRL
-                                     86 	.globl _BUZCR
-                                     87 	.globl _BUZDR
-                                     88 	.globl _T2BDRH
-                                     89 	.globl _T2BDRL
-                                     90 	.globl _T2ADRH
-                                     91 	.globl _T2ADRL
-                                     92 	.globl _T2CRH
-                                     93 	.globl _T2CRL
-                                     94 	.globl _T1BDRH
-                                     95 	.globl _T1BDRL
-                                     96 	.globl _T1ADRH
-                                     97 	.globl _T1ADRL
-                                     98 	.globl _T1CRH
-                                     99 	.globl _T1CRL
-                                    100 	.globl _T0CDR
-                                    101 	.globl _T0DR
-                                    102 	.globl _T0CNT
-                                    103 	.globl _T0CR
-                                    104 	.globl _WTCR
-                                    105 	.globl _WTCNT
-                                    106 	.globl _WTDR
-                                    107 	.globl _WDTCR
-                                    108 	.globl _WDTCNT
-                                    109 	.globl _WDTDR
-                                    110 	.globl _LVICR
-                                    111 	.globl _LVRCR
-                                    112 	.globl _PCON
-                                    113 	.globl _RSTFR
-                                    114 	.globl _BITCR
-                                    115 	.globl _BITCNT
-                                    116 	.globl _OSCCR
-                                    117 	.globl _SCCR
-                                    118 	.globl _EIPOL2
-                                    119 	.globl _EIPOL1
-                                    120 	.globl _EIPOL0H
-                                    121 	.globl _EIPOL0L
-                                    122 	.globl _EIFLAG1
-                                    123 	.globl _EIFLAG0
-                                    124 	.globl _IIFLAG
-                                    125 	.globl _IP1
-                                    126 	.globl _IP
-                                    127 	.globl _IE3
-                                    128 	.globl _IE2
-                                    129 	.globl _IE1
-                                    130 	.globl _IE
-                                    131 	.globl _P3FSR
-                                    132 	.globl _P2FSR
-                                    133 	.globl _P1FSRH
-                                    134 	.globl _P1FSRL
-                                    135 	.globl _P0FSR
-                                    136 	.globl _P3PU
-                                    137 	.globl _P3OD
-                                    138 	.globl _P3IO
-                                    139 	.globl _P3
-                                    140 	.globl _P2PU
-                                    141 	.globl _P2OD
-                                    142 	.globl _P2IO
-                                    143 	.globl _P2
-                                    144 	.globl _P12DB
-                                    145 	.globl _P1PU
-                                    146 	.globl _P1OD
-                                    147 	.globl _P1IO
-                                    148 	.globl _P1
-                                    149 	.globl _P03DB
-                                    150 	.globl _P0PU
-                                    151 	.globl _P0OD
-                                    152 	.globl _P0IO
-                                    153 	.globl _P0
-                                    154 	.globl _WDT_Config
-                                    155 	.globl _WDT_Clear
+                                     11 	.globl _UART_Transmit
+                                     12 	.globl _P37
+                                     13 	.globl _P36
+                                     14 	.globl _P35
+                                     15 	.globl _P34
+                                     16 	.globl _P33
+                                     17 	.globl _P32
+                                     18 	.globl _P31
+                                     19 	.globl _P30
+                                     20 	.globl _P27
+                                     21 	.globl _P26
+                                     22 	.globl _P25
+                                     23 	.globl _P24
+                                     24 	.globl _P23
+                                     25 	.globl _P22
+                                     26 	.globl _P21
+                                     27 	.globl _P20
+                                     28 	.globl _P17
+                                     29 	.globl _P16
+                                     30 	.globl _P15
+                                     31 	.globl _P14
+                                     32 	.globl _P13
+                                     33 	.globl _P12
+                                     34 	.globl _P11
+                                     35 	.globl _P10
+                                     36 	.globl _P07
+                                     37 	.globl _P06
+                                     38 	.globl _P05
+                                     39 	.globl _P04
+                                     40 	.globl _P03
+                                     41 	.globl _P02
+                                     42 	.globl _P01
+                                     43 	.globl _P00
+                                     44 	.globl _EO
+                                     45 	.globl _DPH1
+                                     46 	.globl _DPL1
+                                     47 	.globl _DPH
+                                     48 	.globl _DPL
+                                     49 	.globl _SP
+                                     50 	.globl _PSW
+                                     51 	.globl _B
+                                     52 	.globl _ACC
+                                     53 	.globl _FMCR
+                                     54 	.globl _FIDR
+                                     55 	.globl _FSADRL
+                                     56 	.globl _FSADRM
+                                     57 	.globl _FSADRH
+                                     58 	.globl _I2CSCHR
+                                     59 	.globl _I2CSCLR
+                                     60 	.globl _I2CSDHR
+                                     61 	.globl _I2CDR
+                                     62 	.globl _I2CSAR1
+                                     63 	.globl _I2CSAR0
+                                     64 	.globl _I2CSR
+                                     65 	.globl _I2CCR
+                                     66 	.globl _UARTDR
+                                     67 	.globl _UARTBD
+                                     68 	.globl _UARTST
+                                     69 	.globl _UARTCR3
+                                     70 	.globl _UARTCR2
+                                     71 	.globl _UARTCR1
+                                     72 	.globl _SPISR
+                                     73 	.globl _SPIDR
+                                     74 	.globl _SPICR
+                                     75 	.globl _ADWIFRH
+                                     76 	.globl _ADWIFRL
+                                     77 	.globl _ADWCRH
+                                     78 	.globl _ADWCRL
+                                     79 	.globl _ADWRCR3
+                                     80 	.globl _ADWRCR2
+                                     81 	.globl _ADWRCR1
+                                     82 	.globl _ADWRCR0
+                                     83 	.globl _ADCDRH
+                                     84 	.globl _ADCDRL
+                                     85 	.globl _ADCCRH
+                                     86 	.globl _ADCCRL
+                                     87 	.globl _BUZCR
+                                     88 	.globl _BUZDR
+                                     89 	.globl _T2BDRH
+                                     90 	.globl _T2BDRL
+                                     91 	.globl _T2ADRH
+                                     92 	.globl _T2ADRL
+                                     93 	.globl _T2CRH
+                                     94 	.globl _T2CRL
+                                     95 	.globl _T1BDRH
+                                     96 	.globl _T1BDRL
+                                     97 	.globl _T1ADRH
+                                     98 	.globl _T1ADRL
+                                     99 	.globl _T1CRH
+                                    100 	.globl _T1CRL
+                                    101 	.globl _T0CDR
+                                    102 	.globl _T0DR
+                                    103 	.globl _T0CNT
+                                    104 	.globl _T0CR
+                                    105 	.globl _WTCR
+                                    106 	.globl _WTCNT
+                                    107 	.globl _WTDR
+                                    108 	.globl _WDTCR
+                                    109 	.globl _WDTCNT
+                                    110 	.globl _WDTDR
+                                    111 	.globl _LVICR
+                                    112 	.globl _LVRCR
+                                    113 	.globl _PCON
+                                    114 	.globl _RSTFR
+                                    115 	.globl _BITCR
+                                    116 	.globl _BITCNT
+                                    117 	.globl _OSCCR
+                                    118 	.globl _SCCR
+                                    119 	.globl _EIPOL2
+                                    120 	.globl _EIPOL1
+                                    121 	.globl _EIPOL0H
+                                    122 	.globl _EIPOL0L
+                                    123 	.globl _EIFLAG1
+                                    124 	.globl _EIFLAG0
+                                    125 	.globl _IIFLAG
+                                    126 	.globl _IP1
+                                    127 	.globl _IP
+                                    128 	.globl _IE3
+                                    129 	.globl _IE2
+                                    130 	.globl _IE1
+                                    131 	.globl _IE
+                                    132 	.globl _P3FSR
+                                    133 	.globl _P2FSR
+                                    134 	.globl _P1FSRH
+                                    135 	.globl _P1FSRL
+                                    136 	.globl _P0FSR
+                                    137 	.globl _P3PU
+                                    138 	.globl _P3OD
+                                    139 	.globl _P3IO
+                                    140 	.globl _P3
+                                    141 	.globl _P2PU
+                                    142 	.globl _P2OD
+                                    143 	.globl _P2IO
+                                    144 	.globl _P2
+                                    145 	.globl _P12DB
+                                    146 	.globl _P1PU
+                                    147 	.globl _P1OD
+                                    148 	.globl _P1IO
+                                    149 	.globl _P1
+                                    150 	.globl _P03DB
+                                    151 	.globl _P0PU
+                                    152 	.globl _P0OD
+                                    153 	.globl _P0IO
+                                    154 	.globl _P0
+                                    155 	.globl _putchar
                                     156 ;--------------------------------------------------------
                                     157 ; special function registers
                                     158 ;--------------------------------------------------------
@@ -339,8 +339,8 @@
                                     339 ; external ram data
                                     340 ;--------------------------------------------------------
                                     341 	.area XSEG    (XDATA)
-      000000                        342 _WDT_Config_Time_65536_3:
-      000000                        343 	.ds 1
+      000110                        342 _putchar_c_65536_18:
+      000110                        343 	.ds 2
                                     344 ;--------------------------------------------------------
                                     345 ; absolute external ram data
                                     346 ;--------------------------------------------------------
@@ -376,15 +376,15 @@
                                     376 ;--------------------------------------------------------
                                     377 	.area CSEG    (CODE)
                                     378 ;------------------------------------------------------------
-                                    379 ;Allocation info for local variables in function 'WDT_Config'
+                                    379 ;Allocation info for local variables in function 'putchar'
                                     380 ;------------------------------------------------------------
-                                    381 ;Time                      Allocated with name '_WDT_Config_Time_65536_3'
+                                    381 ;c                         Allocated with name '_putchar_c_65536_18'
                                     382 ;------------------------------------------------------------
-                                    383 ;	src/mc96f8x16_wdt.c:4: void WDT_Config(uint8_t Time)
+                                    383 ;	src/log.c:7: int putchar(int c)
                                     384 ;	-----------------------------------------
-                                    385 ;	 function WDT_Config
+                                    385 ;	 function putchar
                                     386 ;	-----------------------------------------
-      000000                        387 _WDT_Config:
+      00031C                        387 _putchar:
                            000007   388 	ar7 = 0x07
                            000006   389 	ar6 = 0x06
                            000005   390 	ar5 = 0x05
@@ -393,29 +393,47 @@
                            000002   393 	ar2 = 0x02
                            000001   394 	ar1 = 0x01
                            000000   395 	ar0 = 0x00
-      000000 E5 82            [12]  396 	mov	a,dpl
-      000002 90r00r00         [24]  397 	mov	dptr,#_WDT_Config_Time_65536_3
-      000005 F0               [24]  398 	movx	@dptr,a
-                                    399 ;	src/mc96f8x16_wdt.c:6: WDTDR = Time;
-      000006 E0               [24]  400 	movx	a,@dptr
-      000007 F5 8E            [12]  401 	mov	_WDTDR,a
-                                    402 ;	src/mc96f8x16_wdt.c:7: WDTCR = WDTCK | WDTCL | WDTRSON | WDTEN; 
-      000009 75 8D E2         [24]  403 	mov	_WDTCR,#0xe2
-                                    404 ;	src/mc96f8x16_wdt.c:8: }
-      00000C 22               [24]  405 	ret
-                                    406 ;------------------------------------------------------------
-                                    407 ;Allocation info for local variables in function 'WDT_Clear'
-                                    408 ;------------------------------------------------------------
-                                    409 ;	src/mc96f8x16_wdt.c:10: void WDT_Clear(void)
-                                    410 ;	-----------------------------------------
-                                    411 ;	 function WDT_Clear
-                                    412 ;	-----------------------------------------
-      00000D                        413 _WDT_Clear:
-                                    414 ;	src/mc96f8x16_wdt.c:12: WDTCR |= WDTCL;
-      00000D 43 8D 20         [24]  415 	orl	_WDTCR,#0x20
-                                    416 ;	src/mc96f8x16_wdt.c:13: }
-      000010 22               [24]  417 	ret
-                                    418 	.area CSEG    (CODE)
-                                    419 	.area CONST   (CODE)
-                                    420 	.area XINIT   (CODE)
-                                    421 	.area CABS    (ABS,CODE)
+      00031C AF 83            [24]  396 	mov	r7,dph
+      00031E E5 82            [12]  397 	mov	a,dpl
+      000320 90 01 10         [24]  398 	mov	dptr,#_putchar_c_65536_18
+      000323 F0               [24]  399 	movx	@dptr,a
+      000324 EF               [12]  400 	mov	a,r7
+      000325 A3               [24]  401 	inc	dptr
+      000326 F0               [24]  402 	movx	@dptr,a
+                                    403 ;	src/log.c:9: if(UART_Transmit((uint8_t *)&c, 1, 2000) == HAL_OK)
+      000327 90 01 27         [24]  404 	mov	dptr,#_UART_Transmit_PARM_2
+      00032A 74 01            [12]  405 	mov	a,#0x01
+      00032C F0               [24]  406 	movx	@dptr,a
+      00032D E4               [12]  407 	clr	a
+      00032E A3               [24]  408 	inc	dptr
+      00032F F0               [24]  409 	movx	@dptr,a
+      000330 90 01 29         [24]  410 	mov	dptr,#_UART_Transmit_PARM_3
+      000333 74 D0            [12]  411 	mov	a,#0xd0
+      000335 F0               [24]  412 	movx	@dptr,a
+      000336 74 07            [12]  413 	mov	a,#0x07
+      000338 A3               [24]  414 	inc	dptr
+      000339 F0               [24]  415 	movx	@dptr,a
+      00033A 90 01 10         [24]  416 	mov	dptr,#_putchar_c_65536_18
+      00033D 75 F0 00         [24]  417 	mov	b,#0x00
+      000340 12 05 FC         [24]  418 	lcall	_UART_Transmit
+      000343 AF 82            [24]  419 	mov	r7,dpl
+      000345 BF 01 0D         [24]  420 	cjne	r7,#0x01,00102$
+                                    421 ;	src/log.c:11: return c;
+      000348 90 01 10         [24]  422 	mov	dptr,#_putchar_c_65536_18
+      00034B E0               [24]  423 	movx	a,@dptr
+      00034C FE               [12]  424 	mov	r6,a
+      00034D A3               [24]  425 	inc	dptr
+      00034E E0               [24]  426 	movx	a,@dptr
+      00034F FF               [12]  427 	mov	r7,a
+      000350 8E 82            [24]  428 	mov	dpl,r6
+      000352 8F 83            [24]  429 	mov	dph,r7
+      000354 22               [24]  430 	ret
+      000355                        431 00102$:
+                                    432 ;	src/log.c:15: return -1;
+      000355 90 FF FF         [24]  433 	mov	dptr,#0xffff
+                                    434 ;	src/log.c:17: }
+      000358 22               [24]  435 	ret
+                                    436 	.area CSEG    (CODE)
+                                    437 	.area CONST   (CODE)
+                                    438 	.area XINIT   (CODE)
+                                    439 	.area CABS    (ABS,CODE)

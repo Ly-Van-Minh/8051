@@ -1,0 +1,476 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  l_BIT_BANK                      
+C:   00000000  l_BSEG                          
+C:   00000000  l_BSEG_BYTES                    
+C:   00000000  l_CABS                          
+C:   00000000  l_CONST                         
+C:   00000000  l_GSINIT                        
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_ISEG                          
+C:   00000000  l_OSEG                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG                          
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_HOME                          
+C:   00000000  s_IABS                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000005  l_XINIT                         
+C:   00000005  l_XISEG                         
+C:   00000006  l_HOME                          
+C:   00000006  s_GSINIT0                       
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   00000009  s_GSINIT1                       
+C:   00000009  s_GSINIT2                       
+C:   0000000A  l_GSINIT2                       
+C:   00000010  s_REG_BANK_2                    
+C:   00000012  l_DSEG                          
+C:   00000013  s_GSINIT3                       
+C:   00000018  s_BIT_BANK                      
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BSEG_BYTES                    
+C:   00000020  s__CODE                         
+C:   00000022  l_GSINIT3                       
+C:   0000002A  l_GSINIT4                       
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000030  s_OSEG                          
+C:   00000035  s_GSINIT4                       
+C:   0000003B  l_XSEG                          
+C:   00000040  l_SSEG                          
+C:   0000005F  s_GSFINAL                       
+C:   0000005F  s_GSINIT                        
+C:   0000005F  s_GSINIT5                       
+C:   00000062  s_CSEG                          
+C:   00000080  s_ISEG                          
+C:   00000080  s_SSEG                          
+C:   00000100  l_IRAM                          
+C:   00000100  s_PSEG                          
+C:   00000100  s_XSEG                          
+C:   0000013B  s_XISEG                         
+C:   000008AC  l_CSEG                          
+C:   0000090E  s_CONST                         
+C:   0000090E  s_XINIT                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000080  _P0                                mc96f8x16_gpio
+     00000080  _P00                               mc96f8x16_gpio
+     00000081  _P01                               mc96f8x16_gpio
+     00000081  _SP                                mc96f8x16_gpio
+     00000082  _DPL                               mc96f8x16_gpio
+     00000082  _P02                               mc96f8x16_gpio
+     00000083  _DPH                               mc96f8x16_gpio
+     00000083  _P03                               mc96f8x16_gpio
+     00000084  _DPL1                              mc96f8x16_gpio
+     00000084  _P04                               mc96f8x16_gpio
+     00000085  _DPH1                              mc96f8x16_gpio
+     00000085  _P05                               mc96f8x16_gpio
+     00000086  _LVICR                             mc96f8x16_gpio
+     00000086  _P06                               mc96f8x16_gpio
+     00000087  _P07                               mc96f8x16_gpio
+     00000087  _PCON                              mc96f8x16_gpio
+     00000088  _P1                                mc96f8x16_gpio
+     00000088  _P10                               mc96f8x16_gpio
+     00000089  _P11                               mc96f8x16_gpio
+     00000089  _WTCNT                             mc96f8x16_gpio
+     00000089  _WTDR                              mc96f8x16_gpio
+     0000008A  _P12                               mc96f8x16_gpio
+     0000008A  _SCCR                              mc96f8x16_gpio
+     0000008B  _BITCR                             mc96f8x16_gpio
+     0000008B  _P13                               mc96f8x16_gpio
+     0000008C  _BITCNT                            mc96f8x16_gpio
+     0000008C  _P14                               mc96f8x16_gpio
+     0000008D  _P15                               mc96f8x16_gpio
+     0000008D  _WDTCR                             mc96f8x16_gpio
+     0000008E  _P16                               mc96f8x16_gpio
+     0000008E  _WDTCNT                            mc96f8x16_gpio
+     0000008E  _WDTDR                             mc96f8x16_gpio
+     0000008F  _BUZDR                             mc96f8x16_gpio
+     0000008F  _P17                               mc96f8x16_gpio
+     00000090  _P2                                mc96f8x16_gpio
+     00000090  _P20                               mc96f8x16_gpio
+     00000091  _P0OD                              mc96f8x16_gpio
+     00000091  _P21                               mc96f8x16_gpio
+     00000092  _P1OD                              mc96f8x16_gpio
+     00000092  _P22                               mc96f8x16_gpio
+     00000093  _P23                               mc96f8x16_gpio
+     00000093  _P2OD                              mc96f8x16_gpio
+     00000094  _P24                               mc96f8x16_gpio
+     00000094  _P3OD                              mc96f8x16_gpio
+     00000095  _P25                               mc96f8x16_gpio
+     00000096  _P26                               mc96f8x16_gpio
+     00000096  _WTCR                              mc96f8x16_gpio
+     00000097  _BUZCR                             mc96f8x16_gpio
+     00000097  _P27                               mc96f8x16_gpio
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000098  _P3                                mc96f8x16_gpio
+     00000098  _P30                               mc96f8x16_gpio
+     00000099  _P31                               mc96f8x16_gpio
+     0000009A  _P32                               mc96f8x16_gpio
+     0000009B  _P33                               mc96f8x16_gpio
+     0000009C  _ADCCRL                            mc96f8x16_gpio
+     0000009C  _P34                               mc96f8x16_gpio
+     0000009D  _ADCCRH                            mc96f8x16_gpio
+     0000009D  _P35                               mc96f8x16_gpio
+     0000009E  _ADCDRL                            mc96f8x16_gpio
+     0000009E  _P36                               mc96f8x16_gpio
+     0000009F  _ADCDRH                            mc96f8x16_gpio
+     0000009F  _P37                               mc96f8x16_gpio
+     000000A0  _IIFLAG                            mc96f8x16_gpio
+     000000A0  __XPAGE                            
+     000000A1  _P0IO                              mc96f8x16_gpio
+     000000A2  _EO                                mc96f8x16_gpio
+     000000A4  _EIPOL0L                           mc96f8x16_gpio
+     000000A5  _EIPOL0H                           mc96f8x16_gpio
+     000000A6  _EIPOL1                            mc96f8x16_gpio
+     000000A7  _EIPOL2                            mc96f8x16_gpio
+     000000A8  _IE                                mc96f8x16_gpio
+     000000A9  _IE1                               mc96f8x16_gpio
+     000000AA  _IE2                               mc96f8x16_gpio
+     000000AB  _IE3                               mc96f8x16_gpio
+     000000AC  _P0PU                              mc96f8x16_gpio
+     000000AD  _P1PU                              mc96f8x16_gpio
+     000000AE  _P2PU                              mc96f8x16_gpio
+     000000AF  _P3PU                              mc96f8x16_gpio
+     000000B0  _EIFLAG1                           mc96f8x16_gpio
+     000000B1  _P1IO                              mc96f8x16_gpio
+     000000B2  _T0CR                              mc96f8x16_gpio
+     000000B3  _T0CNT                             mc96f8x16_gpio
+     000000B4  _T0CDR                             mc96f8x16_gpio
+     000000B4  _T0DR                              mc96f8x16_gpio
+     000000B5  _SPICR                             mc96f8x16_gpio
+     000000B6  _SPIDR                             mc96f8x16_gpio
+     000000B7  _SPISR                             mc96f8x16_gpio
+     000000B8  _IP                                mc96f8x16_gpio
+     000000B9  _P2IO                              mc96f8x16_gpio
+     000000BA  _T1CRL                             mc96f8x16_gpio
+     000000BB  _T1CRH                             mc96f8x16_gpio
+     000000BC  _T1ADRL                            mc96f8x16_gpio
+     000000BD  _T1ADRH                            mc96f8x16_gpio
+     000000BE  _T1BDRL                            mc96f8x16_gpio
+     000000BF  _T1BDRH                            mc96f8x16_gpio
+     000000C0  _EIFLAG0                           mc96f8x16_gpio
+     000000C1  _P3IO                              mc96f8x16_gpio
+     000000C2  _T2CRL                             mc96f8x16_gpio
+     000000C3  _T2CRH                             mc96f8x16_gpio
+     000000C4  _T2ADRL                            mc96f8x16_gpio
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000C5  _T2ADRH                            mc96f8x16_gpio
+     000000C6  _T2BDRL                            mc96f8x16_gpio
+     000000C7  _T2BDRH                            mc96f8x16_gpio
+     000000C8  _OSCCR                             mc96f8x16_gpio
+     000000D0  _PSW                               mc96f8x16_gpio
+     000000D3  _P0FSR                             mc96f8x16_gpio
+     000000D4  _P1FSRL                            mc96f8x16_gpio
+     000000D5  _P1FSRH                            mc96f8x16_gpio
+     000000D6  _P2FSR                             mc96f8x16_gpio
+     000000D7  _P3FSR                             mc96f8x16_gpio
+     000000D8  _LVRCR                             mc96f8x16_gpio
+     000000DC  _ADWIFRL                           mc96f8x16_gpio
+     000000DD  _ADWIFRH                           mc96f8x16_gpio
+     000000DE  _P03DB                             mc96f8x16_gpio
+     000000DF  _P12DB                             mc96f8x16_gpio
+     000000E0  _ACC                               mc96f8x16_gpio
+     000000E2  _UARTCR1                           mc96f8x16_gpio
+     000000E3  _UARTCR2                           mc96f8x16_gpio
+     000000E4  _UARTCR3                           mc96f8x16_gpio
+     000000E5  _UARTST                            mc96f8x16_gpio
+     000000E6  _UARTBD                            mc96f8x16_gpio
+     000000E7  _UARTDR                            mc96f8x16_gpio
+     000000E8  _RSTFR                             mc96f8x16_gpio
+     000000E9  _I2CCR                             mc96f8x16_gpio
+     000000EA  _I2CSR                             mc96f8x16_gpio
+     000000EB  _I2CSAR0                           mc96f8x16_gpio
+     000000EC  _I2CDR                             mc96f8x16_gpio
+     000000ED  _I2CSDHR                           mc96f8x16_gpio
+     000000EE  _I2CSCLR                           mc96f8x16_gpio
+     000000EF  _I2CSCHR                           mc96f8x16_gpio
+     000000F0  _B                                 mc96f8x16_gpio
+     000000F1  _I2CSAR1                           mc96f8x16_gpio
+     000000F2  _ADWRCR0                           mc96f8x16_gpio
+     000000F3  _ADWRCR1                           mc96f8x16_gpio
+     000000F4  _ADWRCR2                           mc96f8x16_gpio
+     000000F5  _ADWRCR3                           mc96f8x16_gpio
+     000000F5  _B_5                               _gptrget
+     000000F6  _ADWCRL                            mc96f8x16_gpio
+     000000F6  _B_6                               _gptrget
+     000000F7  _ADWCRH                            mc96f8x16_gpio
+     000000F7  _B_7                               _gptrget
+     000000F8  _IP1                               mc96f8x16_gpio
+     000000FA  _FSADRH                            mc96f8x16_gpio
+     000000FB  _FSADRM                            mc96f8x16_gpio
+     000000FC  _FSADRL                            mc96f8x16_gpio
+     000000FD  _FIDR                              mc96f8x16_gpio
+     000000FE  _FMCR                              mc96f8x16_gpio
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000012 =          18. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000080    00000040 =          64. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000080  __start__stack                     main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XSEG                                00000100    0000003B =          59. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   00000103  _I2C_Master_Transmit_PARM_2        mc96f8x16_i2c
+D:   00000104  _I2C_Master_Transmit_PARM_3        mc96f8x16_i2c
+D:   00000105  _I2C_Master_Transmit_PARM_4        mc96f8x16_i2c
+D:   00000108  _I2C_Master_Receive_PARM_2         mc96f8x16_i2c
+D:   00000109  _I2C_Master_Receive_PARM_3         mc96f8x16_i2c
+D:   0000010C  _I2C_Master_Receive_PARM_4         mc96f8x16_i2c
+D:   00000112  _Buf                               main
+D:   0000011F  _CheckTimeout_PARM_2               mc96f8x16_tim
+D:   00000127  _UART_Transmit_PARM_2              mc96f8x16_uart
+D:   00000129  _UART_Transmit_PARM_3              mc96f8x16_uart
+D:   0000012E  _UART_Receive_PARM_2               mc96f8x16_uart
+D:   00000130  _UART_Receive_PARM_3               mc96f8x16_uart
+D:   00000135  _GPIOPin_Write_PARM_2              mc96f8x16_gpio
+D:   0000013A  __gptrput_PARM_2                   _gptrput
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XISEG                               0000013B    00000005 =           5. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   0000013B  _i                                 main
+D:   0000013D  _Tick                              mc96f8x16_tim
+D:   0000013F  _RxData                            mc96f8x16_uart
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00000000    00000006 =           6. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000003  __sdcc_program_startup             main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             00000006    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000006  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             00000009    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             00000013    00000022 =          34. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000013  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             00000035    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000035  __mcs51_genRAMCLEAR                
+C:   0000003B  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             0000005F    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000062    000008AC =        2220. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000062  _I2C_Config                        mc96f8x16_i2c
+C:   000000CC  _I2C_Master_Transmit               mc96f8x16_i2c
+C:   000001DF  _I2C_Master_Receive                mc96f8x16_i2c
+C:   0000030B  _WDT_Config                        mc96f8x16_wdt
+C:   00000318  _WDT_Clear                         mc96f8x16_wdt
+C:   0000031C  _putchar                           log
+C:   00000359  _main                              main
+C:   000003D8  _SysClock_Config                   mc96f8x16_cg
+C:   000003E0  _SysTick_Init                      mc96f8x16_tim
+C:   000003EF  _GetTick                           mc96f8x16_tim
+C:   000003FB  _SysTick_ISR                       mc96f8x16_tim
+C:   0000042D  _Delayms                           mc96f8x16_tim
+C:   000004BF  _CheckTimeout                      mc96f8x16_tim
+C:   00000574  _UART_Config                       mc96f8x16_uart
+C:   000005FC  _UART_Transmit                     mc96f8x16_uart
+C:   000006D3  _UART_Receive                      mc96f8x16_uart
+C:   000007AA  _UART_Receive_ISR                  mc96f8x16_uart
+C:   000007BD  _GPIO_Config                       mc96f8x16_gpio
+C:   000007D6  _GPIOPin_Write                     mc96f8x16_gpio
+C:   0000083C  _GPIOPin_Read                      mc96f8x16_gpio
+C:   000008A3  _GPIOPin_Toggle                    mc96f8x16_gpio
+C:   000008D3  __gptrput                          _gptrput
+C:   000008EE  __gptrget                          _gptrget
+C:   0000090A  __sdcc_external_startup            _startup
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XINIT                               0000090E    00000005 =           5. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+
+Files Linked                              [ module(s) ]
+
+obj/mc96f8x16_i2c.rel                     [  ]
+obj/mc96f8x16_wdt.rel                     [  ]
+obj/log.rel                               [  ]
+obj/main.rel                              [  ]
+obj/mc96f8x16_cg.rel                      [  ]
+obj/mc96f8x16_tim.rel                     [  ]
+obj/mc96f8x16_uart.rel                    [  ]
+obj/mc96f8x16_gpio.rel                    [  ]
+
+
+Libraries Linked                          [ object file ]
+
+/home/minh/sdcc/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtclear.rel ]
+/home/minh/sdcc/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtxinit.rel ]
+/home/minh/sdcc/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _gptrput.rel ]
+/home/minh/sdcc/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtxclear.rel ]
+/home/minh/sdcc/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtpagesfr.rel ]
+/home/minh/sdcc/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtstart.rel ]
+/home/minh/sdcc/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _gptrget.rel ]
+/home/minh/sdcc/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _startup.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+
+User Base Address Definitions
+
+HOME = 0x0000
+DSEG = 0x0030
+PSEG = 0x0100
+ISEG = 0x0080
+BSEG = 0x0000
+
+

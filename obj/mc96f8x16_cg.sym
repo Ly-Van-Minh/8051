@@ -198,160 +198,160 @@ Symbol Table
     TR1                                                         =  00008E L
     TR2                                                         =  0000CA L
     TXD                                                         =  0000B1 L
-  2 _ACC                                                           000066 GR
-  2 _ADCCRH                                                        000045 GR
-  2 _ADCCRL                                                        000044 GR
-  2 _ADCDRH                                                        000047 GR
-  2 _ADCDRL                                                        000046 GR
-  2 _ADWCRH                                                        00004D GR
-  2 _ADWCRL                                                        00004C GR
-  2 _ADWIFRH                                                       00004F GR
-  2 _ADWIFRL                                                       00004E GR
-  2 _ADWRCR0                                                       000048 GR
-  2 _ADWRCR1                                                       000049 GR
-  2 _ADWRCR2                                                       00004A GR
-  2 _ADWRCR3                                                       00004B GR
-  2 _B                                                             000067 GR
-  2 _BITCNT                                                        000026 GR
-  2 _BITCR                                                         000027 GR
-  2 _BUZCR                                                         000043 GR
-  2 _BUZDR                                                         000042 GR
-  2 _DPH                                                           00006B GR
-  2 _DPH1                                                          00006D GR
-  2 _DPL                                                           00006A GR
-  2 _DPL1                                                          00006C GR
-  2 _EIFLAG0                                                       00001E GR
-  2 _EIFLAG1                                                       00001F GR
-  2 _EIPOL0H                                                       000021 GR
-  2 _EIPOL0L                                                       000020 GR
-  2 _EIPOL1                                                        000022 GR
-  2 _EIPOL2                                                        000023 GR
-  2 _EO                                                            00006E GR
-  2 _FIDR                                                          000064 GR
-  2 _FMCR                                                          000065 GR
-  2 _FSADRH                                                        000061 GR
-  2 _FSADRL                                                        000063 GR
-  2 _FSADRM                                                        000062 GR
-  2 _I2CCR                                                         000059 GR
-  2 _I2CDR                                                         00005D GR
-  2 _I2CSAR0                                                       00005B GR
-  2 _I2CSAR1                                                       00005C GR
-  2 _I2CSCHR                                                       000060 GR
-  2 _I2CSCLR                                                       00005F GR
+    _ACC                                                        =  0000E0 G
+    _ADCCRH                                                     =  00009D G
+    _ADCCRL                                                     =  00009C G
+    _ADCDRH                                                     =  00009F G
+    _ADCDRL                                                     =  00009E G
+    _ADWCRH                                                     =  0000F7 G
+    _ADWCRL                                                     =  0000F6 G
+    _ADWIFRH                                                    =  0000DD G
+    _ADWIFRL                                                    =  0000DC G
+    _ADWRCR0                                                    =  0000F2 G
+    _ADWRCR1                                                    =  0000F3 G
+    _ADWRCR2                                                    =  0000F4 G
+    _ADWRCR3                                                    =  0000F5 G
+    _B                                                          =  0000F0 G
+    _BITCNT                                                     =  00008C G
+    _BITCR                                                      =  00008B G
+    _BUZCR                                                      =  000097 G
+    _BUZDR                                                      =  00008F G
+    _DPH                                                        =  000083 G
+    _DPH1                                                       =  000085 G
+    _DPL                                                        =  000082 G
+    _DPL1                                                       =  000084 G
+    _EIFLAG0                                                    =  0000C0 G
+    _EIFLAG1                                                    =  0000B0 G
+    _EIPOL0H                                                    =  0000A5 G
+    _EIPOL0L                                                    =  0000A4 G
+    _EIPOL1                                                     =  0000A6 G
+    _EIPOL2                                                     =  0000A7 G
+    _EO                                                         =  0000A2 G
+    _FIDR                                                       =  0000FD G
+    _FMCR                                                       =  0000FE G
+    _FSADRH                                                     =  0000FA G
+    _FSADRL                                                     =  0000FC G
+    _FSADRM                                                     =  0000FB G
+    _I2CCR                                                      =  0000E9 G
+    _I2CDR                                                      =  0000EC G
+    _I2CSAR0                                                    =  0000EB G
+    _I2CSAR1                                                    =  0000F1 G
+    _I2CSCHR                                                    =  0000EF G
+    _I2CSCLR                                                    =  0000EE G
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 5.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-  2 _I2CSDHR                                                       00005E GR
-  2 _I2CSR                                                         00005A GR
-  2 _IE                                                            000017 GR
-  2 _IE1                                                           000018 GR
-  2 _IE2                                                           000019 GR
-  2 _IE3                                                           00001A GR
-  2 _IIFLAG                                                        00001D GR
-  2 _IP                                                            00001B GR
-  2 _IP1                                                           00001C GR
-  2 _LVICR                                                         00002B GR
-  2 _LVRCR                                                         00002A GR
-  2 _OSCCR                                                         000025 GR
-  2 _P0                                                            000000 GR
-  3 _P00                                                           000000 GR
-  3 _P01                                                           000001 GR
-  3 _P02                                                           000002 GR
-  3 _P03                                                           000003 GR
-  2 _P03DB                                                         000004 GR
-  3 _P04                                                           000004 GR
-  3 _P05                                                           000005 GR
-  3 _P06                                                           000006 GR
-  3 _P07                                                           000007 GR
-  2 _P0FSR                                                         000012 GR
-  2 _P0IO                                                          000001 GR
-  2 _P0OD                                                          000002 GR
-  2 _P0PU                                                          000003 GR
-  2 _P1                                                            000005 GR
-  3 _P10                                                           000008 GR
-  3 _P11                                                           000009 GR
-  3 _P12                                                           00000A GR
-  2 _P12DB                                                         000009 GR
-  3 _P13                                                           00000B GR
-  3 _P14                                                           00000C GR
-  3 _P15                                                           00000D GR
-  3 _P16                                                           00000E GR
-  3 _P17                                                           00000F GR
-  2 _P1FSRH                                                        000014 GR
-  2 _P1FSRL                                                        000013 GR
-  2 _P1IO                                                          000006 GR
-  2 _P1OD                                                          000007 GR
-  2 _P1PU                                                          000008 GR
-  2 _P2                                                            00000A GR
-  3 _P20                                                           000010 GR
-  3 _P21                                                           000011 GR
-  3 _P22                                                           000012 GR
-  3 _P23                                                           000013 GR
-  3 _P24                                                           000014 GR
-  3 _P25                                                           000015 GR
-  3 _P26                                                           000016 GR
-  3 _P27                                                           000017 GR
-  2 _P2FSR                                                         000015 GR
-  2 _P2IO                                                          00000B GR
-  2 _P2OD                                                          00000C GR
-  2 _P2PU                                                          00000D GR
-  2 _P3                                                            00000E GR
+    _I2CSDHR                                                    =  0000ED G
+    _I2CSR                                                      =  0000EA G
+    _IE                                                         =  0000A8 G
+    _IE1                                                        =  0000A9 G
+    _IE2                                                        =  0000AA G
+    _IE3                                                        =  0000AB G
+    _IIFLAG                                                     =  0000A0 G
+    _IP                                                         =  0000B8 G
+    _IP1                                                        =  0000F8 G
+    _LVICR                                                      =  000086 G
+    _LVRCR                                                      =  0000D8 G
+    _OSCCR                                                      =  0000C8 G
+    _P0                                                         =  000080 G
+    _P00                                                        =  000080 G
+    _P01                                                        =  000081 G
+    _P02                                                        =  000082 G
+    _P03                                                        =  000083 G
+    _P03DB                                                      =  0000DE G
+    _P04                                                        =  000084 G
+    _P05                                                        =  000085 G
+    _P06                                                        =  000086 G
+    _P07                                                        =  000087 G
+    _P0FSR                                                      =  0000D3 G
+    _P0IO                                                       =  0000A1 G
+    _P0OD                                                       =  000091 G
+    _P0PU                                                       =  0000AC G
+    _P1                                                         =  000088 G
+    _P10                                                        =  000088 G
+    _P11                                                        =  000089 G
+    _P12                                                        =  00008A G
+    _P12DB                                                      =  0000DF G
+    _P13                                                        =  00008B G
+    _P14                                                        =  00008C G
+    _P15                                                        =  00008D G
+    _P16                                                        =  00008E G
+    _P17                                                        =  00008F G
+    _P1FSRH                                                     =  0000D5 G
+    _P1FSRL                                                     =  0000D4 G
+    _P1IO                                                       =  0000B1 G
+    _P1OD                                                       =  000092 G
+    _P1PU                                                       =  0000AD G
+    _P2                                                         =  000090 G
+    _P20                                                        =  000090 G
+    _P21                                                        =  000091 G
+    _P22                                                        =  000092 G
+    _P23                                                        =  000093 G
+    _P24                                                        =  000094 G
+    _P25                                                        =  000095 G
+    _P26                                                        =  000096 G
+    _P27                                                        =  000097 G
+    _P2FSR                                                      =  0000D6 G
+    _P2IO                                                       =  0000B9 G
+    _P2OD                                                       =  000093 G
+    _P2PU                                                       =  0000AE G
+    _P3                                                         =  000098 G
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 6.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-  3 _P30                                                           000018 GR
-  3 _P31                                                           000019 GR
-  3 _P32                                                           00001A GR
-  3 _P33                                                           00001B GR
-  3 _P34                                                           00001C GR
-  3 _P35                                                           00001D GR
-  3 _P36                                                           00001E GR
-  3 _P37                                                           00001F GR
-  2 _P3FSR                                                         000016 GR
-  2 _P3IO                                                          00000F GR
-  2 _P3OD                                                          000010 GR
-  2 _P3PU                                                          000011 GR
-  2 _PCON                                                          000029 GR
-  2 _PSW                                                           000068 GR
-  2 _RSTFR                                                         000028 GR
-  2 _SCCR                                                          000024 GR
-  2 _SP                                                            000069 GR
-  2 _SPICR                                                         000050 GR
-  2 _SPIDR                                                         000051 GR
-  2 _SPISR                                                         000052 GR
+    _P30                                                        =  000098 G
+    _P31                                                        =  000099 G
+    _P32                                                        =  00009A G
+    _P33                                                        =  00009B G
+    _P34                                                        =  00009C G
+    _P35                                                        =  00009D G
+    _P36                                                        =  00009E G
+    _P37                                                        =  00009F G
+    _P3FSR                                                      =  0000D7 G
+    _P3IO                                                       =  0000C1 G
+    _P3OD                                                       =  000094 G
+    _P3PU                                                       =  0000AF G
+    _PCON                                                       =  000087 G
+    _PSW                                                        =  0000D0 G
+    _RSTFR                                                      =  0000E8 G
+    _SCCR                                                       =  00008A G
+    _SP                                                         =  000081 G
+    _SPICR                                                      =  0000B5 G
+    _SPIDR                                                      =  0000B6 G
+    _SPISR                                                      =  0000B7 G
  16 _SysClock_Config                                               000000 GR
-  2 _T0CDR                                                         000035 GR
-  2 _T0CNT                                                         000033 GR
-  2 _T0CR                                                          000032 GR
-  2 _T0DR                                                          000034 GR
-  2 _T1ADRH                                                        000039 GR
-  2 _T1ADRL                                                        000038 GR
-  2 _T1BDRH                                                        00003B GR
-  2 _T1BDRL                                                        00003A GR
-  2 _T1CRH                                                         000037 GR
-  2 _T1CRL                                                         000036 GR
-  2 _T2ADRH                                                        00003F GR
-  2 _T2ADRL                                                        00003E GR
-  2 _T2BDRH                                                        000041 GR
-  2 _T2BDRL                                                        000040 GR
-  2 _T2CRH                                                         00003D GR
-  2 _T2CRL                                                         00003C GR
-  2 _UARTBD                                                        000057 GR
-  2 _UARTCR1                                                       000053 GR
-  2 _UARTCR2                                                       000054 GR
-  2 _UARTCR3                                                       000055 GR
-  2 _UARTDR                                                        000058 GR
-  2 _UARTST                                                        000056 GR
-  2 _WDTCNT                                                        00002D GR
-  2 _WDTCR                                                         00002E GR
-  2 _WDTDR                                                         00002C GR
-  2 _WTCNT                                                         000030 GR
-  2 _WTCR                                                          000031 GR
-  2 _WTDR                                                          00002F GR
+    _T0CDR                                                      =  0000B4 G
+    _T0CNT                                                      =  0000B3 G
+    _T0CR                                                       =  0000B2 G
+    _T0DR                                                       =  0000B4 G
+    _T1ADRH                                                     =  0000BD G
+    _T1ADRL                                                     =  0000BC G
+    _T1BDRH                                                     =  0000BF G
+    _T1BDRL                                                     =  0000BE G
+    _T1CRH                                                      =  0000BB G
+    _T1CRL                                                      =  0000BA G
+    _T2ADRH                                                     =  0000C5 G
+    _T2ADRL                                                     =  0000C4 G
+    _T2BDRH                                                     =  0000C7 G
+    _T2BDRL                                                     =  0000C6 G
+    _T2CRH                                                      =  0000C3 G
+    _T2CRL                                                      =  0000C2 G
+    _UARTBD                                                     =  0000E6 G
+    _UARTCR1                                                    =  0000E2 G
+    _UARTCR2                                                    =  0000E3 G
+    _UARTCR3                                                    =  0000E4 G
+    _UARTDR                                                     =  0000E7 G
+    _UARTST                                                     =  0000E5 G
+    _WDTCNT                                                     =  00008E G
+    _WDTCR                                                      =  00008D G
+    _WDTDR                                                      =  00008E G
+    _WTCNT                                                      =  000089 G
+    _WTCR                                                       =  000096 G
+    _WTDR                                                       =  000089 G
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
     a.1                                                         =  0000E1 L
@@ -565,8 +565,8 @@ Area Table
 
    0 _CODE                                      size      0   flags    0
    1 RSEG                                       size      0   flags    8
-   2 RSEG0                                      size     6F   flags    8
-   3 RSEG1                                      size     20   flags    8
+   2 RSEG0                                      size      0   flags    8
+   3 RSEG1                                      size      0   flags    8
    4 REG_BANK_0                                 size      8   flags    4
    5 DSEG                                       size      0   flags    0
    6 ISEG                                       size      0   flags    0
@@ -583,7 +583,7 @@ Area Table
   11 GSINIT3                                    size      0   flags   20
   12 GSINIT4                                    size      0   flags   20
   13 GSINIT5                                    size      0   flags   20
-  14 GSINIT                                     size    18D   flags   20
+  14 GSINIT                                     size      0   flags   20
   15 GSFINAL                                    size      0   flags   20
   16 CSEG                                       size      8   flags   20
   17 CONST                                      size      0   flags   20

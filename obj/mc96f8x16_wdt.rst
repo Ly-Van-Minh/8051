@@ -339,8 +339,8 @@
                                     339 ; external ram data
                                     340 ;--------------------------------------------------------
                                     341 	.area XSEG    (XDATA)
-      000000                        342 _WDT_Config_Time_65536_3:
-      000000                        343 	.ds 1
+      00010F                        342 _WDT_Config_Time_65536_3:
+      00010F                        343 	.ds 1
                                     344 ;--------------------------------------------------------
                                     345 ; absolute external ram data
                                     346 ;--------------------------------------------------------
@@ -384,7 +384,7 @@
                                     384 ;	-----------------------------------------
                                     385 ;	 function WDT_Config
                                     386 ;	-----------------------------------------
-      000000                        387 _WDT_Config:
+      00030B                        387 _WDT_Config:
                            000007   388 	ar7 = 0x07
                            000006   389 	ar6 = 0x06
                            000005   390 	ar5 = 0x05
@@ -393,16 +393,16 @@
                            000002   393 	ar2 = 0x02
                            000001   394 	ar1 = 0x01
                            000000   395 	ar0 = 0x00
-      000000 E5 82            [12]  396 	mov	a,dpl
-      000002 90r00r00         [24]  397 	mov	dptr,#_WDT_Config_Time_65536_3
-      000005 F0               [24]  398 	movx	@dptr,a
+      00030B E5 82            [12]  396 	mov	a,dpl
+      00030D 90 01 0F         [24]  397 	mov	dptr,#_WDT_Config_Time_65536_3
+      000310 F0               [24]  398 	movx	@dptr,a
                                     399 ;	src/mc96f8x16_wdt.c:6: WDTDR = Time;
-      000006 E0               [24]  400 	movx	a,@dptr
-      000007 F5 8E            [12]  401 	mov	_WDTDR,a
+      000311 E0               [24]  400 	movx	a,@dptr
+      000312 F5 8E            [12]  401 	mov	_WDTDR,a
                                     402 ;	src/mc96f8x16_wdt.c:7: WDTCR = WDTCK | WDTCL | WDTRSON | WDTEN; 
-      000009 75 8D E2         [24]  403 	mov	_WDTCR,#0xe2
+      000314 75 8D E2         [24]  403 	mov	_WDTCR,#0xe2
                                     404 ;	src/mc96f8x16_wdt.c:8: }
-      00000C 22               [24]  405 	ret
+      000317 22               [24]  405 	ret
                                     406 ;------------------------------------------------------------
                                     407 ;Allocation info for local variables in function 'WDT_Clear'
                                     408 ;------------------------------------------------------------
@@ -410,11 +410,11 @@
                                     410 ;	-----------------------------------------
                                     411 ;	 function WDT_Clear
                                     412 ;	-----------------------------------------
-      00000D                        413 _WDT_Clear:
+      000318                        413 _WDT_Clear:
                                     414 ;	src/mc96f8x16_wdt.c:12: WDTCR |= WDTCL;
-      00000D 43 8D 20         [24]  415 	orl	_WDTCR,#0x20
+      000318 43 8D 20         [24]  415 	orl	_WDTCR,#0x20
                                     416 ;	src/mc96f8x16_wdt.c:13: }
-      000010 22               [24]  417 	ret
+      00031B 22               [24]  417 	ret
                                     418 	.area CSEG    (CODE)
                                     419 	.area CONST   (CODE)
                                     420 	.area XINIT   (CODE)
