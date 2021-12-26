@@ -2,29 +2,29 @@
 #Author: Ly Van Minh <vanminhly61@gmail.com>
 #Date: 2021/12/18
 #####################################################################
-
+VPATH			= ./
 CC 				= sdcc
-CFLAGS 			= -I.
+CFLAGS 			= --model-large -I.
+LDFLAGS			= --Werror --xram-loc 0x00 --code-loc 0x00 --data-loc 0x30
 RM 				= rm -rf
 SRCS 			= $(wildcard *.c)
 RELS			= $(patsubst %.c,%.rel,$(SRCS))
-TARGET 			= all
-PROJECT_NAME	= CHARGECASE_HDX_2968
+PROJECT_NAME	= hdx_2968
 #####################################################################
 
-$(TARGET): $(PROJECT_NAME).hex $(PROJECT_NAME).bin
+all: $(PROJECT_NAME).bin
 
-$(PROJECT_NAME).bin: %.hex
-	objcopy -I ihex -O binary $< $@
+$(PROJECT_NAME).bin: $(PROJECT_NAME).hex
+	makebin $< $@
 
 $(PROJECT_NAME).hex: $(PROJECT_NAME).ihx
 	packihx $< > $@
 
 $(PROJECT_NAME).ihx: $(RELS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 %.rel: %.c %.h
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 .PHONY: clean
 clean:
