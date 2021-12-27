@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
-#include <MC96F8316.h>
 #include "mc96f8x16.h"
 #include "mc96f8x16_cg.h"
 #include "mc96f8x16_tim.h"
@@ -12,9 +11,9 @@
 #include "log.h"
 #include "et9562b.h"
 
-int i = 0;
+// int i = 0;
 // extern volatile uint8_t RxData;
-uint8_t Buf;
+// __code uint8_t Buf;
 // uint8_t I2CReadData;
 
 
@@ -29,9 +28,9 @@ int main(void)
     uart.StopBits   = UART_1_STOP_BIT;
     /* Disable Interrupt */
 
-    // i2c.HoldTime    = 0x0F;
-    // i2c.Mode        = I2C_MASTER;
-    // i2c.Period      = 0xFFFF;
+    i2c.HoldTime    = 0x0F;
+    i2c.Mode        = I2C_MASTER;
+    i2c.Period      = 0xFFFF;
     // i2c.SlaveAddr   = ;
     cli();
 
@@ -40,7 +39,7 @@ int main(void)
     I2C_Config(&i2c);
     GPIO_Config();
     SysTick_Init();
-    // WDT_Config(0xFF);
+    WDT_Config(0xFF);
     /* Enable Interrupt */
     sei();
     GPIOPin_Write(GPIO_LED2, GPIO_SET);
@@ -56,13 +55,13 @@ int main(void)
         
         // GPIOPin_Toggle(GPIO_LED2);
         // Delayms(1000);
-        // UARTCR2 |= 0x04;
+        UARTCR2 |= 0x04;
         // Delayms(10);
         // if(RxData == '1')
         // {
             // UART_Receive(&Buf, 1, 1000);
-            Delayms(2000);
-            UARTCR2 = (UARTCR2 & (~UARTCR2_RXE));
+            // Delayms(2000);
+            // UARTCR2 = (UARTCR2 & (~UARTCR2_RXE));
             // LOGI(__FILE__, __LINE__, "Hello world %u %u!\r\n", (int)100, (int)200);
             // Delayms(100);
             // LOGW(__FILE__, __LINE__, "Size char type %u\r\n", (unsigned int)sizeof(char));
@@ -86,7 +85,7 @@ int main(void)
             // if(Buf == '0')
             // {
                 // GPIOPin_Write(GPIO_LED2, GPIO_SET);
-            GPIOPin_Toggle(GPIO_LED2);
+            // GPIOPin_Toggle(GPIO_LED2);
             
                 // Buf = 0;
             // }
@@ -99,11 +98,11 @@ int main(void)
             // }
         // }
         
-        // WDT_Clear();
-        // Delayms(2000);
+        WDT_Clear();
+        Delayms(2000);
         // Delay(0xFFFF);
-        // GPIOPin_Write(GPIO_LED2, GPIO_RESET);
-        // Delayms(2000);
+        GPIOPin_Write(GPIO_LED2, GPIO_RESET);
+        Delayms(2000);
         // Delay(0xFFFF);
     }
 }
